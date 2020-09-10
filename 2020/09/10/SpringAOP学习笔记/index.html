@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Hexo</title>
+  <title>SpringAOP学习笔记 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="##SpringAOP学习 ###AOP(概念) 1.什么是AOP?    1.面向切面（方面）编程，利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑个部分之间的耦合度降低，提高程序的可重用性，同时提高了开发效率。 2.通俗描述：不通过修改源代码方式添加新的功能  3.用登陆的列子来说明AOP ###AOP(底层原理) 1.AOP底层使用动态代理    1.有两种情况的动态代理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringAOP学习笔记">
+<meta property="og:url" content="http://example.com/2020/09/10/SpringAOP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="##SpringAOP学习 ###AOP(概念) 1.什么是AOP?    1.面向切面（方面）编程，利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑个部分之间的耦合度降低，提高程序的可重用性，同时提高了开发效率。 2.通俗描述：不通过修改源代码方式添加新的功能  3.用登陆的列子来说明AOP ###AOP(底层原理) 1.AOP底层使用动态代理    1.有两种情况的动态代理">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-10T02:03:31.000Z">
+<meta property="article:modified_time" content="2020-09-10T05:07:12.369Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -150,16 +154,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-SpringAOP学习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-SpringAOP学习笔记" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/10/SpringAOP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">SpringAOP学习笔记</a>
+    <h1 class="article-title" itemprop="name">
+      SpringAOP学习笔记
     </h1>
   
 
@@ -280,6 +282,27 @@ class Invode1 implements InvocationHandler&#123;
       
 
       
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
     </div>
     <div class="article-info article-info-index">
       
@@ -287,16 +310,75 @@ class Invode1 implements InvocationHandler&#123;
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/10/SpringAOP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/09/10/SpringAOP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/09/09/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">我的第一篇博客文章</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -316,275 +398,14 @@ class Invode1 implements InvocationHandler&#123;
 
 
 
-
   
-    <article id="post-我的第一篇博客文章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/09/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">我的第一篇博客文章</a>
-    </h1>
   
 
-        
-        <a href="/2020/09/09/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2020-09-09T03:08:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>##Spring第一天</p>
-<p>###IOC操作Bean管理（XML注入集合管理）<br>1.注入数组类型属性</p>
-<hr>
-<property name="courses">
-            <array>
-                <value>java</value>
-                <value>数据库</value>
-            </array>
-</property>
----
-2.注入List集合类型属性
----
-<property name="courses">
-            <list>
-                <value>java</value>
-                <value>数据库</value>
-            </list>
- </property>
- ---
-3.注入Map集合类型属性     
----
-<property name="courses">
-            <map>
-                <entry key="" value=""/>
-            </map>
- </property>
----
-4.注入Set集合类型属性
----
-<property name="courses">
-            <set>
-                <value>java</value>
-                <value>数据库</value>
-            </set>
-</property>
----
- private String[] courses;
-
-<pre><code>private List&lt;String&gt; list;
-
-private Map&lt;String, Object&gt; map;
-
-private Set&lt;String&gt; set;
-
-public void setSet(Set&lt;String&gt; set) &#123;
-    this.set = set;
-&#125;
-
-public void setCourses(String[] courses) &#123;
-    this.courses = courses;
-&#125;
-
-public void setList(List&lt;String&gt; list) &#123;
-    this.list = list;
-&#125;
-
-public void setMap(Map&lt;String, Object&gt; map) &#123;
-    this.map = map;
-&#125;</code></pre>
-<p>}</p>
-<hr>
-<p>##Spring第二天</p>
-<p>###Bean管理注解方式</p>
-<p>1.导入依赖 spring-aop-5.2.6.jar</p>
-<p>2.开启组件扫描</p>
-<p>xmlns:context=”<a target="_blank" rel="noopener" href="http://www.springframework.org/schema/context&quot;">http://www.springframework.org/schema/context&quot;</a><br><a target="_blank" rel="noopener" href="http://www.springframework.org/schema/context">http://www.springframework.org/schema/context</a> <a target="_blank" rel="noopener" href="http://www.springframework.org/schema/context/spring-context.xsd">http://www.springframework.org/schema/context/spring-context.xsd</a></p>
-<p>context:component-scan base-package=”Service”</p>
-<p>3.使用注解来创建对象<br>@Component 普通注解<br>@Service 一般用于service层<br>@Controller 一般用于web层<br>@Repository 一般用于DAO层<br>四个注解都可以用于创建对象，用法相同并且作用基本相同，可以混用，但在实际开发中一般默认对应层中使用对应的注解方式来创建对象</p>
-<p>###开启组件扫描中的细节问题</p>
-<p>1.可以约定那些类可以不扫描或者那些类可以扫描<br>    1.可以通过关闭use-default-filters 过滤器来进行include包含扫描<br>    context:component-scan base-package=”Service” use-default-filters=”false”<br>        context:include-filter type=”annotation” expression=”pojo”/<br>    /context:component-scan</p>
-<pre><code>2.表示设置那些内容不进行扫描
-context:component-scan base-package=&quot;Service&quot;
-   context:exclude-filter type=&quot;annotation&quot; expression=&quot;pojo&quot;/
-/context:component-scan&gt;</code></pre>
-<p>###基于注解方式进行属性注入</p>
-<ol>
-<li><p>@AutoWired 根据属性类型进行自动装配</p>
-<p> 第一步：把service和dao对象创建，添加注解创建对象</p>
-</li>
-</ol>
-<pre><code>@Service
-public class UserService &#123;
-
-    private UserDAO userDAO;
-
-&#125;
-
-@Service
-public class UserService &#123;
-
-    @Repository(value = &quot;userDAOImpl&quot;)
-    public class UserDAOImpl implements UserDAO &#123;
-
-    @Override
-    public void add() &#123;
-        System.out.println(&quot;DAOadd------&quot;);
-    &#125;
-&#125;
-
-第二步：定义类型属性，在service里注入dao对象，在service类添加dao类型的属性，在属性上面使用注解
-@Autowired
-private UserDAO userDAO;</code></pre>
-<ol start="2">
-<li><p>@Qualifier 根据属性名称进行注入</p>
-<p> 和上面的@AutoWired一起使用 一个接口有多个实现类 使用@Qualifier可以具体指定使用哪个实现类对象</p>
-<p> @Autowired<br> @Qualifier(value = “userDAOImpl”)<br> private UserDAO userDAO;</p>
-<p> public UserDAO getUserDAO() {</p>
-<pre><code> return userDAO;</code></pre>
-<p> }</p>
-</li>
-<li><p>@Resource 可以根据类型进行注入，也可以根据名称注入，是javax中的，spring本身建议使用前两个</p>
-<p> ~不写name = “”默认为类型注入，如果有多个实现类会报错，所以使用(name = “”)来改成名称注入<br> @Resource(name = “userDAOImpl2”)<br> private UserDAO userDAO;</p>
-<p> public UserDAO getUserDAO() {</p>
-<pre><code> return userDAO;</code></pre>
-<p> }</p>
-</li>
-<li><p>@Value 注入普通类型属性</p>
-<p>  @Value(“科比”)<br> private String name;</p>
-</li>
-</ol>
-<p>###完全注解开发</p>
-<p>1.创建配置类，替代xml配置文件</p>
-<pre><code>@Configuration //作为配置类，替代配置文件
-@ComponentScan(basePackages = &quot;dao,Service&quot;)
-public class SpringConfig &#123;
-
-&#125;</code></pre>
-<p>2.编写测试类</p>
-<pre><code>通过AnotationConfigApplication实现类来读取配置类
-ApplicationContext Context = new AnnotationConfigApplicationContext(SpringConfig.class);</code></pre>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/09/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/09/hello-world/">Hello World</a>
-    </h1>
   
 
-        
-        <a href="/2020/09/09/hello-world/" class="archive-article-date">
-  	<time datetime="2020-09-09T03:03:13.581Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/09/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
+
   
 
 
@@ -607,8 +428,8 @@ ApplicationContext Context = new AnnotationConfigApplicationContext(SpringConfig
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

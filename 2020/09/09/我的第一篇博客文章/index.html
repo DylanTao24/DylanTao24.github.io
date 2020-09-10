@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>我的第一篇博客文章 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="##Spring第一天 ###IOC操作Bean管理（XML注入集合管理）1.注入数组类型属性                               java                 数据库                2.注入List集合类型属性                            java                数据库             3.注入">
+  <meta name="description" content="##Spring第一天 ###IOC操作Bean管理（XML注入集合管理）1.注入数组类型属性                                java                 数据库               --- 2.注入List集合类型属性 ---                               java                 数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="我的第一篇博客文章">
 <meta property="og:url" content="http://example.com/2020/09/09/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="##Spring第一天 ###IOC操作Bean管理（XML注入集合管理）1.注入数组类型属性                               java                 数据库                2.注入List集合类型属性                            java                数据库             3.注入">
+<meta property="og:description" content="##Spring第一天 ###IOC操作Bean管理（XML注入集合管理）1.注入数组类型属性                                java                 数据库               --- 2.注入List集合类型属性 ---                               java                 数据库">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-09-09T03:08:56.000Z">
-<meta property="article:modified_time" content="2020-09-09T07:56:27.790Z">
+<meta property="article:modified_time" content="2020-09-10T05:07:16.978Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -176,29 +176,42 @@
       
         <p>##Spring第一天</p>
 <p>###IOC操作Bean管理（XML注入集合管理）<br>1.注入数组类型属性</p>
+<hr>
 <property name="courses">
             <array>
                 <value>java</value>
                 <value>数据库</value>
             </array>
 </property>
-
-<p>2.注入List集合类型属性<br><property name="courses"><br>            <list><br>                <value>java</value><br>                <value>数据库</value><br>            </list><br> </property><br>3.注入Map集合类型属性     </p>
+---
+2.注入List集合类型属性
+---
+<property name="courses">
+            <list>
+                <value>java</value>
+                <value>数据库</value>
+            </list>
+ </property>
+ ---
+3.注入Map集合类型属性     
+---
 <property name="courses">
             <map>
                 <entry key="" value=""/>
             </map>
  </property>
-
-<p>4.注入Set集合类型属性</p>
+---
+4.注入Set集合类型属性
+---
 <property name="courses">
             <set>
                 <value>java</value>
                 <value>数据库</value>
             </set>
 </property>
+---
+ private String[] courses;
 
-<p> private String[] courses;</p>
 <pre><code>private List&lt;String&gt; list;
 
 private Map&lt;String, Object&gt; map;
@@ -222,7 +235,75 @@ public void setMap(Map&lt;String, Object&gt; map) &#123;
 &#125;</code></pre>
 <p>}</p>
 <hr>
-<p>##Spring</p>
+<p>##Spring第二天</p>
+<p>###Bean管理注解方式</p>
+<p>1.导入依赖 spring-aop-5.2.6.jar</p>
+<p>2.开启组件扫描</p>
+<p>xmlns:context=”<a target="_blank" rel="noopener" href="http://www.springframework.org/schema/context&quot;">http://www.springframework.org/schema/context&quot;</a><br><a target="_blank" rel="noopener" href="http://www.springframework.org/schema/context">http://www.springframework.org/schema/context</a> <a target="_blank" rel="noopener" href="http://www.springframework.org/schema/context/spring-context.xsd">http://www.springframework.org/schema/context/spring-context.xsd</a></p>
+<p>context:component-scan base-package=”Service”</p>
+<p>3.使用注解来创建对象<br>@Component 普通注解<br>@Service 一般用于service层<br>@Controller 一般用于web层<br>@Repository 一般用于DAO层<br>四个注解都可以用于创建对象，用法相同并且作用基本相同，可以混用，但在实际开发中一般默认对应层中使用对应的注解方式来创建对象</p>
+<p>###开启组件扫描中的细节问题</p>
+<p>1.可以约定那些类可以不扫描或者那些类可以扫描<br>    1.可以通过关闭use-default-filters 过滤器来进行include包含扫描<br>    context:component-scan base-package=”Service” use-default-filters=”false”<br>        context:include-filter type=”annotation” expression=”pojo”/<br>    /context:component-scan</p>
+<pre><code>2.表示设置那些内容不进行扫描
+context:component-scan base-package=&quot;Service&quot;
+   context:exclude-filter type=&quot;annotation&quot; expression=&quot;pojo&quot;/
+/context:component-scan&gt;</code></pre>
+<p>###基于注解方式进行属性注入</p>
+<ol>
+<li><p>@AutoWired 根据属性类型进行自动装配</p>
+<p> 第一步：把service和dao对象创建，添加注解创建对象</p>
+</li>
+</ol>
+<pre><code>@Service
+public class UserService &#123;
+
+    private UserDAO userDAO;
+
+&#125;
+
+@Service
+public class UserService &#123;
+
+    @Repository(value = &quot;userDAOImpl&quot;)
+    public class UserDAOImpl implements UserDAO &#123;
+
+    @Override
+    public void add() &#123;
+        System.out.println(&quot;DAOadd------&quot;);
+    &#125;
+&#125;
+
+第二步：定义类型属性，在service里注入dao对象，在service类添加dao类型的属性，在属性上面使用注解
+@Autowired
+private UserDAO userDAO;</code></pre>
+<ol start="2">
+<li><p>@Qualifier 根据属性名称进行注入</p>
+<p> 和上面的@AutoWired一起使用 一个接口有多个实现类 使用@Qualifier可以具体指定使用哪个实现类对象</p>
+<p> @Autowired<br> @Qualifier(value = “userDAOImpl”)<br> private UserDAO userDAO;</p>
+<p> public UserDAO getUserDAO() {</p>
+<pre><code> return userDAO;</code></pre>
+<p> }</p>
+</li>
+<li><p>@Resource 可以根据类型进行注入，也可以根据名称注入，是javax中的，spring本身建议使用前两个</p>
+<p> ~不写name = “”默认为类型注入，如果有多个实现类会报错，所以使用(name = “”)来改成名称注入<br> @Resource(name = “userDAOImpl2”)<br> private UserDAO userDAO;</p>
+<p> public UserDAO getUserDAO() {</p>
+<pre><code> return userDAO;</code></pre>
+<p> }</p>
+</li>
+<li><p>@Value 注入普通类型属性</p>
+<p>  @Value(“科比”)<br> private String name;</p>
+</li>
+</ol>
+<p>###完全注解开发</p>
+<p>1.创建配置类，替代xml配置文件</p>
+<pre><code>@Configuration //作为配置类，替代配置文件
+@ComponentScan(basePackages = &quot;dao,Service&quot;)
+public class SpringConfig &#123;
+
+&#125;</code></pre>
+<p>2.编写测试类</p>
+<pre><code>通过AnotationConfigApplication实现类来读取配置类
+ApplicationContext Context = new AnnotationConfigApplicationContext(SpringConfig.class);</code></pre>
 
       
 
@@ -315,6 +396,15 @@ public void setMap(Map&lt;String, Object&gt; map) &#123;
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/09/10/SpringAOP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          SpringAOP学习笔记
+        
+      </div>
+    </a>
   
   
     <a href="/2020/09/09/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
