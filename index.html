@@ -172,7 +172,170 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>###SpringMVC</p>
+<pre><code>1.MVC:模型（dao service） 视图（jsp） 控制器（servlet）
+
+    模型：数据模型，提供要展示的数据，因此包含数据和行为，可以认为是领域模型或JavaBean组件（包括数据和行为），不过现在一般都分离开：Value Object（数据Dao）
+          和服务层（行为Service） 
+
+    View（视图）：负责进行模型的展示，一般就是我们见到的用户界面，客户想看到的东西
+
+    Controller（控制器）：接受用户的请求，委托给模型进行处理，处理完毕后把返回的模型数据返回给视图，由视图负责展示，也就是说控制器做了个调度员的工作
+
+2.是将业务逻辑，数据，显示分离的方法来组织代码
+
+3.MVC主要作用是降低了视图与业务逻辑间的双向耦合
+
+4.MVC不是一种设计模式，MVC是一种架构模式。
+
+5.职责分析：控制器：（1）取得表单数据  （2）调用业务逻辑  （3）转向指定页面
+
+            视图：显示页面
+
+            模型：（1）业务逻辑 （2）保存数据的状态</code></pre>
+<p>###SpringMVC（回顾Servlet）</p>
+<pre><code>1.新建一个Maven模块，添加web app 的支持，引入依赖
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;junit&lt;/groupId&gt;
+        &lt;artifactId&gt;junit&lt;/artifactId&gt;
+        &lt;version&gt;4.13&lt;/version&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
+        &lt;version&gt;5.2.8.RELEASE&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+        &lt;artifactId&gt;servlet-api&lt;/artifactId&gt;
+        &lt;version&gt;2.5&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;javax.servlet.jsp&lt;/groupId&gt;
+        &lt;artifactId&gt;jsp-api&lt;/artifactId&gt;
+        &lt;version&gt;2.2&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+        &lt;artifactId&gt;jstl&lt;/artifactId&gt;
+        &lt;version&gt;1.2&lt;/version&gt;
+    &lt;/dependency&gt;
+
+2.编写一个Servlet类，用来处理用户的请求
+
+    public class HalloServlet extends HttpServlet &#123;
+        @Override
+        protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException &#123;
+            //1.获取前端参数
+
+            System.out.println(&quot;进入hello&quot;);
+
+            String method = req.getParameter(&quot;method&quot;);
+            if (method.equals(&quot;add&quot;))&#123;
+                req.getSession().setAttribute(&quot;msg&quot;,&quot;执行了add方法&quot;);
+            &#125;
+            if(method.equals(&quot;delete&quot;))&#123;
+                req.getSession().setAttribute(&quot;msg&quot;,&quot;执行了delete方法&quot;);
+            &#125;
+
+            //2.调用业务层
+
+
+
+            //3.视图转发或者重定向
+
+            req.getRequestDispatcher(&quot;/WEB-INF/jsp/test.jsp&quot;).forward(req,resp);
+
+        &#125;
+
+        @Override
+        protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException &#123;
+            doGet(req,resp);
+        &#125;
+    &#125;
+
+3.配置servlet到web.xml</code></pre>
+<p>###SpringMVC程序</p>
+<pre><code>1.SpringMVC特点：
+    （1）轻量级，简单易学
+    （2）高效，基于，基于请求和响应的MVC框架
+    （3）与Spring无缝结合
+    （4）约定优于配置
+    （5）功能强大：RESTful 数据验证 本地化
+    （6）简洁灵活
+
+2.SpringMVC的web框架是围绕DispatcherServlet（调度Service）设计的
+
+3.搭建简单的SpringMVC:
+    HelloSpringMVC:
+        （1）导入依赖
+
+        （2）配置web.xml，注册DispatcherServlet
+
+        &lt;servlet&gt;
+            &lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;
+            &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+
+            &lt;init-param&gt;
+                &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+                &lt;param-value&gt;classpath:springmvc-servlet.xml&lt;/param-value&gt;
+            &lt;/init-param&gt;
+
+            &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+        &lt;/servlet&gt;
+        &lt;servlet-mapping&gt;
+            &lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;
+            &lt;url-pattern&gt;/&lt;/url-pattern&gt;
+        &lt;/servlet-mapping&gt;
+
+        （3）编写SpringMVC的配置文件，名称springmvc-service.xml：[servletname]-servlet.xml
+
+        （4）添加处理映射器
+            &lt;bean class=&quot;org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping&quot;/&gt;
+
+        （5）添加处理器适配器
+            &lt;bean class=&quot;org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter&quot;/&gt;
+
+        （6）添加视图解析器
+            &lt;bean class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot; id=&quot;InternalResourceViewResolver&quot;&gt;
+                &lt;property name=&quot;prefix&quot; value=&quot;/WEB-INF/jsp/&quot;/&gt;
+                &lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot;/&gt;
+            &lt;/bean&gt;
+
+         （7）编写业务层Controller 要么实现Controller接口要么用注解，需要返回一个ModelAndView对象，用来装数据，封视图
+             public class HelloController implements Controller &#123;
+
+            public ModelAndView handleRequest(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception &#123;
+
+                ModelAndView mv = new ModelAndView();
+
+                mv.addObject(&quot;msg&quot;, &quot;Hallo SpringMVC&quot;);
+
+                mv.setViewName(&quot;test&quot;);
+
+                return mv;
+            &#125;
+
+        （8）将自己的类交给SpringIOC容器，注册bean
+            &lt;bean id=&quot;/hello&quot; class=&quot;Controller.HelloController&quot;/&gt;
+
+4.可能遇到的问题：访问出现404，排查步骤
+
+    （1）查看控制台输出，看看是不是少了什么jar包
+
+    （2）如果存在，显示无法输出，就在IDEA的项目发布中，添加lib依赖！！
+
+    （3）重启Tomcat即可解决！</code></pre>
+<p>###SpringMVC执行原理</p>
+<pre><code>    用户发送请求后，进入DispatherServlet（调度Service），然后首先经过HandlerMapping（处理器映射），DispatherServlet把地址发给HandlerMapping，根据请求url
+查找Handler，HandlerExecution（处理器执行）表示具体的Handler，主要作用是根据url来查找被控制器，如localhost：8080/hallo查找到的就是hallo，HandlerExection
+会将解析到的数据传递给DispatherServlet，如解析控制器映射。然后DispatherServlet将通过解析到的被控制器，使用HandlerAdapter（处理器适配器）在bean类中寻找
+Controller的实现类，之后让具体的实现类执行，在这步中调用service层和dao层，之后将具体的执行信息返回给HandlerAdapter，例如ModelAndView，之后传递给DispatherServlet
+然后调用ViewResolver（视图解析器）来解析HandlerAdapter传递过来的逻辑视图名，加上前缀和后缀后，将最终解析到的视图名返回给DispatherServlet，之后根据ViewResolver
+视图解析器解析的结构，进行调用具体的视图，最后将视图通过响应呈现给用户。</code></pre>
+
       
 
       
