@@ -334,7 +334,333 @@
 会将解析到的数据传递给DispatherServlet，如解析控制器映射。然后DispatherServlet将通过解析到的被控制器，使用HandlerAdapter（处理器适配器）在bean类中寻找
 Controller的实现类，之后让具体的实现类执行，在这步中调用service层和dao层，之后将具体的执行信息返回给HandlerAdapter，例如ModelAndView，之后传递给DispatherServlet
 然后调用ViewResolver（视图解析器）来解析HandlerAdapter传递过来的逻辑视图名，加上前缀和后缀后，将最终解析到的视图名返回给DispatherServlet，之后根据ViewResolver
-视图解析器解析的结构，进行调用具体的视图，最后将视图通过响应呈现给用户。</code></pre>
+视图解析器解析的结构，进行调用具体的视图，最后将视图通过响应呈现给用户。
+
+
+&lt;!--视图解析器：DispatherServlet给他的MpdelAndView
+      1.获取了ModelAndView的数据
+      2.解析ModelAndView的视图名字
+      3.拼接视图名字，找到视图
+--&gt;
+&lt;bean class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot; id=&quot;InternalResourceViewResolver&quot;&gt;
+    &lt;property name=&quot;prefix&quot; value=&quot;/WEB-INF/jsp/&quot;/&gt;
+    &lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot;/&gt;
+&lt;/bean&gt;
+
+ &lt;servlet&gt;
+    &lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+    &lt;!--要绑定SpringMVC的配置文件--&gt;
+    &lt;init-param&gt;
+        &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+        &lt;param-value&gt;classpath:springmvc-servlet.xml&lt;/param-value&gt;
+    &lt;/init-param&gt;
+    &lt;!--启动级别：1 服务器一启动跟着一块启动--&gt;
+    &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+&lt;/servlet&gt;
+&lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;</code></pre>
+<p>###SpringMVC（使用注解开发）</p>
+<pre><code>1.新建一个Moudle，添加web支持
+
+2.由于maven可能存在资源过滤的问题，我们将配置完善
+
+3.在pom.xml中引入相关依赖
+
+4.配置web.xml
+    注意点：（1）注意web.xml版本问题，要最新版！
+            （2）注册DispatherServlet
+            （3）关联springmvc配置文件
+            （4）启动级别为1
+            （5）映射路径为/
+    &lt;servlet&gt;
+    &lt;servlet-name&gt;SpringMVC&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+
+    &lt;init-param&gt;
+        &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+        &lt;param-value&gt;classpath:springmvc-servlet.xml&lt;/param-value&gt;
+    &lt;/init-param&gt;
+
+    &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+    &lt;/servlet&gt;
+
+    &lt;servlet-mapping&gt;
+        &lt;servlet-name&gt;SpringMVC&lt;/servlet-name&gt;
+        &lt;url-pattern&gt;/&lt;/url-pattern&gt;
+    &lt;/servlet-mapping&gt;
+
+5.添加SpringMVC的配置文件
+
+      头文件：
+          &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+           xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+           xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+           xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot;
+           xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/mvc
+           http://www.springframework.org/schema/mvc/spring-mvc.xsd&quot;&gt;
+
+      （1）.让IOC的注解生效
+
+        &lt;context:component-scan base-package=&quot;Controller&quot;/&gt;
+
+      （2）.静态资源过滤
+
+           &lt;mvc:default-servlet-handler/&gt;
+
+      （3）.MVC的注解驱动
+
+          &lt;mvc:annotation-driven/&gt;
+          和
+          &lt;bean class=&quot;org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping&quot;/&gt;
+        &lt;bean class=&quot;org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter&quot;/&gt;相同作用
+
+      （4）.配置视图解析器
+
+          &lt;bean class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot; id=&quot;internalResourceViewResolver&quot;&gt;
+            &lt;property name=&quot;prefix&quot; value=&quot;/WEB_INF/jsp/&quot;/&gt;
+            &lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot;/&gt;
+        &lt;/bean&gt;
+
+6.创建Controller
+        编写一个java控制类，加入注解@Controller和@RequestMapper
+
+        @Controller
+        public class HelloController &#123;
+
+            @RequestMapping(&quot;/hello&quot;)
+            public String hallo(Model model)&#123;
+                //封装数据
+                model.addAttribute(&quot;msg&quot;,&quot;Hello&quot;);
+
+                return &quot;hello&quot;;//会被视图解析器处理
+            &#125;
+
+        &#125;
+        @Controller是为了让Spring IOC容器初始化时自动扫描到
+        @RequestMapper是为了映射请求路径
+        方法中声明Model类型的参数是为了把Action中的数据带到视图中
+        方法返回的结果是视图名称hello
+
+7.创建视图层
+
+8.运行tomcat服务器</code></pre>
+<p>###SpringMVC（小结）</p>
+<pre><code>实现步骤：（1）编写web.xml
+          （2）编写springmvc配置文件
+          （3）创建对应的控制类
+          （4）完善前端视图和controller之间的对应
+          （5）调试</code></pre>
+<p>###SpringMVC（Coutroller，Restful风格，RequsetMapping）</p>
+<pre><code>1.控制器Controller
+    （1）控制器复杂提供访问应用程序的行为，通常通过接口定义或注解定义两种方式实现
+
+    （2）控制器负责解析用户的请求并将其转换为一个模型
+
+    （3）在SpringMVC中的一个控制器里面可以包含多个方法
+
+    （4）对于Controller的配置方式有多种
+            1.实现Controller接口
+                缺点：实现Controller接口定义控制器是较老的办法，一个控制器中只有一个方法，如果要多个方法则需要定义多个Controller
+                ，定义的方式比较麻烦
+
+            2.使用注解@Controller
+                被@Controller注解的类中的所有方法，如果返回值是String，并且有具体的页面可以跳转，那么就会被视图解析器解析，两个请求都可以指向
+                一个视图，但是页面的结果是不一样的，从这里可以看出视图是被复用的而控制器与视图之间是弱耦合关系
+
+2.RequestMapper
+    （1）@RequestMapper注解用于映射url到控制器类过一个特定的处理程序的方法，可用于类或者方法上，用于类上，表示类中的所有响应请求的方法都是以
+    该地址作为父路径。
+
+3.Restful风格
+    （1）    平常的            localhost：8080/a.jsp?method=a&amp;method=b
+            Restful风格:    localhost：8080/a.jsp/method/a/method/b
+
+    （2） Restful就是一个资源定位及资源操作的风格，不是标准也不是协议，基于这个风格可以更简洁更有层次，更易于实现缓存等机制
+
+    （3）在SpringMVC中可以使用@PathVariable注解，让方法参数的值对应绑定到一个URI模板变量上
+
+        1.RequestMapping(&quot;/hello&quot;)
+        public String hallo int a, int b, Model model)&#123;
+            //封装数据
+            model.addAttribute(&quot;msg&quot;,a+b);
+
+            return &quot;hello&quot;;//会被视图解析器处理
+
+           http://localhost:8080/SpringMVC_02/hello?a=1&amp;b=2
+
+
+
+        2.RequestMapping(&quot;/hello/&#123;a&#125;/&#123;b&#125;&quot;)
+        public String hallo(@PathVariable int a,@PathVariable int b, Model model)&#123;
+            //封装数据
+            model.addAttribute(&quot;msg&quot;,a+b);
+
+            return &quot;hello&quot;;//会被视图解析器处理
+
+           http://localhost:8080/SpringMVC_02/hello/1/2
+4.SpringMVC的@RequestMapping注解能够处理HTTP请求的方法，比如GET，POST,DELETE,PATCH
+
+5.所有地址栏的请求默认都会是GET
+
+6.方法级别的注解变体有如下几个：
+    @GETMapper
+    @PostMapper
+    @PutMapper
+    @DeleteMapper
+    @PatchMapper
+
+    @PostMapping(&quot;/hello/&#123;a&#125;/&#123;b&#125;&quot;)
+    public String hallo(@PathVariable int a,@PathVariable int b, Model model)&#123;
+        //封装数据
+        model.addAttribute(&quot;msg&quot;,a+b);
+
+        return &quot;hello&quot;;//会被视图解析器处理
+    &#125;
+    @GetMapping(&quot;/hello/&#123;a&#125;/&#123;b&#125;&quot;)
+    public String hallo1(@PathVariable int a,@PathVariable int b, Model model)&#123;
+        //封装数据
+        model.addAttribute(&quot;msg&quot;,a+b);
+
+        return &quot;hello&quot;;//会被视图解析器处理
+    &#125;
+    上面两个方法的请求地址都是localhost：8080/工程路径/hello/a/b，但是访问到的结果不同，
+       可以达到url的复用
+
+       http://localhost:8080/SpringMVC_02/hello/1/2
+       http://localhost:8080/SpringMVC_02/hello/1/2
+
+7.Restful 安全一点，隐秘性安全</code></pre>
+<p>###SpringMVC（结果跳转方式）</p>
+<pre><code>1.通过SpringMVC进行重定向和转发-无需视图解析器
+
+    在没有视图解析器的前提下
+        @RequestMapping(&quot;/rsm/hello1&quot;)
+        public String test1()&#123;
+
+            return &quot;/index.jsp&quot;;
+        &#125;
+        @RequestMapping(&quot;/rsm/hello2&quot;)
+        public String test2()&#123;
+
+            return &quot;forward:../index.jsp&quot;;
+        &#125;
+        @RequestMapping(&quot;/rsm/hello3&quot;)
+        public String test3()&#123;
+
+            return &quot;redirect:../index.jsp&quot;;
+        &#125;
+
+       重定向&quot;redirect:&quot;</code></pre>
+<p>###SpringMVC（数据处理）</p>
+<pre><code>1.处理提交数据
+
+    1.提交的域名称和处理方法的参数名一致
+        处理方法：
+
+            RequestMapping(&quot;/rsm/hello3&quot;)
+            public String test4(String name)&#123;
+                System.out.println(name);
+                return &quot;hello&quot;;
+            &#125;
+
+    2.提交的域名称和处理方法的参数名不一致
+        处理方法：加上注解@RequestParam（&quot;提交的域的名称&quot;）
+
+            @RequestMapping(&quot;/rsm/hello3&quot;)
+            public String test4(@RequestParam String name)&#123;
+                System.out.println(name);
+                return &quot;hello&quot;;
+            &#125;
+
+    3.提交的是一个对象
+        处理方法：
+            要求提交的表单域和对象的属性名一致，参数使用对象即可
+
+                1.实体类
+                @RequestMapping(&quot;/rsm/hello3&quot;)
+                public String test4(User user)&#123;
+                    System.out.println(user);
+                    return &quot;hello&quot;;
+                &#125;
+                匹配User对象中的字段名：如果名字一致则ok，否则匹配不到
+
+2.数据显示到前端
+
+    1.通过ModelAndView
+
+    2.通过ModelMap
+
+        LinkedHashMap：只有寥寥几个方法只适合储存数据，简化了新手对于Model对象的操作和理解
+          ModelMap：   继承了LinkedHashMap，除了实现了自身的一些方法，同样的继承了LinkedMap的方法和特性；
+          Model：      精简版（大部分情况我们都直接使用Model）
+
+
+    3.通过Model</code></pre>
+<p>###SpringMVC（乱码问题）</p>
+<pre><code>1.设置一个Filter过滤器，对所有Servlet程序进行拦截，拦截之后给请求和响应设置字符集。
+
+2.SpringMVC给我们提供了一个过滤器，可以直接在web.xml中解决
+
+         &lt;filter&gt;
+            &lt;filter-name&gt;encoding&lt;/filter-name&gt;
+            &lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;/filter-class&gt;
+            &lt;init-param&gt;
+                &lt;param-name&gt;encoding&lt;/param-name&gt;
+                &lt;param-value&gt;utf-8&lt;/param-value&gt;
+            &lt;/init-param&gt;
+        &lt;/filter&gt;
+        &lt;filter-mapping&gt;
+            &lt;filter-name&gt;encoding&lt;/filter-name&gt;
+            &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+        &lt;/filter-mapping&gt;</code></pre>
+<p>###JSON</p>
+<pre><code>1.前后端分离时代，
+
+    后端部署后端，提供接口，提供数据
+
+
+                json
+
+
+    前端独立部署：负责渲染后端的数据
+
+2.什么是JSON？
+
+    （1）JavaScript Object Notation，js对象标记，是一种轻量型的数据交换格式，目前使用特别广泛。
+
+    （2）采用完全独立于编程语言的文本格式来存储和表示数据
+
+    （3）简介和清晰的层次结构使得JSON称为理想的数据交换语言
+
+    （4）易于人阅读和编写，同时也易于机器解析和生成，并有效的提升网络传输效率
+
+3.JSON和JS的区别：
+
+    JSON是JavaScript对象的字符串表示法，它使用文本表示一个JS对象的信息，本质是一个字符串
+
+4.&lt;script&gt;&lt;/script&gt; 标签一定成对出现 不能缩写&lt;script/&gt;
+
+5.编写一个js对象
+    var user = &#123;
+    name : &quot;朱立涛&quot;,
+    age:3,
+    sex:&quot;男&quot;
+    &#125;
+
+   6.将JS对象转换为JSON对象（字符串）
+        var json = JSON.stringify(user);
+
+7.将JSON对象转化为JS对象
+    var js = JSON.parse(json);
+
+8.</code></pre>
 
       
 
