@@ -16,7 +16,7 @@
 <meta property="og:description" content="###SpringMVC 1.MVC:模型（dao service） 视图（jsp） 控制器（servlet）      模型：数据模型，提供要展示的数据，因此包含数据和行为，可以认为是领域模型或JavaBean组件（包括数据和行为），不过现在一般都分离开：Value Object（数据Dao）           和服务层（行为Service）       View（视图）：负责进行模型的展示，">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-09-12T07:20:21.000Z">
-<meta property="article:modified_time" content="2020-09-13T15:36:46.679Z">
+<meta property="article:modified_time" content="2020-09-14T09:34:47.550Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -660,9 +660,123 @@ Controller的实现类，之后让具体的实现类执行，在这步中调用s
         var json = JSON.stringify(user);
 
 7.将JSON对象转化为JS对象
-    var js = JSON.parse(json);
+    var js = JSON.parse(json);</code></pre>
+<p>###Controller返回JSON数据</p>
+<pre><code>1.Jackson应该是目前比较好的json解析工具了
 
-8.</code></pre>
+2.工具不止一种，还有阿里巴巴的fastjson等
+
+3.使用Jackson需要导入jar包
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+        &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+        &lt;version&gt;1.18.12&lt;/version&gt;
+    &lt;/dependency&gt;
+
+4.用JSON在页面上显示字符串
+
+        @RequestMapping(&quot;/j1&quot;)
+        @ResponseBody//它就不会走视图解析器，会直接返回一个字符串
+        public String json1(Model model) throws JsonProcessingException &#123;
+
+            ObjectMapper mapper= new ObjectMapper();
+
+            User user = new User(&quot;朱立涛&quot;,20,&quot;男&quot;);
+
+            String s = mapper.writeValueAsString(user);
+
+
+            model.addAttribute(&quot;msg&quot;,user);
+
+            return s;
+        &#125;
+        页面显示的结果为：
+        &#123;&quot;name&quot;:&quot;???&quot;,&quot;age&quot;:20,&quot;sex&quot;:&quot;?&quot;&#125;
+
+5.Json解决乱码问题
+
+    需要设置他的编码格式为UTF-8，以及他的返回的类型，通过@RequestMapping的produces属性来实现，修改下代码    
+
+        @RequestMapping(value = &quot;/j1&quot;,produces = &quot;application/json;charset=utf-8&quot;)
+        指定响应体返回的类型和编码</code></pre>
+<p>###SpringMVC代码优化</p>
+<pre><code>1.乱码统一解决
+    可以在SpringMVC配置统一指定，这样就不用每次去处理了，在mvc配置文件中加入一段消息StringHttpMessageConverter转换配置
+
+        &lt;mvc:annotation-driven&gt;
+            &lt;mvc:message-converters register-defaults=&quot;true&quot;&gt;
+                &lt;bean class=&quot;org.springframework.http.converter.StringHttpMessageConverter&quot;&gt;
+                    &lt;constructor-arg value=&quot;utf-8&quot;/&gt;
+                &lt;/bean&gt;
+                &lt;bean class=&quot;org.springframework.http.converter.json.MappingJackson2HttpMessageConverter&quot;&gt;
+                    &lt;property name=&quot;objectMapper&quot;&gt;
+                        &lt;bean class=&quot;org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean&quot;&gt;
+                            &lt;property name=&quot;failOnEmptyBeans&quot; value=&quot;false&quot;/&gt;
+                        &lt;/bean&gt;
+                    &lt;/property&gt;
+                &lt;/bean&gt;
+            &lt;/mvc:message-converters&gt;
+        &lt;/mvc:annotation-driven&gt;
+
+        &#123;&quot;name&quot;:&quot;朱立涛&quot;,&quot;age&quot;:20,&quot;sex&quot;:&quot;男&quot;&#125;
+
+2.不走视图解析器
+    @RestController//下面所有方法只会返回Json字符串
+    public class UserController &#123;
+
+3.Json日期类型以及数组类型的代码优化
+
+    工具类：
+
+        public class JsonUtils &#123;
+
+        public static String getJson(Object object)&#123;
+            return getJson(object,&quot;yyyy-MM-dd HH:mm:ss&quot;);
+        &#125;
+
+        public static String getJson(Object object,String format)&#123;
+
+            ObjectMapper mapper = new ObjectMapper();
+
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+
+            mapper.setDateFormat(simpleDateFormat);
+
+            try &#123;
+                return mapper.writeValueAsString(object);
+            &#125; catch (JsonProcessingException e) &#123;
+                e.printStackTrace();
+            &#125;
+            return null;
+        &#125;
+
+    调用类：
+
+        @RestController//下面所有方法只会返回Json字符串
+        public class UserController &#123;
+
+            @RequestMapping(&quot;/j1&quot;)
+            @ResponseBody//它就不会走视图解析器，会直接返回一个字符串
+            public String json1(Model model) throws JsonProcessingException &#123;
+
+                List&lt;User&gt; list = new ArrayList&lt;User&gt;();
+
+                User user = new User(&quot;朱立涛1&quot;,20,&quot;男&quot;);
+                User user2 = new User(&quot;朱立涛2&quot;,20,&quot;男&quot;);
+                User user3 = new User(&quot;朱立涛3&quot;,20,&quot;男&quot;);
+                User user4 = new User(&quot;朱立涛4&quot;,20,&quot;男&quot;);
+
+                list.add(user);
+                list.add(user2);
+                list.add(user3);
+                list.add(user4);
+
+                Date date = new Date();
+
+                return JsonUtils.getJson(list);
+            &#125;
+
+        &#125;</code></pre>
 
       
 
