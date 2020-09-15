@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | Hexo</title>
+  <title>整合SSM框架 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="###整合SSM框架（环境要求） 1.IDEA  2.MySQL5.7.19  3.Tomcat9  4.Maven3.6 ###整合SSM框架（Mybatis） 1.建立数据库表       create database &#96;ssmbulid&#96;;       create table t_books(      &#96;bookID&#96; int primary key auto_increment co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="整合SSM框架">
+<meta property="og:url" content="http://example.com/2020/09/14/%E6%95%B4%E5%90%88SSM%E6%A1%86%E6%9E%B6/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="###整合SSM框架（环境要求） 1.IDEA  2.MySQL5.7.19  3.Tomcat9  4.Maven3.6 ###整合SSM框架（Mybatis） 1.建立数据库表       create database &#96;ssmbulid&#96;;       create table t_books(      &#96;bookID&#96; int primary key auto_increment co">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-14T09:40:17.000Z">
+<meta property="article:modified_time" content="2020-09-15T13:05:30.920Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -150,238 +154,659 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-整合SSM框架" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/15/Ajax%E6%8A%80%E6%9C%AF/" class="archive-article-date">
-  	<time datetime="2020-09-15T12:44:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-15</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/15/Ajax%E6%8A%80%E6%9C%AF/">Ajax技术</a>
+    <h1 class="article-title" itemprop="name">
+      整合SSM框架
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/14/%E6%95%B4%E5%90%88SSM%E6%A1%86%E6%9E%B6/" class="archive-article-date">
+        
+        <a href="/2020/09/14/%E6%95%B4%E5%90%88SSM%E6%A1%86%E6%9E%B6/" class="archive-article-date">
   	<time datetime="2020-09-14T09:40:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-14</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/14/%E6%95%B4%E5%90%88SSM%E6%A1%86%E6%9E%B6/">整合SSM框架</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###整合SSM框架（环境要求）</p>
+<pre><code>1.IDEA
 
-        <div class="article-info info-on-right">
-          
-          
+2.MySQL5.7.19
 
+3.Tomcat9
+
+4.Maven3.6</code></pre>
+<p>###整合SSM框架（Mybatis）</p>
+<pre><code>1.建立数据库表
+
+     create database `ssmbulid`;
+
+     create table t_books(
+     `bookID` int primary key auto_increment comment&#39;书id&#39;,
+     `bookName` varchar(100) not null comment&#39;书名&#39;,
+     `bookCounts` int(11) not null comment&#39;数量&#39;,
+     `detail` varchar(200) NOT null comment&#39;描述&#39;
+     );
+
+     insert into t_books(bookID,bookName,bookCounts,detail) values(1,&quot;Java&quot;,1,&quot;从入门到放弃&quot;);
+     insert into t_books(bookID,bookName,bookCounts,detail) values(2,&quot;MySQL&quot;,10,&quot;从删库到跑路&quot;),(3,&quot;Linux&quot;,5,&quot;从进门到进牢&quot;);
+
+2.搭建一个基本的环境
+
+    导入需要的jar包：
+
+        &lt;dependencies&gt;
+            &lt;dependency&gt;
+                &lt;groupId&gt;junit&lt;/groupId&gt;
+                &lt;artifactId&gt;junit&lt;/artifactId&gt;
+                &lt;version&gt;4.13&lt;/version&gt;
+                &lt;scope&gt;test&lt;/scope&gt;
+            &lt;/dependency&gt;
+            &lt;dependency&gt;
+                &lt;groupId&gt;mysql&lt;/groupId&gt;
+                &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+                &lt;version&gt;8.0.19&lt;/version&gt;
+            &lt;/dependency&gt;
+            &lt;dependency&gt;
+                &lt;groupId&gt;com.mchange&lt;/groupId&gt;
+                &lt;artifactId&gt;c3p0&lt;/artifactId&gt;
+                &lt;version&gt;0.9.5.5&lt;/version&gt;
+            &lt;/dependency&gt;
+            &lt;dependency&gt;
+                &lt;groupId&gt;org.apache.tomcat&lt;/groupId&gt;
+                &lt;artifactId&gt;servlet-api&lt;/artifactId&gt;
+                &lt;version&gt;6.0.29&lt;/version&gt;
+            &lt;/dependency&gt;
+            &lt;dependency&gt;
+                &lt;groupId&gt;javax.servlet.jsp&lt;/groupId&gt;
+                &lt;artifactId&gt;jsp-api&lt;/artifactId&gt;
+                &lt;version&gt;2.2&lt;/version&gt;
+            &lt;/dependency&gt;
+            &lt;dependency&gt;
+                &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+                &lt;artifactId&gt;jstl&lt;/artifactId&gt;
+                &lt;version&gt;1.2&lt;/version&gt;
+            &lt;/dependency&gt;
+            &lt;dependency&gt;
+                &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+                &lt;artifactId&gt;mybatis&lt;/artifactId&gt;
+                &lt;version&gt;3.5.5&lt;/version&gt;
+            &lt;/dependency&gt;
+            &lt;dependency&gt;
+                &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+                &lt;artifactId&gt;mybatis-spring&lt;/artifactId&gt;
+                &lt;version&gt;2.0.5&lt;/version&gt;
+            &lt;/dependency&gt;
+            &lt;dependency&gt;
+                &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
+                &lt;version&gt;5.2.8.RELEASE&lt;/version&gt;
+            &lt;/dependency&gt;
+            &lt;dependency&gt;
+                &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-jdbc&lt;/artifactId&gt;
+                &lt;version&gt;5.2.8.RELEASE&lt;/version&gt;
+            &lt;/dependency&gt;
+        &lt;/dependencies&gt;
+
+    静态资源导出问题：
+
+        &lt;build&gt;
+            &lt;resources&gt;
+                &lt;resource&gt;
+                    &lt;directory&gt;src/main/java&lt;/directory&gt;
+                    &lt;includes&gt;
+                        &lt;include&gt;**/*.properties&lt;/include&gt;
+                        &lt;include&gt;**/*.xml&lt;/include&gt;
+                    &lt;/includes&gt;
+                    &lt;filtering&gt;false&lt;/filtering&gt;
+                &lt;/resource&gt;
+                &lt;resource&gt;
+                    &lt;directory&gt;src/main/resources&lt;/directory&gt;
+                    &lt;includes&gt;
+                        &lt;include&gt;**/*.properties&lt;/include&gt;
+                        &lt;include&gt;**/*.xml&lt;/include&gt;
+                    &lt;/includes&gt;
+                    &lt;filtering&gt;false&lt;/filtering&gt;
+                &lt;/resource&gt;
+            &lt;/resources&gt;
+        &lt;/build&gt;
+3.创建包和xml配置文件
+    mybatis-config.xml  applicationContext.xml 
+
+4.创建数据库连接配置文件
+    database.properties
+
+    jdbc.driver=com.mysql.cj.jdbc.Driver
+    jdbc.url=jdbc:mysql://localhost:3306/ssmbuild?useUnicode=true&amp;characterEncoding=UTF8&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai
+    jdbc.username=root
+    jdbc.password=zlt,13186102248
+
+5.编写mybatis-config
+    &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+    &lt;!DOCTYPE configuration
+            PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot;
+            &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;
+    &lt;configuration&gt;
+        &lt;!--配置数据源，交给Spring去做--&gt;
+
+        &lt;!--&lt;typeAliases&gt;：包含多个&lt;typeAlias&gt;
+
+                &lt;typeAlias&gt;：设置这个包下面的所有类的别名
+
+        　　　　a.alias:取的别名
+
+        　　　　b.type：这个别名所对应的Java类   默认是类名小写     别名使用的时候与大小写无关   --&gt;
+        &lt;typeAliases&gt;
+            &lt;package name=&quot;dao&quot;/&gt;
+        &lt;/typeAliases&gt;
+
+
+    &lt;/configuration&gt;
+
+6.编写pojo实体类
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public class Books &#123;
+
+        private Integer bookID;
+        private String bookName;
+        private Integer bookCounts;
+        private String detail;
+
+    &#125;
+
+7.写dao层的mapper接口，然后写Mapper.xml完成语句，然后在mybatis的配置文件中注册
+
+    mapper接口：
+
+    public interface BooksMapper &#123;
+
+        /**
+         * 增加一本书
+         */
+
+        int addBook(Books books);
+
+        /**
+         * 删除一本书
+         */
+        int deleteBook(@Param(&quot;bookID&quot;) Integer id);
+
+        /**
+         * 更新一本书
+         */
+        int updateBook(Books books);
+
+        /**
+         * 查询一本书
+         */
+        Books queryBookById(@Param(&quot;bookID&quot;) Integer id);
+
+        /**
+         * 查询全部书
+         */
+        List&lt;Books&gt; queryAllBooks();
+
+    &#125;
+
+    Mapper映射文件：
+
+    &lt;mapper namespace=&quot;dao.BooksMapper&quot;&gt;
+
+        &lt;insert id=&quot;addBook&quot; parameterType=&quot;Books&quot;&gt;
+            insert into t_books(bookName,bookCounts,detail) values (#&#123;bookName&#125;,#&#123;bookCounts&#125;,#&#123;detail&#125;);
+        &lt;/insert&gt;
+
+        &lt;delete id=&quot;deleteBook&quot; parameterType=&quot;int&quot;&gt;
+            delete from t_books where bookID = #&#123;bookID&#125;;
+        &lt;/delete&gt;
+
+        &lt;update id=&quot;updateBook&quot; parameterType=&quot;Books&quot;&gt;
+            update t_books set bookName = #&#123;bookName&#125;
+              ,set bookCounts = #&#123;bookCounts&#125;
+              ,set detail = #&#123;detail&#125;
+              where bookID = #&#123;bookID&#125; ;
+        &lt;/update&gt;
+
+        &lt;select id=&quot;queryBookById&quot; resultType=&quot;Books&quot;&gt;
+            select * from t_books where bookID=#&#123;bookID&#125;;
+        &lt;/select&gt;
+
+        &lt;select id=&quot;queryAllBooks&quot; resultType=&quot;Books&quot;&gt;
+            select * from t_books;
+        &lt;/select&gt;
+
+    &lt;/mapper&gt;
+
+    在mybatis中注册：
+
+    &lt;mappers&gt;
+        &lt;mapper class=&quot;dao.BooksMapper&quot;/&gt;
+    &lt;/mappers&gt;
+
+8.进行业务层代码编写
+    （1）编写BooksService
+
+        public interface BooksService &#123;
+
+            /**
+             * 增加一本书
+             */
+
+            int addBook(Books books);
+
+            /**
+             * 删除一本书
+             */
+            int deleteBook(Integer id);
+
+            /**
+             * 更新一本书
+             */
+            int updateBook(Books books);
+
+            /**
+             * 查询一本书
+             */
+            Books queryBookById(Integer id);
+
+            /**
+             * 查询全部书
+             */
+            List&lt;Books&gt; queryAllBooks();
+
+        &#125;    
+
+        然后写BookService的实现类：
+
+            public class BookServiceImpl implements BooksService &#123;
+
+                //业务层调用dao层：组合dao层
+
+                @Autowired
+                private BooksMapper booksMapper;
+
+                public void setBooksMapper(BooksMapper booksMapper) &#123;
+                    this.booksMapper = booksMapper;
+                &#125;
+
+                public int addBook(Books books) &#123;
+                    return booksMapper.addBook(books);
+                &#125;
+
+                public int deleteBook(Integer id) &#123;
+                    return booksMapper.deleteBook(id);
+                &#125;
+
+                public int updateBook(Books books) &#123;
+                    return booksMapper.updateBook(books);
+                &#125;
+
+                public Books queryBookById(Integer id) &#123;
+                    return booksMapper.queryBookById(id);
+                &#125;
+
+                public List&lt;Books&gt; queryAllBooks() &#123;
+                    return booksMapper.queryAllBooks();
+                &#125;
+            &#125;</code></pre>
+<p>###整合SSM框架（Spring）</p>
+<pre><code>1.创建spring-dao.xml，然后引入头文件，关联数据库配置文件
+
+    &lt;!--头文件--&gt;
+    &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+    &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+           xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+           xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd &quot;&gt;
+
+
+    &lt;/beans&gt;
+
+    &lt;!--1.关联数据库配置文件--&gt;
+
+       &lt;context:property-placeholder location=&quot;classpath:database.properties&quot;/&gt;
+
+   2.连接池：
+
+       &lt;bean id=&quot;dataSource&quot; class=&quot;com.mchange.v2.c3p0.ComboPooledDataSource&quot;&gt;
+        &lt;property name=&quot;driverClass&quot; value=&quot;$&#123;jdbc.driver&#125;&quot;/&gt;
+        &lt;property name=&quot;jdbcUrl&quot; value=&quot;$&#123;jdbc.url&#125;&quot;/&gt;
+        &lt;property name=&quot;user&quot; value=&quot;$&#123;jdbc.username&#125;&quot;/&gt;
+        &lt;property name=&quot;password&quot; value=&quot;$&#123;jdbc.password&#125;&quot;/&gt;
+
+        &lt;!--c3p0的一些私有属性--&gt;
+
+        &lt;property name=&quot;maxPoolSize&quot; value=&quot;30&quot;/&gt;
+        &lt;property name=&quot;minPoolSize&quot; value=&quot;10&quot;/&gt;
+        &lt;!--关闭连接后不自动提交--&gt;
+        &lt;property name=&quot;autoCommitOnClose&quot; value=&quot;false&quot;/&gt;
+
+        &lt;!--获取连接超时时间--&gt;
+        &lt;property name=&quot;checkoutTimeout&quot; value=&quot;10000&quot;/&gt;
+
+        &lt;!--当获取连接失败重试次数--&gt;
+        &lt;property name=&quot;acquireRetryAttempts&quot; value=&quot;2&quot;/&gt;
+    &lt;/bean&gt;
+
+
+3.sqlsessionfactory：
+
+    &lt;bean id=&quot;sqlSessionFactory&quot; class=&quot;org.mybatis.spring.SqlSessionFactoryBean&quot;&gt;
+        &lt;!--dataSource 和连接池配置起来--&gt;
+        &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;/&gt;
+        &lt;!--绑定mybatis配置文件--&gt;
+        &lt;property name=&quot;configLocation&quot; value=&quot;classpath:mybatis-config.xml&quot;/&gt;
+    &lt;/bean&gt;
+
+4.配置dao层接口扫描包，动态实现Dao接口可以注入到Spring容器中！
+
+    bean class=&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;&gt;
+        &lt;property name=&quot;sqlSessionFactoryBeanName&quot; value=&quot;sqlSessionFactory&quot;/&gt;
+        &lt;property name=&quot;basePackage&quot; value=&quot;dao&quot;/&gt;
+    &lt;/bean&gt;
+
+5.创建spring-service.xml文件
+    1.扫描Service下的包
+        &lt;context:component-scan base-package=&quot;service&quot;/&gt;
+
+    2.将所有的业务类，都注入到Spring中，可以通过配置或者注解方式实现
+
+    3.将数据源注入到声明式事务配置中
+
+        &lt;!--3.声明式事务配置--&gt;
+        &lt;bean id=&quot;transactionManager&quot; class=&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;&gt;
+            &lt;!--注入数据源--&gt;
+            &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;/&gt;
+        &lt;/bean&gt;</code></pre>
+<p>###整合SSM框架（SpringMVC层）</p>
+<pre><code>1.添加web支持
+
+2.在web.xml配置文件中添加DispatcherServlet的配置和乱码过滤和session过期时间
+
+    &lt;!--DispatherServlet--&gt;
+
+    &lt;servlet&gt;
+        &lt;servlet-name&gt;DispatcherServlet&lt;/servlet-name&gt;
+        &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+
+        &lt;init-param&gt;
+            &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+            &lt;param-value&gt;classpath:applicationContext.xml&lt;/param-value&gt;
+        &lt;/init-param&gt;
+
+        &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+    &lt;/servlet&gt;
+    &lt;servlet-mapping&gt;
+        &lt;servlet-name&gt;DispatcherServlet&lt;/servlet-name&gt;
+        &lt;url-pattern&gt;/&lt;/url-pattern&gt;
+    &lt;/servlet-mapping&gt;
+
+     &lt;!--乱码过滤--&gt;
+
+    &lt;filter&gt;
+        &lt;filter-name&gt;Filter&lt;/filter-name&gt;
+        &lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;/filter-class&gt;
+
+        &lt;init-param&gt;
+            &lt;param-name&gt;Encoding&lt;/param-name&gt;
+            &lt;param-value&gt;utf-8&lt;/param-value&gt;
+        &lt;/init-param&gt;
+    &lt;/filter&gt;
+    &lt;filter-mapping&gt;
+        &lt;filter-name&gt;Filter&lt;/filter-name&gt;
+        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+    &lt;/filter-mapping&gt;
+
+    &lt;!--Session默认过期时间--&gt;
+    &lt;session-config&gt;
+        &lt;session-timeout&gt;15&lt;/session-timeout&gt;
+    &lt;/session-config&gt;
+
+3.配置springmvc-config.xml
+    1.配置注解驱动
+
+        &lt;mvc:annotation-driven/&gt;
+
+    2.静态资源过滤
+
+         &lt;mvc:default-servlet-handler/&gt;
+
+    3.扫描包：controller
+
+        &lt;context:component-scan base-package=&quot;controller&quot;/&gt;
+
+    4.视图解析器
+
+        bean class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot; id=&quot;viewResolver&quot;&gt;
+            &lt;property name=&quot;prefix&quot; value=&quot;/WEB-INF/jsp&quot;/&gt;
+            &lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot;/&gt;
+        &lt;/bean&gt;
+
+4.编写controller层类代码
+
+    @Controller
+    @RequestMapping(&quot;/books&quot;)
+    public class BooksController &#123;
+
+        @Autowired
+        private BooksService booksService;
+
+        //查询全部书籍，并且返回到一个书籍展示页面
+        @RequestMapping(&quot;/allbooks&quot;)
+        public String list(Model model)&#123;
+
+            model.addAttribute(&quot;msg&quot;,booksService.queryAllBooks());
+
+            return &quot;allbook&quot;;
+        &#125;
+    &#125;
+
+5.编写View层页面
+
+    &lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+    &lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Title&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    $&#123;msg&#125;
+    &lt;/body&gt;
+    &lt;/html&gt;
+
+6.css页面优化
+    1.引入bootstrap前端框架
+        &lt;link href=&quot;http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+
+    2.进行样式编写
+
+        &lt;div class=&quot;container&quot;&gt;
+            &lt;div class=&quot;row clearfix&quot;&gt;
+                &lt;div class=&quot;col-md-12 column&quot;&gt;
+                    &lt;div class=&quot;page-header&quot;&gt;
+                        &lt;h1&gt;
+                            &lt;small&gt;书籍列表 --- 显示所有书籍&lt;/small&gt;
+                        &lt;/h1&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;container&quot;&gt;
+            &lt;div class=&quot;row clearfix&quot;&gt;
+                &lt;div class=&quot;col-md-12 column&quot;&gt;
+                    &lt;table class=&quot;table table-hover table-striped&quot;&gt;
+                        &lt;thead&gt;
+                            &lt;tr&gt;
+                                &lt;th&gt;书籍编号&lt;/th&gt;
+                                &lt;th&gt;书籍名称&lt;/th&gt;
+                                &lt;th&gt;书籍数量&lt;/th&gt;
+                                &lt;th&gt;书籍详情&lt;/th&gt;
+                            &lt;/tr&gt;
+                        &lt;/thead&gt;
+                        &lt;tbody&gt;
+                            &lt;c:forEach var=&quot;book&quot; items=&quot;$&#123;msg&#125;&quot;&gt;
+                                &lt;tr&gt;
+                                    &lt;td&gt;$&#123;book.bookID&#125;&lt;/td&gt;
+                                    &lt;td&gt;$&#123;book.bookName&#125;&lt;/td&gt;
+                                    &lt;td&gt;$&#123;book.bookCounts&#125;&lt;/td&gt;
+                                    &lt;td&gt;$&#123;book.detail&#125;&lt;/td&gt;
+                                &lt;/tr&gt;
+                            &lt;/c:forEach&gt;
+                        &lt;/tbody&gt;
+                    &lt;/table&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+     3.编写view层和Controller层的调用关系来设计程序</code></pre>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/09/14/%E6%95%B4%E5%90%88SSM%E6%A1%86%E6%9E%B6/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/12/SpringMVC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2020-09-12T07:20:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-12</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2020/09/15/Ajax%E6%8A%80%E6%9C%AF/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Ajax技术
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/12/SpringMVC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SpringMVC学习笔记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/12/SpringMVC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">SpringMVC学习笔记</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/11/Spring5%E6%96%B0%E5%8A%9F%E8%83%BD/" class="archive-article-date">
-  	<time datetime="2020-09-11T10:44:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/11/Spring5%E6%96%B0%E5%8A%9F%E8%83%BD/">Spring5新功能</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/10/Spring%E4%BA%8B%E5%8A%A1/" class="archive-article-date">
-  	<time datetime="2020-09-10T10:46:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/10/Spring%E4%BA%8B%E5%8A%A1/">SpringJdbcTemplate</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/10/SpringAOP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2020-09-10T02:03:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/10/SpringAOP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">SpringAOP学习笔记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/09/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2020-09-09T03:08:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/09/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">我的第一篇博客文章</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/09/hello-world/" class="archive-article-date">
-  	<time datetime="2020-09-09T03:03:13.581Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/09/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -404,8 +829,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
