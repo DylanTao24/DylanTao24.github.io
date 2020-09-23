@@ -16,7 +16,7 @@
 <meta property="og:description" content="###SpirngBoot 1.微服务阶段：      javase：OOP      mysql：持久化      html+css+js+jQuery+前端框架      javaweb：独立开发MVC三层架构的网站，原始      ssm：框架，简化了我们的开发流程，配置也开始较为复杂      之前都是打包打成war包：必须在tomcat下运行      spring再简化：SpringB">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-09-17T02:13:21.000Z">
-<meta property="article:modified_time" content="2020-09-18T03:42:35.192Z">
+<meta property="article:modified_time" content="2020-09-23T07:08:27.070Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -346,7 +346,317 @@
             //springboot的多环境配置，可以选择激活哪个配置文件
                 spring:
                   profiles:
-                    active: </code></pre>
+                    active: 
+        yaml配置文件的多环境配置：
+            server:
+              port: 8080
+            spring:
+              profiles:
+                active: dev
+            ---
+
+            server:
+              port: 8081
+            spring:
+              profiles: dev
+
+
+            ---
+            server:
+              port: 8082
+            spring:
+              profiles: test</code></pre>
+<p>###SpringBoot自动配置原理详细</p>
+<pre><code>1.SpringBoot启动会加载大量的自动配置类
+
+2.我们看我们需要的功能有没有在SpringBoot默认写好的自动配置类中
+
+3.我们再来看这个自动配置类到底配置了哪些组件（我们用的组件只要在其中，那我们就不需要手动去配置了）
+
+4.给容器中自动配置类添加组件时，会从properties类中获取某些属性，我们只需要在配置文件中指定这些属性的值即可；
+
+5.xxxxAutoConfigurartion：自动配置类：给容器中添加组件
+
+6.xxxxProperties：封装配置文件中的相关属性</code></pre>
+<p>###SpringBoot Web开发</p>
+<pre><code>1.在springboot中，我们可以使用以下方式去处理静态资源：
+    webjars
+    classpath：public
+    classpath：static
+    classpath：resources
+    classpath：/**
+
+
+2.首页如何定制
+
+    在2.20以上版本已经取消定制
+
+3.模板引擎
+
+    springboot推荐使用模板引擎：Thymeleaf
+
+    1.导入依赖
+        dependency&gt;
+            &lt;groupId&gt;org.thymeleaf.extras&lt;/groupId&gt;
+            &lt;artifactId&gt;thymeleaf-extras-java8time&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.thymeleaf&lt;/groupId&gt;
+            &lt;artifactId&gt;thymeleaf-spring5&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+
+    2.  private static final Charset DEFAULT_ENCODING;
+        public static final String DEFAULT_PREFIX = &quot;classpath:/templates/&quot;;
+        public static final String DEFAULT_SUFFIX = &quot;.html&quot;;
+
+           Thymeleaf默认前缀后缀
+
+    3.只要使用themeleaf，只需要导入依赖就行</code></pre>
+<p>###MVC配置原理</p>
+<pre><code>1.如果想自定义一些定制化的功能，只需要写这个组件，然后将它交给springboot（注册bean）。
+
+2.在SpringBoot中有非常多的xxxx Configuration帮助我们进行拓展配置</code></pre>
+<p>###练习一个小项目</p>
+<pre><code>国际化： i18n
+
+    实现LocaleResolver（语言环境解析器）接口，然后将实现的注册到bean中
+
+    注意点:在注册时，方法名要写LocaleResolver，否则springboot自动配置无法识别
+
+    public class MyLocaleResolver implements LocaleResolver &#123;
+    @Override
+    public Locale resolveLocale(HttpServletRequest httpServletRequest) &#123;
+        String la = httpServletRequest.getParameter(&quot;la&quot;);
+
+        System.out.println(la);
+
+        Locale locale = Locale.getDefault();
+
+        if (!StringUtils.isEmpty(la))&#123;
+            String[] s = la.split(&quot;_&quot;);
+
+            Locale locale1 = new Locale(s[0],s[1]);
+
+            return locale1;
+        &#125;
+        return locale;
+    &#125;
+
+    @Override
+    public void setLocale(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Locale locale) &#123;
+
+    &#125;
+
+    @Bean
+    public LocaleResolver localeResolver()&#123;
+        return new MyLocaleResolver();
+    &#125;
+
+    步骤：1.配置i18m配置文件
+          2.编写LocaleResolver的实现类（自定义一个LocaleResolver组件）
+          3.注册到bean里（写的组件配置到spring中）</code></pre>
+<p>###如何写一个网站</p>
+<pre><code>1.前端：页面长啥样子：数据
+
+2.设计数据库
+
+3.前端让他能够自动运行，独立化工程
+
+4.数据接口如何对接:json,对象 all in one！
+
+5.前后端联调设置</code></pre>
+<p>###SpringBoot数据库连接</p>
+<pre><code>1.对于数据访问层，springboot底层都是采用的Spring Data的方式统一进行处理的</code></pre>
+<p>###SpringSecurity</p>
+<pre><code>springboot安全框架：
+    1.Shiro：
+        核心：
+        Subject：当前用户
+        Shiro SecurityManager：管理所有的subject，核心中的核心，它负责与shiro进行交互，相
+                                    当于SpringMVC里面的DispatherServlet的角色
+        Realm：保证你的数据访问控制，Shiro从Realm中获取安全数据，ShiroSecurity要验证身份，需要从
+                    Realm中获得相应的用户进行比较，可以把Realm看做DataSource
+
+    2.先导入依赖
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.shiro&lt;/groupId&gt;
+            &lt;artifactId&gt;shiro-spring&lt;/artifactId&gt;
+            &lt;version&gt;1.6.0&lt;/version&gt;
+        &lt;/dependency&gt;
+
+    3.配置自定义的Realm 继承了 AuthorizingRealm
+
+        public class UserReaml extends AuthorizingRealm &#123;
+            @Override
+            protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) &#123;
+                System.out.println(&quot;执行了授权方法&quot;);
+                return null;
+            &#125;
+
+            @Override
+            protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException &#123;
+                System.out.println(&quot;执行了认证方法&quot;);
+                return null;
+            &#125;
+        &#125;
+    4.编写shiro三大要素： realm(领域) 和 DefaultWebSecurityManager  和  shirofilterfactorybean 
+
+        @Configuration
+        public class SecurityConfigration &#123;
+
+            //shiroFilterFactoryBean
+            @Bean
+            public ShiroFilterFactoryBean shiroFilterFactoryBean(@Qualifier(&quot;dwsm&quot;)DefaultWebSecurityManager defaultWebSecurityManager)&#123;
+
+                ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
+
+                shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
+
+                return shiroFilterFactoryBean;
+
+            &#125;
+
+
+            //DefaultWebSecurityManager
+            @Bean(name = &quot;dwsm&quot;)
+            public DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier(&quot;userReaml&quot;) Realm realm)&#123;
+                DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
+
+                defaultWebSecurityManager.setRealm(realm);
+                return defaultWebSecurityManager;
+            &#125;
+
+            //创建realm对象，需要自定义
+            @Bean
+            public UserReaml userReaml()&#123;
+                return new UserReaml();
+            &#125;
+
+
+        &#125;
+
+    5.在shiro中权限管理代码在shirofilterfactorybean方法中实现
+        //添加shiro的内置过滤器
+
+            /*
+                anon：无需认证就可以访问
+                authc：必须认证了才能访问
+                user：必须拥有记住我这个功能才能用
+                perms：拥有对某个资源的权限才能访问
+                role：拥有某个角色权限才能访问
+             */
+
+
+            Map&lt;String, String&gt; filterChainDefinitionMap = new LinkedHashMap&lt;&gt;();
+
+            filterChainDefinitionMap.put(&quot;/add&quot;,&quot;anon&quot;);
+            filterChainDefinitionMap.put(&quot;/update&quot;,&quot;authc&quot;);
+
+            shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+
+            shiroFilterFactoryBean.setLoginUrl(&quot;/tologin&quot;);
+
+    6.在controller中用UsernamePasswordToken这个类来验证用户名和密码做认证
+
+        @RequestMapping(&quot;/login&quot;)
+        public String login(String username,String password,Model model)&#123;
+
+            Subject subject = SecurityUtils.getSubject();
+
+            AuthenticationToken authenticationToken = new UsernamePasswordToken(username,password);
+
+
+            try &#123;
+                subject.login(authenticationToken);
+                return &quot;index&quot;;
+            &#125;catch (UnknownAccountException e)&#123;
+                model.addAttribute(&quot;msg&quot;,&quot;用户名错误&quot;);
+                System.out.println(&quot;用户名错误&quot;);
+                return &quot;login&quot;;
+            &#125;catch (IncorrectCredentialsException e)&#123;
+                model.addAttribute(&quot;msg&quot;,&quot;密码错误&quot;);
+                return &quot;login&quot;;
+            &#125;
+
+
+        &#125;
+
+    7.导入mybatis做整合，增加权限验证
+
+        public class UserReaml extends AuthorizingRealm &#123;
+
+            @Resource
+            private EmployeeService service;
+
+            @Override
+            protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) &#123;
+                System.out.println(&quot;执行了授权方法&quot;);
+
+                Subject subject = SecurityUtils.getSubject();
+
+                SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+
+                String username = (String) subject.getPrincipal();
+
+                Employee employee = service.queryEmployeeByname(username);
+
+
+                System.out.println(employee);
+
+                info.addStringPermission(employee.getAuthority());
+
+                return info;
+            &#125;
+
+            @Override
+            protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException &#123;
+                System.out.println(&quot;执行了认证方法&quot;);
+
+                UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
+
+                Employee employee = service.queryEmployeeByname(token.getUsername());
+
+                if (employee == null) &#123;
+                    return null;
+                &#125; else &#123;
+                    if (!token.getUsername().equals(employee.getUsername())) &#123;
+                        return null;
+                    &#125;
+                    return new SimpleAuthenticationInfo(employee.getUsername(), employee.getPassword(), &quot;&quot;);
+                &#125;
+            &#125;
+        &#125;
+
+    8.权限设置：
+
+        Map&lt;String, String&gt; filterChainDefinitionMap = new LinkedHashMap&lt;&gt;();
+
+
+    //        filterChainDefinitionMap.put(&quot;/update&quot;,&quot;authc&quot;);
+            filterChainDefinitionMap.put(&quot;/user/update&quot;,&quot;perms[user:update]&quot;);
+            filterChainDefinitionMap.put(&quot;/user/add&quot;,&quot;perms[user:add]&quot;);
+           filterChainDefinitionMap.put(&quot;/user/*&quot;,&quot;authc&quot;);
+
+
+            shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+
+            shiroFilterFactoryBean.setUnauthorizedUrl(&quot;/noauth&quot;);
+
+            shiroFilterFactoryBean.setLoginUrl(&quot;/tologin&quot;);</code></pre>
+<p>###Shiro和Thymeleaf整合：</p>
+<pre><code>1.导入依赖
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.github.theborakompanioni&lt;/groupId&gt;
+        &lt;artifactId&gt;thymeleaf-extras-shiro&lt;/artifactId&gt;
+        &lt;version&gt;2.0.0&lt;/version&gt;
+    &lt;/dependency&gt;
+
+2.整合需要配置：
+
+    ShiroDialect：用来整合shiro和thymeleaf</code></pre>
 
       
 
