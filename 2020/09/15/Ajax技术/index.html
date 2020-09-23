@@ -16,7 +16,7 @@
 <meta property="og:description" content="###Ajax技术（简介） 1.AJAX &#x3D; Asynchronous（异步） JavaScript And XML（异步的JavaScript和xml）  2.是一种无需重新加载整个网页的情况下，能够更新部分网页的技术  3.AJAX不是一种新的编程语言，而是一种用于创建更好更快以及交互性更强的Web应用程序的技术  4.使用Ajax技术的网页，通过在后台服务器进行少量的数据交换，就可以实现异步">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-09-15T12:44:21.000Z">
-<meta property="article:modified_time" content="2020-09-16T12:44:57.720Z">
+<meta property="article:modified_time" content="2020-09-17T01:37:06.278Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -501,7 +501,156 @@
 
         https://images2017.cnblogs.com/blog/330611/201710/330611-20171023144517066-24770749.png</code></pre>
 <p>###文件上传和下载</p>
-<pre><code>1.导入文件上传的jar包，commons-fileupload</code></pre>
+<pre><code>1.导入文件上传的jar包，commons-fileupload，， Maven会自动帮我们导入他的依赖包 commons-io包；
+
+    &lt;!--文件上传--&gt;
+    &lt;dependency&gt;
+       &lt;groupId&gt;commons-fileupload&lt;/groupId&gt;
+       &lt;artifactId&gt;commons-fileupload&lt;/artifactId&gt;
+       &lt;version&gt;1.3.3&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;!--servlet-api导入高版本的--&gt;
+    &lt;dependency&gt;
+       &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+       &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;
+       &lt;version&gt;4.0.1&lt;/version&gt;
+    &lt;/dependency&gt;
+
+2.配置bean：multipartResolver
+
+【注意！！！这个bena的id必须为：multipartResolver ， 否则上传文件会报400的错误！在这里栽过坑,教训！】
+
+    &lt;!--文件上传配置--&gt;
+    &lt;bean id=&quot;multipartResolver&quot;  class=&quot;org.springframework.web.multipart.commons.CommonsMultipartResolver&quot;&gt;
+       &lt;!-- 请求的编码格式，必须和jSP的pageEncoding属性一致，以便正确读取表单的内容，默认为ISO-8859-1 --&gt;
+       &lt;property name=&quot;defaultEncoding&quot; value=&quot;utf-8&quot;/&gt;
+       &lt;!-- 上传文件大小上限，单位为字节（10485760=10M） --&gt;
+       &lt;property name=&quot;maxUploadSize&quot; value=&quot;10485760&quot;/&gt;
+       &lt;property name=&quot;maxInMemorySize&quot; value=&quot;40960&quot;/&gt;
+    &lt;/bean&gt;
+
+3.CommonsMultipartFile 的 常用方法：
+
+    String getOriginalFilename()：获取上传文件的原名
+
+    InputStream getInputStream()：获取文件流
+
+    void transferTo(File dest)：将上传文件保存到一个目录文件中
+
+     我们去实际测试一下
+
+4.编写一个Controller
+
+    @Controller
+    public class FileController &#123;
+       //@RequestParam(&quot;file&quot;) 将name=file控件得到的文件封装成CommonsMultipartFile 对象
+       //批量上传CommonsMultipartFile则为数组即可
+       @RequestMapping(&quot;/upload&quot;)
+       public String fileUpload(@RequestParam(&quot;file&quot;) CommonsMultipartFile file , HttpServletRequest request) throws IOException &#123;
+
+           //获取文件名 : file.getOriginalFilename();
+           String uploadFileName = file.getOriginalFilename();
+
+           //如果文件名为空，直接回到首页！
+           if (&quot;&quot;.equals(uploadFileName))&#123;
+               return &quot;redirect:/index.jsp&quot;;
+          &#125;
+           System.out.println(&quot;上传文件名 : &quot;+uploadFileName);
+
+           //上传路径保存设置
+           String path = request.getServletContext().getRealPath(&quot;/upload&quot;);
+           //如果路径不存在，创建一个
+           File realPath = new File(path);
+           if (!realPath.exists())&#123;
+               realPath.mkdir();
+          &#125;
+           System.out.println(&quot;上传文件保存地址：&quot;+realPath);
+
+           InputStream is = file.getInputStream(); //文件输入流
+           OutputStream os = new FileOutputStream(new File(realPath,uploadFileName)); //文件输出流
+
+           //读取写出
+           int len=0;
+           byte[] buffer = new byte[1024];
+           while ((len=is.read(buffer))!=-1)&#123;
+               os.write(buffer,0,len);
+               os.flush();
+          &#125;
+           os.close();
+           is.close();
+           return &quot;redirect:/index.jsp&quot;;
+      &#125;
+    &#125;
+
+5.采用file.Transto 来保存上传的文件
+
+     /*
+    * 采用file.Transto 来保存上传的文件
+    */
+    @RequestMapping(&quot;/upload2&quot;)
+    public String  fileUpload2(@RequestParam(&quot;file&quot;) CommonsMultipartFile file, HttpServletRequest request) throws IOException &#123;
+
+       //上传路径保存设置
+       String path = request.getServletContext().getRealPath(&quot;/upload&quot;);
+       File realPath = new File(path);
+       if (!realPath.exists())&#123;
+           realPath.mkdir();
+      &#125;
+       //上传文件地址
+       System.out.println(&quot;上传文件保存地址：&quot;+realPath);
+
+       //通过CommonsMultipartFile的方法直接写文件（注意这个时候）
+       file.transferTo(new File(realPath +&quot;/&quot;+ file.getOriginalFilename()));
+
+       return &quot;redirect:/index.jsp&quot;;
+    &#125;
+
+
+6.前端表单提交地址修改</code></pre>
+<p>###文件下载</p>
+<pre><code>文件下载步骤：
+
+    1、设置 response 响应头
+
+    2、读取文件 -- InputStream
+
+    3、写出文件 -- OutputStream
+
+    4、执行操作
+
+    5、关闭流 （先开后关）
+
+    @RequestMapping(value=&quot;/download&quot;)
+    public String downloads(HttpServletResponse response ,HttpServletRequest request) throws Exception&#123;
+       //要下载的图片地址
+       String  path = request.getServletContext().getRealPath(&quot;/upload&quot;);
+       String  fileName = &quot;基础语法.jpg&quot;;
+
+       //1、设置response 响应头
+       response.reset(); //设置页面不缓存,清空buffer
+       response.setCharacterEncoding(&quot;UTF-8&quot;); //字符编码
+       response.setContentType(&quot;multipart/form-data&quot;); //二进制传输数据
+       //设置响应头
+       response.setHeader(&quot;Content-Disposition&quot;,
+               &quot;attachment;fileName=&quot;+URLEncoder.encode(fileName, &quot;UTF-8&quot;));
+
+       File file = new File(path,fileName);
+       //2、 读取文件--输入流
+       InputStream input=new FileInputStream(file);
+       //3、 写出文件--输出流
+       OutputStream out = response.getOutputStream();
+
+       byte[] buff =new byte[1024];
+       int index=0;
+       //4、执行 写出操作
+       while((index= input.read(buff))!= -1)&#123;
+           out.write(buff, 0, index);
+           out.flush();
+      &#125;
+       out.close();
+       input.close();
+       return null;
+    &#125;</code></pre>
 
       
 
@@ -595,11 +744,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/09/16/Ajax%E6%8A%80%E6%9C%AF/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/09/17/SpringBoot%E5%88%9D%E4%BD%93%E9%AA%8C/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          (no title)
+          SpringBoot初体验
         
       </div>
     </a>
