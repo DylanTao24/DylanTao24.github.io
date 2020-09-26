@@ -8,13 +8,15 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>SpringBoot其余知识 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="###Swagger 1.问题：前后端分离，前后端集成联调，启动暖人员和后端人员无法做到“及时协商，尽早解决”  2.解决方法：首先指定schema（计划的提纲），实时更新最新的api，降低集成的风险  Swagger：世界上最流行的api框架  RestFul Api文档在线自动生成工具&#x3D;&#x3D;&gt;Api文档与API定义同步更新  直接运行，可以在线测试api接口  支持多种语言（java，ph">
+<meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot其余知识">
 <meta property="og:url" content="http://example.com/2020/09/23/SpringBoot%E5%85%B6%E4%BD%99%E7%9F%A5%E8%AF%86/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="###Swagger 1.问题：前后端分离，前后端集成联调，启动暖人员和后端人员无法做到“及时协商，尽早解决”  2.解决方法：首先指定schema（计划的提纲），实时更新最新的api，降低集成的风险  Swagger：世界上最流行的api框架  RestFul Api文档在线自动生成工具&#x3D;&#x3D;&gt;Api文档与API定义同步更新  直接运行，可以在线测试api接口  支持多种语言（java，ph">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-09-23T07:04:39.000Z">
-<meta property="article:modified_time" content="2020-09-23T07:04:39.346Z">
+<meta property="article:modified_time" content="2020-09-25T11:10:47.092Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -172,7 +174,241 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>###Swagger</p>
+<pre><code>1.问题：前后端分离，前后端集成联调，启动暖人员和后端人员无法做到“及时协商，尽早解决”
+
+2.解决方法：首先指定schema（计划的提纲），实时更新最新的api，降低集成的风险
+
+Swagger：世界上最流行的api框架
+
+RestFul Api文档在线自动生成工具==&gt;Api文档与API定义同步更新
+
+直接运行，可以在线测试api接口
+
+支持多种语言（java，php）
+
+
+3.在项目中使用swagger
+
+    （1）swagger2
+
+    （2）ui
+
+SpringBoot集成Swagger
+
+
+    1.新建一个springboot项目
+
+    2.导入相关的依赖
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;io.springfox&lt;/groupId&gt;
+            &lt;artifactId&gt;springfox-swagger2&lt;/artifactId&gt;
+            &lt;version&gt;3.0.0&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;io.springfox&lt;/groupId&gt;
+            &lt;artifactId&gt;springfox-swagger-ui&lt;/artifactId&gt;
+            &lt;version&gt;3.0.0&lt;/version&gt;
+        &lt;/dependency&gt;
+
+    3.编写一个hallo工程
+
+    4.配置Swagger ==&gt;  Config
+
+        @Configuration
+        @EnableSwagger2
+        public class SwaggerConfig &#123;
+                    &#125;
+
+    5.测试运行
+
+    6.配置一些swagger的设置：配置扫描的接口
+
+        @Configuration
+        @EnableSwagger2
+        public class SwaggerConfig &#123;
+
+
+            //配置了Swagger的Docket的bean实例
+            @Bean
+            public Docket docket()&#123;
+
+                /**
+                 * RequestHandlerSelectors指定要扫描接口的方式
+                 * basePackage：扫描指定的包
+                 * any():扫描全部
+                 * none()不扫描
+                 * withClassAnnotation:扫描类上的注解
+                 * withMethodAnnotation:扫描方法上的注解
+                 *
+                 * paths():过滤什么路径（只扫描带有/hello下面的路径）
+                 *
+                 *
+                 */
+                return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo())
+                        .select().apis(RequestHandlerSelectors.basePackage(&quot;com.example.Controller&quot;))
+                        .paths(PathSelectors.ant(&quot;/hello/**&quot;)).build();
+            &#125;
+
+            public ApiInfo apiInfo()&#123;
+
+                Contact contact = new Contact(&quot;朱立涛&quot;, &quot;https://dylantao24.github.io/&quot;, &quot;785280317@qq.com&quot;);
+
+                return new ApiInfo(&quot;朱立涛的SwaggerAPI文档&quot;,
+                        &quot;有志者事竟成&quot;,
+                        &quot;v1.0&quot;,
+                        &quot;https://dylantao24.github.io/&quot;,
+                         contact,
+                        &quot;Apache 2.0&quot;,
+                        &quot;http://www.apache.org/licenses/LICENSE-2.0&quot;,
+                        new ArrayList());
+            &#125;
+        &#125;
+
+    7.配置是否启动Swagger：
+
+        new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).enable(false)
+
+        Docket.enable(false)：是否启用Swagger
+
+    8.配置API文档的分组：
+
+        .groupName(&quot;猪猪&quot;)
+
+        如何配置多个分组：创建多个Docket注册到bean中
+
+    实体类配置
+
+        必须要在返回值中带实体类 ，且实体类的属性是public的
+         @PostMapping(&quot;/user&quot;)
+        @ResponseBody
+        public User user()&#123;
+
+            return new User();
+        &#125;
+
+
+        可以在实体类和属性上加注解，来注释
+        @ApiModel(&quot;用户实体类&quot;)
+        public class User &#123;
+
+            @ApiModelProperty(&quot;年龄&quot;)
+            public int age;
+
+            @ApiModelProperty(&quot;姓名&quot;)
+            public String name;
+        &#125;
+        用户实体类&#123;
+        age    integer($int32)
+        年龄
+
+        name    string
+        姓名
+
+        &#125;
+
+    总结：
+
+        1.我们可以通过Swagger给一些比较难理解的属性或者接口，增加注释信息
+
+        2.接口文档实时更新
+
+        3.可以在线测试
+
+    Swagger是一个优秀的工具！
+
+    注意点：正式发布的时候关闭Swagger！！！处于安全考虑，而且节省运行的内存</code></pre>
+<p>###异步任务：</p>
+<pre><code>    在方法上加@Async注解告诉spring这是一个异步方法
+
+    在启动类上开启异步注解 @EnableAsync</code></pre>
+<p>###邮件任务</p>
+<pre><code>    1.引入依赖
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-mail&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+    2.在配置文件中配置邮箱信息
+
+        spring:
+          mail:
+            password: fwnxpraubvygbbfc
+            username: 785280317@qq.com
+            host: smtp.qq.com
+
+        #    开启加密验证
+            properties: &#123;mail.smtp.enable=true&#125;
+
+    3.编写类
+
+        用JavaMailSenderImpl类来进行邮件的发送 
+
+        @Autowired
+        JavaMailSenderImpl javaMailSender;
+
+
+        简单邮件：
+        @Test
+        void contextLoads() &#123;
+
+            SimpleMailMessage mail = new SimpleMailMessage();
+
+            mail.setSubject(&quot;小猪猪你好呀&quot;);
+
+            mail.setFrom(&quot;785280317@qq.com&quot;);
+
+            mail.setTo(&quot;785280317@qq.com&quot;);
+
+            mail.setText(&quot;我爱你小猪猪！&quot;);
+
+            javaMailSender.send(mail);
+
+        &#125;
+
+        复杂邮件：
+
+        @Test
+        void test() throws MessagingException &#123;
+
+            MimeMessage mes = javaMailSender.createMimeMessage();
+
+            MimeMessageHelper helper = new MimeMessageHelper(mes,true);
+
+            helper.setFrom(&quot;785280317@qq.com&quot;);
+
+            helper.setTo(&quot;785280317@qq.com&quot;);
+
+            helper.addAttachment(&quot;1.jpg&quot;,new File(&quot;D://JAVA图片库//timg.jpg&quot;));
+
+            helper.setSubject(&quot;小猪猪你好呀&quot;);
+
+            helper.setText(&quot;&lt;h1&gt;我爱你&lt;/h1&gt;&quot;,true);
+
+            javaMailSender.send(mes);
+
+        &#125;</code></pre>
+<p>###定时执行任务</p>
+<pre><code>核心接口：
+
+    TaskScheduler 任务计划程序
+
+    TaskExecutor 任务执行器
+
+    @EnableScheduling 在执行类上开启定时功能
+
+    @Scheduled 什么时候执行 cron表达式 &quot;秒 分 时 日 月 星期&quot; 
+
+    @Service
+    public class Schedulerservice &#123;
+
+        @Scheduled(cron = &quot;59 14 17 * * ?&quot;)
+        public void hello()&#123;
+            System.out.println(&quot;hello,你被out了~~&quot;);
+        &#125;
+    &#125;</code></pre>
+
       
 
       
@@ -264,6 +500,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/09/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          数据结构与算法
+        
+      </div>
+    </a>
   
   
     <a href="/2020/09/17/SpringBoot%E5%88%9D%E4%BD%93%E9%AA%8C/" id="article-nav-older" class="article-nav-link-wrap">
