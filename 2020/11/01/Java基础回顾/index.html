@@ -6,15 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2020 | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="123title: 数据结构与算法date: 2020-09-26 16:38:47tags:  Java基础回顾1.常用的命令行DOS命令：12345678dir: 列出当前目录下的文件及文件夹md：创建目录rd：删除目录cd：进入指定目录cd..：返回到上一层目录cd\：返回到根目录del：删除文件exit：退出DOS命令行  2.核心机制-垃圾回收机制1.不再使用的内存空间应被回收-垃圾回收">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2020/page/2/index.html">
+<meta property="og:url" content="http://example.com/2020/11/01/Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="123title: 数据结构与算法date: 2020-09-26 16:38:47tags:  Java基础回顾1.常用的命令行DOS命令：12345678dir: 列出当前目录下的文件及文件夹md：创建目录rd：删除目录cd：进入指定目录cd..：返回到上一层目录cd\：返回到根目录del：删除文件exit：退出DOS命令行  2.核心机制-垃圾回收机制1.不再使用的内存空间应被回收-垃圾回收">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2020/11/01/Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE/Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE.assets/image-20201103170237191.png">
+<meta property="og:image" content="http://example.com/2020/11/01/Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE/Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE.assets/image-20201103171517164.png">
+<meta property="og:image" content="http://example.com/2020/11/01/Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE/Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE.assets/image-20201103202529925.png">
+<meta property="og:image" content="http://example.com/2020/11/01/Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE/Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE.assets/image-20201104192328784.png">
+<meta property="article:published_time" content="2020-11-01T12:01:37.955Z">
+<meta property="article:modified_time" content="2020-11-11T11:41:39.557Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/11/01/Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE/Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE.assets/image-20201103170237191.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,214 +159,377 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Java基础回顾" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title: 数据结构与算法</span><br><span class="line">date: 2020-09-26 16:38:47</span><br><span class="line">tags:</span><br></pre></td></tr></table></figure>
+
+<h1 id="Java基础回顾"><a href="#Java基础回顾" class="headerlink" title="Java基础回顾"></a>Java基础回顾</h1><h2 id="1-常用的命令行DOS命令："><a href="#1-常用的命令行DOS命令：" class="headerlink" title="1.常用的命令行DOS命令："></a>1.常用的命令行DOS命令：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">dir: 列出当前目录下的文件及文件夹</span><br><span class="line">md：创建目录</span><br><span class="line">rd：删除目录</span><br><span class="line">cd：进入指定目录</span><br><span class="line">cd..：返回到上一层目录</span><br><span class="line">cd\：返回到根目录</span><br><span class="line">del：删除文件</span><br><span class="line">exit：退出DOS命令行</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-核心机制-垃圾回收机制"><a href="#2-核心机制-垃圾回收机制" class="headerlink" title="2.核心机制-垃圾回收机制"></a>2.核心机制-垃圾回收机制</h2><p>1.不再使用的内存空间应被回收-垃圾回收</p>
+<p>2.垃圾回收在java程序运行中自动进行，程序员无法精确控制和干预（GV垃圾回收线程）</p>
+<h2 id="3-Java中-——JDK-JRE-JVM的关系"><a href="#3-Java中-——JDK-JRE-JVM的关系" class="headerlink" title="3.Java中 ——JDK,JRE,JVM的关系"></a>3.Java中 ——JDK,JRE,JVM的关系</h2><p>1.JDK:：java开发工具包，其中也包含了JRE；</p>
+<p>2.JRE：java运行环境：包含JVM和java程序所需要的核心类库等等，如果想要运行一个开发好的java程序，</p>
+<p>计算机中只需安装JRE即可。</p>
+<p>3.JDK = JRE + 开发工具集  JRE = JVM + JavaSE标准类库</p>
+<h2 id="4-Java中的变量类型"><a href="#4-Java中的变量类型" class="headerlink" title="4.Java中的变量类型"></a>4.Java中的变量类型</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span><span class="keyword">int</span>       <span class="number">4</span>个字节 -<span class="number">2</span>^<span class="number">31</span> - <span class="number">2</span>^<span class="number">31</span>-<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="number">2.</span><span class="keyword">byte</span>    <span class="number">1</span>个字节 -<span class="number">128</span>-<span class="number">127</span></span><br><span class="line"></span><br><span class="line"><span class="number">3.</span><span class="keyword">short</span>   <span class="number">2</span>个字节 -<span class="number">2</span>^<span class="number">15</span> - <span class="number">2</span>^<span class="number">15</span>-<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="number">4.l</span>ong    <span class="number">8</span>个字节 -<span class="number">2</span>^<span class="number">63</span> - <span class="number">2</span>^<span class="number">63</span>-<span class="number">1</span> 定义时其后要加l或者L结尾；</span><br><span class="line"></span><br><span class="line"><span class="number">5.f</span>loat    <span class="number">4</span>个字节 -<span class="number">3.403e38</span> ~ <span class="number">3.403e38</span> 定义时其后要加f或者F结尾；</span><br><span class="line"></span><br><span class="line"><span class="number">6.d</span>ouble <span class="number">8</span>个字节 -<span class="number">1.798e308</span> ~ <span class="number">1.798e308</span></span><br><span class="line"></span><br><span class="line"><span class="number">7.</span><span class="keyword">char</span>     <span class="number">2</span>字节 </span><br><span class="line"></span><br><span class="line"><span class="number">8.</span><span class="keyword">boolean</span>  <span class="keyword">true</span> <span class="keyword">false</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="5-Java中的程序控制流程"><a href="#5-Java中的程序控制流程" class="headerlink" title="5.Java中的程序控制流程"></a>5.Java中的程序控制流程</h2><p>1.顺序结构</p>
+<p>​        程序从上到下顺序执行，中间没有任何的判断和跳转</p>
+<p>2.分支结构</p>
+<p>​        根据条件，选择性的执行某段代码</p>
+<p>​        有if…else和switch-case两种分支语句</p>
+<p>3.循环结构</p>
+<p>​        根据循环条件，重复性的执行某段代码</p>
+<p>​        有while，do…while，for三中循环语句</p>
+<p>​        jdk1.5后提供了foreach循环，方便的遍历集合，数组元素</p>
+<h2 id="6-switch语句"><a href="#6-switch语句" class="headerlink" title="6.switch语句"></a>6.switch语句</h2><p>switch结构中的表达式，只能是如下的六种数据类型：byte，short，int，char，string，枚举类型</p>
+<h2 id="7-continue和break的区别"><a href="#7-continue和break的区别" class="headerlink" title="7.continue和break的区别"></a>7.continue和break的区别</h2><p>break：</p>
+<p>(1).结束当前整个循环，执行当前循环下边的语句。忽略循环体中任何其它语句和循环条件测试。</p>
+<p>(2).只能跳出一层循环，如果你的循环是嵌套循环，那么你需要按照你嵌套的层次，逐步使用break来跳出。</p>
+<p>continue：</p>
+<p>(1).终止本次循环的执行，即跳过当前这次循环中continue语句后尚未执行的语句，接着进行下一次循环条件的判断。 </p>
+<p>(2).结束当前循环，进行下一次的循环判断。</p>
+<p>(3).终止当前的循环过程，但他并不跳出循环,而是继续往下判断循环条件执行语句.他只能结束循环中的一次过程,但不能终止循环继续进行。</p>
+<h2 id="8-内存的简化结构"><a href="#8-内存的简化结构" class="headerlink" title="8.内存的简化结构"></a>8.内存的简化结构</h2><p>jvm中将内存分为三块</p>
+<p>​    1.栈（stack）：存放局部变量</p>
+<p>​    2.堆（heap）：存放new出来的结构：对象，数组（对象实例）</p>
+<p>​    3.方法区：常量池，静态域</p>
+<h2 id="9-算法的五大特征"><a href="#9-算法的五大特征" class="headerlink" title="9.算法的五大特征"></a>9.算法的五大特征</h2><table>
+<thead>
+<tr>
+<th>输入（Input）</th>
+<th>有0个或多个输入数据，这些数据必须有清楚的描述和定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>输出（Output）</td>
+<td>至少有一个或者多个输出结果，不可以没有输出结果</td>
+</tr>
+<tr>
+<td>有穷性（有限性，Finiteness）</td>
+<td>算法在有限的步骤之后会自动结束而不会无限循环，并且每一个步骤可以在可接受的时间内完成</td>
+</tr>
+<tr>
+<td>确定性（明确性，Definiteness）</td>
+<td>算法的每一步都有确定的含义，不会出现二义性</td>
+</tr>
+<tr>
+<td>可行性（有效性，Effectiveness）</td>
+<td>算法的每一步都是清楚且可行的，能让用户用纸笔计算而求出答案</td>
+</tr>
+</tbody></table>
+<h2 id="10-Array工具类的使用方法"><a href="#10-Array工具类的使用方法" class="headerlink" title="10.Array工具类的使用方法"></a>10.Array工具类的使用方法</h2><table>
+<thead>
+<tr>
+<th>1</th>
+<th>boolean equals(int a,int b)</th>
+<th>判断两个数组是否相等</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2</td>
+<td>String toString(int[] a)</td>
+<td>输出数组信息</td>
+</tr>
+<tr>
+<td>3</td>
+<td>void fill(int[] a,int val)</td>
+<td>将指定值填充到数组之中，将数组中的所有元素变为val</td>
+</tr>
+<tr>
+<td>4</td>
+<td>void sort(int[] a)</td>
+<td>对数组进行排序</td>
+</tr>
+<tr>
+<td>5</td>
+<td>int binarySearch(int[], int key)</td>
+<td>对排序后的数组进行二分法检索指定的值</td>
+</tr>
+</tbody></table>
+<h2 id="11-面向对象的思想概述"><a href="#11-面向对象的思想概述" class="headerlink" title="11.面向对象的思想概述"></a>11.面向对象的思想概述</h2><p>1.根据问题需要，选择问题所针对的<strong>现实世界中的实体</strong></p>
+<p>2.从实体中寻找解决问题相关的属性和功能，这些属性和功能就形成了<strong>Java中的类</strong></p>
+<p>3.把抽象的实体用计算机语言进行描述，形成<strong>类的定义</strong></p>
+<p>4.将<strong>类实例化成计算机世界中的对象</strong>，对象是计算机世界中解决问题的最终工具</p>
+<p>如何理解”<strong>万事万物皆对象</strong>“：</p>
+<p>1.在Java语言的范畴中，我们都将功能，结构等封装到类中，通过类的实例化，来调用具体的功能结构</p>
+<p>2.涉及到Java语言与前端Html，后端的数据库交互时，前后端的结构在Java层面交互时，都体现为类，对象。</p>
+<h2 id="12-可变形参"><a href="#12-可变形参" class="headerlink" title="12.可变形参"></a>12.可变形参</h2><p>1.JavaSE5.0中提供了Varargs（Variable number of arguments）机制，允许直接定义能和多个实参相匹配的形参</p>
+<p>使用方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//可变形参</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(String... a)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    List&lt;String&gt; list = Arrays.asList(a);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (String n : list) &#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(n);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：1.可变形参的方法与本类中方法名相同，形参类型也相同的数组之间不构成重载，二者不能共存。</p>
+<p>​          2.可变个数形参在方法的形参中，必须声明在末尾，并且一个方法中可变形参最多只有一种</p>
+<h2 id="13-方法传递的值传递机制"><a href="#13-方法传递的值传递机制" class="headerlink" title="13.方法传递的值传递机制"></a>13.方法传递的值传递机制</h2><p>Java中的实参值如何传入方法：</p>
+<p>1.形参是基本数据类型，将实参基本数据类型变量的“数据值”传递给形参（基本数据类型 -&gt; 值传递）</p>
+<p>2.形参是引用数据类型，将实参引用数据类型变量的“地址值”传递给形参（引用数据类型 -&gt; 地址传递）</p>
+<h5 id="例题1："><a href="#例题1：" class="headerlink" title="例题1："></a>例题1：</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 大厂面试题（微博、百度、腾讯）：</span></span><br><span class="line"><span class="comment">* 两个Integer的引用对象传递给一个swap方法的内部进行交换，返回后，两个引用的值是否会发生变化</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Integer a=<span class="number">1</span>,b=<span class="number">2</span>;</span><br><span class="line">    <span class="comment">//a=Integer@533=1,b=Integer@534=2</span></span><br><span class="line">    System.out.println(<span class="string">&quot;before:a=&quot;</span>+a+<span class="string">&quot;,b=&quot;</span>+b);</span><br><span class="line">    swap(a,b);</span><br><span class="line">    <span class="comment">//a=Integer@533=1,b=Integer@534=2</span></span><br><span class="line">    System.out.println(<span class="string">&quot;after:a=&quot;</span>+a+<span class="string">&quot;,b=&quot;</span>+b);</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(Integer i1, Integer i2)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//tmp=i1=Integer@533---1</span></span><br><span class="line">    Integer tmp=i1;</span><br><span class="line">    <span class="comment">//i1=i2=Integer534@--2</span></span><br><span class="line">    i1=i2;</span><br><span class="line">    <span class="comment">//i2=tmp=i1=Integer@533----1</span></span><br><span class="line">    i2=tmp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果为：</p>
+<p><img src="Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE.assets/image-20201103170237191.png" alt="image-20201103170237191"></p>
+<p>java内部对于引用数据类型的传递为“<strong>值传递</strong>”，交换的是原本的变量的<strong>副本</strong>，即形参，并不是实参，所有原本的值在栈中并不会发生变化</p>
+<p><strong>数组元素作为函数的实参时，用法跟普通变量作参数相同，将数组元素的值传递给形参时进行函数体调用，函数调用完返回后，数组元素的值不变。这种传递方式是”值传递“方式，即只能从实参传递给形参，而不能从形参传递给实参</strong></p>
+<h5 id="例题2："><a href="#例题2：" class="headerlink" title="例题2："></a>例题2：</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 大厂面试题（微博、百度、腾讯）：</span></span><br><span class="line"><span class="comment">* 两个Integer的引用对象传递给一个swap方法的内部进行交换，返回后，两个引用的值是否会发生变化</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Integer a=<span class="number">1</span>,b=<span class="number">2</span>;</span><br><span class="line">        <span class="comment">//a=Integer@533=1,b=Integer@534=2</span></span><br><span class="line">        System.out.println(<span class="string">&quot;before:a=&quot;</span>+a+<span class="string">&quot;,b=&quot;</span>+b);</span><br><span class="line">        swap(a,b);</span><br><span class="line">        <span class="comment">//a=Integer@533=1,b=Integer@534=2</span></span><br><span class="line">        System.out.println(<span class="string">&quot;after:a=&quot;</span>+a+<span class="string">&quot;,b=&quot;</span>+b);</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">//利用反射进行交换，将Integer中的private final value 属性进行设置为可见可改 然后将tem指向i1所指向的元素，用set进行交换</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(Integer i1, Integer i2)</span> <span class="keyword">throws</span> NoSuchFieldException, IllegalAccessException </span>&#123;</span><br><span class="line">        <span class="comment">//反射获取成员变量</span></span><br><span class="line">        Field value = Integer.class.getDeclaredField(<span class="string">&quot;value&quot;</span>);</span><br><span class="line">        value.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">        <span class="comment">//重新开辟一个内存空间</span></span><br><span class="line">        <span class="comment">//tmp=Integer@545=1</span></span><br><span class="line">        Integer tmp = <span class="keyword">new</span> Integer(i1.intValue());</span><br><span class="line">        <span class="comment">//i1=Integer@534=2</span></span><br><span class="line">        value.set(i1, i2.intValue());</span><br><span class="line">        <span class="comment">//i2=Integer@535=tmp=new Integer(i1.intValue())=1</span></span><br><span class="line">        value.set(i2, tmp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果为：</p>
+<p><img src="Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE.assets/image-20201103171517164.png" alt="image-20201103171517164"></p>
+<p><strong>使用反射机制，传递的是数组元素对应的地址，这样形参数组和实参数组共占用一段内存单元，当形参值发生变化时，实参值也发生变化。</strong></p>
+<h5 id="例题3："><a href="#例题3：" class="headerlink" title="例题3："></a>例题3：</h5><p>貌似是考查方法的参数传递：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//笔试题：在不改变原有代码的情况下，写出method方法，使得输出为&quot;a=100，b=200&quot;；</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchFieldException, IllegalAccessException </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">int</span> b = <span class="number">10</span>;</span><br><span class="line">        method(a,b);</span><br><span class="line">        System.out.println(<span class="string">&quot;a=&quot;</span> + a);</span><br><span class="line">        System.out.println(<span class="string">&quot;b=&quot;</span> + b);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<p>本题看似是考查方法的参数传递，但实际上分析得到<strong>基本数据类型作为实参不能被改变，只能进行值传递</strong>，所以改变思路，以下为代码实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*方法一：投机取巧型</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">       a = a * <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">       b = b * <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line">       System.out.println(<span class="string">&quot;a = &quot;</span> + a);</span><br><span class="line">       System.out.println(<span class="string">&quot;b = &quot;</span> + b);</span><br><span class="line"></span><br><span class="line">       System.exit(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"> 	&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*方法二：重写输出方法</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        PrintStream printStream = <span class="keyword">new</span> PrintStream(System.out)&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">println</span><span class="params">(String x)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="string">&quot;a=10&quot;</span>.equals(x))&#123;</span><br><span class="line">                    x = <span class="string">&quot;a=100&quot;</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">&quot;b=10&quot;</span>.equals(x)) &#123;</span><br><span class="line">                    x = <span class="string">&quot;b=200&quot;</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">super</span>.println(x);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        System.setOut(printStream);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="例题4："><a href="#例题4：" class="headerlink" title="例题4："></a>例题4：</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//下列语句的输出是什么?</span></span><br><span class="line"><span class="keyword">char</span>[] ar1r = <span class="keyword">new</span> <span class="keyword">char</span>[]&#123;<span class="string">&#x27;A&#x27;</span>,<span class="string">&#x27;B&#x27;</span>,<span class="string">&#x27;C&#x27;</span>&#125;;</span><br><span class="line">System.out.println(ar1r);<span class="comment">//是ABC，而不是地址</span></span><br></pre></td></tr></table></figure>
+
+<p>该语句的println方法用的不是println(Object o) ,而是println(char[] ch)方法，该方法底层打印了char数组</p>
+<h2 id="14-面向对象特征之一：封装性"><a href="#14-面向对象特征之一：封装性" class="headerlink" title="14.面向对象特征之一：封装性"></a>14.面向对象特征之一：封装性</h2><p>程序追求：高内聚，低耦合</p>
+<p>高内聚：类的内部数据操作自己完成，不允许外部进行干涉</p>
+<p>低耦合：仅对外暴露少量方法用于使用</p>
+<p>通俗的说：<strong>把该隐藏的隐藏起来，该暴露的暴露出来，这就是封装性的设计思想</strong></p>
+<h2 id="15-权限修饰符"><a href="#15-权限修饰符" class="headerlink" title="15.权限修饰符"></a>15.权限修饰符</h2><table>
+<thead>
+<tr>
+<th align="center">修饰符</th>
+<th align="center">类内部</th>
+<th align="center">同一个包</th>
+<th align="center">不同包的子类</th>
+<th align="center">同一个工程</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">private</td>
+<td align="center">√</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">缺省</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">protected</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">public</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center">√</td>
+</tr>
+</tbody></table>
+<p>Java提供了<strong>四种权限修饰符</strong>来修饰<strong>类及类的内部结构</strong>，体现类及类的内部结构再被调用时的<strong>可见性大小</strong></p>
+<h2 id="16-JavaBean"><a href="#16-JavaBean" class="headerlink" title="16.JavaBean"></a>16.JavaBean</h2><p>1.JavaBean是一种Java语言写成的可充用组件</p>
+<p>2.符合如下标准：</p>
+<p>​            类是公共的，有一个无参的构造方法，有属性，有get，set方法</p>
+<h2 id="17-UML类图"><a href="#17-UML类图" class="headerlink" title="17.UML类图"></a>17.UML类图</h2><p><img src="Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE.assets/image-20201103202529925.png" alt="image-20201103202529925"></p>
+<h2 id="18-方法重写的注意事项"><a href="#18-方法重写的注意事项" class="headerlink" title="18.方法重写的注意事项"></a>18.方法重写的注意事项</h2><p>1.子类重写的方法的方法名和形参列表与父类被重写的方法的方法名和形参列表相同</p>
+<p>2.子类从写的方法的权限修饰符不小于父类呗重写的方法的权限修饰符</p>
+<p>3.返回值类型：</p>
+<p>​    若父类被重写的方法的返回值是void，则子类重写的方法的返回值只能是void</p>
+<p>​    若父类被重写的方法的返回值是基本数据类型，则子类的返回值也必须是相同的基本数据类型</p>
+<p>​    若父类被重写的方法的返回值为A类型，则子类重写的的方法的返回值类型可以是A类也可以是A类的子类    </p>
+<p>4.子类重写的方法抛出的异常类型不大于父类被重写的方法抛出的异常类型</p>
+<h2 id="19-instanceof关键字的使用"><a href="#19-instanceof关键字的使用" class="headerlink" title="19.instanceof关键字的使用"></a>19.instanceof关键字的使用</h2><p>问题：有了对象的多态性后，内存中实际上是加载了子类特有的属性和方法的，但是由于变量声明为父类类型，导致编译时只能调用父类中声明的属性，和方法。子类特有的属性和方法不能调用，如何能调用子类的属性和方法？</p>
+<p>instanceof：  a instanceof A  判断对象a是否是类A的实例。如果是返回true，不是返回false</p>
+<h2 id="20-Object"><a href="#20-Object" class="headerlink" title="20.Object"></a>20.Object</h2><table>
+<thead>
+<tr>
+<th>clone（）</th>
+<th>复制对象，创建一个并返回当前对象的复制品</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>finalize（）</td>
+<td>如果对象在堆空间中 ，栈里面没有任何引用指向堆空间的对象了，就会调用该方法，表示回收堆空间的实体，不要主动去调用该方法</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="21-关于垃圾回收："><a href="#21-关于垃圾回收：" class="headerlink" title="21.关于垃圾回收："></a>21.关于垃圾回收：</h2><p>垃圾回收机制：</p>
+<p>​    垃圾回收机制只回收<strong>JVM堆内存里的对象空间</strong>，<strong>垃圾回收发生就有不可预知性</strong>，程序无法精确控制垃圾回收机制执行，可以将对象的引用变量设置为null，暗示垃圾回收机制可以回收对象，程序员可以通过<strong>System.gc（）</strong>或者<strong>Runtime.getRuntime（）.gc（）</strong>来通知<strong>系统进行垃圾回收</strong>，会有一些效果，但是系统<strong>是否进行垃圾回收依然不确定</strong>。垃圾回收任何对象之前，总会先调用它的<strong>finalize（）</strong>方法。</p>
+<h2 id="22-关于代码块"><a href="#22-关于代码块" class="headerlink" title="22.关于代码块"></a>22.关于代码块</h2><p>1.非静态代码块：</p>
+<p>​    内部可以有输出语句；随着对象的创建而执行；每创建一个对象，就执行一次非静态代码块；</p>
+<p>​    作用：可以在创建对象时，对对象的属性进行初始化，非静态代码块可以调用非静态和静态的属性和方法</p>
+<p>2.静态代码块</p>
+<p>​    内部可以有输出语句；随着类的加载而执行；静态代码块只执行一次；</p>
+<p>​    作用：初始化类的信息；静态代码块的执行优于非静态的执行</p>
+<h2 id="23-属性赋值的先后顺序："><a href="#23-属性赋值的先后顺序：" class="headerlink" title="23.属性赋值的先后顺序："></a>23.属性赋值的先后顺序：</h2><p>1.默认初始化   java默认赋值  基本数据类型为0或者0.0，引用类为null</p>
+<p>2.显式初始化   int a = 1；  /   代码块中赋值  </p>
+<p>3.构造器初始化</p>
+<p>4.用对象.属性修改</p>
+<h2 id="24-final关键字"><a href="#24-final关键字" class="headerlink" title="24.final关键字"></a>24.final关键字</h2><p>1.final修饰类，表示类不能被继承，例如String，StringBuffer，System等等</p>
+<p>2.final修饰方法，表示此方法不可以被重写，例如Object.getClass（）</p>
+<p>3.final修饰变量，此时的变量就是一个常量</p>
+<p>​    3.1final修饰属性，可以考虑赋值的位置有：显示初始化，代码块中初始化，构造器中初始化</p>
+<h2 id="25-抽象类和抽象方法"><a href="#25-抽象类和抽象方法" class="headerlink" title="25.抽象类和抽象方法"></a>25.抽象类和抽象方法</h2><p><strong>抽象类不是实例化，类中一定有构造器，便于子类实例化的时候调用</strong></p>
+<p><strong>包含抽象方法的类一定是一个抽象类</strong>，<strong>抽象类中可以没有抽象方法</strong></p>
+<h2 id="26-多态的应用：模板方式设计模式"><a href="#26-多态的应用：模板方式设计模式" class="headerlink" title="26.多态的应用：模板方式设计模式"></a>26.多态的应用：模板方式设计模式</h2><p>解决问题：当功能的内部一部分实现是确定的，一部分是不确定的。这是可以把不确定的部分暴露出去，让子类去实现。</p>
+<h2 id="27-Java8新特性之接口"><a href="#27-Java8新特性之接口" class="headerlink" title="27.Java8新特性之接口"></a>27.Java8新特性之接口</h2><p>在jdk1.7以前，接口中只能定义抽象方法和全局常量，jdk1.8后，接口中可以定义静态方法和默认方法了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> users</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@data</span> 2020/11/4  -  18:45</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Test2</span> </span>&#123;</span><br><span class="line">	<span class="comment">//全局常量（省略public static final）</span></span><br><span class="line">    <span class="keyword">int</span> A = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//抽象方法</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//静态方法（省略static）</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">a</span> <span class="params">()</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//默认方法</span></span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">b</span><span class="params">()</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意点1</strong>：接口内的静态方法，只能通过接口来调，其实现类无法调用（编译器会报错：提示该方法未定义）。</p>
+<p><img src="Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE.assets/image-20201104192328784.png" alt="image-20201104192328784"></p>
+<p><strong>注意点2</strong>：通过实现类的对象，可以调用接口中的默认方法，如果实现类重写了接口中的默认方法，调用时，依然调用的是重写以后的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//未重写默认方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TEST1</span> <span class="keyword">implements</span> <span class="title">Test2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        TEST1 test1 = <span class="keyword">new</span> TEST1();</span><br><span class="line">        <span class="comment">//是Test2接口中的默认方法</span></span><br><span class="line">        test1.b();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出为：b被调用了</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//重写默认方法</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">b</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="keyword">this</span>.getClass() + <span class="string">&quot;b被调用了&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//输出为class TEST1b被调用了</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意点3</strong>：如果子类继承的父类和实现的接口中声明了同名同参数的方法，那么子类在没有重写该方法的前提下，默认调用的是父类中的同名同参数的方法</p>
+<p><strong>注意点4</strong>：如果实现类实现了多个接口，而这多个接口中定义了同名同参数的默认方法，那么在实现类没有重写此方法的前提下，</p>
+<p>会报错—&gt;接口冲突，需要我们必须在实现类中重写此方法</p>
+<p><strong>注意点5</strong>：如何在子类（或实现类）的方法中调用父类，接口中被重写的方法：<strong>父类：super.方法名  接口：接口类名.super.方法名 重写后的 this.方法名（this可以省略）</strong>；</p>
+<h2 id="28-异常处理方法重写的规则"><a href="#28-异常处理方法重写的规则" class="headerlink" title="28.异常处理方法重写的规则"></a>28.异常处理方法重写的规则</h2><p>1.子类重写的方法抛出的异常不大于父类被重写的方法抛出的异常</p>
+<p>2.若父类的被重写的方法没有抛出异常，则子类重写的方法也不能抛出异常，如果有异常，则用try catch解决</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/14/%E6%95%B4%E5%90%88SSM%E6%A1%86%E6%9E%B6/" class="archive-article-date">
-  	<time datetime="2020-09-14T09:40:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/14/%E6%95%B4%E5%90%88SSM%E6%A1%86%E6%9E%B6/">整合SSM框架</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/01/Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/12/SpringMVC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2020-09-12T07:20:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-12</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2020/11/04/Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE-%E9%AB%98%E7%BA%A7%E9%83%A8%E5%88%86(%E4%B8%80)/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/10/15/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%AE%AD/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">项目实训</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/12/SpringMVC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">SpringMVC学习笔记</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/11/Spring5%E6%96%B0%E5%8A%9F%E8%83%BD/" class="archive-article-date">
-  	<time datetime="2020-09-11T10:44:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/11/Spring5%E6%96%B0%E5%8A%9F%E8%83%BD/">Spring5新功能</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/10/Spring%E4%BA%8B%E5%8A%A1/" class="archive-article-date">
-  	<time datetime="2020-09-10T10:46:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/10/Spring%E4%BA%8B%E5%8A%A1/">SpringJdbcTemplate</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/10/SpringAOP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2020-09-10T02:03:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/10/SpringAOP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">SpringAOP学习笔记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/09/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2020-09-09T03:08:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/09/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">我的第一篇博客文章</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/09/hello-world/" class="archive-article-date">
-  	<time datetime="2020-09-09T03:03:13.581Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/09/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2020/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2020/">1</a><span class="page-number current">2</span>
-    </nav>
   
 
 
@@ -381,8 +553,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

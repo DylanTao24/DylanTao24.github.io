@@ -16,7 +16,7 @@
 <meta property="og:description" content="###SpringMVC 1.MVC:模型（dao service） 视图（jsp） 控制器（servlet）      模型：数据模型，提供要展示的数据，因此包含数据和行为，可以认为是领域模型或JavaBean组件（包括数据和行为），不过现在一般都分离开：Value Object（数据Dao）           和服务层（行为Service）       View（视图）：负责进行模型的展示，">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-09-12T07:20:21.000Z">
-<meta property="article:modified_time" content="2020-09-14T09:34:47.550Z">
+<meta property="article:modified_time" content="2020-10-22T03:24:09.462Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -489,7 +489,7 @@ Controller的实现类，之后让具体的实现类执行，在这步中调用s
     （3）在SpringMVC中可以使用@PathVariable注解，让方法参数的值对应绑定到一个URI模板变量上
 
         1.RequestMapping(&quot;/hello&quot;)
-        public String hallo int a, int b, Model model)&#123;
+        public String hallo( int a, int b, Model model)&#123;
             //封装数据
             model.addAttribute(&quot;msg&quot;,a+b);
 

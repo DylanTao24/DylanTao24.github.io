@@ -6,15 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2020 | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="Java基础回顾-高级部分（一）1.多线程部分1.1程序，进程，线程  这三者的关系和概念​    程序：程序是为了完成特定的任务，用某种语言编写的一组指令的集合。即指一段静态的代码，静态对象 ​    进程：进程是程序的一次执行过程，或者是正在运行的一个程序。是一个动态的过程：有他自身的产生，存在和消亡的过程 ——生命周期 ​                进程作为资源分配的单位 ​    线程">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2020/page/2/index.html">
+<meta property="og:url" content="http://example.com/2020/11/04/Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE-%E9%AB%98%E7%BA%A7%E9%83%A8%E5%88%86(%E4%B8%80)/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Java基础回顾-高级部分（一）1.多线程部分1.1程序，进程，线程  这三者的关系和概念​    程序：程序是为了完成特定的任务，用某种语言编写的一组指令的集合。即指一段静态的代码，静态对象 ​    进程：进程是程序的一次执行过程，或者是正在运行的一个程序。是一个动态的过程：有他自身的产生，存在和消亡的过程 ——生命周期 ​                进程作为资源分配的单位 ​    线程">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2020/11/04/Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE-%E9%AB%98%E7%BA%A7%E9%83%A8%E5%88%86(%E4%B8%80)/Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE-%E9%AB%98%E7%BA%A7%E9%83%A8%E5%88%86.assets/image-20201105153041227.png">
+<meta property="article:published_time" content="2020-11-04T12:52:55.339Z">
+<meta property="article:modified_time" content="2020-11-10T02:56:06.451Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/11/04/Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE-%E9%AB%98%E7%BA%A7%E9%83%A8%E5%88%86(%E4%B8%80)/Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE-%E9%AB%98%E7%BA%A7%E9%83%A8%E5%88%86.assets/image-20201105153041227.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,214 +156,383 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Java基础回顾-高级部分(一)" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Java基础回顾-高级部分（一）"><a href="#Java基础回顾-高级部分（一）" class="headerlink" title="Java基础回顾-高级部分（一）"></a>Java基础回顾-高级部分（一）</h1><h2 id="1-多线程部分"><a href="#1-多线程部分" class="headerlink" title="1.多线程部分"></a>1.多线程部分</h2><h3 id="1-1程序，进程，线程-这三者的关系和概念"><a href="#1-1程序，进程，线程-这三者的关系和概念" class="headerlink" title="1.1程序，进程，线程  这三者的关系和概念"></a>1.1程序，进程，线程  这三者的关系和概念</h3><p>​    <strong>程序</strong>：程序是为了完成特定的任务，用某种语言编写的一组指令的集合。即指一段静态的代码，静态对象</p>
+<p>​    <strong>进程</strong>：进程是程序的一次执行过程，或者是正在运行的一个程序。是一个动态的过程：有他自身的产生，存在和消亡的过程 ——生命周期</p>
+<p>​                进程作为资源分配的单位</p>
+<p>​    <strong>线程</strong>：进程可进一步细化为线程，是一个程序内部的一条执行路径，线程作为调度和执行的单位，一个进程最少包含一个线程</p>
+<h3 id="1-2-并行与并发："><a href="#1-2-并行与并发：" class="headerlink" title="1.2.并行与并发："></a>1.2.并行与并发：</h3><p>​    <strong>并行</strong>：多个CPU同时执行多个任务</p>
+<p>​    <strong>并发</strong>：一个CPU（采用时间片）同时执行多个任务。</p>
+<h3 id="1-3-多线程的优点"><a href="#1-3-多线程的优点" class="headerlink" title="1.3.多线程的优点"></a>1.3.多线程的优点</h3><p>​    1.3.1：提高应用程序的响应。对图形化界面更有意义，可增强用户体验</p>
+<p>​    1.3.2：提高计算机系统CPU的利用率</p>
+<p>​    1.3.3：改善程序结构。将长和复杂的单一线程分解为多个线程，独立运行，利于理解和修改</p>
+<h3 id="1-4-常用方法"><a href="#1-4-常用方法" class="headerlink" title="1.4.常用方法"></a>1.4.常用方法</h3><h4 id="1-4-1，线程休眠"><a href="#1-4-1，线程休眠" class="headerlink" title="1.4.1，线程休眠"></a>1.4.1，线程休眠</h4><p>​        Thread.sleep（long millis） <em>重载</em>：1.sleep（long mills，int nanos）</p>
+<p>​        （1）<strong>millis</strong> 指定当前线程阻塞的毫秒数，<strong>nanos</strong> 表示在指定的毫秒数后加指定的纳秒数</p>
+<p>​        （2）sleep存在异常InterruptdeException异常</p>
+<p>​        （3）sleep时间到达后线程就进入就绪状态</p>
+<p>​        （4）可以模拟网络延时，倒计时等</p>
+<p>​        （5）每个对象都有一个锁，sleep不会释放锁</p>
+<p>​        （6）推荐使用并发包下的TimeUnit类  TimeUnit.时间单位.sleep（int time）</p>
+<h4 id="1-4-2，线程礼让"><a href="#1-4-2，线程礼让" class="headerlink" title="1.4.2，线程礼让"></a>1.4.2，线程礼让</h4><p>​        Thread.yield()</p>
+<p>​        （1）礼让线程，让当前正在执行的线程暂停，但不阻塞</p>
+<p>​        （2）将线程从运行状态转为就绪状态</p>
+<p>​        （3）让cpu重新调度，礼让不一定成功，看cpu心情</p>
+<h4 id="1-4-3，线程强制执行"><a href="#1-4-3，线程强制执行" class="headerlink" title="1.4.3，线程强制执行"></a>1.4.3，线程强制执行</h4><p>​        Thread.join（） <em>重载</em>  1. join（long millis）2.join（long mills，int nanos）</p>
+<p>​        （1）<strong>millis</strong> 指定当前线程阻塞的毫秒数，<strong>nanos</strong> 表示在指定的毫秒数后加指定的纳秒数</p>
+<p>​        （2）join合并线程，待此线程执行完成后，再执行其他线程，其他线程阻塞，可以将其想象为插队</p>
+<h3 id="1-5，线程优先级-priority-：默认是5"><a href="#1-5，线程优先级-priority-：默认是5" class="headerlink" title="1.5，线程优先级(priority)：默认是5"></a>1.5，线程优先级(priority)：默认是5</h3><p>​        （1）.java提供一个<strong>线程调度器</strong>来监控程序中启动后<strong>进入就绪状态的所有线程</strong>，线程调度器按照优先级决定应该调度哪个线程来执行</p>
+<p>​        （2）优先级用数字表示，范围1~10</p>
+<p>​        （3）使用getPriority(),setPriority(int xxx)可以改变线程优先级</p>
+<p>​        <strong>注意</strong>：线程优先级低只是意味着获得调度的概率低，并不是优先级低就不会被调用，这都是看CPU的调度</p>
+<h3 id="1-6，线程的生命周期"><a href="#1-6，线程的生命周期" class="headerlink" title="1.6，线程的生命周期"></a>1.6，线程的生命周期</h3><p>线程的生命周期共有六种：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Thread类中的状态描述</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">State</span> </span>&#123;</span><br><span class="line">    NEW,RUNNABLE,BLOCKED, WAITING,TIMED_WAITING,TERMINATED;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通常把WAITING和TIMED_WAITING当成一种周期，所以生命周期共有五种：<br>（新生状态，就绪状态，启动状态，阻塞状态，死亡状态）</p>
+<p>（1）.线程对象一旦创建就进入到新生状态</p>
+<p>（2）当调用start()方法时，该线程就进入就绪状态</p>
+<p>（3）经过cpu的调度，线程进入运行状态，开始执行线程体中的代码块</p>
+<p>（4）当调用sleep，wait，join，或者同步锁定时，线程进入阻塞状态，不会继续进行，待阻塞状态结束后，重新进入就绪状态，等待cpu调度</p>
+<p>（5）线程中断或者结束，一段进入死亡状态，就不能再次启动线程了</p>
+<h3 id="1-7，wait（）和sleep（）方法异同："><a href="#1-7，wait（）和sleep（）方法异同：" class="headerlink" title="1.7，wait（）和sleep（）方法异同："></a>1.7，wait（）和sleep（）方法异同：</h3><p>1.相同点：两者都能使线程进入阻塞状态</p>
+<p>2.异同点：声明位置不同：wait（）是在java.lang.Object类中声明的，而sleep（）是在 Thread类中声明的</p>
+<pre><code>             调用要求不同：wait（）必须在同步代码块或者同步方法中才是使用，sleep（）没有限制</code></pre>
+<p>​                 关于释放同步监视器不同：wait（）不释放锁，sleep（）释放锁</p>
+<h3 id="1-8，线程池："><a href="#1-8，线程池：" class="headerlink" title="1.8，线程池："></a>1.8，线程池：</h3><p>接口（ExecutorService）ThreadPoolExecutor implements ExecutorService</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//线程池类 </span></span><br><span class="line"><span class="comment">//                         线程池创建的七大参数：</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="comment">/*核心线程池大小*/</span><span class="keyword">int</span> corePoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                          <span class="comment">/*最大线程池大小*/</span><span class="keyword">int</span> maximumPoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                           <span class="comment">/*当线程没有任务时最多保持多长时间后终止*/</span><span class="keyword">long</span> keepAliveTime,</span></span></span><br><span class="line"><span class="function"><span class="params">                           <span class="comment">/*上一项的单位*/</span>TimeUnit unit,</span></span></span><br><span class="line"><span class="function"><span class="params">                           <span class="comment">/*阻塞队列大小*/</span>BlockingQueue&lt;Runnable&gt; workQueue,</span></span></span><br><span class="line"><span class="function"><span class="params">                           <span class="comment">/*线程工厂，一般使用默认的线程工厂*/</span>ThreadFactory threadFactory,</span></span></span><br><span class="line"><span class="function"><span class="params">                           <span class="comment">/*拒绝策略，有四种*/</span>RejectedExecutionHandler handler)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (corePoolSize &lt; <span class="number">0</span> ||</span><br><span class="line">        maximumPoolSize &lt;= <span class="number">0</span> ||</span><br><span class="line">        maximumPoolSize &lt; corePoolSize ||</span><br><span class="line">        keepAliveTime &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException();</span><br><span class="line">    <span class="keyword">if</span> (workQueue == <span class="keyword">null</span> || threadFactory == <span class="keyword">null</span> || handler == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">    <span class="keyword">this</span>.acc = System.getSecurityManager() == <span class="keyword">null</span> ?</span><br><span class="line">            <span class="keyword">null</span> :</span><br><span class="line">            AccessController.getContext();</span><br><span class="line">    <span class="keyword">this</span>.corePoolSize = corePoolSize;</span><br><span class="line">    <span class="keyword">this</span>.maximumPoolSize = maximumPoolSize;</span><br><span class="line">    <span class="keyword">this</span>.workQueue = workQueue;</span><br><span class="line">    <span class="keyword">this</span>.keepAliveTime = unit.toNanos(keepAliveTime);</span><br><span class="line">    <span class="keyword">this</span>.threadFactory = threadFactory;</span><br><span class="line">    <span class="keyword">this</span>.handler = handler;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//四种拒绝策略：</span></span><br><span class="line"><span class="comment">//第一种：将新的线程返回到原本的线程执行</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">CallerRunsPolicy</span> <span class="keyword">implements</span> <span class="title">RejectedExecutionHandler</span> </span>&#123;</span><br><span class="line">      </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">CallerRunsPolicy</span><span class="params">()</span> </span>&#123; &#125;</span><br><span class="line">    </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rejectedExecution</span><span class="params">(Runnable r, ThreadPoolExecutor e)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (!e.isShutdown()) &#123;</span><br><span class="line">                r.run();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//第二种：不处理，直接丢弃，并抛出异常</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">AbortPolicy</span> <span class="keyword">implements</span> <span class="title">RejectedExecutionHandler</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">AbortPolicy</span><span class="params">()</span> </span>&#123; &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rejectedExecution</span><span class="params">(Runnable r, ThreadPoolExecutor e)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RejectedExecutionException(<span class="string">&quot;Task &quot;</span> + r.toString() +</span><br><span class="line">                                                 <span class="string">&quot; rejected from &quot;</span> +</span><br><span class="line">                                                 e.toString());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//第三种：不处理，直接丢弃</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">DiscardPolicy</span> <span class="keyword">implements</span> <span class="title">RejectedExecutionHandler</span> </span>&#123;</span><br><span class="line">       </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">DiscardPolicy</span><span class="params">()</span> </span>&#123; &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rejectedExecution</span><span class="params">(Runnable r, ThreadPoolExecutor e)</span> </span>&#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//第四种：尝试和最早的线程进行争夺，如果最早的线程失败了，则执行新线程</span></span><br><span class="line"> 	<span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">DiscardOldestPolicy</span> <span class="keyword">implements</span> <span class="title">RejectedExecutionHandler</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">DiscardOldestPolicy</span><span class="params">()</span> </span>&#123; &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rejectedExecution</span><span class="params">(Runnable r, ThreadPoolExecutor e)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (!e.isShutdown()) &#123;</span><br><span class="line">                e.getQueue().poll();</span><br><span class="line">                e.execute(r);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用线程池的好处：1.提高响应速度（减少了创建新线程的时间）</p>
+<p>​                                2.降低资源消耗（重复利用线程池中的线程）</p>
+<p>​                                3.便于线程管理</p>
+<h2 id="2-常用类部分"><a href="#2-常用类部分" class="headerlink" title="2.常用类部分"></a>2.常用类部分</h2><h3 id="2-1，String类"><a href="#2-1，String类" class="headerlink" title="2.1，String类"></a>2.1，String类</h3><p>​    1.String 声明为final的，不可被继承</p>
+<p>​    2.String 实现了Serializable接口：表示字符串是支持序列化的；实现了Comparable接口，表示可以比较大小</p>
+<p>​    3.String 内部定义了final char[] value 用于存储字符串数据</p>
+<p>​    4.String 代表不可变的字符序列：</p>
+<p>​            体现：（1）当对字符串重新赋值时，需要重新指定内存区域赋值，不能使用原有的value进行赋值</p>
+<p>​                       （2）当对现有字符串进行连接操作时，也需要重新指定内存区域赋值，不能使用原有的value进行赋值</p>
+<p>​                      （3）replace（）方法也一样</p>
+<p>​    5.字符串常量池中是不会存储相同内容的字符串的</p>
+<p>​    <strong>面试题</strong>：String s = new String（“abc”）的方式创建对象，在内存中创建了几个对象？</p>
+<p>​        答：创建了两个对象，第一个是堆空间的new结构，第二个是char[] 对应的常量池中的数据</p>
+<p>​    <strong>注意</strong>：<strong>常量与常量的拼接结果是在常量池，且常量池中不会存在相同内容的常量</strong></p>
+<p>​                <strong>只要其中有一个是变量，结果就在堆中</strong></p>
+<p>​                <strong>如果拼接的结果调用intern（）方法，返回值就在常量池中</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//测试字符串</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        String s1 = <span class="string">&quot;a&quot;</span>;</span><br><span class="line">        String s2 = <span class="string">&quot;b&quot;</span>;</span><br><span class="line"></span><br><span class="line">        String s3 = <span class="string">&quot;ab&quot;</span>;</span><br><span class="line"></span><br><span class="line">        String s4 = <span class="string">&quot;a&quot;</span> + <span class="string">&quot;b&quot;</span>;</span><br><span class="line"></span><br><span class="line">        String s5 = s1 + <span class="string">&quot;b&quot;</span>;</span><br><span class="line"></span><br><span class="line">        String s6 = <span class="string">&quot;a&quot;</span> + s2;</span><br><span class="line"></span><br><span class="line">        String s7 = s1 + s2;</span><br><span class="line"></span><br><span class="line">        String s8 = (s1 + s2).intern();</span><br><span class="line"></span><br><span class="line">        System.out.println(s3 == s4);<span class="comment">//true</span></span><br><span class="line">        System.out.println(s3 == s5);<span class="comment">//false</span></span><br><span class="line">        System.out.println(s3 == s6);<span class="comment">//false</span></span><br><span class="line">        System.out.println(s3 == s7);<span class="comment">//false</span></span><br><span class="line">        System.out.println(s3 == s8);<span class="comment">//true</span></span><br><span class="line">        System.out.println(s5 == s6);<span class="comment">//false</span></span><br><span class="line">        System.out.println(s5 == s7);<span class="comment">//false</span></span><br><span class="line">        System.out.println(s6 == s7);<span class="comment">//false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>内存结构图：</p>
+<p><img src="Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE-%E9%AB%98%E7%BA%A7%E9%83%A8%E5%88%86.assets/image-20201105153041227.png" alt="image-20201105153041227"></p>
+<p>常用方法：</p>
+<p>​    boolean endsWith(String suffix):测试此字符串是否以指定后缀结束</p>
+<p>​    boolean startsWith(String prefix):测试此字符串是否以指定前缀开始</p>
+<p>​    boolean startsWith(String prefix，int toffset):测试此字符串从指定索引开始的子字符串是否以指定前缀开始</p>
+<p>​    boolean contains(CharSequence s):当且仅当次字符串包换指定的char值序列时，返回true</p>
+<h3 id="2-2，StringBuffer，StringBuilder类"><a href="#2-2，StringBuffer，StringBuilder类" class="headerlink" title="2.2，StringBuffer，StringBuilder类"></a>2.2，StringBuffer，StringBuilder类</h3><p>StringBuffer：线程安全的可变的字符序列，效率偏低</p>
+<p>StringBuilder：线程不安全的可变字符序列，jdk5.0新增加的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//StringBuffer测试</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringBufferTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        StringBuffer stringBuffer = <span class="keyword">new</span> StringBuffer();<span class="comment">//char[] value = new char[16];底层创建了一个长度为16的char数组</span></span><br><span class="line">        </span><br><span class="line">        StringBuffer stringBuffer1 = <span class="keyword">new</span> StringBuffer(<span class="string">&quot;abc&quot;</span>);<span class="comment">//char[] value = new char[&quot;abc&quot; + 16];底层创建了一个长度为3 + 16的char数组</span></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 扩容问题：如果要添加的数据底层数组盛不下了，那么就需要扩容底层的数组</span></span><br><span class="line"><span class="comment">         * 默认情况下，扩容为原来的二倍+2，同时将原有数组中的元素复制到新的数组中</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-3，Calendar类（日历类）"><a href="#2-3，Calendar类（日历类）" class="headerlink" title="2.3，Calendar类（日历类）"></a>2.3，Calendar类（日历类）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//测试日历类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalendarTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建实例对象</span></span><br><span class="line">        Calendar calendar = Calendar.getInstance();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//get()方法：根据参数不同，返回不同的信息</span></span><br><span class="line">        <span class="keyword">int</span> days = calendar.get(Calendar.DAY_OF_YEAR);</span><br><span class="line">        System.out.println(days);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获得当前时间</span></span><br><span class="line">        Date time = calendar.getTime();</span><br><span class="line"></span><br><span class="line">       <span class="comment">//set()方法：可以设置时间</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4，JDK8新时间类"><a href="#2-4，JDK8新时间类" class="headerlink" title="2.4，JDK8新时间类"></a>2.4，JDK8新时间类</h3><h4 id="2-4-1，LocalDate，LocalTime，LocalDateTime"><a href="#2-4-1，LocalDate，LocalTime，LocalDateTime" class="headerlink" title="2.4.1，LocalDate，LocalTime，LocalDateTime"></a>2.4.1，LocalDate，LocalTime，LocalDateTime</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//三个类的测试</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LocalTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获得当前的年月日</span></span><br><span class="line">        LocalDate date = LocalDate.now();</span><br><span class="line"></span><br><span class="line">        System.out.println(date);<span class="comment">//2020-11-05</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//获得当前的时分秒</span></span><br><span class="line">        LocalTime time = LocalTime.now();</span><br><span class="line"></span><br><span class="line">        System.out.println(time);<span class="comment">//17:23:34.448</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//获得当前的年月日时分秒</span></span><br><span class="line">        LocalDateTime dateTime = LocalDateTime.now();</span><br><span class="line"></span><br><span class="line">        System.out.println(dateTime);<span class="comment">//2020-11-05T17:24:11.307</span></span><br><span class="line"></span><br><span class="line">        LocalDateTime localDateTime = dateTime.withDayOfMonth(<span class="number">22</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//不可变性</span></span><br><span class="line">        System.out.println(dateTime);<span class="comment">//2020-11-05T17:27:37.762</span></span><br><span class="line"></span><br><span class="line">        System.out.println(localDateTime);<span class="comment">//2020-11-05T17:27:37.762</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-2，Instant类-瞬时"><a href="#2-4-2，Instant类-瞬时" class="headerlink" title="2.4.2，Instant类  瞬时"></a>2.4.2，Instant类  瞬时</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Instantest</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取本初子午线的时间</span></span><br><span class="line">    Instant instant = Instant.now();</span><br><span class="line"></span><br><span class="line">    System.out.println(instant);<span class="comment">//2020-11-05T09:39:56.717Z  算的本初子午线的时间</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//添加时间的偏移量</span></span><br><span class="line">    OffsetDateTime offsetDateTime = instant.atOffset(ZoneOffset.ofHours(<span class="number">8</span>));</span><br><span class="line"></span><br><span class="line">    System.out.println(offsetDateTime);<span class="comment">//2020-11-05T17:41:37.156+08:00 本初子午线加8个小时</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//toEpochMilli()：获取从1970.00.00到现在的毫秒数（时间戳）</span></span><br><span class="line">    <span class="keyword">long</span> l = instant.toEpochMilli();</span><br><span class="line"></span><br><span class="line">    System.out.println(l);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//通过给定的毫秒数来计算当前的时间（本初子午线）</span></span><br><span class="line">    Instant instant1 = Instant.ofEpochMilli(<span class="number">1604569391575L</span>);</span><br><span class="line"></span><br><span class="line">    System.out.println(instant1);<span class="comment">//2020-11-05T09:43:11.575Z</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-3，DateTimeFormatter类"><a href="#2-4-3，DateTimeFormatter类" class="headerlink" title="2.4.3，DateTimeFormatter类"></a>2.4.3，DateTimeFormatter类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DateTimeFormatter</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//格式化和解析日期和时间</span></span><br><span class="line">    DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;</span><br><span class="line">	</span><br><span class="line">    LocalDateTime localDateTime = LocalDateTime.now();</span><br><span class="line"></span><br><span class="line">    String format = formatter.format(localDateTime);</span><br><span class="line"></span><br><span class="line">    System.out.println(format);<span class="comment">//2020-11-05</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-5，Java比较器"><a href="#2-5，Java比较器" class="headerlink" title="2.5，Java比较器"></a>2.5，Java比较器</h3><h4 id="2-5-1，Comparable接口，Comparator接口"><a href="#2-5-1，Comparable接口，Comparator接口" class="headerlink" title="2.5.1，Comparable接口，Comparator接口"></a>2.5.1，Comparable接口，Comparator接口</h4><p>需要重写CompareTo（Object obj）方法：</p>
+<p>​    如果当前对象this大于形参对象obj，则返回正整数，如果当前对象this小于形参对象obj，则返回负整数，相等返回0</p>
+<p>​    对于自定义类来说，如果需要排序，我们可以让自定义类实现Comparable接口，重写cpmpareTo方法</p>
+<p>自然排序：Comparable接口，定制排序：Comparator接口</p>
+<h3 id="2-6，常用类"><a href="#2-6，常用类" class="headerlink" title="2.6，常用类"></a>2.6，常用类</h3><h4 id="2-6-1，System类"><a href="#2-6-1，System类" class="headerlink" title="2.6.1，System类"></a>2.6.1，System类</h4><p>​        System类代表系统，该类的构造器为private的，所以无法创建该类的对象，但是其内部的成员变量和</p>
+<p>成员方法为static的，所以可以很方便的进行调用。</p>
+<p>​        <strong>成员变量</strong>：in ： 标准输入流（键盘输入）</p>
+<p>​                          out ：标准输出流（显示器）</p>
+<p>​                          err ：标准错误输出流（显示器）</p>
+<p>​        成员方法： void exit（int status）：该方法为退出程序，status为0代表正常退出，非0代表异常退出</p>
+<p>​                           void gc() ：该方法为请求系统进行垃圾回收。至于是否立即回收，取决于系统中垃圾回收算法的实现和系统执行时的情况。</p>
+<p>​                            String getProperty（String key）：获得系统中属性名为key的属性所对应的值</p>
+<h4 id="2-6-2，Math类"><a href="#2-6-2，Math类" class="headerlink" title="2.6.2，Math类"></a>2.6.2，Math类</h4><p>java.lang.Math类提供了一系列静态方法用于科学计算。</p>
+<h4 id="2-6-3，BigInteger和BigDecimal"><a href="#2-6-3，BigInteger和BigDecimal" class="headerlink" title="2.6.3，BigInteger和BigDecimal"></a>2.6.3，BigInteger和BigDecimal</h4><p>1.BigInteger可以表示不可变的任意精度的整数</p>
+<p>2.BigDecimal </p>
+<h2 id="3-枚举类和注解"><a href="#3-枚举类和注解" class="headerlink" title="3.枚举类和注解"></a>3.枚举类和注解</h2><h3 id="3-1，枚举类Enum"><a href="#3-1，枚举类Enum" class="headerlink" title="3.1，枚举类Enum"></a>3.1，枚举类Enum</h3><p>​    1.枚举类的理解：类的对象只有有限个，确定的。我们称此类为枚举类</p>
+<p>​    2.当需要定义一组常量时，强烈建议使用枚举类</p>
+<p>​    3.如果枚举类只有一个对象，则可以作为单例模式的实现方式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义一个枚举类</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Season</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    SPRING(<span class="string">&quot;春天&quot;</span>,<span class="string">&quot;春暖花开&quot;</span>),</span><br><span class="line">    SUMMER(<span class="string">&quot;夏天&quot;</span>,<span class="string">&quot;夏日炎炎&quot;</span>),</span><br><span class="line">    AUTUMN(<span class="string">&quot;秋天&quot;</span>,<span class="string">&quot;秋风萧瑟&quot;</span>),</span><br><span class="line">    WINTER(<span class="string">&quot;冬天&quot;</span>,<span class="string">&quot;冰天雪地&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String season;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String season1;</span><br><span class="line"></span><br><span class="line">    Season(String season, String season1) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>.season = season;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>.season1 = season1;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getSeason</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> season;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getSeason1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> season1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>如果枚举类实现一个类 ，那么可以在外面进行实现抽象方法，如果要每个对象实现的方法的内容不一样，则让每个对象都实现该方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Season</span> <span class="keyword">implements</span> <span class="title">info</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">    <span class="comment">//分别去实现接口中的抽象方法</span></span><br><span class="line">    SPRING(<span class="string">&quot;春天&quot;</span>,<span class="string">&quot;春暖花开&quot;</span>)&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;spring1&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    SUMMER(<span class="string">&quot;夏天&quot;</span>,<span class="string">&quot;夏日炎炎&quot;</span>)&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;summer1&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    AUTUMN(<span class="string">&quot;秋天&quot;</span>,<span class="string">&quot;秋风萧瑟&quot;</span>)&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;autumn1&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    WINTER(<span class="string">&quot;冬天&quot;</span>,<span class="string">&quot;冰天雪地&quot;</span>)&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;winter1&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2，注解"><a href="#3-2，注解" class="headerlink" title="3.2，注解"></a>3.2，注解</h3><p>自定义注解：</p>
+<p>​    1.注解声明为@interface</p>
+<p>​    2.内部定义成员，通常为value表示</p>
+<p>​    3.可以指定成员的默认值，使用default定义</p>
+<p>​    4.如果自定义注解没有成员，表明是一个标识作用</p>
+<p>jdk8注解新特性：</p>
+<p>​    1.可重复注解 2. 类型注解</p>
+<h2 id="4-集合"><a href="#4-集合" class="headerlink" title="4.集合"></a>4.集合</h2><h3 id="4-1-Collection集合"><a href="#4-1-Collection集合" class="headerlink" title="4.1.Collection集合"></a>4.1.Collection集合</h3><p>集合元素的遍历操作：内部方法 hasNext（）和next（）</p>
+<h3 id="4-2，List接口"><a href="#4-2，List接口" class="headerlink" title="4.2，List接口"></a>4.2，List接口</h3><p>list接口存储有序的，可重复的数据 —&gt;动态数组，替换原有的数组</p>
+<p>List接口有三个常用的实现类：ArrayList , LinkedList , Vector</p>
+<p><strong>面试题：三者之间有什么异同点？</strong></p>
+<p>同：三个类都是List接口的实现类，存储数据的特点相同</p>
+<p>异：ArrayList：是List接口的主要实现类，底层使用Object[] 存储，线程不安全，效率高</p>
+<p>​      LinkedList：对于频繁的插入，删除操作，使用此类效率比arraylist高；底层使用双向链表存储</p>
+<p>​      Vector：是List的古老实现类（开发中不用），底层使用Object[] 存储，线程安全，效率低</p>
+<h4 id="4-2-1，ArrayList"><a href="#4-2-1，ArrayList" class="headerlink" title="4.2.1，ArrayList"></a>4.2.1，ArrayList</h4><p>​    源码分析（jdk7）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">   ArrayList list = <span class="keyword">new</span> ArrayList();<span class="comment">//底层创建了一个长度为10的Object[] 数组elementData</span></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * Constructs an empty list with an initial capacity of ten.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="keyword">this</span>.elementData = <span class="keyword">new</span> Obect[<span class="number">10</span>];</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">list.add(<span class="string">&quot;abc&quot;</span>)<span class="comment">//调用add方法时，首先会进行判断是否超过当前的数组容量，如果超过，则扩容</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">       ensureCapacityInternal(size + <span class="number">1</span>);  <span class="comment">// Increments modCount!!</span></span><br><span class="line">       elementData[size++] = e;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">   &#125;</span><br><span class="line"><span class="comment">//扩容方法</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">grow</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">       <span class="comment">// overflow-conscious code</span></span><br><span class="line">       <span class="keyword">int</span> oldCapacity = elementData.length;</span><br><span class="line">       <span class="keyword">int</span> newCapacity = oldCapacity + (oldCapacity &gt;&gt; <span class="number">1</span>); <span class="comment">//扩容到原来长度的1.5倍</span></span><br><span class="line">       <span class="keyword">if</span> (newCapacity - minCapacity &lt; <span class="number">0</span>)</span><br><span class="line">           newCapacity = minCapacity;</span><br><span class="line">       <span class="keyword">if</span> (newCapacity - MAX_ARRAY_SIZE &gt; <span class="number">0</span>)</span><br><span class="line">           newCapacity = hugeCapacity(minCapacity);</span><br><span class="line">       <span class="comment">// minCapacity is usually close to size, so this is a win:</span></span><br><span class="line">       elementData = Arrays.copyOf(elementData, newCapacity);<span class="comment">//备份数组，将原来的数组备份到扩容后的新数组</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>结论：开发中如果使用Arraylist，建议使用带参数的构造器</p>
+<p>源码分析（jdk8）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ArrayList list = <span class="keyword">new</span> ArrayList();<span class="comment">//底层创建了一个长度为0的Object[]数组</span></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * Constructs an empty list with an initial capacity of ten.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="keyword">this</span>.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">list.add(<span class="string">&quot;abc&quot;</span>)<span class="comment">//调用add方法时，如果是DEFAULTCAPACITY_EMPTY_ELEMENTDATA，则扩容到10,</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">       ensureCapacityInternal(size + <span class="number">1</span>);  <span class="comment">// Increments modCount!!</span></span><br><span class="line">       elementData[size++] = e;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-2，LinkedList"><a href="#4-2-2，LinkedList" class="headerlink" title="4.2.2，LinkedList"></a>4.2.2，LinkedList</h4><p>源码分析：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">   <span class="comment">//构造器啥都没干</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">LinkedList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//当添加元素进去时，调用add方法</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">       linkLast(e);</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">linkLast</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">final</span> Node&lt;E&gt; l = last;<span class="comment">//首先用l指向最后一个元素</span></span><br><span class="line">       <span class="keyword">final</span> Node&lt;E&gt; newNode = <span class="keyword">new</span> Node&lt;&gt;(l, e, <span class="keyword">null</span>); <span class="comment">//然后新建一个节点，把要新加入的节点值放进去，前一个节点为last，后一个为空</span></span><br><span class="line">       last = newNode;<span class="comment">//让最后一个节点改为新加入的节点</span></span><br><span class="line">       <span class="keyword">if</span> (l == <span class="keyword">null</span>)<span class="comment">//如果l是空的，那么说明该链表中没有节点，那么就把新加入的节点当成第一个节点</span></span><br><span class="line">           first = newNode;</span><br><span class="line">       <span class="keyword">else</span> <span class="comment">//如果不是空的，就让l的下一个指向新节点，从而构成链表 原先：last - &gt; null 新加入节点后: last -&gt; newNode -&gt; null</span></span><br><span class="line">           l.next = newNode;</span><br><span class="line">       size++; <span class="comment">//链表长度加一</span></span><br><span class="line">       modCount++; </span><br><span class="line">   &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-3，Vector"><a href="#4-2-3，Vector" class="headerlink" title="4.2.3，Vector"></a>4.2.3，Vector</h4><p>源码分析：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始化和jdk7中的ArrayList一样  初始化容量为10</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Vector</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>(<span class="number">10</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//添加方法底层和arraylist相似，不同点为：一次扩容两倍，添加方法是线程同步方法，效率低安全</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">        modCount++;</span><br><span class="line">        ensureCapacityHelper(elementCount + <span class="number">1</span>);</span><br><span class="line">        elementData[elementCount++] = e;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3，Set接口"><a href="#4-3，Set接口" class="headerlink" title="4.3，Set接口"></a>4.3，Set接口</h3><p>Set接口可以存储无序，不可重复的数据</p>
+<p>主要有三个实现类：HashSet，LinkedHashSet，TreeSet</p>
+<p>Set接口中没有额外定义新的方法，使用的都是Collection中声明过的方法。</p>
+<p>无序性：不等于随机性。存储的数据在底层并非按照数组的索引的顺序添加，而是根据数据的hash值来存储</p>
+<p>不可重复性：保证添加的元素按照equals（）判断时，不能返回true，即：相同的元素只能添加一个</p>
+<h4 id="4-3-1，HashSet"><a href="#4-3-1，HashSet" class="headerlink" title="4.3.1，HashSet"></a>4.3.1，HashSet</h4><p>作为set接口的主要实现类：线程不安全的；可以存储null值</p>
+<p>添加过程：我们添加元素a，首先调用元素a所在类的hashcode（）方法，计算元素a的哈希值，此哈希值接着通过某种算法计算</p>
+<p>出在HashSet底层数组中的存放位置，判断数组此位置上是否已经有元素，如果没有则添加成功，如果有，则继续比较hashcode，不同</p>
+<p>则添加成功，如果相同，则调用equals（）方法，如果返回true，添加失败，如果返回false，则元素a添加成功</p>
+<h4 id="4-3-2，LinkedHashSet"><a href="#4-3-2，LinkedHashSet" class="headerlink" title="4.3.2，LinkedHashSet"></a>4.3.2，LinkedHashSet</h4><p>是HashSet的子类，遍历其内部数据时，可以按照添加的顺序遍历</p>
+<p>在原有的HashSet基础上加了两个引用，记录次数据的前一个数据和后一个数据</p>
+<p>优点：对于频繁的遍历操作，linkedHashSet效率高于HashSet</p>
+<h4 id="4-3-3，TreeSet"><a href="#4-3-3，TreeSet" class="headerlink" title="4.3.3，TreeSet"></a>4.3.3，TreeSet</h4><p>可以按照添加的对象指定属性，进行排序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeSetTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//向TreeSet中添加的数据，要求是相同类的对象</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        TreeSet set = <span class="keyword">new</span> TreeSet();</span><br><span class="line"></span><br><span class="line">        set.add(<span class="number">123</span>);</span><br><span class="line">        set.add(<span class="number">456</span>);</span><br><span class="line">        set.add(<span class="string">&quot;AA&quot;</span>);<span class="comment">//不能添加不同类的对象</span></span><br><span class="line">                      <span class="comment">// java.lang.ClassCastException: java.lang.Integer cannot be cast to java.lang.String</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        TreeSet set = <span class="keyword">new</span> TreeSet();</span><br><span class="line">		</span><br><span class="line">        set.add(<span class="keyword">new</span> User(<span class="string">&quot;Jack&quot;</span>,<span class="number">15</span>));</span><br><span class="line">        set.add(<span class="keyword">new</span> User(<span class="string">&quot;Jack&quot;</span>,<span class="number">16</span>));<span class="comment">//要添加相同的名字不同的年龄，需要在User类中添加对age属性的判断</span></span><br><span class="line"><span class="comment">//        set.add(&quot;AA&quot;);//不能添加不同类的对象</span></span><br><span class="line"><span class="comment">//                      // java.lang.ClassCastException: java.lang.Integer cannot be cast to java.lang.String</span></span><br><span class="line">        set.add(<span class="keyword">new</span> User(<span class="string">&quot;Jack1&quot;</span>,<span class="number">18</span>));</span><br><span class="line">        set.add(<span class="keyword">new</span> User(<span class="string">&quot;Jack2&quot;</span>,<span class="number">5</span>));</span><br><span class="line">        set.add(<span class="keyword">new</span> User(<span class="string">&quot;Jack3&quot;</span>,<span class="number">54</span>));</span><br><span class="line">        set.add(<span class="keyword">new</span> User(<span class="string">&quot;Jack4&quot;</span>,<span class="number">17</span>));</span><br><span class="line"></span><br><span class="line">        Iterator iterator = set.iterator();</span><br><span class="line">        <span class="keyword">while</span> (iterator.hasNext())&#123;</span><br><span class="line">            System.out.println(iterator.next());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//User类中的实现Comparable接口重写的方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (o <span class="keyword">instanceof</span> User)&#123;</span><br><span class="line"></span><br><span class="line">            User user = (User)o;</span><br><span class="line">			</span><br><span class="line">            <span class="comment">//不能光比较名字，如果名字相同还需比较年龄</span></span><br><span class="line">            <span class="keyword">int</span> compare = -user.name.compareTo(<span class="keyword">this</span>.name);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (compare == <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> Integer.compare(<span class="keyword">this</span>.age,user.age);</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> compare;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">&quot;输入的类型不匹配!&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>自然排序中，比较两个对象相同的标准是compareTo（）返回0，而不是equal（）方法！！</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定制排序，自定义Comparator接口，实现先按年龄排序，后按名字排序</span></span><br><span class="line">Comparator comparator = (o1,o2) -&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (o1 <span class="keyword">instanceof</span> User &amp;&amp; o2 <span class="keyword">instanceof</span> User)&#123;</span><br><span class="line">        User user1 = (User)o1;</span><br><span class="line">        User user2 = (User)o2;</span><br><span class="line">        <span class="keyword">int</span> compare = Integer.compare(user1.getAge(), user2.getAge());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (compare == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> user1.getName().compareTo(user2.getName());</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> compare;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">&quot;输入的类型不匹配&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>定制排序中，比较两个对象相同的标准是compare（）返回0，而不是equal（）方法！！</strong></p>
+<h3 id="4-4，Map接口"><a href="#4-4，Map接口" class="headerlink" title="4.4，Map接口"></a>4.4，Map接口</h3><p>map接口：双列数据，存储key-value对的数据</p>
+<p>面试题：1.HashMap的底层实现原理</p>
+<p>​              2.HashMap和HashTable的异同</p>
+<h4 id="4-4-1，HashMap"><a href="#4-4-1，HashMap" class="headerlink" title="4.4.1，HashMap"></a>4.4.1，HashMap</h4><p>作为Map的主要实现类，线程不安全，效率高，可以存储null的key或者value的</p>
+<p>底层：jdk7以前：数组加链表</p>
+<p>​          jdk8：数组加链表加红黑树</p>
+<p>1.HashMap的底层实现原理（jdk7）：</p>
+<p>​    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Map map= <span class="keyword">new</span> HashMap();<span class="comment">//底层创建了一个长度为16的一维数组Entry[] table</span></span><br><span class="line"></span><br><span class="line">map.put(<span class="string">&quot;key1&quot;</span>,<span class="string">&quot;value1&quot;</span>);</span><br><span class="line"><span class="comment">/**首先，调用key1所在类的hashCode()计算key1的哈希值，此哈希值经过某种算法以后，得到在Entry数组中的存放位置。</span></span><br><span class="line"><span class="comment">*如果此位置上没有数据，那么此时的key1-value1添加成功</span></span><br><span class="line"><span class="comment">*如果不为空(意味着可能存在一个或多个数据(链表存储))，去比较当前key1和已经存在的一个或多个数据的Hash值：</span></span><br><span class="line"><span class="comment">*如果key1的Hash值与存在的都不相同，此时添加成功</span></span><br><span class="line"><span class="comment">*如果和某一个存在的哈希值相同，继续比较：调用key1所在类的equals()方法</span></span><br><span class="line"><span class="comment">*如果返回false，添加成功</span></span><br><span class="line"><span class="comment">*如果返回true，使用value1去替换相同key的value值</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在不断扩容添加的过程中，如果需要扩容，<strong>默认扩容的大小为原来的两倍</strong></p>
+<p><strong>jdk8相较于jdk7在底层实现方面不同：</strong></p>
+<p>1.new HashMap():底层没有创建一个长度为16的数组</p>
+<p>2.jdk8底层的数组为Node[] 而非Entry[] </p>
+<p>3.首次调用put方法时，底层创建长度为16的数组</p>
+<p>4.jdk7底层结构只有数组加链表，jdk8底层结构为数组加链表加红黑树，当数组的某一索引位置上的元素大于8个且当前数组长度大于64时，此时此索引位置上的所有数据改为使用红黑树存储。</p>
+<p><strong>jdk8源码分析：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br></pre></td><td class="code"><pre><span class="line">   <span class="comment">//构造器：让加载因子等于默认的加载因子 0.75f</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">HashMap</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="keyword">this</span>.loadFactor = DEFAULT_LOAD_FACTOR; <span class="comment">// all other fields defaulted</span></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//put方法，hash()该方法是进行哈希算法，将key的哈希值算出来</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> V <span class="title">put</span><span class="params">(K key, V value)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> putVal(hash(key), key, value, <span class="keyword">false</span>, <span class="keyword">true</span>);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//put的方法底层</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> hash hash for key 第一个参数key的哈希值</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> key the key </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> value the value to put</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> onlyIfAbsent if true, don&#x27;t change existing value </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> evict if false, the table is in creation mode.</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span> previous value, or null if none</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"><span class="function"><span class="keyword">final</span> V <span class="title">putVal</span><span class="params">(<span class="keyword">int</span> hash, K key, V value, <span class="keyword">boolean</span> onlyIfAbsent,</span></span></span><br><span class="line"><span class="function"><span class="params">                  <span class="keyword">boolean</span> evict)</span> </span>&#123;</span><br><span class="line">       Node&lt;K,V&gt;[] tab; Node&lt;K,V&gt; p; <span class="keyword">int</span> n, i;</span><br><span class="line">       <span class="keyword">if</span> ((tab = table) == <span class="keyword">null</span> || (n = tab.length) == <span class="number">0</span>)<span class="comment">//如果是第一次put </span></span><br><span class="line">           n = (tab = resize()).length;<span class="comment">//将Node[]扩容到大小为16，阀值为16*加载因子0.75f = 12</span></span><br><span class="line">       <span class="keyword">if</span> ((p = tab[i = (n - <span class="number">1</span>) &amp; hash]) == <span class="keyword">null</span>)<span class="comment">//如果通过异或运算得到的索引值的数组位置没有元素</span></span><br><span class="line">           tab[i] = newNode(hash, key, value, <span class="keyword">null</span>);<span class="comment">//直接添加为新元素，新元素的下一个元素为空</span></span><br><span class="line">       <span class="keyword">else</span> &#123;<span class="comment">//如果位置上有元素了</span></span><br><span class="line">           Node&lt;K,V&gt; e; K k;</span><br><span class="line">           <span class="keyword">if</span> (p.hash == hash &amp;&amp;</span><br><span class="line">               ((k = p.key) == key || (key != <span class="keyword">null</span> &amp;&amp; key.equals(k))))<span class="comment">//和第一个元素进行比较，如果哈希值和equals方法都相等</span></span><br><span class="line">               e = p;<span class="comment">//将该位置上的第一个元素赋值给e</span></span><br><span class="line">           <span class="keyword">else</span> <span class="keyword">if</span> (p <span class="keyword">instanceof</span> TreeNode)<span class="comment">///如果第一个元素是个TreeNode类型的</span></span><br><span class="line">               e = ((TreeNode&lt;K,V&gt;)p).putTreeVal(<span class="keyword">this</span>, tab, hash, key, value);<span class="comment">//将新节点加到红黑树中</span></span><br><span class="line">           <span class="keyword">else</span> &#123;<span class="comment">//和第一个元素进行比较，如果不相等</span></span><br><span class="line">               <span class="keyword">for</span> (<span class="keyword">int</span> binCount = <span class="number">0</span>; ; ++binCount) &#123;<span class="comment">//一直进行循环，将该索引值的链表全部遍历一遍</span></span><br><span class="line">                   <span class="keyword">if</span> ((e = p.next) == <span class="keyword">null</span>) &#123;<span class="comment">//判断第二个元素是不是为null</span></span><br><span class="line">                       p.next = newNode(hash, key, value, <span class="keyword">null</span>);如果是，那么将新元素放入第一个元素的next</span><br><span class="line">                       <span class="keyword">if</span> (binCount &gt;= TREEIFY_THRESHOLD - <span class="number">1</span>) <span class="comment">// -1 for 1st，如果一个索引上的链表大小大于8</span></span><br><span class="line">                           treeifyBin(tab, hash);<span class="comment">//将该链表转换为红黑树</span></span><br><span class="line">                       <span class="keyword">break</span>;</span><br><span class="line">                   &#125;</span><br><span class="line">                   <span class="keyword">if</span> (e.hash == hash &amp;&amp;</span><br><span class="line">                       ((k = e.key) == key || (key != <span class="keyword">null</span> &amp;&amp; key.equals(k))))<span class="comment">//第二个元素不为空，继续和新元素进行比较</span></span><br><span class="line">                       <span class="keyword">break</span>;</span><br><span class="line">                   p = e；<span class="comment">//将第二个元素的值赋给p，进行下一次for循环</span></span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span> (e != <span class="keyword">null</span>) &#123; <span class="comment">// existing mapping for key  如果e不是空，即为有一个元素和新元素相同，需要覆盖value，进行覆盖操作</span></span><br><span class="line">               V oldValue = e.value;</span><br><span class="line">               <span class="keyword">if</span> (!onlyIfAbsent || oldValue == <span class="keyword">null</span>)<span class="comment">//第四个参数表示是否进行覆盖，如果true就不覆盖</span></span><br><span class="line">                   e.value = value;<span class="comment">//覆盖旧的value</span></span><br><span class="line">               afterNodeAccess(e);</span><br><span class="line">               <span class="keyword">return</span> oldValue;<span class="comment">//返回旧的value值</span></span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       ++modCount;<span class="comment">//对hashmap结构修改的次数(加入数据的个数)</span></span><br><span class="line">       <span class="keyword">if</span> (++size &gt; threshold)<span class="comment">//如果map中的元素个数大于阀值</span></span><br><span class="line">           resize();<span class="comment">//进行扩容</span></span><br><span class="line">       afterNodeInsertion(evict);</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//扩容的方法</span></span><br><span class="line"><span class="keyword">final</span> Node&lt;K,V&gt;[] resize() &#123;</span><br><span class="line">       Node&lt;K,V&gt;[] oldTab = table;<span class="comment">//oldTab等于当前Node数组</span></span><br><span class="line">       <span class="keyword">int</span> oldCap = (oldTab == <span class="keyword">null</span>) ? <span class="number">0</span> : oldTab.length; <span class="comment">// 旧容量 判断，如果是第一次put，为0，不是的话就是原来数组的容量</span></span><br><span class="line">       <span class="keyword">int</span> oldThr = threshold;<span class="comment">//旧的阀值，如果第一次为0</span></span><br><span class="line">       <span class="keyword">int</span> newCap, newThr = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">if</span> (oldCap &gt; <span class="number">0</span>) &#123;</span><br><span class="line">           <span class="keyword">if</span> (oldCap &gt;= MAXIMUM_CAPACITY) &#123; <span class="comment">//如果旧的容量大于最大容量</span></span><br><span class="line">               threshold = Integer.MAX_VALUE; <span class="comment">//则对阀值进行增加，增加为int的最大值</span></span><br><span class="line">               <span class="keyword">return</span> oldTab; <span class="comment">//返回旧的数组</span></span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">else</span> <span class="keyword">if</span> ((newCap = oldCap &lt;&lt; <span class="number">1</span>) &lt; MAXIMUM_CAPACITY &amp;&amp;</span><br><span class="line">                    oldCap &gt;= DEFAULT_INITIAL_CAPACITY)<span class="comment">//如果旧的数组容量翻倍小于最大值并且旧的数组容量大于默认的容量</span></span><br><span class="line">               newThr = oldThr &lt;&lt; <span class="number">1</span>; <span class="comment">// double threshold ，让阀值也翻倍</span></span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">else</span> <span class="keyword">if</span> (oldThr &gt; <span class="number">0</span>) <span class="comment">// initial capacity was placed in threshold</span></span><br><span class="line">           newCap = oldThr;</span><br><span class="line">       <span class="keyword">else</span> &#123;               <span class="comment">// zero initial threshold signifies using defaults //当旧的数组容量为0和旧的数组阀值为0时</span></span><br><span class="line">           newCap = DEFAULT_INITIAL_CAPACITY;<span class="comment">//将数组容量设为默认值 16 </span></span><br><span class="line">           newThr = (<span class="keyword">int</span>)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);<span class="comment">//将数组的阀值设为16*0.75 = 12</span></span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> (newThr == <span class="number">0</span>) &#123;</span><br><span class="line">           <span class="keyword">float</span> ft = (<span class="keyword">float</span>)newCap * loadFactor;</span><br><span class="line">           newThr = (newCap &lt; MAXIMUM_CAPACITY &amp;&amp; ft &lt; (<span class="keyword">float</span>)MAXIMUM_CAPACITY ?</span><br><span class="line">                     (<span class="keyword">int</span>)ft : Integer.MAX_VALUE);</span><br><span class="line">       &#125;</span><br><span class="line">       threshold = newThr;<span class="comment">//让新阀值赋给threshold</span></span><br><span class="line">       <span class="meta">@SuppressWarnings(&#123;&quot;rawtypes&quot;,&quot;unchecked&quot;&#125;)</span></span><br><span class="line">       Node&lt;K,V&gt;[] newTab = (Node&lt;K,V&gt;[])<span class="keyword">new</span> Node[newCap];<span class="comment">//扩容Node数组，大小为新的容量</span></span><br><span class="line">       table = newTab; <span class="comment">//新容量设为table</span></span><br><span class="line">       <span class="keyword">if</span> (oldTab != <span class="keyword">null</span>) &#123;</span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; oldCap; ++j) &#123;</span><br><span class="line">               Node&lt;K,V&gt; e;</span><br><span class="line">               <span class="keyword">if</span> ((e = oldTab[j]) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                   oldTab[j] = <span class="keyword">null</span>;</span><br><span class="line">                   <span class="keyword">if</span> (e.next == <span class="keyword">null</span>)</span><br><span class="line">                       newTab[e.hash &amp; (newCap - <span class="number">1</span>)] = e;</span><br><span class="line">                   <span class="keyword">else</span> <span class="keyword">if</span> (e <span class="keyword">instanceof</span> TreeNode)</span><br><span class="line">                       ((TreeNode&lt;K,V&gt;)e).split(<span class="keyword">this</span>, newTab, j, oldCap);</span><br><span class="line">                   <span class="keyword">else</span> &#123; <span class="comment">// preserve order</span></span><br><span class="line">                       Node&lt;K,V&gt; loHead = <span class="keyword">null</span>, loTail = <span class="keyword">null</span>;</span><br><span class="line">                       Node&lt;K,V&gt; hiHead = <span class="keyword">null</span>, hiTail = <span class="keyword">null</span>;</span><br><span class="line">                       Node&lt;K,V&gt; next;</span><br><span class="line">                       <span class="keyword">do</span> &#123;</span><br><span class="line">                           next = e.next;</span><br><span class="line">                           <span class="keyword">if</span> ((e.hash &amp; oldCap) == <span class="number">0</span>) &#123;</span><br><span class="line">                               <span class="keyword">if</span> (loTail == <span class="keyword">null</span>)</span><br><span class="line">                                   loHead = e;</span><br><span class="line">                               <span class="keyword">else</span></span><br><span class="line">                                   loTail.next = e;</span><br><span class="line">                               loTail = e;</span><br><span class="line">                           &#125;</span><br><span class="line">                           <span class="keyword">else</span> &#123;</span><br><span class="line">                               <span class="keyword">if</span> (hiTail == <span class="keyword">null</span>)</span><br><span class="line">                                   hiHead = e;</span><br><span class="line">                               <span class="keyword">else</span></span><br><span class="line">                                   hiTail.next = e;</span><br><span class="line">                               hiTail = e;</span><br><span class="line">                           &#125;</span><br><span class="line">                       &#125; <span class="keyword">while</span> ((e = next) != <span class="keyword">null</span>);</span><br><span class="line">                       <span class="keyword">if</span> (loTail != <span class="keyword">null</span>) &#123;</span><br><span class="line">                           loTail.next = <span class="keyword">null</span>;</span><br><span class="line">                           newTab[j] = loHead;</span><br><span class="line">                       &#125;</span><br><span class="line">                       <span class="keyword">if</span> (hiTail != <span class="keyword">null</span>) &#123;</span><br><span class="line">                           hiTail.next = <span class="keyword">null</span>;</span><br><span class="line">                           newTab[j + oldCap] = hiHead;</span><br><span class="line">                       &#125;</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> newTab;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>HashMap中的重要常量：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_INITIAL_CAPACITY = <span class="number">1</span> &lt;&lt; <span class="number">4</span>; <span class="comment">//默认初始化容量 16</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAXIMUM_CAPACITY = <span class="number">1</span> &lt;&lt; <span class="number">30</span>;<span class="comment">//最大容量 1073741824</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">float</span> DEFAULT_LOAD_FACTOR = <span class="number">0.75f</span>; <span class="comment">//默认加载因子 0.75f</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TREEIFY_THRESHOLD = <span class="number">8</span>; <span class="comment">//将链表转换为红黑树的阀值</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> UNTREEIFY_THRESHOLD = <span class="number">6</span>;<span class="comment">//将树转化为链表的阀值</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MIN_TREEIFY_CAPACITY = <span class="number">64</span>; <span class="comment">//桶中的node被树化时的最小的hash表容量</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-4-2，LinkedHashMap"><a href="#4-4-2，LinkedHashMap" class="headerlink" title="4.4.2，LinkedHashMap"></a>4.4.2，LinkedHashMap</h4><p>保证在遍历map元素时，可以按照添加的顺序进行遍历，对于频繁遍历的操作，此类执行效率高于HashMap</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Entry</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">HashMap</span>.<span class="title">Node</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">    Entry&lt;K,V&gt; before, after;<span class="comment">//能够记录添加元素的先后顺序</span></span><br><span class="line">    Entry(<span class="keyword">int</span> hash, K key, V value, Node&lt;K,V&gt; next) &#123;</span><br><span class="line">        <span class="keyword">super</span>(hash, key, value, next);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-4-3，TreeMap"><a href="#4-4-3，TreeMap" class="headerlink" title="4.4.3，TreeMap"></a>4.4.3，TreeMap</h4><p>保证按照添加的key-value对进行排序，实现排序遍历，此时考虑key的自然排序和定制排序，底层使用红黑树</p>
+<h4 id="4-4-4，Hashtable"><a href="#4-4-4，Hashtable" class="headerlink" title="4.4.4，Hashtable"></a>4.4.4，Hashtable</h4><p>作为Map的古老实现类，线程安全，效率低，不可以存储null的key或者value的</p>
+<h4 id="4-4-5，Properties"><a href="#4-4-5，Properties" class="headerlink" title="4.4.5，Properties"></a>4.4.5，Properties</h4><p>常用来处理配置文件。key和value都是String类型</p>
+<h3 id="4-5，Collections工具类"><a href="#4-5，Collections工具类" class="headerlink" title="4.5，Collections工具类"></a>4.5，Collections工具类</h3><p>常用方法：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>完成的结果</th>
+<th>返回值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>reverse(List)</td>
+<td>反转List中元素的顺序</td>
+<td>void</td>
+</tr>
+<tr>
+<td>shuffle(List)</td>
+<td>对List集合元素进行随机排序</td>
+<td>void</td>
+</tr>
+<tr>
+<td>sort(List)</td>
+<td>根据元素的自然顺序对指定List集合元素按升序排序</td>
+<td>void</td>
+</tr>
+<tr>
+<td>sort(List，Comparartor)</td>
+<td>根据指定的比较器产生的顺序对List集合元素进行排序</td>
+<td>void</td>
+</tr>
+<tr>
+<td>max(Collection)</td>
+<td>根据元素的自然顺序返回给定集合中的最大元素</td>
+<td>Object</td>
+</tr>
+<tr>
+<td>max(Collection,Comparartor)</td>
+<td>根据指定的比较器产生的顺序返回给定集合中的最大元素</td>
+<td>Object</td>
+</tr>
+<tr>
+<td>frequency(Collection,Object)</td>
+<td>返回指定集合中指定元素的出现次数</td>
+<td>int</td>
+</tr>
+<tr>
+<td>copy(List dest,List src)</td>
+<td>将src中的内容复制到dest中</td>
+<td>void</td>
+</tr>
+<tr>
+<td>replaceAll(List list,Object oldVal,Object newVal)</td>
+<td>使用新值替换List的旧值</td>
+<td>boolean</td>
+</tr>
+</tbody></table>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/14/%E6%95%B4%E5%90%88SSM%E6%A1%86%E6%9E%B6/" class="archive-article-date">
-  	<time datetime="2020-09-14T09:40:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/14/%E6%95%B4%E5%90%88SSM%E6%A1%86%E6%9E%B6/">整合SSM框架</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/04/Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE-%E9%AB%98%E7%BA%A7%E9%83%A8%E5%88%86(%E4%B8%80)/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/12/SpringMVC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2020-09-12T07:20:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-12</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2020/11/10/Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE-%E9%AB%98%E7%BA%A7%E9%83%A8%E5%88%86(%E4%BA%8C)/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/11/01/Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/12/SpringMVC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">SpringMVC学习笔记</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/11/Spring5%E6%96%B0%E5%8A%9F%E8%83%BD/" class="archive-article-date">
-  	<time datetime="2020-09-11T10:44:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/11/Spring5%E6%96%B0%E5%8A%9F%E8%83%BD/">Spring5新功能</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/10/Spring%E4%BA%8B%E5%8A%A1/" class="archive-article-date">
-  	<time datetime="2020-09-10T10:46:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/10/Spring%E4%BA%8B%E5%8A%A1/">SpringJdbcTemplate</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/10/SpringAOP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-  	<time datetime="2020-09-10T02:03:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/10/SpringAOP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">SpringAOP学习笔记</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/09/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/" class="archive-article-date">
-  	<time datetime="2020-09-09T03:08:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/09/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">我的第一篇博客文章</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/09/hello-world/" class="archive-article-date">
-  	<time datetime="2020-09-09T03:03:13.581Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/09/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2020/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2020/">1</a><span class="page-number current">2</span>
-    </nav>
   
 
 
@@ -381,8 +556,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
