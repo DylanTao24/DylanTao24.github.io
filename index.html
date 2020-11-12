@@ -152,6 +152,126 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Java基础回顾-高级部分(三)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>title: Java基础回顾-高级部分(三)<br>date: 2020-11-11 19:56:20</p>
+</blockquote>
+<h1 id="Java基础回顾-高级部分-三"><a href="#Java基础回顾-高级部分-三" class="headerlink" title="Java基础回顾-高级部分(三)"></a>Java基础回顾-高级部分(三)</h1><h2 id="1-Java反射"><a href="#1-Java反射" class="headerlink" title="1.Java反射"></a>1.Java反射</h2><h3 id="1-1-Java反射机制提供的功能"><a href="#1-1-Java反射机制提供的功能" class="headerlink" title="1.1.Java反射机制提供的功能"></a>1.1.Java反射机制提供的功能</h3><p>1.在运行时判断任意一个对象所属的类</p>
+<p>2.在运行时构造任意一个类的对象</p>
+<p>3.在运行时判断任意一个类所具有的成员变量和方法</p>
+<p>4.在运行时获取泛型信息</p>
+<p>5.在运行时调用任意一个对象的成员变量和方法</p>
+<p>6.在运行时处理注解</p>
+<p>7.生成动态代理</p>
+<h3 id="1-2-反射和封装性的问题"><a href="#1-2-反射和封装性的问题" class="headerlink" title="1.2.反射和封装性的问题"></a>1.2.反射和封装性的问题</h3><p>两者不矛盾，对于封装性，我们设计一个类的时候，属性，方法，构造器等等，该私有的时候私有(private) 该公共的时候公共(public)。</p>
+<p>封装性给我们的启示是：当我们看到一个类写了一些私有的方法，一些公共的方法时，就告诉我们私有的方法就不要用了，就用公共的方</p>
+<p>法就可以了，因为私有的方法可能类内部用了，这里体现了封装性。比如单例模式 你要想造对象，就不要用私有的构造器了，我已经把对</p>
+<p>象造好了直接用就行。</p>
+<p>反射告诉我们的是，你可以调，但是不建议调私有的方法，因为可能公共的方法更好 加了一些逻辑 。</p>
+<p>封装性解决的问题是：建议调那个的问题，公共的调就可以了，私有的不要调用，私有的属性不建议你直接修改，建议你通过get ，set方法修改。</p>
+<p>反射解决的是能不能调的问题。</p>
+<h3 id="1-3-Class类"><a href="#1-3-Class类" class="headerlink" title="1.3.Class类"></a>1.3.Class类</h3><h4 id="1-类的加载过程："><a href="#1-类的加载过程：" class="headerlink" title="1.类的加载过程："></a>1.类的加载过程：</h4><p>（1）程序经过javac.exe命令后，会生成一个或者多个字节码文件，接着，我们使用java.exe对某个字节码文件进行解释运行，相当于将某个字节码文件加载到内存中，此过程就称为类加载。加载到内存中的类就称为运行时类，此运行时类，就作为Class的一个实例</p>
+<p>（2）.换句话说，Class的实例就对应着一个运行时类</p>
+<p>（3）.加载到内存的运行时类，会缓存一段时间，在此时间之内，我们可以通过不同的方式来获取此运行时类</p>
+<p>初始化类的过程：</p>
+<p><img src="Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE-%E9%AB%98%E7%BA%A7%E9%83%A8%E5%88%86(%E4%B8%89).assets/image-20201111215239332.png" alt="image-20201111215239332"></p>
+<h4 id="2-Class实例的获取（四种）："><a href="#2-Class实例的获取（四种）：" class="headerlink" title="2.Class实例的获取（四种）："></a>2.Class实例的获取（四种）：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">()</span> <span class="keyword">throws</span> ClassNotFoundException </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//方式一：调用运行时类的属性</span></span><br><span class="line">    Class clazz = User.class;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//方式二：通过运行时类的对象</span></span><br><span class="line">    User user = <span class="keyword">new</span> User();</span><br><span class="line"></span><br><span class="line">    Class&lt;? extends User&gt; clazz1 = user.getClass();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//方式三：调用Class的静态方法：forName(String classPath)</span></span><br><span class="line">    Class&lt;?&gt; clazz2 = Class.forName(<span class="string">&quot;Collection.User&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//方式四：使用类的加载器ClassLoader</span></span><br><span class="line">    ClassLoader classLoader = <span class="keyword">this</span>.getClass().getClassLoader();</span><br><span class="line">    classLoader.loadClass(<span class="string">&quot;Collection.User&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-哪些类型可以有Class对象"><a href="#3-哪些类型可以有Class对象" class="headerlink" title="3.哪些类型可以有Class对象"></a>3.哪些类型可以有Class对象</h4><ol>
+<li>class：外部类，成员（成员内部类，静态内部类），局部内部类，匿名内部类</li>
+<li>interface ：接口</li>
+<li>[]:数组</li>
+<li>enum：枚举</li>
+<li>annotation：注解@interface</li>
+<li>primitive type：基本数据类型</li>
+<li>void</li>
+</ol>
+<h4 id="4-类的加载与ClassLoader的理解"><a href="#4-类的加载与ClassLoader的理解" class="headerlink" title="4.类的加载与ClassLoader的理解"></a>4.类的加载与ClassLoader的理解</h4><p>类加载器的作用：将class文件字节码内容加载到内存中，并将这些静态数据转换为<strong>方法区的运行时数据结构</strong>，然后在堆中生成一个代表这个类的</p>
+<p>java.lang.Class对象，作为方法区中类数据的访问入口。</p>
+<p>类缓存：标准的JavaSE类加载器可以按要求查找类，但一旦某个类被加载到类加载器中，他将维持加载（缓存）一段时间。不过JVM垃圾回收机制可以回收这些Class对象</p>
+<h5 id="4-1-Java双亲委派机制"><a href="#4-1-Java双亲委派机制" class="headerlink" title="4.1,.Java双亲委派机制"></a>4.1,.Java双亲委派机制</h5><p>当某个类加载器需要加载某个<code>.class</code>文件时，它首先把这个任务委托给他的上级类加载器，递归这个操作，如果上级的类加载器没有加载，自己才会去加载这个类。</p>
+<p><strong>类加载器的类别：</strong></p>
+<p>1.BootstrapClassLoader（启动类加载器）</p>
+<p><code>c++</code>编写，加载<code>java</code>核心库 <code>java.*</code>,构造<code>ExtClassLoader</code>和<code>AppClassLoader</code>。由于引导类加载器涉及到虚拟机本地实现细节，开发者无法直接获取到启动类加载器的引用，所以不允许直接通过引用进行操作</p>
+<p>2.ExtClassLoader （标准扩展类加载器）</p>
+<p><code>java</code>编写，加载扩展库，如<code>classpath</code>中的<code>jre</code> ，<code>javax.*</code>或者<br> <code>java.ext.dir</code> 指定位置中的类，开发者可以直接使用标准扩展类加载器。</p>
+<p>3.AppClassLoader（系统类加载器）</p>
+<p><code>java</code>编写，加载程序所在的目录，如<code>user.dir</code>所在的位置的<code>class</code></p>
+<p>4.CustomClassLoader（用户自定义类加载器）</p>
+<p><code>java</code>编写,用户自定义的类加载器,可加载指定路径的<code>class</code>文件</p>
+<p>双亲委派机制的作用：</p>
+<p>1、防止重复加载同一个<code>.class</code>。通过委托去向上面问一问，加载过了，就不用再加载一遍。保证数据安全。<br> 2、保证核心<code>.class</code>不能被篡改。通过委托方式，不会去篡改核心<code>.class</code>，即使篡改也不会去加载，即使加载也不会是同一个<code>.class</code>对象了。不同的加载器加载同一个<code>.class</code>也不是同一个<code>Class</code>对象。这样保证了<code>Class</code>执行安全。</p>
+<h3 id="1-4-获取当前运行时类的所有属性"><a href="#1-4-获取当前运行时类的所有属性" class="headerlink" title="1.4,获取当前运行时类的所有属性"></a>1.4,获取当前运行时类的所有属性</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    Class&lt;User&gt; clazz = User.class;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取属性结构</span></span><br><span class="line">    <span class="comment">//getFields():获取当前运行时类及其父类声明为public访问权限的属性</span></span><br><span class="line">    Field[] fields = clazz.getFields();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (Field field : fields)&#123;</span><br><span class="line">        System.out.println(field);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//getDeclaredFields() :获取当前运行时类的所有属性（不包括父类的属性）</span></span><br><span class="line">    Field[] declaredFields = clazz.getDeclaredFields();</span><br><span class="line"></span><br><span class="line">    System.out.println(<span class="string">&quot;----------------------------------&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (Field field : declaredFields)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取权限修饰符</span></span><br><span class="line">        <span class="keyword">int</span> modifiers = field.getModifiers();</span><br><span class="line">        System.out.print(Modifier.toString(modifiers) + <span class="string">&quot;\t&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取数据类型</span></span><br><span class="line">        Class&lt;?&gt; type = field.getType();</span><br><span class="line">        System.out.print(type.getName() + <span class="string">&quot;\t&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//变量名</span></span><br><span class="line">        String name = field.getName();</span><br><span class="line">        System.out.print(name);</span><br><span class="line"></span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-4-1-核心的几组API"><a href="#1-4-1-核心的几组API" class="headerlink" title="1.4.1.核心的几组API"></a>1.4.1.核心的几组API</h4><table>
+<thead>
+<tr>
+<th></th>
+<th>获取运行时类的属性：</th>
+<th>获取运行时类的方法：</th>
+<th>获取运行时类的构造器：</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>获取当前运行时类及其父类声明为public访问权限的属性</td>
+<td>getFields();</td>
+<td>getMethods()</td>
+<td>getConstructors()</td>
+</tr>
+<tr>
+<td>获取当前运行时类的所有属性（不包括父类的属性）</td>
+<td>getDeclaredFields()；</td>
+<td>getDeclaredMethods()</td>
+<td>getDeclaredConstructors()</td>
+</tr>
+</tbody></table>
+<p>获取运行时类的父类的泛型</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/11/Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE-%E9%AB%98%E7%BA%A7%E9%83%A8%E5%88%86(%E4%B8%89)/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Java基础回顾-高级部分(二)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -2295,545 +2415,6 @@ SpringBoot集成Swagger
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/09/17/SpringBoot%E5%88%9D%E4%BD%93%E9%AA%8C/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Ajax技术" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/15/Ajax%E6%8A%80%E6%9C%AF/">Ajax技术</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/15/Ajax%E6%8A%80%E6%9C%AF/" class="archive-article-date">
-  	<time datetime="2020-09-15T12:44:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>###Ajax技术（简介）</p>
-<pre><code>1.AJAX = Asynchronous（异步） JavaScript And XML（异步的JavaScript和xml）
-
-2.是一种无需重新加载整个网页的情况下，能够更新部分网页的技术
-
-3.AJAX不是一种新的编程语言，而是一种用于创建更好更快以及交互性更强的Web应用程序的技术
-
-4.使用Ajax技术的网页，通过在后台服务器进行少量的数据交换，就可以实现异步局部更新
-
-5.使用Ajax，用户可以创建接近本地桌面应用的直接，高可用，更丰富，更动态的Web用户界面</code></pre>
-<p>###JQuery.ajax</p>
-<pre><code>1.Ajax的核心是XMLHttpRequest对象（XHR），这个对象为向服务器发送请求和解析服务器响应提供接口
-    能够以异步的方式从服务器获取新数据
-
-2.通过JQuery Ajax方法，能够使用HTTP Get和HTTP Post从远程服务器上请求文本，HTML，XML，或JSON ，
-    同时能将这些外部元素直接载入网页的被选元素中。
-
-3.JQuery Ajax的本质是XMLHttpRequest，对他进行了封装，方便调用！
-
-4.jQuery.ajax（...）
-    部分参数：（后面加*的是必须要设置的）
-                url：请求地址        *
-                type：请求方式，GET、POST（1.9.0之后用method）
-            headers：请求头
-                data：要发送的数据        *
-        contentType：即将发送信息至服务器的内容编码类型(默认: &quot;application/x-www-form-urlencoded; charset=UTF-8&quot;)
-              async：是否异步
-            timeout：设置请求超时时间（毫秒）
-          beforeSend：发送请求前执行的函数(全局)
-            complete：完成之后执行的回调函数(全局)
-            success：成功之后执行的回调函数(全局)        *
-              error：失败之后执行的回调函数(全局)
-            accepts：通过请求头发送给服务器，告诉服务器当前客户端可接受的数据类型
-            dataType：将服务器端返回的数据转换成指定类型
-              &quot;xml&quot;: 将服务器端返回的内容转换成xml格式
-              &quot;text&quot;: 将服务器端返回的内容转换成普通文本格式
-              &quot;html&quot;: 将服务器端返回的内容转换成普通文本格式，在插入DOM中时，如果包含JavaScript标签，则会尝试去执行。
-            &quot;script&quot;: 尝试将返回值当作JavaScript去执行，然后再将服务器端返回的内容转换成普通文本格式
-              &quot;json&quot;: 将服务器端返回的内容转换成相应的JavaScript对象
-            &quot;jsonp&quot;: JSONP 格式使用 JSONP 形式调用函数时，如 &quot;myurl?callback=?&quot; jQuery 将自动替换 ? 为正确的函数名，以执行回调函数
-
-5.ajax：
-
-    input--&gt;失去焦点--&gt;函数bl()--&gt;ajax.post()--&gt;传入三个必要参数：url请求的地址，data 发送请求要
-        携带的数据，callback请求成功或者失败的回调函数（成功了使用success，失败了使用error）--&gt;
-        之后进入后端的contoller层的请求方法处理，用Model或者httpserviceresponse来回传数据。</code></pre>
-<p>###Ajax验证用户名的操作</p>
-<pre><code>1.&lt;script src=&quot;$&#123;pageContext.request.contextPath&#125;/statics/js/jquery-3.5.1.js&quot;&gt;&lt;/script&gt;
-
-        &lt;script&gt;
-            $(function () &#123;
-                $(&quot;#username&quot;).blur(function () &#123;
-                    var username = this.value;
-                    $.post(&#123;
-                        url:&quot;$&#123;pageContext.request.contextPath&#125;/login&quot;,
-                        data:&#123;&quot;username&quot;:username&#125;,
-                        success:function (data) &#123;
-                            alert(data)
-                            if (data === &quot;true&quot;)&#123;
-                                alert(&quot;111&quot;)
-                                $(&quot;#userInfo&quot;).css(&quot;color&quot;,&quot;green&quot;);
-
-                                $(&quot;#userInfo&quot;).html(&quot;可以使用&quot;);
-                            &#125;else &#123;
-                                alert(&quot;11&quot;)
-                                $(&quot;#userInfo&quot;).css(&quot;color&quot;,&quot;red&quot;);
-
-                                $(&quot;#userInfo&quot;).html(&quot;不能使用&quot;);
-                            &#125;
-                        &#125;
-                    &#125;)
-                &#125;)
-            &#125;)
-
-        &lt;/script&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-
-        &lt;form&gt;
-            账号：&lt;input type=&quot;text&quot; id=&quot;username&quot;&gt;
-            &lt;span id=&quot;userInfo&quot;&gt;&lt;/span&gt;&lt;br&gt;
-            密码：&lt;input type=&quot;password&quot; id=&quot;password&quot;&gt;
-            &lt;span id=&quot;pasInfo&quot;&gt;&lt;/span&gt;
-        &lt;/form&gt;
-
-    &lt;/body&gt;</code></pre>
-<p>###SpinrgMVC拦截器</p>
-<pre><code>1.拦截器类似于Filter，拦截器是AOP思想的具体应用
-
-2.自定义一个拦截器
-
-    想要自定义拦截器，必须实现 HandlerInterceptor 接口。
-
-        1、新建一个Moudule ， springmvc-07-Interceptor  ， 添加web支持
-
-        2、配置web.xml 和 springmvc-servlet.xml 文件
-
-        3、编写一个拦截器
-
-            public class MyInterceptor implements HandlerInterceptor &#123;
-
-               //在请求处理的方法之前执行
-               //如果返回true执行下一个拦截器
-               //如果返回false就不执行下一个拦截器
-               public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception &#123;
-                   System.out.println(&quot;------------处理前------------&quot;);
-                   return true;
-              &#125;
-
-               //在请求处理方法执行之后执行
-               public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception &#123;
-                   System.out.println(&quot;------------处理后------------&quot;);
-              &#125;
-
-               //在dispatcherServlet处理后执行,做清理工作.
-               public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception &#123;
-                   System.out.println(&quot;------------清理------------&quot;);
-              &#125;
-            &#125;
-
-        4、在springmvc的配置文件中配置拦截器
-
-            &lt;!--关于拦截器的配置--&gt;
-            &lt;mvc:interceptors&gt;
-               &lt;mvc:interceptor&gt;
-                   &lt;!--/** 包括路径及其子路径--&gt;
-                   &lt;!--/admin/* 拦截的是/admin/add等等这种 , /admin/add/user不会被拦截--&gt;
-                   &lt;!--/admin/** 拦截的是/admin/下的所有--&gt;
-                   &lt;mvc:mapping path=&quot;/**&quot;/&gt;
-                   &lt;!--bean配置的就是拦截器--&gt;
-                   &lt;bean class=&quot;com.kuang.interceptor.MyInterceptor&quot;/&gt;
-               &lt;/mvc:interceptor&gt;
-            &lt;/mvc:interceptors&gt;
-
-        5、编写一个Controller，接收请求
-
-            public class InterceptorController &#123;
-
-               @RequestMapping(&quot;/interceptor&quot;)
-               @ResponseBody
-               public String testFunction() &#123;
-                   System.out.println(&quot;控制器中的方法执行了&quot;);
-                   return &quot;hello&quot;;
-              &#125;
-            &#125;
-
-        6、前端 index.jsp
-
-        7、启动tomcat 测试一下！</code></pre>
-<p>###拦截器小项目（验证用户是否登录 (认证用户)）</p>
-<pre><code>实现思路：
-
-    1、有一个登陆页面，需要写一个controller访问页面。
-
-    2、登陆页面有一提交表单的动作。需要在controller中处理。判断用户名密码是否正确。如果正确，向session中写入用户信息。返回登陆成功。
-
-    3、拦截用户请求，判断用户是否登陆。如果用户已经登陆。放行， 如果用户未登陆，跳转到登陆页面
-
-测试代码：
-
-    1、编写一个登陆页面  login.jsp
-
-        &lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
-        &lt;html&gt;
-        &lt;head&gt;
-           &lt;title&gt;Title&lt;/title&gt;
-        &lt;/head&gt;
-
-        &lt;h1&gt;登录页面&lt;/h1&gt;
-        &lt;hr&gt;
-
-        &lt;body&gt;
-        &lt;form action=&quot;$&#123;pageContext.request.contextPath&#125;/user/login&quot;&gt;
-          用户名：&lt;input type=&quot;text&quot; name=&quot;username&quot;&gt; &lt;br&gt;
-          密码：&lt;input type=&quot;password&quot; name=&quot;pwd&quot;&gt; &lt;br&gt;
-           &lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;
-        &lt;/form&gt;
-        &lt;/body&gt;
-        &lt;/html&gt;
-
-    2、编写一个Controller处理请求
-
-        @Controller
-        @RequestMapping(&quot;/user&quot;)
-        public class UserController &#123;
-
-           //跳转到登陆页面
-           @RequestMapping(&quot;/jumplogin&quot;)
-           public String jumpLogin() throws Exception &#123;
-               return &quot;login&quot;;
-          &#125;
-
-           //跳转到成功页面
-           @RequestMapping(&quot;/jumpSuccess&quot;)
-           public String jumpSuccess() throws Exception &#123;
-               return &quot;success&quot;;
-          &#125;
-
-           //登陆提交
-           @RequestMapping(&quot;/login&quot;)
-           public String login(HttpSession session, String username, String pwd) throws Exception &#123;
-               // 向session记录用户身份信息
-               System.out.println(&quot;接收前端===&quot;+username);
-               session.setAttribute(&quot;user&quot;, username);
-               return &quot;success&quot;;
-          &#125;
-
-           //退出登陆
-           @RequestMapping(&quot;logout&quot;)
-           public String logout(HttpSession session) throws Exception &#123;
-               // session 过期
-               session.invalidate();
-               return &quot;login&quot;;
-          &#125;
-        &#125;
-
-
-    3、编写一个登陆成功的页面 success.jsp
-
-        &lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
-        &lt;html&gt;
-        &lt;head&gt;
-           &lt;title&gt;Title&lt;/title&gt;
-        &lt;/head&gt;
-        &lt;body&gt;
-
-        &lt;h1&gt;登录成功页面&lt;/h1&gt;
-        &lt;hr&gt;
-
-        $&#123;user&#125;
-        &lt;a href=&quot;$&#123;pageContext.request.contextPath&#125;/user/logout&quot;&gt;注销&lt;/a&gt;
-        &lt;/body&gt;
-        &lt;/html&gt;
-
-    4、在 index 页面上测试跳转！启动Tomcat 测试，未登录也可以进入主页！
-
-        &lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
-        &lt;html&gt;
-         &lt;head&gt;
-           &lt;title&gt;$Title$&lt;/title&gt;
-         &lt;/head&gt;
-         &lt;body&gt;
-         &lt;h1&gt;首页&lt;/h1&gt;
-         &lt;hr&gt;
-        &lt;%--登录--%&gt;
-         &lt;a href=&quot;$&#123;pageContext.request.contextPath&#125;/user/jumplogin&quot;&gt;登录&lt;/a&gt;
-         &lt;a href=&quot;$&#123;pageContext.request.contextPath&#125;/user/jumpSuccess&quot;&gt;成功页面&lt;/a&gt;
-         &lt;/body&gt;
-        &lt;/html&gt;
-
-    5、编写用户登录拦截器
-
-        public class LoginInterceptor implements HandlerInterceptor &#123;
-
-           public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws ServletException, IOException &#123;
-               // 如果是登陆页面则放行
-               System.out.println(&quot;uri: &quot; + request.getRequestURI());
-               if (request.getRequestURI().contains(&quot;login&quot;)) &#123;
-                   return true;
-              &#125;
-
-               HttpSession session = request.getSession();
-
-               // 如果用户已登陆也放行
-               if(session.getAttribute(&quot;user&quot;) != null) &#123;
-                   return true;
-              &#125;
-
-               // 用户没有登陆跳转到登陆页面
-               request.getRequestDispatcher(&quot;/WEB-INF/jsp/login.jsp&quot;).forward(request, response);
-               return false;
-          &#125;
-
-           public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception &#123;
-
-          &#125;
-
-           public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception &#123;
-
-          &#125;
-        &#125;
-
-    6、在Springmvc的配置文件中注册拦截器
-
-        &lt;!--关于拦截器的配置--&gt;
-        &lt;mvc:interceptors&gt;
-           &lt;mvc:interceptor&gt;
-               &lt;mvc:mapping path=&quot;/**&quot;/&gt;
-               &lt;bean id=&quot;loginInterceptor&quot; class=&quot;Interceptor.LoginInterceptor&quot;/&gt;
-           &lt;/mvc:interceptor&gt;
-        &lt;/mvc:interceptors&gt;</code></pre>
-<p>###过滤器和拦截器的区别</p>
-<pre><code>过滤器和拦截器的区别：
-
-        1.拦截器是基于java的反射机制的，而过滤器是基于函数回调。
-
-    　　2.拦截器不依赖与servlet容器，过滤器依赖与servlet容器。
-
-    　　3.拦截器只能对action请求起作用，而过滤器则可以对几乎所有的请求起作用。
-
-    　　4.拦截器可以访问action上下文、值栈里的对象，而过滤器不能访问。
-
-    　　5.在action的生命周期中，拦截器可以多次被调用，而过滤器只能在容器初始化时被调用一次。
-
-    　　6.拦截器可以获取IOC容器中的各个bean，而过滤器就不行，这点很重要，在拦截器里注入一个service，可以调用业务逻辑。
-
-
-        拦截器可以获取ioc中的service bean实现业务逻辑，拦截器可以获取ioc中的service bean实现业务逻辑，拦截器可以获取ioc中的service bean实现业务逻辑，         
-
-
-
-        触发时机
-
-        1.过滤器和拦截器触发时机不一样:
-
-        　　过滤器是在请求进入容器后，但请求进入servlet之前进行预处理的。请求结束返回也是，是在servlet处理完后，返回给前端之前。
-
-        2.过滤器的触发时机是容器后，servlet之前，所以过滤器的doFilter(
-            ServletRequest request, ServletResponse response, FilterChain chain
-            )的入参是ServletRequest ，而不是httpservletrequest。因为过滤器是在httpservlet之前。
-
-
-        总结：过滤器包裹住servlet，servlet包裹住拦截器。
-
-
-        https://images2017.cnblogs.com/blog/330611/201710/330611-20171023144517066-24770749.png</code></pre>
-<p>###文件上传和下载</p>
-<pre><code>1.导入文件上传的jar包，commons-fileupload，， Maven会自动帮我们导入他的依赖包 commons-io包；
-
-    &lt;!--文件上传--&gt;
-    &lt;dependency&gt;
-       &lt;groupId&gt;commons-fileupload&lt;/groupId&gt;
-       &lt;artifactId&gt;commons-fileupload&lt;/artifactId&gt;
-       &lt;version&gt;1.3.3&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;!--servlet-api导入高版本的--&gt;
-    &lt;dependency&gt;
-       &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
-       &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;
-       &lt;version&gt;4.0.1&lt;/version&gt;
-    &lt;/dependency&gt;
-
-2.配置bean：multipartResolver
-
-【注意！！！这个bena的id必须为：multipartResolver ， 否则上传文件会报400的错误！在这里栽过坑,教训！】
-
-    &lt;!--文件上传配置--&gt;
-    &lt;bean id=&quot;multipartResolver&quot;  class=&quot;org.springframework.web.multipart.commons.CommonsMultipartResolver&quot;&gt;
-       &lt;!-- 请求的编码格式，必须和jSP的pageEncoding属性一致，以便正确读取表单的内容，默认为ISO-8859-1 --&gt;
-       &lt;property name=&quot;defaultEncoding&quot; value=&quot;utf-8&quot;/&gt;
-       &lt;!-- 上传文件大小上限，单位为字节（10485760=10M） --&gt;
-       &lt;property name=&quot;maxUploadSize&quot; value=&quot;10485760&quot;/&gt;
-       &lt;property name=&quot;maxInMemorySize&quot; value=&quot;40960&quot;/&gt;
-    &lt;/bean&gt;
-
-3.CommonsMultipartFile 的 常用方法：
-
-    String getOriginalFilename()：获取上传文件的原名
-
-    InputStream getInputStream()：获取文件流
-
-    void transferTo(File dest)：将上传文件保存到一个目录文件中
-
-     我们去实际测试一下
-
-4.编写一个Controller
-
-    @Controller
-    public class FileController &#123;
-       //@RequestParam(&quot;file&quot;) 将name=file控件得到的文件封装成CommonsMultipartFile 对象
-       //批量上传CommonsMultipartFile则为数组即可
-       @RequestMapping(&quot;/upload&quot;)
-       public String fileUpload(@RequestParam(&quot;file&quot;) CommonsMultipartFile file , HttpServletRequest request) throws IOException &#123;
-
-           //获取文件名 : file.getOriginalFilename();
-           String uploadFileName = file.getOriginalFilename();
-
-           //如果文件名为空，直接回到首页！
-           if (&quot;&quot;.equals(uploadFileName))&#123;
-               return &quot;redirect:/index.jsp&quot;;
-          &#125;
-           System.out.println(&quot;上传文件名 : &quot;+uploadFileName);
-
-           //上传路径保存设置
-           String path = request.getServletContext().getRealPath(&quot;/upload&quot;);
-           //如果路径不存在，创建一个
-           File realPath = new File(path);
-           if (!realPath.exists())&#123;
-               realPath.mkdir();
-          &#125;
-           System.out.println(&quot;上传文件保存地址：&quot;+realPath);
-
-           InputStream is = file.getInputStream(); //文件输入流
-           OutputStream os = new FileOutputStream(new File(realPath,uploadFileName)); //文件输出流
-
-           //读取写出
-           int len=0;
-           byte[] buffer = new byte[1024];
-           while ((len=is.read(buffer))!=-1)&#123;
-               os.write(buffer,0,len);
-               os.flush();
-          &#125;
-           os.close();
-           is.close();
-           return &quot;redirect:/index.jsp&quot;;
-      &#125;
-    &#125;
-
-5.采用file.Transto 来保存上传的文件
-
-     /*
-    * 采用file.Transto 来保存上传的文件
-    */
-    @RequestMapping(&quot;/upload2&quot;)
-    public String  fileUpload2(@RequestParam(&quot;file&quot;) CommonsMultipartFile file, HttpServletRequest request) throws IOException &#123;
-
-       //上传路径保存设置
-       String path = request.getServletContext().getRealPath(&quot;/upload&quot;);
-       File realPath = new File(path);
-       if (!realPath.exists())&#123;
-           realPath.mkdir();
-      &#125;
-       //上传文件地址
-       System.out.println(&quot;上传文件保存地址：&quot;+realPath);
-
-       //通过CommonsMultipartFile的方法直接写文件（注意这个时候）
-       file.transferTo(new File(realPath +&quot;/&quot;+ file.getOriginalFilename()));
-
-       return &quot;redirect:/index.jsp&quot;;
-    &#125;
-
-
-6.前端表单提交地址修改</code></pre>
-<p>###文件下载</p>
-<pre><code>文件下载步骤：
-
-    1、设置 response 响应头
-
-    2、读取文件 -- InputStream
-
-    3、写出文件 -- OutputStream
-
-    4、执行操作
-
-    5、关闭流 （先开后关）
-
-    @RequestMapping(value=&quot;/download&quot;)
-    public String downloads(HttpServletResponse response ,HttpServletRequest request) throws Exception&#123;
-       //要下载的图片地址
-       String  path = request.getServletContext().getRealPath(&quot;/upload&quot;);
-       String  fileName = &quot;基础语法.jpg&quot;;
-
-       //1、设置response 响应头
-       response.reset(); //设置页面不缓存,清空buffer
-       response.setCharacterEncoding(&quot;UTF-8&quot;); //字符编码
-       response.setContentType(&quot;multipart/form-data&quot;); //二进制传输数据
-       //设置响应头
-       response.setHeader(&quot;Content-Disposition&quot;,
-               &quot;attachment;fileName=&quot;+URLEncoder.encode(fileName, &quot;UTF-8&quot;));
-
-       File file = new File(path,fileName);
-       //2、 读取文件--输入流
-       InputStream input=new FileInputStream(file);
-       //3、 写出文件--输出流
-       OutputStream out = response.getOutputStream();
-
-       byte[] buff =new byte[1024];
-       int index=0;
-       //4、执行 写出操作
-       while((index= input.read(buff))!= -1)&#123;
-           out.write(buff, 0, index);
-           out.flush();
-      &#125;
-       out.close();
-       input.close();
-       return null;
-    &#125;</code></pre>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/15/Ajax%E6%8A%80%E6%9C%AF/">展开全文 >></a>
         </p>
       
 
