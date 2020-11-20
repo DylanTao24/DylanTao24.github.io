@@ -8,13 +8,15 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>项目实训 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="###书城项目 1.先建立一个springboot工程，引入java web依赖  2.将页面导入到工程中  3.引入thymeleaf的依赖包  4.html页面加入thymeleaf命名空间，并且将其中的部分元素改为th：  5.启动工程，保证页面的css和js能正常运行  6.进行注册的实现  7.进行kaptcha谷歌验证码的实现      （1）引入kaptcha的依赖">
+<meta property="og:type" content="article">
 <meta property="og:title" content="项目实训">
 <meta property="og:url" content="http://example.com/2020/10/15/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%AE%AD/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="###书城项目 1.先建立一个springboot工程，引入java web依赖  2.将页面导入到工程中  3.引入thymeleaf的依赖包  4.html页面加入thymeleaf命名空间，并且将其中的部分元素改为th：  5.启动工程，保证页面的css和js能正常运行  6.进行注册的实现  7.进行kaptcha谷歌验证码的实现      （1）引入kaptcha的依赖">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-10-15T09:51:11.000Z">
-<meta property="article:modified_time" content="2020-10-15T09:51:11.525Z">
+<meta property="article:modified_time" content="2020-11-17T11:19:18.014Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -172,7 +174,122 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>###书城项目</p>
+<pre><code>1.先建立一个springboot工程，引入java web依赖
+
+2.将页面导入到工程中
+
+3.引入thymeleaf的依赖包
+
+4.html页面加入thymeleaf命名空间，并且将其中的部分元素改为th：
+
+5.启动工程，保证页面的css和js能正常运行
+
+6.进行注册的实现
+
+7.进行kaptcha谷歌验证码的实现
+
+    （1）引入kaptcha的依赖
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.baomidou&lt;/groupId&gt;
+            &lt;artifactId&gt;kaptcha-spring-boot-starter&lt;/artifactId&gt;
+            &lt;version&gt;1.1.0&lt;/version&gt;
+        &lt;/dependency&gt;
+
+    （2）编写kaptcha的配置：
+
+        kaptcha:
+          height: 40
+          width: 100
+          content:
+            length: 4
+            source: abcdefghjklmnopqrstuvwxyz23456789
+            space: 2
+          font:
+            color: black
+            name: Arial
+            size: 40
+          background-color:
+            from: lightGray
+            to: white
+          border:
+            enabled: true
+            color: black
+            thickness: 1
+
+    （3）编写kaptcha的Controller
+
+        @Slf4j
+        @RestController
+        @RequestMapping(&quot;/kaptcha&quot;)
+        public class KaptchaConteoller &#123;
+
+            @Autowired
+            private Kaptcha kaptcha;
+
+            @GetMapping(&quot;/render&quot;)
+            public void render() &#123;
+                kaptcha.render();
+            &#125;
+
+            @PostMapping(&quot;/valid&quot;)
+            public void validDefaultTime(@RequestParam String code) &#123;
+                //default timeout 900 seconds
+                kaptcha.validate(code);
+            &#125;
+
+            @PostMapping(&quot;/validTime&quot;)
+            public void validCustomTime(@RequestParam String code) &#123;
+                kaptcha.validate(code, 60);
+            &#125;
+
+        &#125;
+
+    (4) 将图片放到页面上
+
+        &lt;img alt=&quot;&quot; th:src=&quot;@&#123;/kaptcha/render&#125;&quot;  style=&quot;float: right; margin-right: 40px&quot;&gt;
+
+    (5)在Controller中进行验证
+
+        使用Session域中的常量Constants.KAPTCHA_SESSION_KEY取出谷歌验证码，与用户输入的验证码进行比对。
+
+8.进行页面抽取
+
+    在thymeleaf中页面抽取可以把多个页面相同的内容抽出来放到一个html中
+    然后对这个html的标签加th:fragment
+        &lt;!DOCTYPE html&gt;
+        &lt;html lang=&quot;en&quot; xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;
+
+        &lt;body th:fragment=&quot;footer&quot;&gt;
+            &lt;div id=&quot;bottom&quot;&gt;
+                        &lt;span&gt;
+                            尚硅谷书城.Copyright &amp;copy;2015
+                        &lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/body&gt;
+
+        &lt;/html&gt;
+
+    在页面中引用的话就在标签中使用即可
+    &lt;div th:replace=&quot;utils/footer :: footer&quot;&gt;&lt;/div&gt;
+
+    utils/footer :: footer 前面是要引入的文件名，双冒号后面是引入的fragment（分段）
+
+9.进行登录的实现，数据的回显，登录后将用户信息保存到session中，使用$&#123;session.user&#125;取出
+
+10.进行图书管理的实现，从数据库中查询书籍，然后用model进行存储，带到页面中，使用th:each进行遍历依次取出
+    &lt;tr th:each=&quot;books,booksStat : $&#123;book&#125;&quot;&gt;
+        &lt;td th:text=&quot;$&#123;books.getName()&#125;&quot;&gt;&lt;/td&gt;
+        &lt;td th:text=&quot;$&#123;books.getPrice()&#125;&quot;&gt;&lt;/td&gt;
+        &lt;td th:text=&quot;$&#123;books.getAuthor()&#125;&quot;&gt;&lt;/td&gt;
+        &lt;td th:text=&quot;$&#123;books.getSales()&#125;&quot;&gt;&lt;/td&gt;
+        &lt;td th:text=&quot;$&#123;books.getStock()&#125;&quot;&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;a href=&quot;book_edit.html&quot;&gt;修改&lt;/a&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;a href=&quot;#&quot;&gt;删除&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+
+11.将查到的数据进行分页</code></pre>
+
       
 
       
