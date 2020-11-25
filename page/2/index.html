@@ -152,6 +152,629 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-MySQL回顾-基础部分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>title: MySQL回顾-基础部分<br>date: 2020-11-14 19:16:15</p>
+</blockquote>
+<h1 id="MySQL回顾-基础部分"><a href="#MySQL回顾-基础部分" class="headerlink" title="MySQL回顾-基础部分"></a>MySQL回顾-基础部分</h1><h2 id="1、数据库基础概述"><a href="#1、数据库基础概述" class="headerlink" title="1、数据库基础概述"></a>1、数据库基础概述</h2><h4 id="1-1、数据库总览"><a href="#1-1、数据库总览" class="headerlink" title="1.1、数据库总览 :"></a>1.1、数据库总览 :</h4><ul>
+<li><p>关系型数据库 ( SQL )</p>
+</li>
+<li><ul>
+<li>MySQL , Oracle , SQL Server , SQLite , DB2 , …</li>
+<li>关系型数据库通过外键关联来建立表与表之间的关系</li>
+</ul>
+</li>
+<li><p>非关系型数据库 ( NOSQL )</p>
+</li>
+<li><ul>
+<li>Redis , MongoDB , …</li>
+<li>非关系型数据库通常指数据以对象的形式存储在数据库中，而对象之间的关系通过每个对象自身的属性来决定</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-2、数据值和列类型-："><a href="#1-2、数据值和列类型-：" class="headerlink" title="1.2、数据值和列类型 ："></a>1.2、数据值和列类型 ：</h4><ul>
+<li><p>数值类型</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th></th>
+<th>存储需求(字节)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tinyint</td>
+<td>非常小的数据</td>
+<td>1</td>
+</tr>
+<tr>
+<td>smallint</td>
+<td>较小的数据</td>
+<td>2</td>
+</tr>
+<tr>
+<td>mediumint</td>
+<td>中等大小的数据</td>
+<td>3</td>
+</tr>
+<tr>
+<td>int</td>
+<td>标准整数</td>
+<td>4</td>
+</tr>
+<tr>
+<td>bigint</td>
+<td>较大的整数</td>
+<td>8</td>
+</tr>
+<tr>
+<td>float</td>
+<td>单精度浮点数</td>
+<td>4</td>
+</tr>
+<tr>
+<td>double</td>
+<td>双精度浮点数</td>
+<td>8</td>
+</tr>
+<tr>
+<td>decimal</td>
+<td>字符串形式的浮点数</td>
+<td></td>
+</tr>
+</tbody></table>
+</li>
+<li><p>字符串类型</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DATE</td>
+<td>YYYY-MM-DD,日期格式</td>
+</tr>
+<tr>
+<td>TIME</td>
+<td>HH：mm：ss，时间格式</td>
+</tr>
+<tr>
+<td>DATETIME</td>
+<td>YY-mm-dd hh：mm ：ss</td>
+</tr>
+<tr>
+<td>TIMESTAMP</td>
+<td>YYYYMMDDhhmmss</td>
+</tr>
+<tr>
+<td>YEAR</td>
+<td>YYYY格式的年份值</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>Null值</p>
+<ul>
+<li>理解为”没有值“或”未知值“</li>
+<li>不要用Null进行算术运算，结果仍然为Null</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-3、数据字段属性："><a href="#1-3、数据字段属性：" class="headerlink" title="1.3、数据字段属性："></a>1.3、数据字段属性：</h4><p><strong>UnSigned</strong></p>
+<ul>
+<li>无符号的</li>
+<li>声明该数据列不允许负数 .</li>
+</ul>
+<p><strong>ZEROFILL</strong></p>
+<ul>
+<li>0填充的</li>
+<li>不足位数的用0来填充 , 如int(3),5则为005</li>
+</ul>
+<p><strong>Auto_InCrement</strong></p>
+<ul>
+<li><p>自动增长的 , 每添加一条数据 , 自动在上一个记录数上加 1(默认)</p>
+</li>
+<li><p>通常用于设置<strong>主键</strong> , 且为整数类型</p>
+</li>
+<li><p>可定义起始值和步长</p>
+</li>
+<li><ul>
+<li>当前表设置步长(AUTO_INCREMENT=100) : 只影响当前表</li>
+<li>SET @@auto_increment_increment=5 ; 影响所有使用自增的表(全局)</li>
+</ul>
+</li>
+</ul>
+<p><strong>NULL 和 NOT NULL</strong></p>
+<ul>
+<li>默认为NULL , 即没有插入该列的数值</li>
+<li>如果设置为NOT NULL , 则该列必须有值</li>
+</ul>
+<p><strong>DEFAULT</strong></p>
+<ul>
+<li>默认的</li>
+<li>用于设置默认值</li>
+<li>例如,性别字段,默认为”男” , 否则为 “女” ; 若无指定该列的值 , 则默认值为”男”的值</li>
+</ul>
+<h4 id="1-4、数据表的类型："><a href="#1-4、数据表的类型：" class="headerlink" title="1.4、数据表的类型："></a>1.4、数据表的类型：</h4><p>MySQL的数据表的类型 : <strong>MyISAM</strong> , <strong>InnoDB</strong> , HEAP , BOB , CSV等…</p>
+<p>常见的 MyISAM 与 InnoDB 类型：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>MyISAM</th>
+<th>InnoDB</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>事务处理</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>数据行锁定</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>外键约束</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>全文索引</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>表空间大小</td>
+<td>较小</td>
+<td>较大，约两倍</td>
+</tr>
+</tbody></table>
+<h4 id="1-5、数据表的存储位置："><a href="#1-5、数据表的存储位置：" class="headerlink" title="1.5、数据表的存储位置："></a>1.5、数据表的存储位置：</h4><ul>
+<li><p>MySQL数据表以文件方式存放在磁盘中</p>
+</li>
+<li><ul>
+<li>包括表文件 , 数据文件 , 以及数据库的选项文件</li>
+<li>位置 : Mysql安装目录\data\下存放数据表 . 目录名对应数据库名 , 该目录下文件名对应数据表 .</li>
+</ul>
+</li>
+<li><p>注意 :</p>
+</li>
+<li><ul>
+<li>* . frm – 表结构定义文件</li>
+<li>* . MYD – 数据文件 ( data )</li>
+<li>* . MYI – 索引文件 ( index )</li>
+<li>InnoDB类型数据表只有一个 *.frm文件 , 以及上一级目录的ibdata1文件</li>
+</ul>
+</li>
+</ul>
+<h2 id="2、SQL操作"><a href="#2、SQL操作" class="headerlink" title="2、SQL操作"></a>2、SQL操作</h2><h3 id="2-1、TRUNCATE命令"><a href="#2-1、TRUNCATE命令" class="headerlink" title="2.1、TRUNCATE命令"></a>2.1、TRUNCATE命令</h3><ul>
+<li><p>作用：用于完全清空表数据 , 但表结构 , 索引 , 约束等不变 ;</p>
+</li>
+<li><p>语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TRUNCATE [TABLE] table_name;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="2-2-1、注意：区别于DELETE命令"><a href="#2-2-1、注意：区别于DELETE命令" class="headerlink" title="2.2.1、注意：区别于DELETE命令"></a>2.2.1、注意：区别于DELETE命令</h4><ul>
+<li><p>相同 : 都能删除数据 , 不删除表结构 , 但TRUNCATE速度更快</p>
+</li>
+<li><p>不同 :</p>
+</li>
+<li><ul>
+<li>使用TRUNCATE TABLE 重新设置AUTO_INCREMENT计数器</li>
+<li>使用TRUNCATE TABLE不会对事务有影响 （事务后面会说）</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2、DISTINCT关键字的使用"><a href="#2-2、DISTINCT关键字的使用" class="headerlink" title="2.2、DISTINCT关键字的使用"></a>2.2、DISTINCT关键字的使用</h3><ul>
+<li>作用 : 去掉SELECT查询返回的记录结果中重复的记录 ( 返回所有列的值都相同 ) , 只返回一条</li>
+</ul>
+<h3 id="2-3、模糊查询Like"><a href="#2-3、模糊查询Like" class="headerlink" title="2.3、模糊查询Like"></a>2.3、模糊查询Like</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">-- like结合使用的通配符 : % (代表0到任意个字符) _ (一个字符)</span><br><span class="line">SELECT * FROM student</span><br><span class="line">WHERE studentname LIKE &#39;朱%&#39;;</span><br><span class="line"></span><br><span class="line">-- 查询姓朱的同学,后面只有一个字的</span><br><span class="line">SELECT * FROM student</span><br><span class="line">WHERE studentname LIKE &#39;朱_&#39;;</span><br><span class="line"></span><br><span class="line">-- 查询姓朱的同学,后面只有两个字的</span><br><span class="line">SELECT * FROM student</span><br><span class="line">WHERE studentname LIKE &#39;朱__&#39;;</span><br><span class="line"></span><br><span class="line">-- 查询姓名中含有 朱 字的</span><br><span class="line">SELECT * FROM student</span><br><span class="line">WHERE studentname LIKE &#39;%朱%&#39;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4、连接查询"><a href="#2-4、连接查询" class="headerlink" title="2.4、连接查询"></a>2.4、连接查询</h3><p><strong>JOIN 对比</strong></p>
+<table>
+<thead>
+<tr>
+<th>操作符名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>inner join</td>
+<td>如果表中有至少一个匹配，则返回行</td>
+</tr>
+<tr>
+<td>leaf join</td>
+<td>即使右表中没有匹配，也从左表中返回所有的行</td>
+</tr>
+<tr>
+<td>right join</td>
+<td>即使左表中没有匹配，也从右表中返回所有的行</td>
+</tr>
+</tbody></table>
+<h3 id="2-5、排序和分页"><a href="#2-5、排序和分页" class="headerlink" title="2.5、排序和分页"></a>2.5、排序和分页</h3><p><strong>排序</strong></p>
+<ul>
+<li>语法 : ORDER BY<ul>
+<li>ORDER BY 语句用于根据指定的列对结果集进行排序。</li>
+<li>ORDER BY 语句默认按照ASC升序对记录进行排序。</li>
+<li>如果按照降序对记录进行排序，可以使用 DESC 关键字。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM T_TABLE</span><br><span class="line">ORDER BY StudentResult DESC</span><br></pre></td></tr></table></figure>
+
+<p><strong>分页</strong></p>
+<ul>
+<li>语法 : SELECT * FROM table LIMIT [offset,] rows | rows OFFSET offset</li>
+<li>好处 : (用户体验,网络传输,查询压力)</li>
+<li>第N页 : limit (<code>pageNo</code>-1)*<code>pageSzie</code>,<code>pageSzie</code>  [<code>pageNo</code>:页码,<code>pageSize</code>:单页面显示条数]</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM T_TABLE</span><br><span class="line">LIMIT 0,10</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-6、子查询"><a href="#2-6、子查询" class="headerlink" title="2.6、子查询"></a>2.6、子查询</h3><p><strong>什么是子查询?</strong></p>
+<ul>
+<li>在查询语句中的WHERE条件子句中,又嵌套了另一个查询语句</li>
+<li>嵌套查询可由多个子查询组成,求解的方式是由里及外;</li>
+<li>子查询返回的结果一般都是集合,故而建议使用IN关键字;</li>
+</ul>
+<h2 id="3、常用的MySQL函数"><a href="#3、常用的MySQL函数" class="headerlink" title="3、常用的MySQL函数"></a>3、常用的MySQL函数</h2><h3 id="3-1、数据函数："><a href="#3-1、数据函数：" class="headerlink" title="3.1、数据函数："></a>3.1、数据函数：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">SELECT ABS(-8);  &#x2F;*绝对值*&#x2F;</span><br><span class="line">SELECT CEILING(9.4); &#x2F;*向上取整*&#x2F;</span><br><span class="line">SELECT FLOOR(9.4);   &#x2F;*向下取整*&#x2F;</span><br><span class="line">SELECT RAND();  &#x2F;*随机数,返回一个0-1之间的随机数*&#x2F;</span><br><span class="line">SELECT SIGN(0); &#x2F;*符号函数: 负数返回-1,正数返回1,0返回0*&#x2F;</span><br><span class="line">SELECT FORMAT(x,d) &#x2F;*格式化千分位数值 format(1234567.456, 2) &#x3D; 1,234,567.46*&#x2F;</span><br><span class="line">SELECT round(x) -- 四舍五入去整</span><br><span class="line">SELECT pi()  -- 获得圆周率</span><br><span class="line">SELECT pow(m, n) -- m^n</span><br><span class="line">SELECT sqrt(x) -- 算术平方根</span><br><span class="line">SELECT truncate(x, d) -- 截取d位小数</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2、字符串函数："><a href="#3-2、字符串函数：" class="headerlink" title="3.2、字符串函数："></a>3.2、字符串函数：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">SELECT <span class="title">CHAR_LENGTH</span><span class="params">(<span class="string">&#x27;加油&#x27;</span>)</span></span>; <span class="comment">/*返回字符串包含的字符数*/</span></span><br><span class="line"><span class="function">SELECT <span class="title">CONCAT</span><span class="params">(<span class="string">&#x27;我&#x27;</span>,<span class="string">&#x27;爱&#x27;</span>,<span class="string">&#x27;你&#x27;</span>)</span></span>;  <span class="comment">/*合并字符串,参数可以有多个*/</span></span><br><span class="line"><span class="function">SELECT <span class="title">INSERT</span><span class="params">(<span class="string">&#x27;我爱你&#x27;</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="string">&#x27;超级热爱&#x27;</span>)</span></span>;  <span class="comment">/*替换字符串,从某个位置开始替换某个长度*/</span></span><br><span class="line"><span class="function">SELECT <span class="title">LOWER</span><span class="params">(<span class="string">&#x27;ZhuZhu&#x27;</span>)</span></span>; <span class="comment">/*小写*/</span></span><br><span class="line"><span class="function">SELECT <span class="title">UPPER</span><span class="params">(<span class="string">&#x27;ZhuZhu&#x27;</span>)</span></span>; <span class="comment">/*大写*/</span></span><br><span class="line"><span class="function">SELECT <span class="title">LEFT</span><span class="params">(<span class="string">&#x27;hello,world&#x27;</span>,<span class="number">5</span>)</span></span>;   <span class="comment">/*从左边截取*/</span></span><br><span class="line"><span class="function">SELECT <span class="title">RIGHT</span><span class="params">(<span class="string">&#x27;hello,world&#x27;</span>,<span class="number">5</span>)</span></span>;  <span class="comment">/*从右边截取*/</span></span><br><span class="line"><span class="function">SELECT <span class="title">REPLACE</span><span class="params">(<span class="string">&#x27;时间就是金钱&#x27;</span>,<span class="string">&#x27;时间&#x27;</span>,<span class="string">&#x27;努力&#x27;</span>)</span></span>;  <span class="comment">/*替换字符串*/</span></span><br><span class="line"><span class="function">SELECT <span class="title">SUBSTR</span><span class="params">(<span class="string">&#x27;时间就是金钱&#x27;</span>,<span class="number">4</span>,<span class="number">3</span>)</span></span>; <span class="comment">/*截取字符串,开始和长度,如果长度超了就自动截取剩余部分*/</span></span><br><span class="line"><span class="function">SELECT <span class="title">REVERSE</span><span class="params">(<span class="string">&#x27;时间就是金钱&#x27;</span>)</span></span>; <span class="comment">/*反转</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3、日期和时间函数："><a href="#3-3、日期和时间函数：" class="headerlink" title="3.3、日期和时间函数："></a>3.3、日期和时间函数：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">SELECT <span class="title">CURRENT_DATE</span><span class="params">()</span></span>;   <span class="comment">/*获取当前日期*/</span></span><br><span class="line"><span class="function">SELECT <span class="title">CURDATE</span><span class="params">()</span></span>;   <span class="comment">/*获取当前日期*/</span></span><br><span class="line"><span class="function">SELECT <span class="title">NOW</span><span class="params">()</span></span>;   <span class="comment">/*获取当前日期和时间*/</span></span><br><span class="line"><span class="function">SELECT <span class="title">LOCALTIME</span><span class="params">()</span></span>;   <span class="comment">/*获取当前日期和时间*/</span></span><br><span class="line"><span class="function">SELECT <span class="title">SYSDATE</span><span class="params">()</span></span>;   <span class="comment">/*获取当前日期和时间*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*获取年月日,时分秒*/</span></span><br><span class="line"><span class="function">SELECT <span class="title">YEAR</span><span class="params">(NOW()</span>)</span>;</span><br><span class="line"><span class="function">SELECT <span class="title">MONTH</span><span class="params">(NOW()</span>)</span>;</span><br><span class="line"><span class="function">SELECT <span class="title">DAY</span><span class="params">(NOW()</span>)</span>;</span><br><span class="line"><span class="function">SELECT <span class="title">HOUR</span><span class="params">(NOW()</span>)</span>;</span><br><span class="line"><span class="function">SELECT <span class="title">MINUTE</span><span class="params">(NOW()</span>)</span>;</span><br><span class="line"><span class="function">SELECT <span class="title">SECOND</span><span class="params">(NOW()</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-4、系统信息函数："><a href="#3-4、系统信息函数：" class="headerlink" title="3.4、系统信息函数："></a>3.4、系统信息函数：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT VERSION();  &#x2F;*版本*&#x2F;</span><br><span class="line">SELECT USER();     &#x2F;*用户*&#x2F;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-5、聚合函数："><a href="#3-5、聚合函数：" class="headerlink" title="3.5、聚合函数："></a>3.5、聚合函数：</h3><table>
+<thead>
+<tr>
+<th align="center"><strong>函数名称</strong></th>
+<th align="center"><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">COUNT()</td>
+<td align="center">返回满足Select条件的记录总和数，如 select count(*) 【<strong>不建议使用 ，效率低</strong>】</td>
+</tr>
+<tr>
+<td align="center">SUM()</td>
+<td align="center">返回数字字段或表达式列作统计，返回一列的总和。</td>
+</tr>
+<tr>
+<td align="center">AVG()</td>
+<td align="center">可以为数值字段，字符字段或表达式列作统计，返回最大的值。</td>
+</tr>
+<tr>
+<td align="center">MAX()</td>
+<td align="center">可以为数值字段，字符字段或表达式列作统计，返回最大的值。</td>
+</tr>
+<tr>
+<td align="center">MIN()</td>
+<td align="center">可以为数值字段，字符字段或表达式列作统计，返回最小的值。</td>
+</tr>
+</tbody></table>
+<h2 id="4、MD5加密"><a href="#4、MD5加密" class="headerlink" title="4、MD5加密"></a>4、MD5加密</h2><h3 id="4-1、MD5简介"><a href="#4-1、MD5简介" class="headerlink" title="4.1、MD5简介"></a>4.1、MD5简介</h3><p>MD5即Message-Digest Algorithm 5（信息-摘要算法5），用于确保信息传输完整一致。是计算机广泛使用的杂凑算法之一（又译摘要算法、哈希算法），主流编程语言普遍已有MD5实现。将数据（如汉字）运算为另一固定长度值，是杂凑算法的基础原理，MD5的前身有MD2、MD3和MD4。</p>
+<h3 id="4-2、实现数据加密"><a href="#4-2、实现数据加密" class="headerlink" title="4.2、实现数据加密"></a>4.2、实现数据加密</h3><p>如果我们要对数据(一般为密码)进行加密，语法是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update 表名 set 列名 &#x3D; md5(列名);</span><br></pre></td></tr></table></figure>
+
+<p>如果单独对某个用户的密码加密：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update 表名 set 列名 &#x3D; md5(列名) where 条件;</span><br></pre></td></tr></table></figure>
+
+<p>插入新的数据自动加密</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO 表名 VALUES(id,name,md5(<span class="string">&#x27;123456&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<p>查询登录用户信息（md5对比使用，查看用户输入加密后的密码进行比对）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM 表名 WHERE 条件 AND 列名&#x3D;MD5(不经过加密之后的密码);</span><br></pre></td></tr></table></figure>
+
+<h2 id="5、事务控制"><a href="#5、事务控制" class="headerlink" title="5、事务控制"></a>5、事务控制</h2><h3 id="5-1、事务概述"><a href="#5-1、事务概述" class="headerlink" title="5.1、事务概述"></a>5.1、事务概述</h3><ul>
+<li>事务就是将一组SQL语句放在同一批次内去执行</li>
+<li>如果一个SQL语句出错,则该批次内的所有SQL都将被取消执行</li>
+<li>MySQL事务处理只支持InnoDB和BDB数据表类型</li>
+</ul>
+<h3 id="5-2、事务的ACID原则"><a href="#5-2、事务的ACID原则" class="headerlink" title="5.2、事务的ACID原则"></a>5.2、事务的ACID原则</h3><p><strong>原子性(Atomic)</strong></p>
+<ul>
+<li>整个事务中的所有操作，要么全部完成，要么全部不完成，不可能停滞在中间某个环节。事务在执行过程中发生错误，会被回滚（ROLLBACK）到事务开始前的状态，就像这个事务从来没有执行过一样。</li>
+</ul>
+<p><strong>一致性(Consist)</strong></p>
+<ul>
+<li>一个事务可以封装状态改变（除非它是一个只读的）。事务必须始终保持系统处于一致的状态，不管在任何给定的时间并发事务有多少。也就是说：如果事务是并发多个，系统也必须如同串行事务一样操作。其主要特征是保护性和不变性(Preserving an Invariant)，以转账案例为例，假设有五个账户，每个账户余额是100元，那么五个账户总额是500元，如果在这个5个账户之间同时发生多个转账，无论并发多少个，比如在A与B账户之间转账5元，在C与D账户之间转账10元，在B与E之间转账15元，五个账户总额也应该还是500元，这就是保护性和不变性。</li>
+</ul>
+<p><strong>隔离性(Isolated)</strong></p>
+<ul>
+<li>隔离状态执行事务，使它们好像是系统在给定时间内执行的唯一操作。如果有两个事务，运行在相同的时间内，执行相同的功能，事务的隔离性将确保每一事务在系统中认为只有该事务在使用系统。这种属性有时称为串行化，为了防止事务操作间的混淆，必须串行化或序列化请求，使得在同一时间仅有一个请求用于同一数据。</li>
+</ul>
+<p><strong>持久性(Durable)</strong></p>
+<ul>
+<li>在事务完成以后，该事务对数据库所作的更改便持久的保存在数据库之中，并不会被回滚。</li>
+</ul>
+<h3 id="5-3、事务的基本语法"><a href="#5-3、事务的基本语法" class="headerlink" title="5.3、事务的基本语法"></a>5.3、事务的基本语法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">-- 使用set语句来改变自动提交模式</span><br><span class="line">SET autocommit &#x3D; 0;   &#x2F;*关闭*&#x2F;</span><br><span class="line">SET autocommit &#x3D; 1;   &#x2F;*开启*&#x2F;</span><br><span class="line"></span><br><span class="line">-- 注意:</span><br><span class="line">-- 1.MySQL中默认是自动提交</span><br><span class="line">-- 2.使用事务时应先关闭自动提交</span><br><span class="line"></span><br><span class="line">-- 开始一个事务,标记事务的起始点</span><br><span class="line">START TRANSACTION  </span><br><span class="line"></span><br><span class="line">-- 提交一个事务给数据库</span><br><span class="line">COMMIT</span><br><span class="line"></span><br><span class="line">-- 将事务回滚,数据回到本次事务的初始状态</span><br><span class="line">ROLLBACK</span><br><span class="line"></span><br><span class="line">-- 还原MySQL数据库的自动提交</span><br><span class="line">SET autocommit &#x3D;1;</span><br><span class="line"></span><br><span class="line">-- 保存点</span><br><span class="line">SAVEPOINT 保存点名称 -- 设置一个事务保存点</span><br><span class="line">ROLLBACK TO SAVEPOINT 保存点名称 -- 回滚到保存点</span><br><span class="line">RELEASE SAVEPOINT 保存点名称 -- 删除保存点</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-索引"><a href="#6-索引" class="headerlink" title="6.索引"></a>6.索引</h2><h3 id="6-1、索引的作用"><a href="#6-1、索引的作用" class="headerlink" title="6.1、索引的作用"></a>6.1、索引的作用</h3><ul>
+<li>提高查询速度</li>
+<li>确保数据的唯一性</li>
+<li>可以加速表和表之间的连接 , 实现表与表之间的参照完整性</li>
+<li>使用分组和排序子句进行数据检索时 , 可以显著减少分组和排序的时间</li>
+<li>全文检索字段进行搜索优化.</li>
+</ul>
+<h3 id="6-2、索引的分类"><a href="#6-2、索引的分类" class="headerlink" title="6.2、索引的分类"></a>6.2、索引的分类</h3><ul>
+<li>主键索引 (Primary Key)</li>
+<li>唯一索引 (Unique)</li>
+<li>常规索引 (Index)</li>
+<li>全文索引 (FullText)</li>
+</ul>
+<h4 id="6-2-1、主键索引"><a href="#6-2-1、主键索引" class="headerlink" title="6.2.1、主键索引"></a>6.2.1、主键索引</h4><p>主键 : 某一个属性组能唯一标识一条记录</p>
+<p>特点 :</p>
+<ul>
+<li>最常见的索引类型</li>
+<li>确保数据记录的唯一性</li>
+<li>确定特定数据记录在数据库中的位置</li>
+</ul>
+<h4 id="6-2-2、唯一索引"><a href="#6-2-2、唯一索引" class="headerlink" title="6.2.2、唯一索引"></a>6.2.2、唯一索引</h4><p>作用 : 避免同一个表中某数据列中的值重复</p>
+<p>与主键索引的区别</p>
+<ul>
+<li>主键索引只能有一个</li>
+<li>唯一索引可能有多个</li>
+</ul>
+<h4 id="6-2-3、常规索引"><a href="#6-2-3、常规索引" class="headerlink" title="6.2.3、常规索引"></a>6.2.3、常规索引</h4><p>作用 : 快速定位特定数据</p>
+<p>注意 :</p>
+<ul>
+<li>index 和 key 关键字都可以设置常规索引</li>
+<li>应加在查询找条件的字段</li>
+<li>不宜添加太多常规索引,影响数据的插入,删除和修改操作</li>
+</ul>
+<h4 id="6-2-4、全文索引"><a href="#6-2-4、全文索引" class="headerlink" title="6.2.4、全文索引"></a>6.2.4、全文索引</h4><p>作用 : 快速定位特定数据</p>
+<p>注意 :</p>
+<ul>
+<li>只能用于MyISAM类型的数据表</li>
+<li>只能用于CHAR , VARCHAR , TEXT数据列类型</li>
+<li>适合大型数据集</li>
+</ul>
+<h3 id="6-3、索引准则"><a href="#6-3、索引准则" class="headerlink" title="6.3、索引准则"></a>6.3、索引准则</h3><ul>
+<li>索引不是越多越好</li>
+<li>不要对经常变动的数据加索引</li>
+<li>小数据量的表建议不要加索引</li>
+<li>索引一般应加在查找条件的字段</li>
+</ul>
+<h3 id="6-4、索引的数据结构"><a href="#6-4、索引的数据结构" class="headerlink" title="6.4、索引的数据结构"></a>6.4、索引的数据结构</h3><p>我们可以在创建上述索引的时候，为其指定索引类型，分两类：</p>
+<ul>
+<li>hash类型的索引：查询单条快，范围查询慢</li>
+<li>btree类型的索引：b+树，层数越多，数据量指数级增长（我们就用它，因为Innodb默认支持它）</li>
+</ul>
+<p>不同的存储引擎支持的索引类型也不一样：</p>
+<ul>
+<li><code>InnoDB</code> 支持事务，支持行级别锁定，支持 B-tree、Full-text 等索引，不支持 Hash 索引；</li>
+<li><code>MyISAM</code> 不支持事务，支持表级别锁定，支持 B-tree、Full-text 等索引，不支持 Hash 索引；</li>
+<li><code>Memory</code> 不支持事务，支持表级别锁定，支持 B-tree、Hash 等索引，不支持 Full-text 索引；</li>
+<li><code>NDB</code> 支持事务，支持行级别锁定，支持 Hash 索引，不支持 B-tree、Full-text 等索引；</li>
+<li><code>Archive</code> 不支持事务，支持表级别锁定，不支持 B-tree、Hash、Full-text 等索引；</li>
+</ul>
+<h2 id="7-数据库的设计相关"><a href="#7-数据库的设计相关" class="headerlink" title="7.数据库的设计相关"></a>7.数据库的设计相关</h2><h3 id="7-1、规范化数据库设计"><a href="#7-1、规范化数据库设计" class="headerlink" title="7.1、规范化数据库设计"></a>7.1、规范化数据库设计</h3><p>为什么需要数据库设计？</p>
+<p><strong>当数据库比较复杂时我们需要设计数据库</strong></p>
+<p><strong>糟糕的数据库设计 :</strong> </p>
+<ul>
+<li>数据冗余,存储空间浪费</li>
+<li>数据更新和插入的异常</li>
+<li>程序性能差</li>
+</ul>
+<p><strong>良好的数据库设计 :</strong> </p>
+<ul>
+<li><p>节省数据的存储空间</p>
+</li>
+<li><p>能够保证数据的完整性</p>
+</li>
+<li><p>方便进行数据库应用系统的开发</p>
+<p><strong>软件项目开发周期中数据库设计 :</strong></p>
+</li>
+<li><p>需求分析阶段: 分析客户的业务和数据处理需求</p>
+</li>
+<li><p>概要设计阶段:设计数据库的E-R模型图 , 确认需求信息的正确和完整.</p>
+</li>
+</ul>
+<h4 id="7-1-1、设计数据库步骤"><a href="#7-1-1、设计数据库步骤" class="headerlink" title="7.1.1、设计数据库步骤"></a>7.1.1、设计数据库步骤</h4><ul>
+<li><p>收集信息</p>
+</li>
+<li><ul>
+<li>与该系统有关人员进行交流 , 座谈 , 充分了解用户需求 , 理解数据库需要完成的任务.</li>
+</ul>
+</li>
+<li><p>标识实体[Entity]</p>
+</li>
+<li><ul>
+<li>标识数据库要管理的关键对象或实体,实体一般是名词</li>
+</ul>
+</li>
+<li><p>标识每个实体需要存储的详细信息[Attribute]</p>
+</li>
+<li><p>标识实体之间的关系[Relationship]</p>
+</li>
+</ul>
+<h3 id="7-2、三大范式"><a href="#7-2、三大范式" class="headerlink" title="7.2、三大范式"></a>7.2、三大范式</h3><p><strong>第一范式 (1st NF)</strong></p>
+<p>第一范式的目标是确保每列的原子性,如果每列都是不可再分的最小数据单元,则满足第一范式</p>
+<p><strong>第二范式(2nd NF)</strong></p>
+<p>第二范式（2NF）是在第一范式（1NF）的基础上建立起来的，即满足第二范式（2NF）必须先满足第一范式（1NF）。</p>
+<p>第二范式要求每个表只描述一件事情</p>
+<p><strong>第三范式(3rd NF)</strong></p>
+<p>如果一个关系满足第二范式,并且除了主键以外的其他列都不传递依赖于主键列,则满足第三范式.</p>
+<p>第三范式需要确保数据表中的每一列数据都和主键直接相关，而不能间接相关。</p>
+<h3 id="7-3、规范化和性能的关系"><a href="#7-3、规范化和性能的关系" class="headerlink" title="7.3、规范化和性能的关系"></a>7.3、规范化和性能的关系</h3><ul>
+<li>为满足某种商业目标 , 数据库性能比规范化数据库更重要</li>
+<li>在数据规范化的同时 , 要综合考虑数据库的性能</li>
+<li>通过在给定的表中添加额外的字段,以大量减少需要从中搜索信息所需的时间</li>
+<li>通过在给定的表中插入计算列,以方便查询</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/14/MySQL%E5%9B%9E%E9%A1%BE-%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Java设计模式（23种）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>title: Java设计模式（23种）<br>date: 2020-11-14 16:19:56</p>
+</blockquote>
+<h1 id="Java设计模式（23种）"><a href="#Java设计模式（23种）" class="headerlink" title="Java设计模式（23种）"></a>Java设计模式（23种）</h1><h2 id="1-Java设计模式的介绍"><a href="#1-Java设计模式的介绍" class="headerlink" title="1.Java设计模式的介绍"></a>1.Java设计模式的介绍</h2><h3 id="1-1-设计模式-面向对象-的七大原则："><a href="#1-1-设计模式-面向对象-的七大原则：" class="headerlink" title="1.1.设计模式(面向对象)的七大原则："></a>1.1.设计模式(面向对象)的七大原则：</h3><h4 id="1-1-1-单一职责原则"><a href="#1-1-1-单一职责原则" class="headerlink" title="1.1.1.单一职责原则"></a>1.1.1.单一职责原则</h4><p>​        对一个类来说，即一个类应该只负责一项职责，如类A负责两个不同的职责：职责1，职责2.当职责1需要进行改变时，就需要对类A进行改变，会影响到职责2。</p>
+<ol>
+<li>降低类的复杂度，一个类只负责一项职责</li>
+<li>提高类的可读性，可维护性</li>
+<li>降低变更引起的风险</li>
+</ol>
+<h4 id="1-1-2-接口隔离原则"><a href="#1-1-2-接口隔离原则" class="headerlink" title="1.1.2.接口隔离原则"></a>1.1.2.接口隔离原则</h4><p>​        客户端不应该依赖它不需要的接口，即一个类对另一个类的依赖应建立在最小接口上</p>
+<h4 id="1-1-3-依赖倒转-倒置-原则"><a href="#1-1-3-依赖倒转-倒置-原则" class="headerlink" title="1.1.3.依赖倒转(倒置)原则"></a>1.1.3.依赖倒转(倒置)原则</h4><ol>
+<li>高层模块不应该依赖底层模块，二者应该是依赖其抽象类</li>
+<li>抽象不应该依赖细节，细节应该依赖抽象</li>
+<li>相对于细节的多变性，抽象的东西要稳定的多，以抽象为基础搭建的架构比以细节为基础的架构要稳定得多。</li>
+</ol>
+<h4 id="1-1-4-里氏替换原则"><a href="#1-1-4-里氏替换原则" class="headerlink" title="1.1.4.里氏替换原则"></a>1.1.4.里氏替换原则</h4><p>​        继承使两个类的耦合性增强，在适当的情况下，可以通过<strong>聚合，组合，依赖</strong>来解决问题</p>
+<h4 id="1-1-5-开闭原则"><a href="#1-1-5-开闭原则" class="headerlink" title="1.1.5.开闭原则"></a>1.1.5.开闭原则</h4><ol>
+<li>开闭原则是编程中最基础，最重要的设计原则</li>
+<li>一个软件实体，如类，模块，和函数应该对扩展开放（对提供方），对修改关闭（对使用方）。用抽象构建框架，用实现扩展细节</li>
+<li>当有软件需要变化时，尽量通过扩展软件实体的行为来实现变化，而不是通过修改已有的代码来实现变化。</li>
+<li>编程中遵循其他原则，设计模式的目的就是遵循开闭原则</li>
+</ol>
+<h4 id="1-1-6-迪米特法则"><a href="#1-1-6-迪米特法则" class="headerlink" title="1.1.6.迪米特法则"></a>1.1.6.迪米特法则</h4><ol>
+<li>一个类对自己依赖的类知道的越少越好，也就是说，对于被依赖的类不管多么复杂，都尽量将逻辑封装在类的内部，对外出了提供public方法，不对外泄露任何信息</li>
+<li>陌生的类最好不要以局部变量的形式出现在成员内部</li>
+</ol>
+<h4 id="1-1-7-合成复用原则"><a href="#1-1-7-合成复用原则" class="headerlink" title="1.1.7.合成复用原则"></a>1.1.7.合成复用原则</h4><p>​        原则是尽量使用合成/聚合的方式，而不是使用继承</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/14/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%8823%E7%A7%8D%EF%BC%89/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-数据结构与算法（算法）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>title: 数据结构与算法（算法）<br>date: 2020-11-14 16:14:58</p>
+</blockquote>
+<h1 id="数据结构与算法（算法）"><a href="#数据结构与算法（算法）" class="headerlink" title="数据结构与算法（算法）"></a>数据结构与算法（算法）</h1><h2 id="1-二分查找算法"><a href="#1-二分查找算法" class="headerlink" title="1.二分查找算法"></a>1.二分查找算法</h2>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/14/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%88%E7%AE%97%E6%B3%95%EF%BC%89/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Java基础回顾-高级部分(三)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1928,949 +2551,9 @@
 
 
   
-    <article id="post-数据结构与算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-09-26T08:38:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>###数据结构与算法：</p>
-<pre><code>2.1.1数据结构和算法的关系
-
-    1) 数据 data 结构(structure)是一门 研究组织数据方式的学科，有了编程语言也就有了数据结构.学好数据结构可以
-        编写出更加漂亮,更加有效率的代码。
-
-    2) 要学习好数据结构就要多多考虑如何将生活中遇到的问题,用程序去实现解决.
-
-    3) 程序 = 数据结构 + 算法
-
-    4) 数据结构是算法的基础, 换言之，想要学好算法，需要把数据结构学到位。</code></pre>
-<p>###数据结构：</p>
-<pre><code>数据结构包含两种结构：线型结构和非线性结构
-
-    线性结构
-
-        线性结构作为最常用的数据结构，其特点是数据元素之间存在一对一的线性关系
-
-        线性结构有两种不同的存储结构，即顺序存储结构和链式存储结构。顺序存储的线性表称为顺序表，顺序表中的存储元素是连续的
-
-        链式存储的线性表称为链表，链表中的存储元素不一定是连续的，元素节点中存放数据元素以及相邻元素的地址信息
-
-        线性结构常见的有：数组、队列、链表和栈，后面我们会详细讲解.
-
-    非线性结构
-
-        非线性结构包括：二维数组，多维数组，广义表，树结构，图结构</code></pre>
-<p>###稀疏数组sparsearray</p>
-<pre><code>基本介绍
-
-    当一个数组中大部分元素为０，或者为同一个值的数组时，可以使用稀疏数组来保存该数组。
-
-    稀疏数组的处理方法是:
-
-    记录数组一共有几行几列，有多少个不同的值
-
-    把具有不同值的元素的行列及值记录在一个小规模的数组中，从而缩小程序的规模</code></pre>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-SpringBoot其余知识" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/23/SpringBoot%E5%85%B6%E4%BD%99%E7%9F%A5%E8%AF%86/">SpringBoot其余知识</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/23/SpringBoot%E5%85%B6%E4%BD%99%E7%9F%A5%E8%AF%86/" class="archive-article-date">
-  	<time datetime="2020-09-23T07:04:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>###Swagger</p>
-<pre><code>1.问题：前后端分离，前后端集成联调，启动暖人员和后端人员无法做到“及时协商，尽早解决”
-
-2.解决方法：首先指定schema（计划的提纲），实时更新最新的api，降低集成的风险
-
-Swagger：世界上最流行的api框架
-
-RestFul Api文档在线自动生成工具==&gt;Api文档与API定义同步更新
-
-直接运行，可以在线测试api接口
-
-支持多种语言（java，php）
-
-
-3.在项目中使用swagger
-
-    （1）swagger2
-
-    （2）ui
-
-SpringBoot集成Swagger
-
-
-    1.新建一个springboot项目
-
-    2.导入相关的依赖
-
-        &lt;dependency&gt;
-            &lt;groupId&gt;io.springfox&lt;/groupId&gt;
-            &lt;artifactId&gt;springfox-swagger2&lt;/artifactId&gt;
-            &lt;version&gt;3.0.0&lt;/version&gt;
-        &lt;/dependency&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;io.springfox&lt;/groupId&gt;
-            &lt;artifactId&gt;springfox-swagger-ui&lt;/artifactId&gt;
-            &lt;version&gt;3.0.0&lt;/version&gt;
-        &lt;/dependency&gt;
-
-    3.编写一个hallo工程
-
-    4.配置Swagger ==&gt;  Config
-
-        @Configuration
-        @EnableSwagger2
-        public class SwaggerConfig &#123;
-                    &#125;
-
-    5.测试运行
-
-    6.配置一些swagger的设置：配置扫描的接口
-
-        @Configuration
-        @EnableSwagger2
-        public class SwaggerConfig &#123;
-
-
-            //配置了Swagger的Docket的bean实例
-            @Bean
-            public Docket docket()&#123;
-
-                /**
-                 * RequestHandlerSelectors指定要扫描接口的方式
-                 * basePackage：扫描指定的包
-                 * any():扫描全部
-                 * none()不扫描
-                 * withClassAnnotation:扫描类上的注解
-                 * withMethodAnnotation:扫描方法上的注解
-                 *
-                 * paths():过滤什么路径（只扫描带有/hello下面的路径）
-                 *
-                 *
-                 */
-                return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo())
-                        .select().apis(RequestHandlerSelectors.basePackage(&quot;com.example.Controller&quot;))
-                        .paths(PathSelectors.ant(&quot;/hello/**&quot;)).build();
-            &#125;
-
-            public ApiInfo apiInfo()&#123;
-
-                Contact contact = new Contact(&quot;朱立涛&quot;, &quot;https://dylantao24.github.io/&quot;, &quot;785280317@qq.com&quot;);
-
-                return new ApiInfo(&quot;朱立涛的SwaggerAPI文档&quot;,
-                        &quot;有志者事竟成&quot;,
-                        &quot;v1.0&quot;,
-                        &quot;https://dylantao24.github.io/&quot;,
-                         contact,
-                        &quot;Apache 2.0&quot;,
-                        &quot;http://www.apache.org/licenses/LICENSE-2.0&quot;,
-                        new ArrayList());
-            &#125;
-        &#125;
-
-    7.配置是否启动Swagger：
-
-        new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).enable(false)
-
-        Docket.enable(false)：是否启用Swagger
-
-    8.配置API文档的分组：
-
-        .groupName(&quot;猪猪&quot;)
-
-        如何配置多个分组：创建多个Docket注册到bean中
-
-    实体类配置
-
-        必须要在返回值中带实体类 ，且实体类的属性是public的
-         @PostMapping(&quot;/user&quot;)
-        @ResponseBody
-        public User user()&#123;
-
-            return new User();
-        &#125;
-
-
-        可以在实体类和属性上加注解，来注释
-        @ApiModel(&quot;用户实体类&quot;)
-        public class User &#123;
-
-            @ApiModelProperty(&quot;年龄&quot;)
-            public int age;
-
-            @ApiModelProperty(&quot;姓名&quot;)
-            public String name;
-        &#125;
-        用户实体类&#123;
-        age    integer($int32)
-        年龄
-
-        name    string
-        姓名
-
-        &#125;
-
-    总结：
-
-        1.我们可以通过Swagger给一些比较难理解的属性或者接口，增加注释信息
-
-        2.接口文档实时更新
-
-        3.可以在线测试
-
-    Swagger是一个优秀的工具！
-
-    注意点：正式发布的时候关闭Swagger！！！处于安全考虑，而且节省运行的内存</code></pre>
-<p>###异步任务：</p>
-<pre><code>    在方法上加@Async注解告诉spring这是一个异步方法
-
-    在启动类上开启异步注解 @EnableAsync</code></pre>
-<p>###邮件任务</p>
-<pre><code>    1.引入依赖
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-mail&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    2.在配置文件中配置邮箱信息
-
-        spring:
-          mail:
-            password: fwnxpraubvygbbfc
-            username: 785280317@qq.com
-            host: smtp.qq.com
-
-        #    开启加密验证
-            properties: &#123;mail.smtp.enable=true&#125;
-
-    3.编写类
-
-        用JavaMailSenderImpl类来进行邮件的发送 
-
-        @Autowired
-        JavaMailSenderImpl javaMailSender;
-
-
-        简单邮件：
-        @Test
-        void contextLoads() &#123;
-
-            SimpleMailMessage mail = new SimpleMailMessage();
-
-            mail.setSubject(&quot;小猪猪你好呀&quot;);
-
-            mail.setFrom(&quot;785280317@qq.com&quot;);
-
-            mail.setTo(&quot;785280317@qq.com&quot;);
-
-            mail.setText(&quot;我爱你小猪猪！&quot;);
-
-            javaMailSender.send(mail);
-
-        &#125;
-
-        复杂邮件：
-
-        @Test
-        void test() throws MessagingException &#123;
-
-            MimeMessage mes = javaMailSender.createMimeMessage();
-
-            MimeMessageHelper helper = new MimeMessageHelper(mes,true);
-
-            helper.setFrom(&quot;785280317@qq.com&quot;);
-
-            helper.setTo(&quot;785280317@qq.com&quot;);
-
-            helper.addAttachment(&quot;1.jpg&quot;,new File(&quot;D://JAVA图片库//timg.jpg&quot;));
-
-            helper.setSubject(&quot;小猪猪你好呀&quot;);
-
-            helper.setText(&quot;&lt;h1&gt;我爱你&lt;/h1&gt;&quot;,true);
-
-            javaMailSender.send(mes);
-
-        &#125;</code></pre>
-<p>###定时执行任务</p>
-<pre><code>核心接口：
-
-    TaskScheduler 任务计划程序
-
-    TaskExecutor 任务执行器
-
-    @EnableScheduling 在执行类上开启定时功能
-
-    @Scheduled 什么时候执行 cron表达式 &quot;秒 分 时 日 月 星期&quot; 
-
-    @Service
-    public class Schedulerservice &#123;
-
-        @Scheduled(cron = &quot;59 14 17 * * ?&quot;)
-        public void hello()&#123;
-            System.out.println(&quot;hello,你被out了~~&quot;);
-        &#125;
-    &#125;</code></pre>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/23/SpringBoot%E5%85%B6%E4%BD%99%E7%9F%A5%E8%AF%86/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-SpringBoot初体验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/17/SpringBoot%E5%88%9D%E4%BD%93%E9%AA%8C/">SpringBoot初体验</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/17/SpringBoot%E5%88%9D%E4%BD%93%E9%AA%8C/" class="archive-article-date">
-  	<time datetime="2020-09-17T02:13:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>###SpirngBoot</p>
-<pre><code>1.微服务阶段：
-
-    javase：OOP
-
-    mysql：持久化
-
-    html+css+js+jQuery+前端框架
-
-    javaweb：独立开发MVC三层架构的网站，原始
-
-    ssm：框架，简化了我们的开发流程，配置也开始较为复杂
-
-    之前都是打包打成war包：必须在tomcat下运行
-
-    spring再简化：SpringBoot-jar：内嵌tomcat，微服务架构！
-
-    服务越来越多：SpringCloud
-
-2.什么是SpringBoot
-
-    1.约定大于配置 maven，spring，springmvc，springboot，容器化组件
-
-    2.优点：1.为所有Spring开发者更快的入门
-
-            2.开箱即用，提供各种默认配置来简化项目配置
-
-            3.内嵌式容器简化web项目
-
-            4.没有冗余代码生成和XML配置的要求
-
-    3.微服务的解析：
-
-        https://www.cnblogs.com/liuning8023/p/4493156.html
-
-    4.建立一个springboot的模块
-
-        修改端口号：在application.properties中写 server.port=8081
-
-        修改banner（标语）：在resources中加入banner.txt</code></pre>
-<p>###SpringBoot自动装配原理</p>
-<pre><code>1.自动配置pom.xml
-    spring-boot-dependencies：核心依赖在父工程中
-
-2.我们在写或者引入一些springboot依赖的时候，不需要指定版本，因为有这些版本仓库
-
-3.启动器：    &lt;dependency&gt;
-                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-                &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
-            &lt;/dependency&gt;
-
-            说白了就是springboot的启动场景，帮我们自动导入web环境所有的依赖
-            springboot会将所有的功能场景都变成一个个的启动器，我们需要什么
-            功能，就只需要找到一个个对应的启动器就行了
-
-4.主程序
-
-    //@SpringBootApplication  标注这个类是一个Springboot的应用
-        @SpringBootApplication
-        public class HelloApplication &#123;
-
-            public static void main(String[] args) &#123;
-                SpringApplication.run(HelloApplication.class, args);
-            &#125;
-
-        &#125;
-
-        @SpringBootConfiguration //springboot的配置，启动类下的所有资源被导入
-            @Configuration：spring配置类
-            @Component：说明这也是一个spring组件
-
-
-        @EnableAutoConfiguration //自动配置
-            @AutoConfigurationPackage:自动配置包
-                @Import(&#123;Registrar.class&#125;)：导入选择器,自动配置包注册
-
-            @Import(&#123;AutoConfigurationImportSelector.class&#125;):自动配置 导入选择
-
-        META-INF/spring.factories：自动配置核心文件
-
-        自动装配原理：
-
-            主类： HelloApplication
-
-
-                                        @SpringBootConfiguration： ---&gt; @Configuration:spring配置类 ---&gt;  @Component:配置中的一个组件
-
-                                                                                    @AutoConfigurationPackage --&gt; @Import(&#123;Registrar.class&#125;):自动注册表
-
-            @SpringBootApplication --&gt;     @EnableAutoConfiguration：启用自动装配 ---&gt; 
-
-                                                                                    AutoConfigurationImportSelector：自动导包的核心 --&gt; 选择了什么东西 --&gt; getAutoConfigurationEntry:获得自动配置的入口--&gt; getCandidateConfigurations：获取候选的配置--&gt;loadFactoryNames(): 加载工厂的名字 --&gt;loadSpringFactories:读取spring工厂信息 --&gt;
-                                                                                    classLoader.getResources(&quot;META-INF/spring.factories&quot;) : ClassLoader.getSystemResources(&quot;META-INF/spring.factories&quot;):获取配置，从这些配置遍历所有的自动配置，遍历完成封装为一个properties供我们使用，
-
-
-                                        @ComponentScan:表示扫描主类同级的包
-
-        思考：这么多配置为什么没有生效：需要导入对应的start才会有作用，核心注解@ConditionalOnClass必须要满足注解里面所有条件才能使类生效(必须要引入所有的jar包)
-
-        结论：springboot所有的自动配置都是在启动的时候扫描并加载：springfactories所有的自动配置类都在里面，但是不一定生效，判断条件是否成立，只要导入了对应的start，就有了对应的启动器
-        ，有了启动器，我们的自动装配就会生效，然后就配置成功。</code></pre>
-<p>###SpringBoot启动类怎么运行</p>
-<pre><code>1.启动SpringApplication：
-
-    1.推断应用的项目是普通的项目还是java的项目
-
-    2.查找并加载所有可用初始化器，设置到initializers属性中
-
-    3.找出所有的应用程序监听器，设置到listeners中
-
-    4.推断并设置main方法的定义类，找到运行的主类    </code></pre>
-<p>###关于springboot，谈谈理解：</p>
-<pre><code>1.自动装配
-
-2.run()方法</code></pre>
-<p>##SpirngBoot配置文件：</p>
-<pre><code>1.yaml：键值对写法： key: value 键：空格 值
-        能保存键值对，也能保存对象
-        student：
-            name： 朱立涛
-            age： 3
-        或者student：&#123;name： 朱立涛,age： 3&#125;
-
-        yaml文件严格遵循配置，空格不能写错
-
-2.给pojo实体类的属性赋值方法
-
-    1. 通过Value注解赋值
-
-        @Value(&quot;旺财&quot;)
-        private String name;
-
-        @Value(&quot;3&quot;)
-        private Integer age;
-
-    2.通过yaml文件的属性赋值
-
-    导入一个处理器
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-boot-configuration-processor&lt;/artifactId&gt;
-            &lt;optional&gt;true&lt;/optional&gt;
-        &lt;/dependency&gt;
-
-        dog:
-          name: 猪猪
-          age: 3
-
-         然后
-          @ConfigurationProperties(prefix = &quot;dog&quot;)
-
-    3.指定配置文件
-
-        @PropertySource(value = &quot;classpath:&quot;)
-
-        写一个配置文件，然后和类绑定在一起，然后用el表达式取出来
-
-    4.yaml松散绑定：lastName 和last_name或者last-name一样
-
-    5.JSR303校验
-        @Validated//jsr303校验
-
-        https://upload-images.jianshu.io/upload_images/3145530-8ae74d19e6c65b4c?imageMogr2/auto-orient/strip|imageView2/2/w/654/format/webp
-
-        https://upload-images.jianshu.io/upload_images/3145530-10035c6af8e90a7c?imageMogr2/auto-orient/strip|imageView2/2/w/432/format/webp
-
-    6.多环境配置：
-
-        SpringBoot的多环境配置：
-            //springboot的多环境配置，可以选择激活哪个配置文件
-                spring:
-                  profiles:
-                    active: 
-        yaml配置文件的多环境配置：
-            server:
-              port: 8080
-            spring:
-              profiles:
-                active: dev
-            ---
-
-            server:
-              port: 8081
-            spring:
-              profiles: dev
-
-
-            ---
-            server:
-              port: 8082
-            spring:
-              profiles: test</code></pre>
-<p>###SpringBoot自动配置原理详细</p>
-<pre><code>1.SpringBoot启动会加载大量的自动配置类
-
-2.我们看我们需要的功能有没有在SpringBoot默认写好的自动配置类中
-
-3.我们再来看这个自动配置类到底配置了哪些组件（我们用的组件只要在其中，那我们就不需要手动去配置了）
-
-4.给容器中自动配置类添加组件时，会从properties类中获取某些属性，我们只需要在配置文件中指定这些属性的值即可；
-
-5.xxxxAutoConfigurartion：自动配置类：给容器中添加组件
-
-6.xxxxProperties：封装配置文件中的相关属性</code></pre>
-<p>###SpringBoot Web开发</p>
-<pre><code>1.在springboot中，我们可以使用以下方式去处理静态资源：
-    webjars
-    classpath：public
-    classpath：static
-    classpath：resources
-    classpath：/**
-
-
-2.首页如何定制
-
-    在2.20以上版本已经取消定制
-
-3.模板引擎
-
-    springboot推荐使用模板引擎：Thymeleaf
-
-    1.导入依赖
-        dependency&gt;
-            &lt;groupId&gt;org.thymeleaf.extras&lt;/groupId&gt;
-            &lt;artifactId&gt;thymeleaf-extras-java8time&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.thymeleaf&lt;/groupId&gt;
-            &lt;artifactId&gt;thymeleaf-spring5&lt;/artifactId&gt;
-        &lt;/dependency&gt;
-        &lt;dependency&gt;
-
-    2.  private static final Charset DEFAULT_ENCODING;
-        public static final String DEFAULT_PREFIX = &quot;classpath:/templates/&quot;;
-        public static final String DEFAULT_SUFFIX = &quot;.html&quot;;
-
-           Thymeleaf默认前缀后缀
-
-    3.只要使用themeleaf，只需要导入依赖就行</code></pre>
-<p>###MVC配置原理</p>
-<pre><code>1.如果想自定义一些定制化的功能，只需要写这个组件，然后将它交给springboot（注册bean）。
-
-2.在SpringBoot中有非常多的xxxx Configuration帮助我们进行拓展配置</code></pre>
-<p>###练习一个小项目</p>
-<pre><code>国际化： i18n
-
-    实现LocaleResolver（语言环境解析器）接口，然后将实现的注册到bean中
-
-    注意点:在注册时，方法名要写LocaleResolver，否则springboot自动配置无法识别
-
-    public class MyLocaleResolver implements LocaleResolver &#123;
-    @Override
-    public Locale resolveLocale(HttpServletRequest httpServletRequest) &#123;
-        String la = httpServletRequest.getParameter(&quot;la&quot;);
-
-        System.out.println(la);
-
-        Locale locale = Locale.getDefault();
-
-        if (!StringUtils.isEmpty(la))&#123;
-            String[] s = la.split(&quot;_&quot;);
-
-            Locale locale1 = new Locale(s[0],s[1]);
-
-            return locale1;
-        &#125;
-        return locale;
-    &#125;
-
-    @Override
-    public void setLocale(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Locale locale) &#123;
-
-    &#125;
-
-    @Bean
-    public LocaleResolver localeResolver()&#123;
-        return new MyLocaleResolver();
-    &#125;
-
-    步骤：1.配置i18m配置文件
-          2.编写LocaleResolver的实现类（自定义一个LocaleResolver组件）
-          3.注册到bean里（写的组件配置到spring中）</code></pre>
-<p>###如何写一个网站</p>
-<pre><code>1.前端：页面长啥样子：数据
-
-2.设计数据库
-
-3.前端让他能够自动运行，独立化工程
-
-4.数据接口如何对接:json,对象 all in one！
-
-5.前后端联调设置</code></pre>
-<p>###SpringBoot数据库连接</p>
-<pre><code>1.对于数据访问层，springboot底层都是采用的Spring Data的方式统一进行处理的</code></pre>
-<p>###SpringSecurity</p>
-<pre><code>springboot安全框架：
-    1.Shiro：
-        核心：
-        Subject：当前用户
-        Shiro SecurityManager：管理所有的subject，核心中的核心，它负责与shiro进行交互，相
-                                    当于SpringMVC里面的DispatherServlet的角色
-        Realm：保证你的数据访问控制，Shiro从Realm中获取安全数据，ShiroSecurity要验证身份，需要从
-                    Realm中获得相应的用户进行比较，可以把Realm看做DataSource
-
-    2.先导入依赖
-
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.apache.shiro&lt;/groupId&gt;
-            &lt;artifactId&gt;shiro-spring&lt;/artifactId&gt;
-            &lt;version&gt;1.6.0&lt;/version&gt;
-        &lt;/dependency&gt;
-
-    3.配置自定义的Realm 继承了 AuthorizingRealm
-
-        public class UserReaml extends AuthorizingRealm &#123;
-            @Override
-            protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) &#123;
-                System.out.println(&quot;执行了授权方法&quot;);
-                return null;
-            &#125;
-
-            @Override
-            protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException &#123;
-                System.out.println(&quot;执行了认证方法&quot;);
-                return null;
-            &#125;
-        &#125;
-    4.编写shiro三大要素： realm(领域) 和 DefaultWebSecurityManager  和  shirofilterfactorybean 
-
-        @Configuration
-        public class SecurityConfigration &#123;
-
-            //shiroFilterFactoryBean
-            @Bean
-            public ShiroFilterFactoryBean shiroFilterFactoryBean(@Qualifier(&quot;dwsm&quot;)DefaultWebSecurityManager defaultWebSecurityManager)&#123;
-
-                ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-
-                shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
-
-                return shiroFilterFactoryBean;
-
-            &#125;
-
-
-            //DefaultWebSecurityManager
-            @Bean(name = &quot;dwsm&quot;)
-            public DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier(&quot;userReaml&quot;) Realm realm)&#123;
-                DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
-
-                defaultWebSecurityManager.setRealm(realm);
-                return defaultWebSecurityManager;
-            &#125;
-
-            //创建realm对象，需要自定义
-            @Bean
-            public UserReaml userReaml()&#123;
-                return new UserReaml();
-            &#125;
-
-
-        &#125;
-
-    5.在shiro中权限管理代码在shirofilterfactorybean方法中实现
-        //添加shiro的内置过滤器
-
-            /*
-                anon：无需认证就可以访问
-                authc：必须认证了才能访问
-                user：必须拥有记住我这个功能才能用
-                perms：拥有对某个资源的权限才能访问
-                role：拥有某个角色权限才能访问
-             */
-
-
-            Map&lt;String, String&gt; filterChainDefinitionMap = new LinkedHashMap&lt;&gt;();
-
-            filterChainDefinitionMap.put(&quot;/add&quot;,&quot;anon&quot;);
-            filterChainDefinitionMap.put(&quot;/update&quot;,&quot;authc&quot;);
-
-            shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
-
-            shiroFilterFactoryBean.setLoginUrl(&quot;/tologin&quot;);
-
-    6.在controller中用UsernamePasswordToken这个类来验证用户名和密码做认证
-
-        @RequestMapping(&quot;/login&quot;)
-        public String login(String username,String password,Model model)&#123;
-
-            Subject subject = SecurityUtils.getSubject();
-
-            AuthenticationToken authenticationToken = new UsernamePasswordToken(username,password);
-
-
-            try &#123;
-                subject.login(authenticationToken);
-                return &quot;index&quot;;
-            &#125;catch (UnknownAccountException e)&#123;
-                model.addAttribute(&quot;msg&quot;,&quot;用户名错误&quot;);
-                System.out.println(&quot;用户名错误&quot;);
-                return &quot;login&quot;;
-            &#125;catch (IncorrectCredentialsException e)&#123;
-                model.addAttribute(&quot;msg&quot;,&quot;密码错误&quot;);
-                return &quot;login&quot;;
-            &#125;
-
-
-        &#125;
-
-    7.导入mybatis做整合，增加权限验证
-
-        public class UserReaml extends AuthorizingRealm &#123;
-
-            @Resource
-            private EmployeeService service;
-
-            @Override
-            protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) &#123;
-                System.out.println(&quot;执行了授权方法&quot;);
-
-                Subject subject = SecurityUtils.getSubject();
-
-                SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-
-                String username = (String) subject.getPrincipal();
-
-                Employee employee = service.queryEmployeeByname(username);
-
-
-                System.out.println(employee);
-
-                info.addStringPermission(employee.getAuthority());
-
-                return info;
-            &#125;
-
-            @Override
-            protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException &#123;
-                System.out.println(&quot;执行了认证方法&quot;);
-
-                UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
-
-                Employee employee = service.queryEmployeeByname(token.getUsername());
-
-                if (employee == null) &#123;
-                    return null;
-                &#125; else &#123;
-                    if (!token.getUsername().equals(employee.getUsername())) &#123;
-                        return null;
-                    &#125;
-                    return new SimpleAuthenticationInfo(employee.getUsername(), employee.getPassword(), &quot;&quot;);
-                &#125;
-            &#125;
-        &#125;
-
-    8.权限设置：
-
-        Map&lt;String, String&gt; filterChainDefinitionMap = new LinkedHashMap&lt;&gt;();
-
-
-    //        filterChainDefinitionMap.put(&quot;/update&quot;,&quot;authc&quot;);
-            filterChainDefinitionMap.put(&quot;/user/update&quot;,&quot;perms[user:update]&quot;);
-            filterChainDefinitionMap.put(&quot;/user/add&quot;,&quot;perms[user:add]&quot;);
-           filterChainDefinitionMap.put(&quot;/user/*&quot;,&quot;authc&quot;);
-
-
-            shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
-
-            shiroFilterFactoryBean.setUnauthorizedUrl(&quot;/noauth&quot;);
-
-            shiroFilterFactoryBean.setLoginUrl(&quot;/tologin&quot;);</code></pre>
-<p>###Shiro和Thymeleaf整合：</p>
-<pre><code>1.导入依赖
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;com.github.theborakompanioni&lt;/groupId&gt;
-        &lt;artifactId&gt;thymeleaf-extras-shiro&lt;/artifactId&gt;
-        &lt;version&gt;2.0.0&lt;/version&gt;
-    &lt;/dependency&gt;
-
-2.整合需要配置：
-
-    ShiroDialect：用来整合shiro和thymeleaf</code></pre>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/17/SpringBoot%E5%88%9D%E4%BD%93%E9%AA%8C/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
     </nav>
   
 

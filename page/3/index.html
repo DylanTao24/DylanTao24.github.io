@@ -152,6 +152,946 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-数据结构与算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2020-09-26T08:38:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###数据结构与算法：</p>
+<pre><code>2.1.1数据结构和算法的关系
+
+    1) 数据 data 结构(structure)是一门 研究组织数据方式的学科，有了编程语言也就有了数据结构.学好数据结构可以
+        编写出更加漂亮,更加有效率的代码。
+
+    2) 要学习好数据结构就要多多考虑如何将生活中遇到的问题,用程序去实现解决.
+
+    3) 程序 = 数据结构 + 算法
+
+    4) 数据结构是算法的基础, 换言之，想要学好算法，需要把数据结构学到位。</code></pre>
+<p>###数据结构：</p>
+<pre><code>数据结构包含两种结构：线型结构和非线性结构
+
+    线性结构
+
+        线性结构作为最常用的数据结构，其特点是数据元素之间存在一对一的线性关系
+
+        线性结构有两种不同的存储结构，即顺序存储结构和链式存储结构。顺序存储的线性表称为顺序表，顺序表中的存储元素是连续的
+
+        链式存储的线性表称为链表，链表中的存储元素不一定是连续的，元素节点中存放数据元素以及相邻元素的地址信息
+
+        线性结构常见的有：数组、队列、链表和栈，后面我们会详细讲解.
+
+    非线性结构
+
+        非线性结构包括：二维数组，多维数组，广义表，树结构，图结构</code></pre>
+<p>###稀疏数组sparsearray</p>
+<pre><code>基本介绍
+
+    当一个数组中大部分元素为０，或者为同一个值的数组时，可以使用稀疏数组来保存该数组。
+
+    稀疏数组的处理方法是:
+
+    记录数组一共有几行几列，有多少个不同的值
+
+    把具有不同值的元素的行列及值记录在一个小规模的数组中，从而缩小程序的规模</code></pre>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/26/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-SpringBoot其余知识" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/23/SpringBoot%E5%85%B6%E4%BD%99%E7%9F%A5%E8%AF%86/">SpringBoot其余知识</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/23/SpringBoot%E5%85%B6%E4%BD%99%E7%9F%A5%E8%AF%86/" class="archive-article-date">
+  	<time datetime="2020-09-23T07:04:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###Swagger</p>
+<pre><code>1.问题：前后端分离，前后端集成联调，启动暖人员和后端人员无法做到“及时协商，尽早解决”
+
+2.解决方法：首先指定schema（计划的提纲），实时更新最新的api，降低集成的风险
+
+Swagger：世界上最流行的api框架
+
+RestFul Api文档在线自动生成工具==&gt;Api文档与API定义同步更新
+
+直接运行，可以在线测试api接口
+
+支持多种语言（java，php）
+
+
+3.在项目中使用swagger
+
+    （1）swagger2
+
+    （2）ui
+
+SpringBoot集成Swagger
+
+
+    1.新建一个springboot项目
+
+    2.导入相关的依赖
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;io.springfox&lt;/groupId&gt;
+            &lt;artifactId&gt;springfox-swagger2&lt;/artifactId&gt;
+            &lt;version&gt;3.0.0&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;io.springfox&lt;/groupId&gt;
+            &lt;artifactId&gt;springfox-swagger-ui&lt;/artifactId&gt;
+            &lt;version&gt;3.0.0&lt;/version&gt;
+        &lt;/dependency&gt;
+
+    3.编写一个hallo工程
+
+    4.配置Swagger ==&gt;  Config
+
+        @Configuration
+        @EnableSwagger2
+        public class SwaggerConfig &#123;
+                    &#125;
+
+    5.测试运行
+
+    6.配置一些swagger的设置：配置扫描的接口
+
+        @Configuration
+        @EnableSwagger2
+        public class SwaggerConfig &#123;
+
+
+            //配置了Swagger的Docket的bean实例
+            @Bean
+            public Docket docket()&#123;
+
+                /**
+                 * RequestHandlerSelectors指定要扫描接口的方式
+                 * basePackage：扫描指定的包
+                 * any():扫描全部
+                 * none()不扫描
+                 * withClassAnnotation:扫描类上的注解
+                 * withMethodAnnotation:扫描方法上的注解
+                 *
+                 * paths():过滤什么路径（只扫描带有/hello下面的路径）
+                 *
+                 *
+                 */
+                return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo())
+                        .select().apis(RequestHandlerSelectors.basePackage(&quot;com.example.Controller&quot;))
+                        .paths(PathSelectors.ant(&quot;/hello/**&quot;)).build();
+            &#125;
+
+            public ApiInfo apiInfo()&#123;
+
+                Contact contact = new Contact(&quot;朱立涛&quot;, &quot;https://dylantao24.github.io/&quot;, &quot;785280317@qq.com&quot;);
+
+                return new ApiInfo(&quot;朱立涛的SwaggerAPI文档&quot;,
+                        &quot;有志者事竟成&quot;,
+                        &quot;v1.0&quot;,
+                        &quot;https://dylantao24.github.io/&quot;,
+                         contact,
+                        &quot;Apache 2.0&quot;,
+                        &quot;http://www.apache.org/licenses/LICENSE-2.0&quot;,
+                        new ArrayList());
+            &#125;
+        &#125;
+
+    7.配置是否启动Swagger：
+
+        new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).enable(false)
+
+        Docket.enable(false)：是否启用Swagger
+
+    8.配置API文档的分组：
+
+        .groupName(&quot;猪猪&quot;)
+
+        如何配置多个分组：创建多个Docket注册到bean中
+
+    实体类配置
+
+        必须要在返回值中带实体类 ，且实体类的属性是public的
+         @PostMapping(&quot;/user&quot;)
+        @ResponseBody
+        public User user()&#123;
+
+            return new User();
+        &#125;
+
+
+        可以在实体类和属性上加注解，来注释
+        @ApiModel(&quot;用户实体类&quot;)
+        public class User &#123;
+
+            @ApiModelProperty(&quot;年龄&quot;)
+            public int age;
+
+            @ApiModelProperty(&quot;姓名&quot;)
+            public String name;
+        &#125;
+        用户实体类&#123;
+        age    integer($int32)
+        年龄
+
+        name    string
+        姓名
+
+        &#125;
+
+    总结：
+
+        1.我们可以通过Swagger给一些比较难理解的属性或者接口，增加注释信息
+
+        2.接口文档实时更新
+
+        3.可以在线测试
+
+    Swagger是一个优秀的工具！
+
+    注意点：正式发布的时候关闭Swagger！！！处于安全考虑，而且节省运行的内存</code></pre>
+<p>###异步任务：</p>
+<pre><code>    在方法上加@Async注解告诉spring这是一个异步方法
+
+    在启动类上开启异步注解 @EnableAsync</code></pre>
+<p>###邮件任务</p>
+<pre><code>    1.引入依赖
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-mail&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+    2.在配置文件中配置邮箱信息
+
+        spring:
+          mail:
+            password: fwnxpraubvygbbfc
+            username: 785280317@qq.com
+            host: smtp.qq.com
+
+        #    开启加密验证
+            properties: &#123;mail.smtp.enable=true&#125;
+
+    3.编写类
+
+        用JavaMailSenderImpl类来进行邮件的发送 
+
+        @Autowired
+        JavaMailSenderImpl javaMailSender;
+
+
+        简单邮件：
+        @Test
+        void contextLoads() &#123;
+
+            SimpleMailMessage mail = new SimpleMailMessage();
+
+            mail.setSubject(&quot;小猪猪你好呀&quot;);
+
+            mail.setFrom(&quot;785280317@qq.com&quot;);
+
+            mail.setTo(&quot;785280317@qq.com&quot;);
+
+            mail.setText(&quot;我爱你小猪猪！&quot;);
+
+            javaMailSender.send(mail);
+
+        &#125;
+
+        复杂邮件：
+
+        @Test
+        void test() throws MessagingException &#123;
+
+            MimeMessage mes = javaMailSender.createMimeMessage();
+
+            MimeMessageHelper helper = new MimeMessageHelper(mes,true);
+
+            helper.setFrom(&quot;785280317@qq.com&quot;);
+
+            helper.setTo(&quot;785280317@qq.com&quot;);
+
+            helper.addAttachment(&quot;1.jpg&quot;,new File(&quot;D://JAVA图片库//timg.jpg&quot;));
+
+            helper.setSubject(&quot;小猪猪你好呀&quot;);
+
+            helper.setText(&quot;&lt;h1&gt;我爱你&lt;/h1&gt;&quot;,true);
+
+            javaMailSender.send(mes);
+
+        &#125;</code></pre>
+<p>###定时执行任务</p>
+<pre><code>核心接口：
+
+    TaskScheduler 任务计划程序
+
+    TaskExecutor 任务执行器
+
+    @EnableScheduling 在执行类上开启定时功能
+
+    @Scheduled 什么时候执行 cron表达式 &quot;秒 分 时 日 月 星期&quot; 
+
+    @Service
+    public class Schedulerservice &#123;
+
+        @Scheduled(cron = &quot;59 14 17 * * ?&quot;)
+        public void hello()&#123;
+            System.out.println(&quot;hello,你被out了~~&quot;);
+        &#125;
+    &#125;</code></pre>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/23/SpringBoot%E5%85%B6%E4%BD%99%E7%9F%A5%E8%AF%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-SpringBoot初体验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/17/SpringBoot%E5%88%9D%E4%BD%93%E9%AA%8C/">SpringBoot初体验</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/17/SpringBoot%E5%88%9D%E4%BD%93%E9%AA%8C/" class="archive-article-date">
+  	<time datetime="2020-09-17T02:13:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###SpirngBoot</p>
+<pre><code>1.微服务阶段：
+
+    javase：OOP
+
+    mysql：持久化
+
+    html+css+js+jQuery+前端框架
+
+    javaweb：独立开发MVC三层架构的网站，原始
+
+    ssm：框架，简化了我们的开发流程，配置也开始较为复杂
+
+    之前都是打包打成war包：必须在tomcat下运行
+
+    spring再简化：SpringBoot-jar：内嵌tomcat，微服务架构！
+
+    服务越来越多：SpringCloud
+
+2.什么是SpringBoot
+
+    1.约定大于配置 maven，spring，springmvc，springboot，容器化组件
+
+    2.优点：1.为所有Spring开发者更快的入门
+
+            2.开箱即用，提供各种默认配置来简化项目配置
+
+            3.内嵌式容器简化web项目
+
+            4.没有冗余代码生成和XML配置的要求
+
+    3.微服务的解析：
+
+        https://www.cnblogs.com/liuning8023/p/4493156.html
+
+    4.建立一个springboot的模块
+
+        修改端口号：在application.properties中写 server.port=8081
+
+        修改banner（标语）：在resources中加入banner.txt</code></pre>
+<p>###SpringBoot自动装配原理</p>
+<pre><code>1.自动配置pom.xml
+    spring-boot-dependencies：核心依赖在父工程中
+
+2.我们在写或者引入一些springboot依赖的时候，不需要指定版本，因为有这些版本仓库
+
+3.启动器：    &lt;dependency&gt;
+                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+            &lt;/dependency&gt;
+
+            说白了就是springboot的启动场景，帮我们自动导入web环境所有的依赖
+            springboot会将所有的功能场景都变成一个个的启动器，我们需要什么
+            功能，就只需要找到一个个对应的启动器就行了
+
+4.主程序
+
+    //@SpringBootApplication  标注这个类是一个Springboot的应用
+        @SpringBootApplication
+        public class HelloApplication &#123;
+
+            public static void main(String[] args) &#123;
+                SpringApplication.run(HelloApplication.class, args);
+            &#125;
+
+        &#125;
+
+        @SpringBootConfiguration //springboot的配置，启动类下的所有资源被导入
+            @Configuration：spring配置类
+            @Component：说明这也是一个spring组件
+
+
+        @EnableAutoConfiguration //自动配置
+            @AutoConfigurationPackage:自动配置包
+                @Import(&#123;Registrar.class&#125;)：导入选择器,自动配置包注册
+
+            @Import(&#123;AutoConfigurationImportSelector.class&#125;):自动配置 导入选择
+
+        META-INF/spring.factories：自动配置核心文件
+
+        自动装配原理：
+
+            主类： HelloApplication
+
+
+                                        @SpringBootConfiguration： ---&gt; @Configuration:spring配置类 ---&gt;  @Component:配置中的一个组件
+
+                                                                                    @AutoConfigurationPackage --&gt; @Import(&#123;Registrar.class&#125;):自动注册表
+
+            @SpringBootApplication --&gt;     @EnableAutoConfiguration：启用自动装配 ---&gt; 
+
+                                                                                    AutoConfigurationImportSelector：自动导包的核心 --&gt; 选择了什么东西 --&gt; getAutoConfigurationEntry:获得自动配置的入口--&gt; getCandidateConfigurations：获取候选的配置--&gt;loadFactoryNames(): 加载工厂的名字 --&gt;loadSpringFactories:读取spring工厂信息 --&gt;
+                                                                                    classLoader.getResources(&quot;META-INF/spring.factories&quot;) : ClassLoader.getSystemResources(&quot;META-INF/spring.factories&quot;):获取配置，从这些配置遍历所有的自动配置，遍历完成封装为一个properties供我们使用，
+
+
+                                        @ComponentScan:表示扫描主类同级的包
+
+        思考：这么多配置为什么没有生效：需要导入对应的start才会有作用，核心注解@ConditionalOnClass必须要满足注解里面所有条件才能使类生效(必须要引入所有的jar包)
+
+        结论：springboot所有的自动配置都是在启动的时候扫描并加载：springfactories所有的自动配置类都在里面，但是不一定生效，判断条件是否成立，只要导入了对应的start，就有了对应的启动器
+        ，有了启动器，我们的自动装配就会生效，然后就配置成功。</code></pre>
+<p>###SpringBoot启动类怎么运行</p>
+<pre><code>1.启动SpringApplication：
+
+    1.推断应用的项目是普通的项目还是java的项目
+
+    2.查找并加载所有可用初始化器，设置到initializers属性中
+
+    3.找出所有的应用程序监听器，设置到listeners中
+
+    4.推断并设置main方法的定义类，找到运行的主类    </code></pre>
+<p>###关于springboot，谈谈理解：</p>
+<pre><code>1.自动装配
+
+2.run()方法</code></pre>
+<p>##SpirngBoot配置文件：</p>
+<pre><code>1.yaml：键值对写法： key: value 键：空格 值
+        能保存键值对，也能保存对象
+        student：
+            name： 朱立涛
+            age： 3
+        或者student：&#123;name： 朱立涛,age： 3&#125;
+
+        yaml文件严格遵循配置，空格不能写错
+
+2.给pojo实体类的属性赋值方法
+
+    1. 通过Value注解赋值
+
+        @Value(&quot;旺财&quot;)
+        private String name;
+
+        @Value(&quot;3&quot;)
+        private Integer age;
+
+    2.通过yaml文件的属性赋值
+
+    导入一个处理器
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-configuration-processor&lt;/artifactId&gt;
+            &lt;optional&gt;true&lt;/optional&gt;
+        &lt;/dependency&gt;
+
+        dog:
+          name: 猪猪
+          age: 3
+
+         然后
+          @ConfigurationProperties(prefix = &quot;dog&quot;)
+
+    3.指定配置文件
+
+        @PropertySource(value = &quot;classpath:&quot;)
+
+        写一个配置文件，然后和类绑定在一起，然后用el表达式取出来
+
+    4.yaml松散绑定：lastName 和last_name或者last-name一样
+
+    5.JSR303校验
+        @Validated//jsr303校验
+
+        https://upload-images.jianshu.io/upload_images/3145530-8ae74d19e6c65b4c?imageMogr2/auto-orient/strip|imageView2/2/w/654/format/webp
+
+        https://upload-images.jianshu.io/upload_images/3145530-10035c6af8e90a7c?imageMogr2/auto-orient/strip|imageView2/2/w/432/format/webp
+
+    6.多环境配置：
+
+        SpringBoot的多环境配置：
+            //springboot的多环境配置，可以选择激活哪个配置文件
+                spring:
+                  profiles:
+                    active: 
+        yaml配置文件的多环境配置：
+            server:
+              port: 8080
+            spring:
+              profiles:
+                active: dev
+            ---
+
+            server:
+              port: 8081
+            spring:
+              profiles: dev
+
+
+            ---
+            server:
+              port: 8082
+            spring:
+              profiles: test</code></pre>
+<p>###SpringBoot自动配置原理详细</p>
+<pre><code>1.SpringBoot启动会加载大量的自动配置类
+
+2.我们看我们需要的功能有没有在SpringBoot默认写好的自动配置类中
+
+3.我们再来看这个自动配置类到底配置了哪些组件（我们用的组件只要在其中，那我们就不需要手动去配置了）
+
+4.给容器中自动配置类添加组件时，会从properties类中获取某些属性，我们只需要在配置文件中指定这些属性的值即可；
+
+5.xxxxAutoConfigurartion：自动配置类：给容器中添加组件
+
+6.xxxxProperties：封装配置文件中的相关属性</code></pre>
+<p>###SpringBoot Web开发</p>
+<pre><code>1.在springboot中，我们可以使用以下方式去处理静态资源：
+    webjars
+    classpath：public
+    classpath：static
+    classpath：resources
+    classpath：/**
+
+
+2.首页如何定制
+
+    在2.20以上版本已经取消定制
+
+3.模板引擎
+
+    springboot推荐使用模板引擎：Thymeleaf
+
+    1.导入依赖
+        dependency&gt;
+            &lt;groupId&gt;org.thymeleaf.extras&lt;/groupId&gt;
+            &lt;artifactId&gt;thymeleaf-extras-java8time&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.thymeleaf&lt;/groupId&gt;
+            &lt;artifactId&gt;thymeleaf-spring5&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+
+    2.  private static final Charset DEFAULT_ENCODING;
+        public static final String DEFAULT_PREFIX = &quot;classpath:/templates/&quot;;
+        public static final String DEFAULT_SUFFIX = &quot;.html&quot;;
+
+           Thymeleaf默认前缀后缀
+
+    3.只要使用themeleaf，只需要导入依赖就行</code></pre>
+<p>###MVC配置原理</p>
+<pre><code>1.如果想自定义一些定制化的功能，只需要写这个组件，然后将它交给springboot（注册bean）。
+
+2.在SpringBoot中有非常多的xxxx Configuration帮助我们进行拓展配置</code></pre>
+<p>###练习一个小项目</p>
+<pre><code>国际化： i18n
+
+    实现LocaleResolver（语言环境解析器）接口，然后将实现的注册到bean中
+
+    注意点:在注册时，方法名要写LocaleResolver，否则springboot自动配置无法识别
+
+    public class MyLocaleResolver implements LocaleResolver &#123;
+    @Override
+    public Locale resolveLocale(HttpServletRequest httpServletRequest) &#123;
+        String la = httpServletRequest.getParameter(&quot;la&quot;);
+
+        System.out.println(la);
+
+        Locale locale = Locale.getDefault();
+
+        if (!StringUtils.isEmpty(la))&#123;
+            String[] s = la.split(&quot;_&quot;);
+
+            Locale locale1 = new Locale(s[0],s[1]);
+
+            return locale1;
+        &#125;
+        return locale;
+    &#125;
+
+    @Override
+    public void setLocale(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Locale locale) &#123;
+
+    &#125;
+
+    @Bean
+    public LocaleResolver localeResolver()&#123;
+        return new MyLocaleResolver();
+    &#125;
+
+    步骤：1.配置i18m配置文件
+          2.编写LocaleResolver的实现类（自定义一个LocaleResolver组件）
+          3.注册到bean里（写的组件配置到spring中）</code></pre>
+<p>###如何写一个网站</p>
+<pre><code>1.前端：页面长啥样子：数据
+
+2.设计数据库
+
+3.前端让他能够自动运行，独立化工程
+
+4.数据接口如何对接:json,对象 all in one！
+
+5.前后端联调设置</code></pre>
+<p>###SpringBoot数据库连接</p>
+<pre><code>1.对于数据访问层，springboot底层都是采用的Spring Data的方式统一进行处理的</code></pre>
+<p>###SpringSecurity</p>
+<pre><code>springboot安全框架：
+    1.Shiro：
+        核心：
+        Subject：当前用户
+        Shiro SecurityManager：管理所有的subject，核心中的核心，它负责与shiro进行交互，相
+                                    当于SpringMVC里面的DispatherServlet的角色
+        Realm：保证你的数据访问控制，Shiro从Realm中获取安全数据，ShiroSecurity要验证身份，需要从
+                    Realm中获得相应的用户进行比较，可以把Realm看做DataSource
+
+    2.先导入依赖
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.shiro&lt;/groupId&gt;
+            &lt;artifactId&gt;shiro-spring&lt;/artifactId&gt;
+            &lt;version&gt;1.6.0&lt;/version&gt;
+        &lt;/dependency&gt;
+
+    3.配置自定义的Realm 继承了 AuthorizingRealm
+
+        public class UserReaml extends AuthorizingRealm &#123;
+            @Override
+            protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) &#123;
+                System.out.println(&quot;执行了授权方法&quot;);
+                return null;
+            &#125;
+
+            @Override
+            protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException &#123;
+                System.out.println(&quot;执行了认证方法&quot;);
+                return null;
+            &#125;
+        &#125;
+    4.编写shiro三大要素： realm(领域) 和 DefaultWebSecurityManager  和  shirofilterfactorybean 
+
+        @Configuration
+        public class SecurityConfigration &#123;
+
+            //shiroFilterFactoryBean
+            @Bean
+            public ShiroFilterFactoryBean shiroFilterFactoryBean(@Qualifier(&quot;dwsm&quot;)DefaultWebSecurityManager defaultWebSecurityManager)&#123;
+
+                ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
+
+                shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
+
+                return shiroFilterFactoryBean;
+
+            &#125;
+
+
+            //DefaultWebSecurityManager
+            @Bean(name = &quot;dwsm&quot;)
+            public DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier(&quot;userReaml&quot;) Realm realm)&#123;
+                DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
+
+                defaultWebSecurityManager.setRealm(realm);
+                return defaultWebSecurityManager;
+            &#125;
+
+            //创建realm对象，需要自定义
+            @Bean
+            public UserReaml userReaml()&#123;
+                return new UserReaml();
+            &#125;
+
+
+        &#125;
+
+    5.在shiro中权限管理代码在shirofilterfactorybean方法中实现
+        //添加shiro的内置过滤器
+
+            /*
+                anon：无需认证就可以访问
+                authc：必须认证了才能访问
+                user：必须拥有记住我这个功能才能用
+                perms：拥有对某个资源的权限才能访问
+                role：拥有某个角色权限才能访问
+             */
+
+
+            Map&lt;String, String&gt; filterChainDefinitionMap = new LinkedHashMap&lt;&gt;();
+
+            filterChainDefinitionMap.put(&quot;/add&quot;,&quot;anon&quot;);
+            filterChainDefinitionMap.put(&quot;/update&quot;,&quot;authc&quot;);
+
+            shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+
+            shiroFilterFactoryBean.setLoginUrl(&quot;/tologin&quot;);
+
+    6.在controller中用UsernamePasswordToken这个类来验证用户名和密码做认证
+
+        @RequestMapping(&quot;/login&quot;)
+        public String login(String username,String password,Model model)&#123;
+
+            Subject subject = SecurityUtils.getSubject();
+
+            AuthenticationToken authenticationToken = new UsernamePasswordToken(username,password);
+
+
+            try &#123;
+                subject.login(authenticationToken);
+                return &quot;index&quot;;
+            &#125;catch (UnknownAccountException e)&#123;
+                model.addAttribute(&quot;msg&quot;,&quot;用户名错误&quot;);
+                System.out.println(&quot;用户名错误&quot;);
+                return &quot;login&quot;;
+            &#125;catch (IncorrectCredentialsException e)&#123;
+                model.addAttribute(&quot;msg&quot;,&quot;密码错误&quot;);
+                return &quot;login&quot;;
+            &#125;
+
+
+        &#125;
+
+    7.导入mybatis做整合，增加权限验证
+
+        public class UserReaml extends AuthorizingRealm &#123;
+
+            @Resource
+            private EmployeeService service;
+
+            @Override
+            protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) &#123;
+                System.out.println(&quot;执行了授权方法&quot;);
+
+                Subject subject = SecurityUtils.getSubject();
+
+                SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+
+                String username = (String) subject.getPrincipal();
+
+                Employee employee = service.queryEmployeeByname(username);
+
+
+                System.out.println(employee);
+
+                info.addStringPermission(employee.getAuthority());
+
+                return info;
+            &#125;
+
+            @Override
+            protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException &#123;
+                System.out.println(&quot;执行了认证方法&quot;);
+
+                UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
+
+                Employee employee = service.queryEmployeeByname(token.getUsername());
+
+                if (employee == null) &#123;
+                    return null;
+                &#125; else &#123;
+                    if (!token.getUsername().equals(employee.getUsername())) &#123;
+                        return null;
+                    &#125;
+                    return new SimpleAuthenticationInfo(employee.getUsername(), employee.getPassword(), &quot;&quot;);
+                &#125;
+            &#125;
+        &#125;
+
+    8.权限设置：
+
+        Map&lt;String, String&gt; filterChainDefinitionMap = new LinkedHashMap&lt;&gt;();
+
+
+    //        filterChainDefinitionMap.put(&quot;/update&quot;,&quot;authc&quot;);
+            filterChainDefinitionMap.put(&quot;/user/update&quot;,&quot;perms[user:update]&quot;);
+            filterChainDefinitionMap.put(&quot;/user/add&quot;,&quot;perms[user:add]&quot;);
+           filterChainDefinitionMap.put(&quot;/user/*&quot;,&quot;authc&quot;);
+
+
+            shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+
+            shiroFilterFactoryBean.setUnauthorizedUrl(&quot;/noauth&quot;);
+
+            shiroFilterFactoryBean.setLoginUrl(&quot;/tologin&quot;);</code></pre>
+<p>###Shiro和Thymeleaf整合：</p>
+<pre><code>1.导入依赖
+
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.github.theborakompanioni&lt;/groupId&gt;
+        &lt;artifactId&gt;thymeleaf-extras-shiro&lt;/artifactId&gt;
+        &lt;version&gt;2.0.0&lt;/version&gt;
+    &lt;/dependency&gt;
+
+2.整合需要配置：
+
+    ShiroDialect：用来整合shiro和thymeleaf</code></pre>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/17/SpringBoot%E5%88%9D%E4%BD%93%E9%AA%8C/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Ajax技术" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -2887,84 +3827,9 @@ ApplicationContext Context = new AnnotationConfigApplicationContext(SpringConfig
 
 
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/09/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/09/hello-world/" class="archive-article-date">
-  	<time datetime="2020-09-09T03:03:13.581Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/09/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
     </nav>
   
 
