@@ -152,6 +152,538 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-SpringAOP学习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/10/SpringAOP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">SpringAOP学习笔记</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/10/SpringAOP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+  	<time datetime="2020-09-10T02:03:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##SpringAOP学习</p>
+<p>###AOP(概念)</p>
+<p>1.什么是AOP?<br>    1.面向切面（方面）编程，利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑个部分之间的耦合度降低，提高程序的可重用性，同时提高了开发效率。</p>
+<pre><code>2.通俗描述：不通过修改源代码方式添加新的功能
+
+3.用登陆的列子来说明AOP</code></pre>
+<p>###AOP(底层原理)</p>
+<p>1.AOP底层使用动态代理<br>    1.有两种情况的动态代理<br>        第一种：有接口情况，使用JDK动态代理<br>            创建接口实现类代理对象，增强类的方法</p>
+<pre><code>    第二种：无接口情况，使用CGLIB动态代理
+        创建子类的代理对象，增强类的方法</code></pre>
+<p>2.AOP（JDK动态代理）<br>    1.使用JDK动态代理，使用Proxy类里面的方法创建代理对象</p>
+<pre><code>调用newProxyInstance（ClassLoader loader, 类&lt;?&gt;[] interfaces,invocationHandler h）方法
+三个参数
+第一个：类加载器
+第二个：增强方法所在类，这个类实现的接口
+第三个，实现这个接口InvocationHandler，创建代理对象，写增强的方法</code></pre>
+<p>3.JDK动态代理代码<br>    1.创建接口，定义方法</p>
+<pre><code>public interface UserDAO &#123;
+
+    Integer add(Integer a , Integer b);
+
+    String update(String id);
+
+&#125;
+
+2.创建接口实现类，实现方法
+
+public class UserDAOImpl implements UserDAO &#123;
+
+    @Override
+    public Integer add(Integer a, Integer b) &#123;
+        return a+b;
+    &#125;
+
+    @Override
+    public String update(String id) &#123;
+        return id;
+    &#125;
+&#125;
+
+3.使用Proxy类创建接口的代理对象
+
+public class JDKProxy &#123;
+
+public static void main(String[] args) &#123;
+    //创建接口实现类的代理对象
+
+    UserDAOImpl userDAO = new UserDAOImpl();
+
+    Class[] classes = &#123;UserDAO.class&#125;;
+
+    UserDAO userDao = (UserDAO) Proxy.newProxyInstance(JDKProxy.class.getClassLoader(), classes, new Invode1(userDAO));
+
+    Integer add = userDao.add(1, 2);
+
+    System.out.println(&quot;result:&quot; + add);
+&#125;
+
+&#125;
+//创建代理对象
+class Invode1 implements InvocationHandler&#123;
+
+    private Object obj;
+
+    public Invode1(Object obj)&#123;
+        this.obj = obj;
+    &#125;
+
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable &#123;
+
+        System.out.println(&quot;方法执行前的代码--------------&quot;);
+
+        Object invoke = method.invoke(obj, args);
+
+        System.out.println(&quot;方法执行后的代码--------------&quot;);
+
+        return invoke;
+    &#125;
+&#125;</code></pre>
+<p>###AOP（术语）</p>
+<pre><code>1.连接点
+
+    类里面的哪些方法可以被增强，这些方法被称为连接点
+
+2.切入点
+
+    实际被真正增强的方法
+
+3.通知（增强）
+
+    1.实际增强的逻辑的部分称为通知（增强）
+    2.通知有多种类型
+        1.前置通知
+        2.后置通知
+        3.环绕通知
+        4.异常通知
+        5.最终通知 finally类似 永远会执行
+
+4.切面，
+
+    是一个动作，把通知应用到切入点的过程。</code></pre>
+<p>###AOP操作（准备工作）</p>
+<pre><code>1.Spring框架一般都是基于AspectJ实现AOP操作
+    1.什么是AspectJ?
+
+        AspectJ不是Spring组成部分，独立AOP框架，一般把AspectJ和Spring框架一起使用，进行AOP操作。
+
+    2.基于AspecrJ实现AOP操作
+
+        1.基于xml配置文件实现
+
+        2.基于注解方式实现（使用）
+
+    3.在项目工程里面引入AOP相关依赖
+
+        spring-aspects
+        aspectjweaver
+        两个包
+
+    4.切入点表达式
+
+        （1）切入表达式的作用：知道对哪个类里面的哪个方法进行增强
+        （2）execution（[权限修饰符][返回类型][类全路径][方法名称]([参数列表])）
+            eg1：对com.dao.BookDao类里面的add方法进行增强
+                execution(* com.dao.BookDao.add(..))
+            eg2：对com.dao.BookDao类里面的所有方法进行增强
+                execution(* com.dao.BookDao.*(..))
+            eg2：对com.dao包里面的所有类，类里面的所有方法进行增强
+                execution(* com.dao.*.*(..))</code></pre>
+<p>###AOP操作（基于注解方式实现对AspectJ操作）</p>
+<pre><code>1.创建类，定义方法，对这个方法增强
+
+2.创建一个增强类（编写增强逻辑）
+    (1)在增强类里面，创建方法，让不同方法代表不同通知类型
+
+    public class UserProxy &#123;
+
+        public void before()&#123;
+            System.out.println(&quot;before--------&quot;);
+
+    &#125;
+3.进行通知的配置
+    （1）在Spring配置文件中，开启注解扫描（配置类或者配置文件）
+
+    （2）使用注解创建User和UserProxy
+
+    （3）在增强类上面添加注解@Aspect
+        @Component
+        @Aspect
+        public class UserProxy &#123;
+
+            public void before()&#123;
+                System.out.println(&quot;before--------&quot;);
+            &#125;
+        &#125;
+
+    （4）在spring配置文件中开启生成代理对象
+
+        aop:aspectj-autoproxy
+
+4.配置不同类型的通知
+    （1）在增强类里面，在作为通知方法上面添加通知类型注解，使用切入点表达式配置
+        @Component
+        @Aspect
+        public class UserProxy &#123;
+
+
+            //Before注解表示前置通知
+            @Before(value = &quot;execution(* pojo.User.add(..))&quot;)
+            public void before()&#123;
+                System.out.println(&quot;before--------&quot;);
+            &#125;
+        &#125;
+
+    (2)五种通知对应的注解
+
+    @Before 前置通知 无论啥时候都执行
+
+    @AfterReturning 后置通知 当执行的方法中有异常是，不执行
+
+    @After 最终通知 无论啥时候都执行
+
+    @AfterThrowing 异常通知 有异常才执行
+
+    @Around 环绕通知 ProceedingJoinPoint proceedingJoinPoint
+        执行proceedingJoinPoint.proceed();方法会出现异常，如果抛出异常则当出现异常时直接抛出不执行环绕之后的通知
+        如果是try catch解决了异常，则出现异常后环绕前后的方法正常执行
+
+     @Before(value = &quot;execution(* pojo.User.add(..))&quot;)
+    public void before()&#123;
+        System.out.println(&quot;before--------&quot;);
+      &#125;        
+
+    @After(value = &quot;execution(* pojo.User.add(..))&quot;)
+    public void After()&#123;
+        System.out.println(&quot;After----------&quot;);
+    &#125;
+
+    @AfterReturning(value = &quot;execution(* pojo.User.add(..))&quot;)
+    public void AfterReturning()&#123;
+        System.out.println(&quot;AfterReturning----------&quot;);
+    &#125;
+
+    @AfterThrowing(value = &quot;execution(* pojo.User.add(..))&quot;)
+    public void AfterThrowing()&#123;
+        System.out.println(&quot;AfterThrowing----------&quot;);
+    &#125;
+
+    @Around(value = &quot;execution(* pojo.User.add(..))&quot;)
+    public void Around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable&#123;
+        System.out.println(&quot;环绕之前----------&quot;);
+
+        proceedingJoinPoint.proceed();
+
+        System.out.println(&quot;环绕之后----------&quot;);
+    &#125;
+
+5.相同的切入点抽取
+
+    相同的切入点可以用一个注解@Pointcut（value = &quot;切入点表达式&quot;）来抽取
+
+    后面在使用相同的切入点就可以直接调用其方法就可以完成
+
+    //相同的切入点抽取
+    @Pointcut(value = &quot;execution(* pojo.User.add(..))&quot;)
+    public void pointdemo()&#123;
+
+    &#125;
+
+
+    //Before注解表示前置通知
+    @Before(value = &quot;pointdemo()&quot;)
+    public void before()&#123;
+        System.out.println(&quot;before--------&quot;);
+    &#125;
+
+6.有多个增强类对同一个方法进行增强，可以设置优先级
+    （1）在增强类上面添加注解@Order（数字类型值） 值越小优先级越高
+        @Component
+        @Aspect
+        @Order(1)
+        public class PersonProxy（）
+
+7.完全使用注解开发
+
+    创建一个注解类</code></pre>
+<p>###AOP操作（基于xml方式实现对AspectJ操作）</p>
+<pre><code>1.创建类，定义方法，对这个方法增强
+
+2.创建一个增强类（编写增强逻辑）
+    (1)在增强类里面，创建方法，让不同方法代表不同通知类型
+
+    public class StudentProxy &#123;
+
+    public void before()&#123;
+        System.out.println(&quot;before-------&quot;);
+    &#125;
+
+&#125;
+
+3.在Spring配置文件里面创建两个类对象
+
+    &lt;bean id=&quot;student&quot; class=&quot;pojo.Student&quot;/&gt;
+    &lt;bean id=&quot;studentProxy&quot; class=&quot;AspectJ.StudentProxy&quot;/&gt;
+
+ 4.在Spring配置文件中配置切入点以及切面和具体的方法
+
+     &lt;aop:config&gt;
+        &lt;!-- 切入点--&gt;
+        &lt;aop:pointcut id=&quot;p&quot; expression=&quot;execution(* pojo.Student.add(..))&quot;/&gt;
+
+        &lt;!--   配置切面     --&gt;
+        &lt;aop:aspect ref=&quot;studentProxy&quot;&gt;
+            &lt;!--增强作用在具体的方法上--&gt;
+            &lt;aop:before method=&quot;before&quot; pointcut-ref=&quot;p&quot;/&gt;
+        &lt;/aop:aspect&gt;
+    &lt;/aop:config&gt;</code></pre>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/10/SpringAOP%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-我的第一篇博客文章" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/09/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">我的第一篇博客文章</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/09/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/" class="archive-article-date">
+  	<time datetime="2020-09-09T03:08:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##Spring第一天</p>
+<p>###IOC操作Bean管理（XML注入集合管理）<br>1.注入数组类型属性</p>
+<hr>
+<property name="courses">
+            <array>
+                <value>java</value>
+                <value>数据库</value>
+            </array>
+</property>
+---
+2.注入List集合类型属性
+---
+<property name="courses">
+            <list>
+                <value>java</value>
+                <value>数据库</value>
+            </list>
+ </property>
+ ---
+3.注入Map集合类型属性     
+---
+<property name="courses">
+            <map>
+                <entry key="" value=""/>
+            </map>
+ </property>
+---
+4.注入Set集合类型属性
+---
+<property name="courses">
+            <set>
+                <value>java</value>
+                <value>数据库</value>
+            </set>
+</property>
+---
+ private String[] courses;
+
+<pre><code>private List&lt;String&gt; list;
+
+private Map&lt;String, Object&gt; map;
+
+private Set&lt;String&gt; set;
+
+public void setSet(Set&lt;String&gt; set) &#123;
+    this.set = set;
+&#125;
+
+public void setCourses(String[] courses) &#123;
+    this.courses = courses;
+&#125;
+
+public void setList(List&lt;String&gt; list) &#123;
+    this.list = list;
+&#125;
+
+public void setMap(Map&lt;String, Object&gt; map) &#123;
+    this.map = map;
+&#125;</code></pre>
+<p>}</p>
+<hr>
+<p>##Spring第二天</p>
+<p>###Bean管理注解方式</p>
+<p>1.导入依赖 spring-aop-5.2.6.jar</p>
+<p>2.开启组件扫描</p>
+<p>xmlns:context=”<a target="_blank" rel="noopener" href="http://www.springframework.org/schema/context&quot;">http://www.springframework.org/schema/context&quot;</a><br><a target="_blank" rel="noopener" href="http://www.springframework.org/schema/context">http://www.springframework.org/schema/context</a> <a target="_blank" rel="noopener" href="http://www.springframework.org/schema/context/spring-context.xsd">http://www.springframework.org/schema/context/spring-context.xsd</a></p>
+<p>context:component-scan base-package=”Service”</p>
+<p>3.使用注解来创建对象<br>@Component 普通注解<br>@Service 一般用于service层<br>@Controller 一般用于web层<br>@Repository 一般用于DAO层<br>四个注解都可以用于创建对象，用法相同并且作用基本相同，可以混用，但在实际开发中一般默认对应层中使用对应的注解方式来创建对象</p>
+<p>###开启组件扫描中的细节问题</p>
+<p>1.可以约定那些类可以不扫描或者那些类可以扫描<br>    1.可以通过关闭use-default-filters 过滤器来进行include包含扫描<br>    context:component-scan base-package=”Service” use-default-filters=”false”<br>        context:include-filter type=”annotation” expression=”pojo”/<br>    /context:component-scan</p>
+<pre><code>2.表示设置那些内容不进行扫描
+context:component-scan base-package=&quot;Service&quot;
+   context:exclude-filter type=&quot;annotation&quot; expression=&quot;pojo&quot;/
+/context:component-scan&gt;</code></pre>
+<p>###基于注解方式进行属性注入</p>
+<ol>
+<li><p>@AutoWired 根据属性类型进行自动装配</p>
+<p> 第一步：把service和dao对象创建，添加注解创建对象</p>
+</li>
+</ol>
+<pre><code>@Service
+public class UserService &#123;
+
+    private UserDAO userDAO;
+
+&#125;
+
+@Service
+public class UserService &#123;
+
+    @Repository(value = &quot;userDAOImpl&quot;)
+    public class UserDAOImpl implements UserDAO &#123;
+
+    @Override
+    public void add() &#123;
+        System.out.println(&quot;DAOadd------&quot;);
+    &#125;
+&#125;
+
+第二步：定义类型属性，在service里注入dao对象，在service类添加dao类型的属性，在属性上面使用注解
+@Autowired
+private UserDAO userDAO;</code></pre>
+<ol start="2">
+<li><p>@Qualifier 根据属性名称进行注入</p>
+<p> 和上面的@AutoWired一起使用 一个接口有多个实现类 使用@Qualifier可以具体指定使用哪个实现类对象</p>
+<p> @Autowired<br> @Qualifier(value = “userDAOImpl”)<br> private UserDAO userDAO;</p>
+<p> public UserDAO getUserDAO() {</p>
+<pre><code> return userDAO;</code></pre>
+<p> }</p>
+</li>
+<li><p>@Resource 可以根据类型进行注入，也可以根据名称注入，是javax中的，spring本身建议使用前两个</p>
+<p> ~不写name = “”默认为类型注入，如果有多个实现类会报错，所以使用(name = “”)来改成名称注入<br> @Resource(name = “userDAOImpl2”)<br> private UserDAO userDAO;</p>
+<p> public UserDAO getUserDAO() {</p>
+<pre><code> return userDAO;</code></pre>
+<p> }</p>
+</li>
+<li><p>@Value 注入普通类型属性</p>
+<p>  @Value(“科比”)<br> private String name;</p>
+</li>
+</ol>
+<p>###完全注解开发</p>
+<p>1.创建配置类，替代xml配置文件</p>
+<pre><code>@Configuration //作为配置类，替代配置文件
+@ComponentScan(basePackages = &quot;dao,Service&quot;)
+public class SpringConfig &#123;
+
+&#125;</code></pre>
+<p>2.编写测试类</p>
+<pre><code>通过AnotationConfigApplication实现类来读取配置类
+ApplicationContext Context = new AnnotationConfigApplicationContext(SpringConfig.class);</code></pre>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/09/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

@@ -152,6 +152,1297 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Linux学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>title: Linux学习<br>date: 2020-11-14 22:32:42</p>
+</blockquote>
+<h1 id="Linux学习"><a href="#Linux学习" class="headerlink" title="Linux学习"></a>Linux学习</h1><p><strong>课程基于<code>centOS 7</code>版本的学习</strong></p>
+<h2 id="1、认识Linux"><a href="#1、认识Linux" class="headerlink" title="1、认识Linux"></a>1、认识Linux</h2><h3 id="1-1、为什么要学习Linux？"><a href="#1-1、为什么要学习Linux？" class="headerlink" title="1.1、为什么要学习Linux？"></a>1.1、为什么要学习Linux？</h3><ul>
+<li>在服务器端，在开发领域Linux越来越受欢迎，很多程序员如果不懂点linux都觉得不好意思，linux在开源社区的地位依然岿然不动。尤其是作为一个后端程序员，是必须要掌握Linux的。</li>
+</ul>
+<h3 id="1-2、Linux简介"><a href="#1-2、Linux简介" class="headerlink" title="1.2、Linux简介"></a>1.2、Linux简介</h3><ul>
+<li><p>Linux 内核最初只是由芬兰人林纳斯·托瓦兹（Linus Torvalds）在赫尔辛基大学上学时出于个人爱好而编写的。</p>
+</li>
+<li><p>Linux 是一套免费使用和自由传播的类 Unix 操作系统，是一个基于 POSIX（可移植操作系统接口） 和 UNIX 的多用户、多任务、支持多线程和多 CPU 的操作系统。</p>
+</li>
+<li><p>Linux 能运行主要的 UNIX 工具软件、应用程序和网络协议。它支持 32 位和 64 位硬件。Linux 继承了 Unix 以网络为核心的设计思想，是一个性能稳定的多用户网络操作系统。</p>
+</li>
+</ul>
+<h3 id="1-3、Linux-发行版"><a href="#1-3、Linux-发行版" class="headerlink" title="1.3、Linux 发行版"></a>1.3、Linux 发行版</h3><ul>
+<li>目前市面上较知名的发行版有：Ubuntu、RedHat、CentOS、Debian、Fedora、SuSE、OpenSUSE、Arch Linux、SolusOS 等。</li>
+</ul>
+<h3 id="1-4、应用的领域"><a href="#1-4、应用的领域" class="headerlink" title="1.4、应用的领域"></a>1.4、应用的领域</h3><ul>
+<li>今天各种场合都有使用各种 Linux 发行版，从嵌入式设备到超级计算机，并且在服务器领域确定了地位，通常服务器使用 LAMP（Linux + Apache + MySQL + PHP）或 LNMP（Linux + Nginx+ MySQL + PHP）组合。</li>
+</ul>
+<h2 id="2、走进Linux系统"><a href="#2、走进Linux系统" class="headerlink" title="2、走进Linux系统"></a>2、走进Linux系统</h2><h3 id="2-1、开机登录"><a href="#2-1、开机登录" class="headerlink" title="2.1、开机登录"></a>2.1、开机登录</h3><p>开机会启动许多程序。它们在Windows叫做”服务”（service），在Linux就叫做”守护进程”（daemon）。</p>
+<p>开机成功后，它会显示一个文本登录界面，这个界面就是我们经常看到的登录界面，在这个登录界面中会提示用户输入用户名，而用户输入的用户将作为参数传给login程序来验证用户的身份，密码是不显示的，输完回车即可！</p>
+<p>一般来说，用户的登录方式有三种：</p>
+<ul>
+<li>命令行登录</li>
+<li>ssh登录</li>
+<li>图形界面登录</li>
+</ul>
+<p>最高权限账户为 root，可以操作一切！</p>
+<h3 id="2-2、关机"><a href="#2-2、关机" class="headerlink" title="2.2、关机"></a>2.2、关机</h3><p>在linux领域内大多用在服务器上，很少遇到关机的操作。毕竟服务器上跑一个服务是永无止境的，除非特殊情况下，不得已才会关机。</p>
+<p>关机指令为：shutdown ；</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">sync # 将数据由内存同步到硬盘中。</span><br><span class="line"></span><br><span class="line">shutdown # 关机指令，你可以man shutdown 来看一下帮助文档。例如你可以运行如下命令关机：</span><br><span class="line"></span><br><span class="line">shutdown –h 10 # 这个命令告诉大家，计算机将在10分钟后关机</span><br><span class="line"></span><br><span class="line">shutdown –h now # 立马关机</span><br><span class="line"></span><br><span class="line">shutdown –h 20:25 # 系统会在今天20:25关机</span><br><span class="line"></span><br><span class="line">shutdown –h +10 # 十分钟后关机</span><br><span class="line"></span><br><span class="line">shutdown –r now # 系统立马重启</span><br><span class="line"></span><br><span class="line">shutdown –r +10 # 系统十分钟后重启</span><br><span class="line"></span><br><span class="line">reboot # 就是重启，等同于 shutdown –r now</span><br><span class="line"></span><br><span class="line">halt # 关闭系统，等同于shutdown –h now 和 poweroff</span><br></pre></td></tr></table></figure>
+
+<p>最后总结一下，不管是重启系统还是关闭系统，首先要运行 <strong>sync</strong> 命令，把内存中的数据写到磁盘中。</p>
+<h3 id="2-3、系统目录结构"><a href="#2-3、系统目录结构" class="headerlink" title="2.3、系统目录结构"></a>2.3、系统目录结构</h3><p>登录系统后，在当前命令窗口下输入命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls /</span><br></pre></td></tr></table></figure>
+
+<p>你会看到如下图所示：</p>
+<p><img src="Linux%E5%AD%A6%E4%B9%A0.assets/image-20201115192709563.png" alt="image-20201115192709563"></p>
+<p>树状目录结构：（Linux的一切资源都挂载在这个 / 根节点下）</p>
+<p><img src="Linux%E5%AD%A6%E4%B9%A0.assets/640" alt="img"></p>
+<p><strong>以下是对这些目录的解释：</strong></p>
+<ul>
+<li><strong>/bin</strong>：bin是Binary的缩写, 这个目录存放着最经常使用的命令。</li>
+<li><strong>/boot：</strong> 这里存放的是启动Linux时使用的一些核心文件，包括一些连接文件以及镜像文件。</li>
+<li><strong>/dev ：</strong> dev是Device(设备)的缩写, 存放的是Linux的外部设备，在Linux中访问设备的方式和访问文件的方式是相同的。</li>
+<li><strong>/etc：</strong><code>这个目录用来存放所有的系统管理所需要的配置文件和子目录。</code></li>
+<li><strong>/home</strong>：<code>用户的主目录，在Linux中，每个用户都有一个自己的目录，一般该目录名是以用户的账号命名的。</code></li>
+<li><strong>/lib</strong>：这个目录里存放着系统最基本的动态连接共享库，其作用类似于Windows里的DLL文件。</li>
+<li><strong>/lost+found</strong>：这个目录一般情况下是空的，当系统非法关机后，这里就存放了一些文件。</li>
+<li><strong>/media</strong>：linux系统会自动识别一些设备，例如U盘、光驱等等，当识别后，linux会把识别的设备挂载到这个目录下。</li>
+<li><strong>/mnt</strong>：系统提供该目录是为了让用户临时挂载别的文件系统的，我们可以将光驱挂载在/mnt/上，然后进入该目录就可以查看光驱里的内容了。</li>
+<li><strong>/opt</strong>：<code>这是给主机额外安装软件所摆放的目录。比如你安装一个ORACLE数据库则就可以放到这个目录下。默认是空的。</code></li>
+<li><strong>/proc</strong>：这个目录是一个虚拟的目录，它是系统内存的映射，我们可以通过直接访问这个目录来获取系统信息。</li>
+<li><strong>/root</strong>：<code>该目录为系统管理员，也称作超级权限者的用户主目录。</code></li>
+<li><strong>/sbin</strong>：s就是Super User的意思，这里存放的是系统管理员使用的系统管理程序。</li>
+<li><strong>/srv</strong>：该目录存放一些服务启动之后需要提取的数据。</li>
+<li><strong>/sys</strong>：这是linux2.6内核的一个很大的变化。该目录下安装了2.6内核中新出现的一个文件系统 sysfs 。</li>
+<li><strong>/tmp</strong>：这个目录是用来存放一些临时文件的。</li>
+<li><strong>/usr</strong>：<code>这是一个非常重要的目录，用户的很多应用程序和文件都放在这个目录下，类似于windows下的program files目录。</code></li>
+<li><strong>/usr/bin：</strong> 系统用户使用的应用程序。</li>
+<li><strong>/usr/sbin：</strong> 超级用户使用的比较高级的管理程序和系统守护程序。</li>
+<li><strong>/usr/src：</strong> 内核源代码默认的放置目录。</li>
+<li><strong>/var</strong>：<code>这个目录中存放着在不断扩充着的东西，我们习惯将那些经常被修改的目录放在这个目录下。包括各种日志文件。</code></li>
+<li><strong>/run</strong>：是一个临时文件系统，存储系统启动以来的信息。当系统重启时，这个目录下的文件应该被删掉或清除。</li>
+<li><strong>/www</strong>：<code>存放服务器网站相关的资源，环境，网站的项目</code></li>
+</ul>
+<h2 id="3、常用的基本命令（重要）"><a href="#3、常用的基本命令（重要）" class="headerlink" title="3、常用的基本命令（重要）"></a>3、常用的基本命令（重要）</h2><h3 id="3-1、目录管理"><a href="#3-1、目录管理" class="headerlink" title="3.1、目录管理"></a>3.1、目录管理</h3><h4 id="3-1-1、绝对路径和相对路径"><a href="#3-1-1、绝对路径和相对路径" class="headerlink" title="3.1.1、绝对路径和相对路径"></a>3.1.1、绝对路径和相对路径</h4><p>我们知道Linux的目录结构为树状结构，最顶级的目录为根目录 /。</p>
+<p>其他目录通过挂载可以将它们添加到树中，通过解除挂载可以移除它们。</p>
+<p>在开始本教程前我们需要先知道什么是绝对路径与相对路径。</p>
+<p><strong>绝对路径：</strong></p>
+<p>路径的写法，由根目录 / 写起，例如：/usr/share/doc 这个目录。</p>
+<p><strong>相对路径：</strong></p>
+<p>路径的写法，不是由 / 写起，例如由 /usr/share/doc 要到 /usr/share/man 底下时，可以写成：cd ../man 这就是相对路径的写法。</p>
+<h4 id="3-1-2、处理目录的常用命令"><a href="#3-1-2、处理目录的常用命令" class="headerlink" title="3.1.2、处理目录的常用命令"></a>3.1.2、处理目录的常用命令</h4><p>几个常见的处理目录的命令：</p>
+<ul>
+<li>ls: 列出目录</li>
+<li>cd：切换目录</li>
+<li>pwd：显示目前的目录</li>
+<li>mkdir：创建一个新的目录</li>
+<li>rmdir：删除一个空的目录</li>
+<li>cp: 复制文件或目录</li>
+<li>rm: 移除文件或目录</li>
+<li>mv: 移动文件与目录，或修改文件与目录的名称</li>
+</ul>
+<p>你可以使用 <em>man [命令]</em> 来查看各个命令的使用文档，如 ：man cp。</p>
+<h5 id="（1）ls-（列出目录）"><a href="#（1）ls-（列出目录）" class="headerlink" title="（1）ls （列出目录）"></a>（1）ls （列出目录）</h5><p>在Linux系统当中， ls 命令可能是最常被运行的。</p>
+<p>语法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# ls [-aAdfFhilnrRSt] 目录名称</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li>-a ：全部的文件，连同隐藏文件( 开头为 . 的文件) 一起列出来(常用)</li>
+<li>-l ：长数据串列出，包含文件的属性与权限等等数据；(常用)</li>
+</ul>
+<p>将目录下的所有文件列出来(含属性与隐藏档)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# ls -al ~</span><br></pre></td></tr></table></figure>
+
+<h5 id="（2）cd-（切换目录）"><a href="#（2）cd-（切换目录）" class="headerlink" title="（2）cd （切换目录）"></a>（2）cd （切换目录）</h5><p>cd是Change Directory的缩写，这是用来变换工作目录的命令。</p>
+<p>语法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd [相对路径或绝对路径]</span><br></pre></td></tr></table></figure>
+
+<p>测试：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 切换到用户目录下</span></span><br><span class="line">[root@localhost /]# cd home </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 使用 mkdir 命令创建 dylantao 目录</span></span><br><span class="line">[root@localhost home]# mkdir dylantao</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 进入 dylantao 目录</span></span><br><span class="line">[root@localhost home]# cd dylantao/</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 回到上一级</span></span><br><span class="line">[root@localhost dylantao]# cd ../</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 回到根目录</span></span><br><span class="line">[root@localhost /]# cd /</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 表示回到自己的家目录，亦即是 /root 这个目录</span></span><br><span class="line">[root@localhost /]# cd ~</span><br></pre></td></tr></table></figure>
+
+<h5 id="（3）pwd-显示目前所在的目录"><a href="#（3）pwd-显示目前所在的目录" class="headerlink" title="（3）pwd ( 显示目前所在的目录 )"></a>（3）pwd ( 显示目前所在的目录 )</h5><p>pwd 是 <strong>Print Working Directory</strong> 的缩写，也就是显示目前所在目录的命令。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@kuangshen kuangstudy]#pwd [-P]</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：**-P** ：显示出确实的路径，而非使用连接(link) 路径。</p>
+<p>测试：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 单纯显示出目前的工作目录</span></span><br><span class="line">[root@localhost ~]# pwd</span><br><span class="line">/root</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 如果是链接，要显示真实地址，可以使用 -P参数</span></span><br><span class="line">[root@localhost ]# cd /bin</span><br><span class="line">[root@localhost bin]# pwd -P</span><br><span class="line">/usr/bin</span><br></pre></td></tr></table></figure>
+
+<h5 id="（4）mkdir-（创建新目录）"><a href="#（4）mkdir-（创建新目录）" class="headerlink" title="（4）mkdir （创建新目录）"></a>（4）mkdir （创建新目录）</h5><p>如果想要创建新的目录的话，那么就使用mkdir (make directory)吧。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir [-mp] 目录名称</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li>-m ：配置文件的权限喔！直接配置，不需要看默认权限 (umask) 的脸色～</li>
+<li>-p ：帮助你直接将所需要的目录(包含上一级目录)递归创建起来！</li>
+</ul>
+<p>测试：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 进入我们用户目录下</span></span><br><span class="line">[root@localhost bin]# cd /home</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建一个 <span class="built_in">test</span> 文件夹</span></span><br><span class="line">[root@localhost home]# mkdir test</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建多层级目录</span></span><br><span class="line">[root@localhost home]# mkdir test1/test2/test3/test4</span><br><span class="line">mkdir: cannot create directory ‘test1/test2/test3/test4’:</span><br><span class="line">No such file or directory  # &lt;== 没办法直接创建此目录啊！</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 加了这个 -p 的选项，可以自行帮你创建多层目录！</span></span><br><span class="line">[root@localhost home]# mkdir -p test1/test2/test3/test4</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建权限为 rwx--x--x 的目录。</span></span><br><span class="line">[root@kuangshen home]# mkdir -m 711 test2</span><br><span class="line">[root@kuangshen home]# ls -l</span><br><span class="line">drwxr-xr-x 2 root root  4096 Mar 12 21:55 test</span><br><span class="line">drwxr-xr-x 3 root root  4096 Mar 12 21:56 test1</span><br><span class="line">drwx--x--x 2 root root  4096 Mar 12 21:58 test2</span><br></pre></td></tr></table></figure>
+
+<h5 id="（5）rmdir-删除空的目录"><a href="#（5）rmdir-删除空的目录" class="headerlink" title="（5）rmdir ( 删除空的目录 )"></a>（5）rmdir ( 删除空的目录 )</h5><p>语法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmdir [-p] 目录名称</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：**-p ：**连同上一级『空的』目录也一起删除</p>
+<p>测试：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 看看有多少目录存在？</span></span><br><span class="line">[root@localhost home]# ls -l</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 可直接删除掉，没问题</span></span><br><span class="line">[root@localhost home]# rmdir test</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 因为尚有内容，所以无法删除！</span></span><br><span class="line">[root@localhost home]# rmdir test1</span><br><span class="line">rmdir: failed to remove ‘test1’: Directory not empty</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 利用 -p 这个选项，立刻就可以将 test1/test2/test3/test4 依次删除。</span></span><br><span class="line">[root@localhost home]# rmdir -p test1/test2/test3/test4</span><br></pre></td></tr></table></figure>
+
+<p>注意：这个 rmdir 仅能删除空的目录，你可以使用 rm 命令来删除非空目录，后面我们会讲！</p>
+<h5 id="（6）cp-复制文件或目录"><a href="#（6）cp-复制文件或目录" class="headerlink" title="（6）cp ( 复制文件或目录 )"></a>（6）cp ( 复制文件或目录 )</h5><p>语法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# cp [-adfilprsu] 来源档(source) 目标档(destination)</span><br><span class="line">[root@www ~]# cp [options] source1 source2 source3 .... directory</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li><strong>-a：</strong>相当于 -pdr 的意思，至于 pdr 请参考下列说明；(常用)</li>
+<li><strong>-p：</strong>连同文件的属性一起复制过去，而非使用默认属性(备份常用)；</li>
+<li><strong>-d：</strong>若来源档为连结档的属性(link file)，则复制连结档属性而非文件本身；</li>
+<li><strong>-r：</strong>递归持续复制，用于目录的复制行为；(常用)</li>
+<li><strong>-f：</strong>为强制(force)的意思，若目标文件已经存在且无法开启，则移除后再尝试一次；</li>
+<li><strong>-i：</strong>若目标档(destination)已经存在时，在覆盖时会先询问动作的进行(常用)</li>
+<li><strong>-l：</strong>进行硬式连结(hard link)的连结档创建，而非复制文件本身。</li>
+<li><strong>-s：</strong>复制成为符号连结档 (symbolic link)，亦即『捷径』文件；</li>
+<li><strong>-u：</strong>若 destination 比 source 旧才升级 destination ！</li>
+</ul>
+<p>测试：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 找一个有文件的目录，我这里找到 root目录</span></span><br><span class="line">[root@localhost home]# cd /root</span><br><span class="line">[root@localhost ~]# ls</span><br><span class="line">install.sh</span><br><span class="line">[root@localhost ~]# cd /home</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 复制 root目录下的install.sh 到 home目录下</span></span><br><span class="line">[root@localhost home]# cp /root/install.sh /home</span><br><span class="line">[root@localhost home]# ls</span><br><span class="line">install.sh</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 再次复制，加上-i参数，增加覆盖询问？</span></span><br><span class="line">[root@localhost home]# cp -i /root/install.sh /home</span><br><span class="line">cp: overwrite ‘/home/install.sh’? y # n不覆盖，y为覆盖</span><br></pre></td></tr></table></figure>
+
+<h5 id="（7）rm-移除文件或目录"><a href="#（7）rm-移除文件或目录" class="headerlink" title="（7）rm ( 移除文件或目录 )"></a>（7）rm ( 移除文件或目录 )</h5><p>语法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm [-fir] 文件或目录</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li>-f ：就是 force 的意思，忽略不存在的文件，不会出现警告信息；</li>
+<li>-i ：互动模式，在删除前会询问使用者是否动作</li>
+<li>-r ：递归删除啊！最常用在目录的删除了！这是非常危险的选项！！！</li>
+</ul>
+<p>测试：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 将刚刚在 cp 的实例中创建的 install.sh删除掉！</span></span><br><span class="line">[root@localhost home]# rm -i install.sh</span><br><span class="line">rm: remove regular file ‘install.sh’? y</span><br><span class="line"><span class="meta">#</span><span class="bash"> 如果加上 -i 的选项就会主动询问，避免你删除到错误的档名！</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 尽量不要在服务器上使用 rm -rf / (删库跑路就是这么操作的)</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="（8）mv-移动文件与目录，或修改名称"><a href="#（8）mv-移动文件与目录，或修改名称" class="headerlink" title="（8）mv  ( 移动文件与目录，或修改名称 )"></a>（8）mv  ( 移动文件与目录，或修改名称 )</h5><p>语法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# mv [-fiu] source destination</span><br><span class="line">[root@www ~]# mv [options] source1 source2 source3 .... directory</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li>-f ：force 强制的意思，如果目标文件已经存在，不会询问而直接覆盖；</li>
+<li>-i ：若目标文件 (destination) 已经存在时，就会询问是否覆盖！</li>
+<li>-u ：若目标文件已经存在，且 source 比较新，才会升级 (update)</li>
+</ul>
+<p>测试：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 复制一个文件到当前目录</span></span><br><span class="line">[root@localhost home]# cp /root/install.sh /home</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建一个文件夹 <span class="built_in">test</span></span></span><br><span class="line">[root@localhost home]# mkdir test</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 将复制过来的文件移动到我们创建的目录，并查看</span></span><br><span class="line">[root@localhost home]# mv install.sh test</span><br><span class="line">[root@localhost home]# ls</span><br><span class="line">test</span><br><span class="line">[root@localhost home]# cd test</span><br><span class="line">[root@localhost test]# ls</span><br><span class="line">install.sh</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 将文件夹重命名，然后再次查看！</span></span><br><span class="line">[root@localhost test]# cd ..</span><br><span class="line">[root@localhost home]# mv test mvtest</span><br><span class="line">[root@localhost home]# ls</span><br><span class="line">mvtest</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2、基本属性"><a href="#3-2、基本属性" class="headerlink" title="3.2、基本属性"></a>3.2、基本属性</h3><h5 id="3-2-1、看懂文件属性"><a href="#3-2-1、看懂文件属性" class="headerlink" title="3.2.1、看懂文件属性"></a>3.2.1、看懂文件属性</h5><p>Linux系统是一种典型的多用户系统，不同的用户处于不同的地位，拥有不同的权限。为了保护系统的安全性，Linux系统对不同的用户访问同一文件（包括目录文件）的权限做了不同的规定。</p>
+<p>在Linux中我们可以使用<code>ll</code>或者<code>ls –l</code>命令来显示一个文件的属性以及文件所属的用户和组</p>
+<p>实例中，boot文件的第一个属性用”d”表示。”d”在Linux中代表该文件是一个目录文件。</p>
+<p>在Linux中第一个字符代表这个文件是目录、文件或链接文件等等：</p>
+<ul>
+<li><code>当为</code>[ <strong>d</strong> ]<code>则是目录</code>；</li>
+<li><code>当为</code>[ <strong>-</strong> ]<code>则是文件</code>；</li>
+<li><code>若是</code>[ <strong>l</strong> ]<code>则表示为链接文档 ( link file )</code>；</li>
+<li>若是[ <strong>b</strong> ]则表示为装置文件里面的可供储存的接口设备 ( 可随机存取装置 )；</li>
+<li>若是[ <strong>c</strong> ]则表示为装置文件里面的串行端口设备，例如键盘、鼠标 ( 一次性读取装置 )。</li>
+</ul>
+<p>接下来的字符中，以三个为一组，且均为『rwx』 的三个参数的组合。</p>
+<p>其中，[ r ]代表可读(read)、[ w ]代表可写(write)、[ x ]代表可执行(execute)。</p>
+<p>要注意的是，这三个权限的位置不会改变，如果没有权限，就会出现减号[ - ]而已。</p>
+<p>每个文件的属性由左边第一部分的10个字符来确定（如下图）：</p>
+<p><img src="Linux%E5%AD%A6%E4%B9%A0.assets/640" alt="img"></p>
+<p>从左至右用0-9这些数字来表示。</p>
+<p>第0位确定文件类型，第1-3位确定属主（该文件的所有者）拥有该文件的权限。第4-6位确定属组（所有者的同组用户）拥有该文件的权限，第7-9位确定其他用户拥有该文件的权限。</p>
+<p>其中：</p>
+<p>第1、4、7位表示读权限，如果用”r”字符表示，则有读权限，如果用”-“字符表示，则没有读权限；</p>
+<p>第2、5、8位表示写权限，如果用”w”字符表示，则有写权限，如果用”-“字符表示没有写权限；</p>
+<p>第3、6、9位表示可执行权限，如果用”x”字符表示，则有执行权限，如果用”-“字符表示，则没有执行权限。</p>
+<p>对于文件来说，它都有一个特定的所有者，也就是对该文件具有所有权的用户。</p>
+<p>同时，在Linux系统中，用户是按组分类的，一个用户属于一个或多个组。</p>
+<p>文件所有者以外的用户又可以分为文件所有者的同组用户和其他用户。</p>
+<p>因此，Linux系统按文件所有者、文件所有者同组用户和其他用户来规定了不同的文件访问权限。</p>
+<p>在以上实例中，boot 文件是一个目录文件，属主和属组都为 root。</p>
+<h5 id="3-2-2、修改文件属性"><a href="#3-2-2、修改文件属性" class="headerlink" title="3.2.2、修改文件属性"></a>3.2.2、修改文件属性</h5><p><strong>1、chgrp：更改文件属组</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chgrp [-R] 属组名 文件名</span><br></pre></td></tr></table></figure>
+
+<p>-R：递归更改文件属组，就是在更改某个目录文件的属组时，如果加上-R的参数，那么该目录下的所有文件的属组都会更改。</p>
+<p><strong>2、chown：更改文件属主，也可以同时更改文件属组</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chown [–R] 属主名 文件名</span><br><span class="line">chown [-R] 属主名：属组名 文件名</span><br></pre></td></tr></table></figure>
+
+<p><strong>3、chmod：更改文件9个属性</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod [-R] xyz 文件或目录</span><br></pre></td></tr></table></figure>
+
+<p>Linux文件属性有两种设置方法，一种是数字，一种是符号。</p>
+<p>Linux文件的基本权限就有九个，分别是owner/group/others三种身份各有自己的read/write/execute权限。</p>
+<p>先复习一下刚刚上面提到的数据：文件的权限字符为：『-rwxrwxrwx』， 这九个权限是三个三个一组的！其中，我们可以使用数字来代表各个权限，各权限的分数对照表如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r:4     w:2         x:1</span><br></pre></td></tr></table></figure>
+
+<p>每种身份(owner/group/others)各自的三个权限(r/w/x)分数是需要累加的，例如当权限为：[-rwxrwx—] 分数则是：</p>
+<ul>
+<li>owner = rwx = 4+2+1 = 7</li>
+<li>group = rwx = 4+2+1 = 7</li>
+<li>others= — = 0+0+0 = 0</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 770 filename</span><br></pre></td></tr></table></figure>
+
+<p>可以自己下去多进行测试！</p>
+<h3 id="3-3、文件内容查看"><a href="#3-3、文件内容查看" class="headerlink" title="3.3、文件内容查看"></a>3.3、文件内容查看</h3><h4 id="3-3-1、概述"><a href="#3-3-1、概述" class="headerlink" title="3.3.1、概述"></a>3.3.1、概述</h4><p>Linux系统中使用以下命令来查看文件的内容：</p>
+<ul>
+<li>cat 由第一行开始显示文件内容</li>
+<li>tac 从最后一行开始显示，可以看出 tac 是 cat 的倒着写！</li>
+<li>nl  显示的时候，顺道输出行号！</li>
+<li>more 一页一页的显示文件内容</li>
+<li>less 与 more 类似，但是比 more 更好的是，他可以往前翻页！</li>
+<li>head 只看头几行</li>
+<li>tail 只看尾巴几行</li>
+</ul>
+<p>你可以使用 *man [命令]*来查看各个命令的使用文档，如 ：man cp。</p>
+<h4 id="3-3-2、cat"><a href="#3-3-2、cat" class="headerlink" title="3.3.2、cat"></a>3.3.2、cat</h4><p><strong>由第一行开始显示文件内容</strong></p>
+<p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat [-AbEnTv]</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li>-A ：相当於 -vET 的整合选项，可列出一些特殊字符而不是空白而已；</li>
+<li>-b ：列出行号，仅针对非空白行做行号显示，空白行不标行号！</li>
+<li>-E ：将结尾的断行字节 $ 显示出来；</li>
+<li>-n ：列印出行号，连同空白行也会有行号，与 -b 的选项不同；</li>
+<li>-T ：将 [tab] 按键以 ^I 显示出来；</li>
+<li>-v ：列出一些看不出来的特殊字符</li>
+</ul>
+<p>测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看网络配置: 文件地址 /etc/sysconfig/network-scripts/</span></span><br><span class="line">[root@kuangshen ~]<span class="comment"># cat /etc/sysconfig/network-scripts/ifcfg-eth0</span></span><br><span class="line">DEVICE=eth0</span><br><span class="line">BOOTPROTO=dhcp</span><br><span class="line">ONBOOT=yes</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-3、tac"><a href="#3-3-3、tac" class="headerlink" title="3.3.3、tac"></a>3.3.3、tac</h4><p>tac与cat命令刚好相反，文件内容从最后一行开始显示，可以看出 tac 是 cat 的倒着写！如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@kuangshen ~]<span class="comment"># tac /etc/sysconfig/network-scripts/ifcfg-eth0</span></span><br><span class="line">ONBOOT=yes</span><br><span class="line">BOOTPROTO=dhcp</span><br><span class="line">DEVICE=eth0</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-4、nl"><a href="#3-3-4、nl" class="headerlink" title="3.3.4、nl"></a>3.3.4、nl</h4><p><strong>显示行号</strong></p>
+<p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nl [-bnw] 文件</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li>-b ：指定行号指定的方式，主要有两种：-b a ：表示不论是否为空行，也同样列出行号(类似 cat -n)；-b t ：如果有空行，空的那一行不要列出行号(默认值)；</li>
+<li>-n ：列出行号表示的方法，主要有三种：-n ln ：行号在荧幕的最左方显示；-n rn ：行号在自己栏位的最右方显示，且不加 0 ；-n rz ：行号在自己栏位的最右方显示，且加 0 ；</li>
+<li>-w ：行号栏位的占用的位数。</li>
+</ul>
+<p>测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@kuangshen ~]<span class="comment"># nl /etc/sysconfig/network-scripts/ifcfg-eth0</span></span><br><span class="line">1DEVICE=eth0</span><br><span class="line">2BOOTPROTO=dhcp</span><br><span class="line">3ONBOOT=yes</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-5、more"><a href="#3-3-5、more" class="headerlink" title="3.3.5、more"></a>3.3.5、more</h4><p><strong>一页一页翻动</strong></p>
+<p>在 more 这个程序的运行过程中，你有几个按键可以按的：</p>
+<ul>
+<li>空白键 (space)：代表向下翻一页；</li>
+<li>Enter   ：代表向下翻『一行』；</li>
+<li>/字串   ：代表在这个显示的内容当中，向下搜寻『字串』这个关键字；</li>
+<li>:f    ：立刻显示出档名以及目前显示的行数；</li>
+<li>q    ：代表立刻离开 more ，不再显示该文件内容。</li>
+<li>b 或 [ctrl]-b ：代表往回翻页，不过这动作只对文件有用，对管线无用。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@kuangshen etc]<span class="comment"># more /etc/csh.login</span></span><br><span class="line">....(中间省略)....</span><br><span class="line">--More--(28%) <span class="comment"># 重点在这一行喔！你的光标也会在这里等待你的命令</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-6、less"><a href="#3-3-6、less" class="headerlink" title="3.3.6、less"></a>3.3.6、less</h4><p><strong>一页一页翻动，以下实例输出/etc/man.config文件的内容：</strong></p>
+<p>less运行时可以输入的命令有：</p>
+<ul>
+<li>空白键  ：向下翻动一页；</li>
+<li>[pagedown]：向下翻动一页；</li>
+<li>[pageup] ：向上翻动一页；</li>
+<li>/字串  ：向下搜寻『字串』的功能；</li>
+<li>?字串  ：向上搜寻『字串』的功能；</li>
+<li>n   ：重复前一个搜寻 (与 / 或 ? 有关！)</li>
+<li>N   ：反向的重复前一个搜寻 (与 / 或 ? 有关！)</li>
+<li>q   ：离开 less 这个程序；</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@kuangshen etc]<span class="comment"># more /etc/csh.login</span></span><br><span class="line">....(中间省略)....</span><br><span class="line">:   <span class="comment"># 这里可以等待你输入命令！</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-7、head"><a href="#3-3-7、head" class="headerlink" title="3.3.7、head"></a>3.3.7、head</h4><p><strong>取出文件前面几行</strong></p>
+<p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head [-n number] 文件</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：**-n** 后面接数字，代表显示几行的意思！</p>
+<p>默认的情况中，显示前面 10 行！若要显示前 20 行，就得要这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@kuangshen etc]<span class="comment"># head -n 20 /etc/csh.login</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-8、tail"><a href="#3-3-8、tail" class="headerlink" title="3.3.8、tail"></a>3.3.8、tail</h4><p><strong>取出文件后面几行</strong></p>
+<p>语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail [-n number] 文件</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li>-n ：后面接数字，代表显示几行的意思</li>
+</ul>
+<p>默认的情况中，显示最后 10 行！若要显示最后 20 行，就得要这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@kuangshen etc]<span class="comment"># tail -n 20 /etc/csh.login</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-9、拓展：Linux-链接概念"><a href="#3-3-9、拓展：Linux-链接概念" class="headerlink" title="3.3.9、拓展：Linux 链接概念"></a>3.3.9、拓展：Linux 链接概念</h4><p>Linux 链接分两种，一种被称为硬链接（Hard Link），另一种被称为符号链接（Symbolic Link）。</p>
+<p>情况下，<strong>ln</strong> 命令产生硬链接。</p>
+<p><strong>硬连接</strong></p>
+<p>硬连接指通过索引节点来进行连接。在 Linux 的文件系统中，保存在磁盘分区中的文件不管是什么类型都给它分配一个编号，称为索引节点号(Inode Index)。在 Linux 中，多个文件名指向同一索引节点是存在的。比如：A 是 B 的硬链接（A 和 B 都是文件名），则 A 的目录项中的 inode 节点号与 B 的目录项中的 inode 节点号相同，即一个 inode 节点对应两个不同的文件名，两个文件名指向同一个文件，A 和 B 对文件系统来说是完全平等的。删除其中任何一个都不会影响另外一个的访问。</p>
+<p>硬连接的作用是允许一个文件拥有多个有效路径名，这样用户就可以建立硬连接到重要文件，以防止“误删”的功能。其原因如上所述，因为对应该目录的索引节点有一个以上的连接。只删除一个连接并不影响索引节点本身和其它的连接，只有当最后一个连接被删除后，文件的数据块及目录的连接才会被释放。也就是说，文件真正删除的条件是与之相关的所有硬连接文件均被删除。</p>
+<p><strong>软连接</strong></p>
+<p>另外一种连接称之为符号连接（Symbolic Link），也叫软连接。软链接文件有类似于 Windows 的快捷方式。它实际上是一个特殊的文件。在符号连接中，文件实际上是一个文本文件，其中包含的有另一文件的位置信息。比如：A 是 B 的软链接（A 和 B 都是文件名），A 的目录项中的 inode 节点号与 B 的目录项中的 inode 节点号不相同，A 和 B 指向的是两个不同的 inode，继而指向两块不同的数据块。但是 A 的数据块中存放的只是 B 的路径名（可以根据这个找到 B 的目录项）。A 和 B 之间是“主从”关系，如果 B 被删除了，A 仍然存在（因为两个是不同的文件），但指向的是一个无效的链接。</p>
+<p><strong>测试：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@kuangshen /]<span class="comment"># cd /home</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># touch f1 # 创建一个测试文件f1</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># ls</span></span><br><span class="line">f1</span><br><span class="line">[root@kuangshen home]<span class="comment"># ln f1 f2     # 创建f1的一个硬连接文件f2</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># ln -s f1 f3   # 创建f1的一个符号连接文件f3</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># ls -li       # -i参数显示文件的inode节点信息</span></span><br><span class="line">397247 -rw-r--r-- 2 root root     0 Mar 13 00:50 f1</span><br><span class="line">397247 -rw-r--r-- 2 root root     0 Mar 13 00:50 f2</span><br><span class="line">397248 lrwxrwxrwx 1 root root     2 Mar 13 00:50 f3 -&gt; f1</span><br></pre></td></tr></table></figure>
+
+<p>从上面的结果中可以看出，硬连接文件 f2 与原文件 f1 的 inode 节点相同，均为 397247，然而符号连接文件的 inode 节点不同。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># echo 字符串输出 &gt;&gt; f1 输出到 f1文件</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># echo &quot;I am f1 file&quot; &gt;&gt;f1</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># cat f1</span></span><br><span class="line">I am f1 file</span><br><span class="line">[root@kuangshen home]<span class="comment"># cat f2</span></span><br><span class="line">I am f1 file</span><br><span class="line">[root@kuangshen home]<span class="comment"># cat f3</span></span><br><span class="line">I am f1 file</span><br><span class="line">[root@kuangshen home]<span class="comment"># rm -f f1</span></span><br><span class="line">[root@kuangshen home]<span class="comment"># cat f2</span></span><br><span class="line">I am f1 file</span><br><span class="line">[root@kuangshen home]<span class="comment"># cat f3</span></span><br><span class="line">cat: f3: No such file or directory</span><br></pre></td></tr></table></figure>
+
+<p>通过上面的测试可以看出：当删除原始文件 f1 后，硬连接 f2 不受影响，但是符号连接 f1 文件无效；</p>
+<p>依此您可以做一些相关的测试，可以得到以下全部结论：</p>
+<ul>
+<li>删除符号连接f3,对f1,f2无影响；</li>
+<li>删除硬连接f2，对f1,f3也无影响；</li>
+<li>删除原文件f1，对硬连接f2没有影响，导致符号连接f3失效；</li>
+<li>同时删除原文件f1,硬连接f2，整个文件会真正的被删除。</li>
+</ul>
+<h3 id="3-4、Vim编辑器"><a href="#3-4、Vim编辑器" class="headerlink" title="3.4、Vim编辑器"></a>3.4、Vim编辑器</h3><p>Vim是从 vi 发展出来的一个文本编辑器。代码补完、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用。</p>
+<p>简单的来说， vi 是老式的字处理器，不过功能已经很齐全了，但是还是有可以进步的地方。</p>
+<p>vim 则可以说是程序开发者的一项很好用的工具。</p>
+<p>所有的 Unix Like 系统都会内建 vi 文书编辑器，其他的文书编辑器则不一定会存在。</p>
+<p>连 vim 的官方网站 (<a target="_blank" rel="noopener" href="http://www.vim.org/">http://www.vim.org</a>) 自己也说 vim 是一个程序开发工具而不是文字处理软件。</p>
+<h4 id="3-4-1、三种使用模式"><a href="#3-4-1、三种使用模式" class="headerlink" title="3.4.1、三种使用模式"></a>3.4.1、三种使用模式</h4><p>基本上 vi/vim 共分为三种模式，分别是<strong>命令模式（Command mode）</strong>，<strong>输入模式（Insert mode）</strong>和<strong>底线命令模式（Last line mode）</strong>。这三种模式的作用分别是：</p>
+<h5 id="命令模式："><a href="#命令模式：" class="headerlink" title="命令模式："></a><strong>命令模式：</strong></h5><p>用户刚刚启动 vi/vim，便进入了命令模式。</p>
+<p>此状态下敲击键盘动作会被Vim识别为命令，而非输入字符。比如我们此时按下i，并不会输入一个字符，i被当作了一个命令。</p>
+<p>以下是常用的几个命令：</p>
+<ul>
+<li><strong>i</strong> 切换到输入模式，以输入字符。</li>
+<li><strong>x</strong> 删除当前光标所在处的字符。</li>
+<li><strong>:</strong> 切换到底线命令模式，以在最底一行输入命令。</li>
+</ul>
+<p>若想要编辑文本：启动Vim，进入了命令模式，按下i，切换到输入模式。</p>
+<p>命令模式只有一些最基本的命令，因此仍要依靠底线命令模式输入更多命令。</p>
+<h5 id="输入模式："><a href="#输入模式：" class="headerlink" title="输入模式："></a><strong>输入模式：</strong></h5><p>在命令模式下按下i就进入了输入模式。</p>
+<p>在输入模式中，可以使用以下按键：</p>
+<ul>
+<li><strong>字符按键以及Shift组合</strong>，输入字符</li>
+<li><strong>ENTER</strong>，回车键，换行</li>
+<li><strong>BACK SPACE</strong>，退格键，删除光标前一个字符</li>
+<li><strong>DEL</strong>，删除键，删除光标后一个字符</li>
+<li><strong>方向键</strong>，在文本中移动光标</li>
+<li><strong>HOME</strong>/<strong>END</strong>，移动光标到行首/行尾</li>
+<li><strong>Page Up</strong>/<strong>Page Down</strong>，上/下翻页</li>
+<li><strong>Insert</strong>，切换光标为输入/替换模式，光标将变成竖线/下划线</li>
+<li><strong>ESC</strong>，退出输入模式，切换到命令模式</li>
+</ul>
+<h5 id="底线命令模式："><a href="#底线命令模式：" class="headerlink" title="底线命令模式："></a><strong>底线命令模式</strong>：</h5><p>在命令模式下按下:（英文冒号）就进入了底线命令模式。</p>
+<p>底线命令模式可以输入单个或多个字符的命令，可用的命令非常多。</p>
+<p>在底线命令模式中，基本的命令有（已经省略了冒号）：</p>
+<ul>
+<li>q 退出程序</li>
+<li>w 保存文件</li>
+</ul>
+<p>按ESC键可随时退出底线命令模式。</p>
+<h4 id="3-4-2、Vim-按键说明"><a href="#3-4-2、Vim-按键说明" class="headerlink" title="3.4.2、Vim 按键说明"></a>3.4.2、Vim 按键说明</h4><p><strong>第一部分：一般模式可用的光标移动、复制粘贴、搜索替换等</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">移动光标的方法</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">h 或 向左箭头键(←)</td>
+<td>光标向左移动一个字符</td>
+</tr>
+<tr>
+<td align="left">j 或 向下箭头键(↓)</td>
+<td>光标向下移动一个字符</td>
+</tr>
+<tr>
+<td align="left">k 或 向上箭头键(↑)</td>
+<td>光标向上移动一个字符</td>
+</tr>
+<tr>
+<td align="left">l 或 向右箭头键(→)</td>
+<td>光标向右移动一个字符</td>
+</tr>
+<tr>
+<td align="left">[Ctrl] + [f]</td>
+<td>屏幕『向下』移动一页，相当于 [Page Down]按键 (常用)</td>
+</tr>
+<tr>
+<td align="left">[Ctrl] + [b]</td>
+<td>屏幕『向上』移动一页，相当于 [Page Up] 按键 (常用)</td>
+</tr>
+<tr>
+<td align="left">[Ctrl] + [d]</td>
+<td>屏幕『向下』移动半页</td>
+</tr>
+<tr>
+<td align="left">[Ctrl] + [u]</td>
+<td>屏幕『向上』移动半页</td>
+</tr>
+<tr>
+<td align="left">+</td>
+<td>光标移动到非空格符的下一行</td>
+</tr>
+<tr>
+<td align="left">-</td>
+<td>光标移动到非空格符的上一行</td>
+</tr>
+<tr>
+<td align="left">n&lt; space&gt;</td>
+<td>那个 n 表示『数字』，例如 20 。按下数字后再按空格键，光标会向右移动这一行的 n 个字符。</td>
+</tr>
+<tr>
+<td align="left">0 或功能键[Home]</td>
+<td>这是数字『 0 』：移动到这一行的最前面字符处 (常用)</td>
+</tr>
+<tr>
+<td align="left">$ 或功能键[End]</td>
+<td>移动到这一行的最后面字符处(常用)</td>
+</tr>
+<tr>
+<td align="left">H</td>
+<td>光标移动到这个屏幕的最上方那一行的第一个字符</td>
+</tr>
+<tr>
+<td align="left">M</td>
+<td>光标移动到这个屏幕的中央那一行的第一个字符</td>
+</tr>
+<tr>
+<td align="left">L</td>
+<td>光标移动到这个屏幕的最下方那一行的第一个字符</td>
+</tr>
+<tr>
+<td align="left">G</td>
+<td>移动到这个档案的最后一行(常用)</td>
+</tr>
+<tr>
+<td align="left">nG</td>
+<td>n 为数字。移动到这个档案的第 n 行。例如 20G 则会移动到这个档案的第 20 行(可配合 :set nu)</td>
+</tr>
+<tr>
+<td align="left">gg</td>
+<td>移动到这个档案的第一行，相当于 1G 啊！(常用)</td>
+</tr>
+<tr>
+<td align="left">n&lt; Enter&gt;</td>
+<td>n 为数字。光标向下移动 n 行(常用)</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">搜索替换</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">/word</td>
+<td>向光标之下寻找一个名称为 word 的字符串。例如要在档案内搜寻 vbird 这个字符串，就输入 /vbird 即可！(常用)</td>
+</tr>
+<tr>
+<td align="left">?word</td>
+<td>向光标之上寻找一个字符串名称为 word 的字符串。</td>
+</tr>
+<tr>
+<td align="left">n</td>
+<td>这个 n 是英文按键。代表重复前一个搜寻的动作。举例来说， 如果刚刚我们执行 /vbird 去向下搜寻 vbird 这个字符串，则按下 n 后，会向下继续搜寻下一个名称为 vbird 的字符串。如果是执行 ?vbird 的话，那么按下 n 则会向上继续搜寻名称为 vbird 的字符串！</td>
+</tr>
+<tr>
+<td align="left">N</td>
+<td>这个 N 是英文按键。与 n 刚好相反，为『反向』进行前一个搜寻动作。例如 /vbird 后，按下 N 则表示『向上』搜寻 vbird 。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">删除、复制与粘贴</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">x, X</td>
+<td>在一行字当中，x 为向后删除一个字符 (相当于 [del] 按键)， X 为向前删除一个字符(相当于 [backspace] 亦即是退格键) (常用)</td>
+</tr>
+<tr>
+<td align="left">nx</td>
+<td>n 为数字，连续向后删除 n 个字符。举例来说，我要连续删除 10 个字符， 『10x』。</td>
+</tr>
+<tr>
+<td align="left">dd</td>
+<td>删除游标所在的那一整行(常用)</td>
+</tr>
+<tr>
+<td align="left">ndd</td>
+<td>n 为数字。删除光标所在的向下 n 行，例如 20dd 则是删除 20 行 (常用)</td>
+</tr>
+<tr>
+<td align="left">d1G</td>
+<td>删除光标所在到第一行的所有数据</td>
+</tr>
+<tr>
+<td align="left">dG</td>
+<td>删除光标所在到最后一行的所有数据</td>
+</tr>
+<tr>
+<td align="left">d$</td>
+<td>删除游标所在处，到该行的最后一个字符</td>
+</tr>
+<tr>
+<td align="left">d0</td>
+<td>那个是数字的 0 ，删除游标所在处，到该行的最前面一个字符</td>
+</tr>
+<tr>
+<td align="left">yy</td>
+<td>复制游标所在的那一行(常用)</td>
+</tr>
+<tr>
+<td align="left">nyy</td>
+<td>n 为数字。复制光标所在的向下 n 行，例如 20yy 则是复制 20 行(常用)</td>
+</tr>
+<tr>
+<td align="left">y1G</td>
+<td>复制游标所在行到第一行的所有数据</td>
+</tr>
+<tr>
+<td align="left">yG</td>
+<td>复制游标所在行到最后一行的所有数据</td>
+</tr>
+<tr>
+<td align="left">y0</td>
+<td>复制光标所在的那个字符到该行行首的所有数据</td>
+</tr>
+<tr>
+<td align="left">y$</td>
+<td>复制光标所在的那个字符到该行行尾的所有数据</td>
+</tr>
+<tr>
+<td align="left">p, P</td>
+<td>p 为将已复制的数据在光标下一行贴上，P 则为贴在游标上一行！举例来说，我目前光标在第 20 行，且已经复制了 10 行数据。则按下 p 后， 那 10 行数据会贴在原本的 20 行之后，亦即由 21 行开始贴。但如果是按下 P 呢？那么原本的第 20 行会被推到变成 30 行。(常用)</td>
+</tr>
+<tr>
+<td align="left">J</td>
+<td>将光标所在行与下一行的数据结合成同一行</td>
+</tr>
+<tr>
+<td align="left">c</td>
+<td>重复删除多个数据，例如向下删除 10 行，[ 10cj ]</td>
+</tr>
+<tr>
+<td align="left">u</td>
+<td>复原前一个动作。(常用)</td>
+</tr>
+<tr>
+<td align="left">[Ctrl]+r</td>
+<td>重做上一个动作。(常用)</td>
+</tr>
+</tbody></table>
+<p><strong>第二部分：一般模式切换到编辑模式的可用的按钮说明</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">进入输入或取代的编辑模式</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">i, I</td>
+<td>进入输入模式(Insert mode)：i 为『从目前光标所在处输入』， I 为『在目前所在行的第一个非空格符处开始输入』。(常用)</td>
+</tr>
+<tr>
+<td align="left">a, A</td>
+<td>进入输入模式(Insert mode)：a 为『从目前光标所在的下一个字符处开始输入』， A 为『从光标所在行的最后一个字符处开始输入』。(常用)</td>
+</tr>
+<tr>
+<td align="left">o, O</td>
+<td>进入输入模式(Insert mode)：这是英文字母 o 的大小写。o 为『在目前光标所在的下一行处输入新的一行』；O 为在目前光标所在处的上一行输入新的一行！(常用)</td>
+</tr>
+<tr>
+<td align="left">r, R</td>
+<td>进入取代模式(Replace mode)：r 只会取代光标所在的那一个字符一次；R会一直取代光标所在的文字，直到按下 ESC 为止；(常用)</td>
+</tr>
+<tr>
+<td align="left">[Esc]</td>
+<td>退出编辑模式，回到一般模式中(常用)</td>
+</tr>
+</tbody></table>
+<p><strong>第三部分：一般模式切换到指令行模式的可用的按钮说明</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">指令行的储存、离开等指令</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">:w</td>
+<td>将编辑的数据写入硬盘档案中(常用)</td>
+</tr>
+<tr>
+<td align="left">:w!</td>
+<td>若文件属性为『只读』时，强制写入该档案。不过，到底能不能写入， 还是跟你对该档案的档案权限有关啊！</td>
+</tr>
+<tr>
+<td align="left">:q</td>
+<td>离开 vi (常用)</td>
+</tr>
+<tr>
+<td align="left">:q!</td>
+<td>若曾修改过档案，又不想储存，使用 ! 为强制离开不储存档案。</td>
+</tr>
+<tr>
+<td align="left">注意一下啊，那个惊叹号 (!) 在 vi 当中，常常具有『强制』的意思～</td>
+<td></td>
+</tr>
+<tr>
+<td align="left">:wq</td>
+<td>储存后离开，若为 :wq! 则为强制储存后离开 (常用)</td>
+</tr>
+<tr>
+<td align="left">ZZ</td>
+<td>这是大写的 Z 喔！若档案没有更动，则不储存离开，若档案已经被更动过，则储存后离开！</td>
+</tr>
+<tr>
+<td align="left">:w [filename]</td>
+<td>将编辑的数据储存成另一个档案（类似另存新档）</td>
+</tr>
+<tr>
+<td align="left">:r [filename]</td>
+<td>在编辑的数据中，读入另一个档案的数据。亦即将 『filename』 这个档案内容加到游标所在行后面</td>
+</tr>
+<tr>
+<td align="left">:n1,n2 w [filename]</td>
+<td>将 n1 到 n2 的内容储存成 filename 这个档案。</td>
+</tr>
+<tr>
+<td align="left">:! command</td>
+<td>暂时离开 vi 到指令行模式下执行 command 的显示结果！例如 『:! ls /home』即可在 vi 当中看 /home 底下以 ls 输出的档案信息！</td>
+</tr>
+<tr>
+<td align="left">:set nu</td>
+<td>显示行号，设定之后，会在每一行的前缀显示该行的行号</td>
+</tr>
+<tr>
+<td align="left">:set nonu</td>
+<td>与 set nu 相反，为取消行号！</td>
+</tr>
+</tbody></table>
+<h3 id="3-5、账号管理"><a href="#3-5、账号管理" class="headerlink" title="3.5、账号管理"></a>3.5、账号管理</h3><p>Linux系统是一个多用户多任务的分时操作系统，任何一个要使用系统资源的用户，都必须首先向系统管理员申请一个账号，然后以这个账号的身份进入系统。</p>
+<p>用户的账号一方面可以帮助系统管理员对使用系统的用户进行跟踪，并控制他们对系统资源的访问；另一方面也可以帮助用户组织文件，并为用户提供安全性保护。</p>
+<p>每个用户账号都拥有一个唯一的用户名和各自的口令。</p>
+<p>用户在登录时键入正确的用户名和口令后，就能够进入系统和自己的主目录。</p>
+<p>实现用户账号的管理，要完成的工作主要有如下几个方面：</p>
+<ul>
+<li>用户账号的添加、删除与修改。</li>
+<li>用户口令的管理。</li>
+<li>用户组的管理。</li>
+</ul>
+<h4 id="3-5-1、添加账号-useradd"><a href="#3-5-1、添加账号-useradd" class="headerlink" title="3.5.1、添加账号 useradd"></a>3.5.1、添加账号 useradd</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd 选项 用户名</span><br></pre></td></tr></table></figure>
+
+<p>参数说明：</p>
+<ul>
+<li><p>选项 :</p>
+</li>
+<li><ul>
+<li>-c comment 指定一段注释性描述。</li>
+<li>-d 目录 指定用户主目录，如果此目录不存在，则同时使用-m选项，可以创建主目录。</li>
+<li>-g 用户组 指定用户所属的用户组。</li>
+<li>-G 用户组，用户组 指定用户所属的附加组。</li>
+<li>-m　使用者目录如不存在则自动建立。</li>
+<li>-s Shell文件 指定用户的登录Shell。</li>
+<li>-u 用户号 指定用户的用户号，如果同时有-o选项，则可以重复使用其他用户的标识号。</li>
+</ul>
+</li>
+<li><p>用户名 :</p>
+</li>
+<li><ul>
+<li>指定新账号的登录名。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-5-2、Linux下如何切换用户"><a href="#3-5-2、Linux下如何切换用户" class="headerlink" title="3.5.2、Linux下如何切换用户"></a>3.5.2、Linux下如何切换用户</h4><p>1.切换用户的命令为：su username 【username是你的用户名哦】</p>
+<p>2.从普通用户切换到root用户，还可以使用命令：sudo su</p>
+<p>3.在终端输入exit或logout或使用快捷方式ctrl+d，可以退回到原来用户，其实ctrl+d也是执行的exit命令</p>
+<p>4.在切换用户时，如果想在切换用户之后使用新用户的工作环境，可以在su和username之间加-，例如：【su - root】</p>
+<p>$表示普通用户</p>
+<p>#表示超级用户，也就是root用户</p>
+<h4 id="3-5-3、删除帐号"><a href="#3-5-3、删除帐号" class="headerlink" title="3.5.3、删除帐号"></a>3.5.3、删除帐号</h4><p>如果一个用户的账号不再使用，可以从系统中删除。</p>
+<p>删除用户账号就是要将/etc/passwd等系统文件中的该用户记录删除，必要时还删除用户的主目录。</p>
+<p>删除一个已有的用户账号使用userdel命令，其格式如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">userdel 选项 用户名</span><br></pre></td></tr></table></figure>
+
+<p>常用的选项是 <strong>-r</strong>，它的作用是把用户的主目录一起删除。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@kuangshen home]<span class="comment"># userdel -r kuangshen</span></span><br></pre></td></tr></table></figure>
+
+<p>此命令删除用户kuangshen在系统文件中（主要是/etc/passwd, /etc/shadow, /etc/group等）的记录，同时删除用户的主目录。</p>
+<h4 id="3-5-4、修改账号"><a href="#3-5-4、修改账号" class="headerlink" title="3.5.4、修改账号"></a>3.5.4、修改账号</h4><p>修改用户账号就是根据实际情况更改用户的有关属性，如用户号、主目录、用户组、登录Shell等。</p>
+<p>修改已有用户的信息使用usermod命令，其格式如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usermod 选项 用户名</span><br></pre></td></tr></table></figure>
+
+<p>常用的选项包括-c, -d, -m, -g, -G, -s, -u以及-o等，这些选项的意义与useradd命令中的选项一样，可以为用户指定新的资源值。</p>
+<p>例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># usermod -s /bin/ksh -d /home/z –g developer kuangshen</span></span><br></pre></td></tr></table></figure>
+
+<p>此命令将用户kuangshen的登录Shell修改为ksh，主目录改为/home/z，用户组改为developer。</p>
+<h4 id="3-5-5、用户口令的管理"><a href="#3-5-5、用户口令的管理" class="headerlink" title="3.5.5、用户口令的管理"></a>3.5.5、用户口令的管理</h4><p>用户管理的一项重要内容是用户口令的管理。用户账号刚创建时没有口令，但是被系统锁定，无法使用，必须为其指定口令后才可以使用，即使是指定空口令。</p>
+<p>指定和修改用户口令的Shell命令是passwd。超级用户可以为自己和其他用户指定口令，普通用户只能用它修改自己的口令。</p>
+<p>命令的格式为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd 选项 用户名</span><br></pre></td></tr></table></figure>
+
+<p>可使用的选项：</p>
+<ul>
+<li>-l 锁定口令，即禁用账号。</li>
+<li>-u 口令解锁。</li>
+<li>-d 使账号无口令。</li>
+<li>-f 强迫用户下次登录时修改口令。</li>
+</ul>
+<p>如果默认用户名，则修改当前用户的口令。</p>
+<p>例如，假设当前用户是kuangshen，则下面的命令修改该用户自己的口令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ passwd </span><br><span class="line">Old password:******</span><br><span class="line">New password:*******</span><br><span class="line">Re-enter new password:*******</span><br></pre></td></tr></table></figure>
+
+<p>如果是超级用户，可以用下列形式指定任何用户的口令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># passwd kuangshen</span></span><br><span class="line">New password:*******</span><br><span class="line">Re-enter new password:*******</span><br></pre></td></tr></table></figure>
+
+<p>普通用户修改自己的口令时，passwd命令会先询问原口令，验证后再要求用户输入两遍新口令，如果两次输入的口令一致，则将这个口令指定给用户；而超级用户为用户指定口令时，就不需要知道原口令。</p>
+<p>为了系统安全起见，用户应该选择比较复杂的口令，例如最好使用8位长的口令，口令中包含有大写、小写字母和数字，并且应该与姓名、生日等不相同。</p>
+<p>为用户指定空口令时，执行下列形式的命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># passwd -d kuangshen</span></span><br></pre></td></tr></table></figure>
+
+<p>此命令将用户 kuangshen的口令删除，这样用户 kuangshen下一次登录时，系统就不再允许该用户登录了。</p>
+<p>passwd 命令还可以用 -l(lock) 选项锁定某一用户，使其不能登录，例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># passwd -l kuangshen</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-6、用户组管理"><a href="#3-6、用户组管理" class="headerlink" title="3.6、用户组管理"></a>3.6、用户组管理</h3><p>每个用户都有一个用户组，系统可以对一个用户组中的所有用户进行集中管理。不同Linux 系统对用户组的规定有所不同，如Linux下的用户属于与它同名的用户组，这个用户组在创建用户时同时创建。</p>
+<p>用户组的管理涉及用户组的添加、删除和修改。组的增加、删除和修改实际上就是对/etc/group文件的更新。</p>
+<h4 id="3-6-1、增加一个新的用户组使用groupadd命令"><a href="#3-6-1、增加一个新的用户组使用groupadd命令" class="headerlink" title="3.6.1、增加一个新的用户组使用groupadd命令"></a>3.6.1、增加一个新的用户组使用groupadd命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupadd 选项 用户组</span><br></pre></td></tr></table></figure>
+
+<p>可以使用的选项有：</p>
+<ul>
+<li>-g GID 指定新用户组的组标识号（GID）。</li>
+<li>-o 一般与-g选项同时使用，表示新用户组的GID可以与系统已有用户组的GID相同。</li>
+</ul>
+<p>实例1：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># groupadd group1</span></span><br></pre></td></tr></table></figure>
+
+<p>此命令向系统中增加了一个新组group1，新组的组标识号是在当前已有的最大组标识号的基础上加1。</p>
+<p>实例2：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># groupadd -g 101 group2</span></span><br></pre></td></tr></table></figure>
+
+<p>此命令向系统中增加了一个新组group2，同时指定新组的组标识号是101。</p>
+<h4 id="3-6-2、如果要删除一个已有的用户组，使用groupdel命令"><a href="#3-6-2、如果要删除一个已有的用户组，使用groupdel命令" class="headerlink" title="3.6.2、如果要删除一个已有的用户组，使用groupdel命令"></a>3.6.2、如果要删除一个已有的用户组，使用groupdel命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupdel 用户组</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># groupdel group1</span></span><br></pre></td></tr></table></figure>
+
+<p>此命令从系统中删除组group1。</p>
+<h4 id="3-6-3、修改用户组的属性使用groupmod命令"><a href="#3-6-3、修改用户组的属性使用groupmod命令" class="headerlink" title="3.6.3、修改用户组的属性使用groupmod命令"></a>3.6.3、修改用户组的属性使用groupmod命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupmod 选项 用户组</span><br></pre></td></tr></table></figure>
+
+<p>常用的选项有：</p>
+<ul>
+<li>-g GID 为用户组指定新的组标识号。</li>
+<li>-o 与-g选项同时使用，用户组的新GID可以与系统已有用户组的GID相同。</li>
+<li>-n新用户组 将用户组的名字改为新名字</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 此命令将组group2的组标识号修改为102。</span></span><br><span class="line">groupmod -g 102 group2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将组group2的标识号改为10000，组名修改为group3。</span></span><br><span class="line">groupmod –g 10000 -n group3 group2</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-6-4、切换组"><a href="#3-6-4、切换组" class="headerlink" title="3.6.4、切换组"></a>3.6.4、切换组</h4><p>如果一个用户同时属于多个用户组，那么用户可以在用户组之间切换，以便具有其他用户组的权限。</p>
+<p>用户可以在登录后，使用命令newgrp切换到其他用户组，这个命令的参数就是目的用户组。例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ newgrp root</span><br></pre></td></tr></table></figure>
+
+<p>这条命令将当前用户切换到root用户组，前提条件是root用户组确实是该用户的主组或附加组。</p>
+<h4 id="3-6-5、-etc-passwd"><a href="#3-6-5、-etc-passwd" class="headerlink" title="3.6.5、/etc/passwd"></a>3.6.5、/etc/passwd</h4><p>完成用户管理的工作有许多种方法，但是每一种方法实际上都是对有关的系统文件进行修改。</p>
+<p>与用户和用户组相关的信息都存放在一些系统文件中，这些文件包括/etc/passwd, /etc/shadow, /etc/group等。</p>
+<p>下面分别介绍这些文件的内容。</p>
+<p><strong>/etc/passwd文件是用户管理工作涉及的最重要的一个文件。</strong></p>
+<p>Linux系统中的每个用户都在/etc/passwd文件中有一个对应的记录行，它记录了这个用户的一些基本属性。</p>
+<p>从上面的例子我们可以看到，/etc/passwd中一行记录对应着一个用户，每行记录又被冒号(:)分隔为7个字段，其格式和具体含义如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户名:口令:用户标识号:组标识号:注释性描述:主目录:登录Shell</span><br></pre></td></tr></table></figure>
+
+<p>1）”用户名”是代表用户账号的字符串。</p>
+<p>通常长度不超过8个字符，并且由大小写字母和/或数字组成。登录名中不能有冒号(:)，因为冒号在这里是分隔符。</p>
+<p>为了兼容起见，登录名中最好不要包含点字符(.)，并且不使用连字符(-)和加号(+)打头。</p>
+<p>2）“口令”一些系统中，存放着加密后的用户口令字。</p>
+<p>虽然这个字段存放的只是用户口令的加密串，不是明文，但是由于/etc/passwd文件对所有用户都可读，所以这仍是一个安全隐患。因此，现在许多Linux 系统（如SVR4）都使用了shadow技术，把真正的加密后的用户口令字存放到/etc/shadow文件中，而在/etc/passwd文件的口令字段中只存放一个特殊的字符，例如“x”或者“*”。</p>
+<p>3）“用户标识号”是一个整数，系统内部用它来标识用户。</p>
+<p>一般情况下它与用户名是一一对应的。如果几个用户名对应的用户标识号是一样的，系统内部将把它们视为同一个用户，但是它们可以有不同的口令、不同的主目录以及不同的登录Shell等。</p>
+<p>通常用户标识号的取值范围是0～65 535。0是超级用户root的标识号，1～99由系统保留，作为管理账号，普通用户的标识号从100开始。在Linux系统中，这个界限是500。</p>
+<p>4）“组标识号”字段记录的是用户所属的用户组。</p>
+<p>它对应着/etc/group文件中的一条记录。</p>
+<p>5)“注释性描述”字段记录着用户的一些个人情况。</p>
+<p>例如用户的真实姓名、电话、地址等，这个字段并没有什么实际的用途。在不同的Linux 系统中，这个字段的格式并没有统一。在许多Linux系统中，这个字段存放的是一段任意的注释性描述文字，用作finger命令的输出。</p>
+<p>6)“主目录”，也就是用户的起始工作目录。</p>
+<p>它是用户在登录到系统之后所处的目录。在大多数系统中，各用户的主目录都被组织在同一个特定的目录下，而用户主目录的名称就是该用户的登录名。各用户对自己的主目录有读、写、执行（搜索）权限，其他用户对此目录的访问权限则根据具体情况设置。</p>
+<p>7)用户登录后，要启动一个进程，负责将用户的操作传给内核，这个进程是用户登录到系统后运行的命令解释器或某个特定的程序，即Shell。</p>
+<p>Shell是用户与Linux系统之间的接口。Linux的Shell有许多种，每种都有不同的特点。常用的有sh(Bourne Shell), csh(C Shell), ksh(Korn Shell), tcsh(TENEX/TOPS-20 type C Shell), bash(Bourne Again Shell)等。</p>
+<p>系统管理员可以根据系统情况和用户习惯为用户指定某个Shell。如果不指定Shell，那么系统使用sh为默认的登录Shell，即这个字段的值为/bin/sh。</p>
+<p>用户的登录Shell也可以指定为某个特定的程序（此程序不是一个命令解释器）。</p>
+<p>利用这一特点，我们可以限制用户只能运行指定的应用程序，在该应用程序运行结束后，用户就自动退出了系统。有些Linux 系统要求只有那些在系统中登记了的程序才能出现在这个字段中。</p>
+<p>8)系统中有一类用户称为伪用户（pseudo users）。</p>
+<p>这些用户在/etc/passwd文件中也占有一条记录，但是不能登录，因为它们的登录Shell为空。它们的存在主要是方便系统管理，满足相应的系统进程对文件属主的要求。</p>
+<h4 id="3-6-6、-etc-shadow"><a href="#3-6-6、-etc-shadow" class="headerlink" title="3.6.6、/etc/shadow"></a>3.6.6、/etc/shadow</h4><p><strong>1、除了上面列出的伪用户外，还有许多标准的伪用户，例如：audit, cron, mail, usenet等，它们也都各自为相关的进程和文件所需要。</strong></p>
+<p>由于/etc/passwd文件是所有用户都可读的，如果用户的密码太简单或规律比较明显的话，一台普通的计算机就能够很容易地将它破解，因此对安全性要求较高的Linux系统都把加密后的口令字分离出来，单独存放在一个文件中，这个文件是/etc/shadow文件。有超级用户才拥有该文件读权限，这就保证了用户密码的安全性。</p>
+<p><strong>2、/etc/shadow中的记录行与/etc/passwd中的一一对应，它由pwconv命令根据/etc/passwd中的数据自动产生</strong></p>
+<p>它的文件格式与/etc/passwd类似，由若干个字段组成，字段之间用”:”隔开。这些字段是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">登录名:加密口令:最后一次修改时间:最小时间间隔:最大时间间隔:警告时间:不活动时间:失效时间:标志</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>“登录名”是与/etc/passwd文件中的登录名相一致的用户账号</li>
+<li>“口令”字段存放的是加密后的用户口令字，长度为13个字符。如果为空，则对应用户没有口令，登录时不需要口令；如果含有不属于集合 { ./0-9A-Za-z }中的字符，则对应的用户不能登录。</li>
+<li>“最后一次修改时间”表示的是从某个时刻起，到用户最后一次修改口令时的天数。时间起点对不同的系统可能不一样。例如在SCO Linux 中，这个时间起点是1970年1月1日。</li>
+<li>“最小时间间隔”指的是两次修改口令之间所需的最小天数。</li>
+<li>“最大时间间隔”指的是口令保持有效的最大天数。</li>
+<li>“警告时间”字段表示的是从系统开始警告用户到用户密码正式失效之间的天数。</li>
+<li>“不活动时间”表示的是用户没有登录活动但账号仍能保持有效的最大天数。</li>
+<li>“失效时间”字段给出的是一个绝对的天数，如果使用了这个字段，那么就给出相应账号的生存期。期满后，该账号就不再是一个合法的账号，也就不能再用来登录了。</li>
+</ol>
+<h4 id="3-6-7、-etc-group"><a href="#3-6-7、-etc-group" class="headerlink" title="3.6.7、/etc/group"></a>3.6.7、/etc/group</h4><p>用户组的所有信息都存放在/etc/group文件中。</p>
+<p>将用户分组是Linux 系统中对用户进行管理及控制访问权限的一种手段。</p>
+<p>每个用户都属于某个用户组；一个组中可以有多个用户，一个用户也可以属于不同的组。</p>
+<p>当一个用户同时是多个组中的成员时，在/etc/passwd文件中记录的是用户所属的主组，也就是登录时所属的默认组，而其他组称为附加组。</p>
+<p>用户要访问属于附加组的文件时，必须首先使用newgrp命令使自己成为所要访问的组中的成员。</p>
+<p>用户组的所有信息都存放在/etc/group文件中。此文件的格式也类似于/etc/passwd文件，由冒号(:)隔开若干个字段，这些字段有：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">组名:口令:组标识号:组内用户列表</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>“组名”是用户组的名称，由字母或数字构成。与/etc/passwd中的登录名一样，组名不应重复。</li>
+<li>“口令”字段存放的是用户组加密后的口令字。一般Linux 系统的用户组都没有口令，即这个字段一般为空，或者是*。</li>
+<li>“组标识号”与用户标识号类似，也是一个整数，被系统内部用来标识组。</li>
+<li>“组内用户列表”是属于这个组的所有用户的列表/b]，不同用户之间用逗号(,)分隔。这个用户组可能是用户的主组，也可能是附加组。</li>
+</ol>
+<h3 id="3-7、磁盘管理"><a href="#3-7、磁盘管理" class="headerlink" title="3.7、磁盘管理"></a>3.7、磁盘管理</h3><p>Linux磁盘管理好坏直接关系到整个系统的性能问题。</p>
+<p>Linux磁盘管理常用命令为 df、du。</p>
+<ul>
+<li>df ：列出文件系统的整体磁盘使用量</li>
+<li>du：检查磁盘空间使用量</li>
+</ul>
+<h4 id="3-7-1、df"><a href="#3-7-1、df" class="headerlink" title="3.7.1、df"></a>3.7.1、df</h4><p>df命令参数功能：检查文件系统的磁盘空间占用情况。可以利用该命令来获取硬盘被占用了多少空间，目前还剩下多少空间等信息。</p>
+<p>语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df [-ahikHTm] [目录或文件名]</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li>-a ：列出所有的文件系统，包括系统特有的 /proc 等文件系统；</li>
+<li>-k ：以 KBytes 的容量显示各文件系统；</li>
+<li>-m ：以 MBytes 的容量显示各文件系统；</li>
+<li>-h ：以人们较易阅读的 GBytes, MBytes, KBytes 等格式自行显示；</li>
+<li>-H ：以 M=1000K 取代 M=1024K 的进位方式；</li>
+<li>-T ：显示文件系统类型, 连同该 partition 的 filesystem 名称 (例如 ext3) 也列出；</li>
+<li>-i ：不用硬盘容量，而以 inode 的数量来显示</li>
+</ul>
+<h4 id="3-7-2、du"><a href="#3-7-2、du" class="headerlink" title="3.7.2、du"></a>3.7.2、du</h4><p>Linux du命令也是查看使用空间的，但是与df命令不同的是Linux du命令是对文件和目录磁盘使用的空间的查看，还是和df命令有一些区别的，这里介绍Linux du命令。</p>
+<p>语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du [-ahskm] 文件或目录名称</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li>-a ：列出所有的文件与目录容量，因为默认仅统计目录底下的文件量而已。</li>
+<li>-h ：以人们较易读的容量格式 (G/M) 显示；</li>
+<li>-s ：列出总量而已，而不列出每个各别的目录占用容量；</li>
+<li>-S ：不包括子目录下的总计，与 -s 有点差别。</li>
+<li>-k ：以 KBytes 列出容量显示；</li>
+<li>-m ：以 MBytes 列出容量显示；</li>
+</ul>
+<p>3.7.3、磁盘挂载与卸除</p>
+<p>根文件系统之外的其他文件要想能够被访问，都必须通过“关联”至根文件系统上的某个目录来实现，此关联操作即为“挂载”，此目录即为“挂载点”,解除此关联关系的过程称之为“卸载”</p>
+<p>Linux 的磁盘挂载使用mount命令，卸载使用umount命令。</p>
+<p>磁盘挂载语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount [-t 文件系统] [-L Label名] [-o 额外选项] [-n] 装置文件名 挂载点</span><br></pre></td></tr></table></figure>
+
+<p>测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将 /dev/hdc6 挂载到 /mnt/hdc6 上面！</span></span><br><span class="line">[root@www ~]<span class="comment"># mkdir /mnt/hdc6</span></span><br><span class="line">[root@www ~]<span class="comment"># mount /dev/hdc6 /mnt/hdc6</span></span><br><span class="line">[root@www ~]<span class="comment"># df</span></span><br><span class="line">Filesystem           1K-blocks     Used Available Use% Mounted on</span><br><span class="line">/dev/hdc6              1976312     42072   1833836   3% /mnt/hdc6</span><br></pre></td></tr></table></figure>
+
+<p>磁盘卸载命令 umount 语法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">umount [-fn] 装置文件名或挂载点</span><br></pre></td></tr></table></figure>
+
+<p>选项与参数：</p>
+<ul>
+<li>-f ：强制卸除！可用在类似网络文件系统 (NFS) 无法读取到的情况下；</li>
+<li>-n ：不升级 /etc/mtab 情况下卸除。</li>
+</ul>
+<p>卸载/dev/hdc6</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]<span class="comment"># umount /dev/hdc6</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-8、进程管理"><a href="#3-8、进程管理" class="headerlink" title="3.8、进程管理"></a>3.8、进程管理</h3><p>1.在Linux中每个程序都有自己的进程，每一个进程都有一个id号</p>
+<p>2.每一种进程，都会有一个父进程</p>
+<p>3.进程可以有两种存在方式：前台和后台运行</p>
+<p>4.一般的话服务都是后台运行的，基本的程序都是前台运行的</p>
+<h4 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h4><p><strong>ps 查看当前系统中正在执行的各种进程的信息</strong></p>
+<p>ps -xx：</p>
+<ul>
+<li>-a 显示当前终端运行的所有进程信息</li>
+<li>-u 以用户的信息显示进程</li>
+<li>-x 显示后台运行进程的参数</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ps -aux 查看所有的进程</span></span><br><span class="line">ps -aux|grep redis</span><br><span class="line"></span><br><span class="line"><span class="comment"># | 在linux这个叫做管道符 A|B</span></span><br><span class="line"><span class="comment">#grep查找文件中符合条件的字符串</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>ps -ef:可以查看到父进程的信息</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ps -ef|grep mysql</span><br><span class="line"></span><br><span class="line"><span class="comment">#进程树</span></span><br><span class="line">pstree -pu</span><br><span class="line"> -p  显示父id</span><br><span class="line"> -u  显示用户组</span><br></pre></td></tr></table></figure>
+
+<p>结束进程：杀掉进程，等价于window结束任务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> -9进程的id</span><br></pre></td></tr></table></figure>
+
+<p>但是我们平时写的一些java代码死循环了，可以选择结束进程</p>
+<h2 id="4、环境安装"><a href="#4、环境安装" class="headerlink" title="4、环境安装"></a>4、环境安装</h2><h3 id="4-1、jdk安装（rpm安装）"><a href="#4-1、jdk安装（rpm安装）" class="headerlink" title="4.1、jdk安装（rpm安装）"></a>4.1、jdk安装（rpm安装）</h3><p>1、rpm下载地址<a target="_blank" rel="noopener" href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a></p>
+<p>2、如果有安装openjdk 则卸载</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@kuangshen ~]<span class="comment"># java -version</span></span><br><span class="line">java version <span class="string">&quot;1.8.0_121&quot;</span></span><br><span class="line">Java(TM) SE Runtime Environment (build 1.8.0_121-b13)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 25.121-b13, mixed mode)</span><br><span class="line"><span class="comment"># 检查</span></span><br><span class="line">[root@kuangshen ~]<span class="comment"># rpm -qa|grep jdk</span></span><br><span class="line">jdk1.8.0_121-1.8.0_121-fcs.x86_64</span><br><span class="line"><span class="comment"># 卸载 -e --nodeps 强制删除</span></span><br><span class="line">[root@kuangshen ~]<span class="comment"># rpm -e --nodeps jdk1.8.0_121-1.8.0_121-fcs.x86_64</span></span><br><span class="line">[root@kuangshen ~]<span class="comment"># java -version</span></span><br><span class="line">-bash: /usr/bin/java: No such file or directory  <span class="comment"># OK</span></span><br></pre></td></tr></table></figure>
+
+<p>3、安装JDK</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装java rpm</span></span><br><span class="line">[root@kuangshen kuangshen]<span class="comment"># rpm -ivh jdk-8u221-linux-x64.rpm</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装完成后配置环境变量 文件：/etc/profile</span></span><br><span class="line">JAVA_HOME=/usr/java/jdk1.8.0_221-amd64</span><br><span class="line">CLASSPATH=%JAVA_HOME%/lib:%JAVA_HOME%/jre/lib</span><br><span class="line">PATH=<span class="variable">$PATH</span>:<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$JAVA_HOME</span>/jre/bin</span><br><span class="line"><span class="built_in">export</span> PATH CLASSPATH JAVA_HOME</span><br><span class="line"><span class="comment"># 保存退出</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 让新增的环境变量生效！</span></span><br><span class="line"><span class="built_in">source</span> /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试 java -version</span></span><br><span class="line">[root@kuangshen java]<span class="comment"># java -version</span></span><br><span class="line">java version <span class="string">&quot;1.8.0_221&quot;</span></span><br><span class="line">Java(TM) SE Runtime Environment (build 1.8.0_221-b11)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 25.221-b11, mixed mode)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2、Tomcat安装（解压缩安装）"><a href="#4-2、Tomcat安装（解压缩安装）" class="headerlink" title="4.2、Tomcat安装（解压缩安装）"></a>4.2、Tomcat安装（解压缩安装）</h3><p>1、安装好了Java环境后我们可以测试下Tomcat！准备好Tomcat的安装包！</p>
+<p>2、将文件移动到/usr/tomcat/下，并解压！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@kuangshen kuangshen]<span class="comment"># mv apache-tomcat-9.0.22.tar.gz /usr</span></span><br><span class="line">[root@kuangshen kuangshen]<span class="comment"># cd /usr</span></span><br><span class="line">[root@kuangshen usr]<span class="comment"># ls</span></span><br><span class="line">apache-tomcat-9.0.22.tar.gz</span><br><span class="line">[root@kuangshen usr]<span class="comment"># tar -zxvf apache-tomcat-9.0.22.tar.gz   # 解压</span></span><br></pre></td></tr></table></figure>
+
+<p>3、运行Tomcat，进入bin目录，和我们以前在Windows下看的都是一样的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 执行：startup.sh --&gt;启动tomcat</span></span><br><span class="line"><span class="comment"># 执行：shutdown.sh --&gt;关闭tomcat</span></span><br><span class="line">./startup.sh</span><br><span class="line">./shutdown.sh</span><br></pre></td></tr></table></figure>
+
+<p>4、确保Linux的防火墙端口是开启的，如果是阿里云，需要保证阿里云的安全组策略是开放的！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看firewall服务状态</span></span><br><span class="line">systemctl status firewalld</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启、重启、关闭、firewalld.service服务</span></span><br><span class="line"><span class="comment"># 开启</span></span><br><span class="line">service firewalld start</span><br><span class="line"><span class="comment"># 重启</span></span><br><span class="line">service firewalld restart</span><br><span class="line"><span class="comment"># 关闭</span></span><br><span class="line">service firewalld stop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看防火墙规则</span></span><br><span class="line">firewall-cmd --list-all    <span class="comment"># 查看全部信息</span></span><br><span class="line">firewall-cmd --list-ports  <span class="comment"># 只看端口信息</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启端口</span></span><br><span class="line">开端口命令：firewall-cmd --zone=public --add-port=80/tcp --permanent</span><br><span class="line">重启防火墙：systemctl restart firewalld.service</span><br><span class="line"></span><br><span class="line">命令含义：</span><br><span class="line">--zone <span class="comment">#作用域</span></span><br><span class="line">--add-port=80/tcp  <span class="comment">#添加端口，格式为：端口/通讯协议</span></span><br><span class="line">--permanent   <span class="comment">#永久生效，没有此参数重启后失效</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-3、安装Docker（yum安装）"><a href="#4-3、安装Docker（yum安装）" class="headerlink" title="4.3、安装Docker（yum安装）"></a>4.3、安装Docker（yum安装）</h3><blockquote>
+<p>基于 CentOS 7 安装</p>
+</blockquote>
+<ol>
+<li><p>官网安装参考手册：<a target="_blank" rel="noopener" href="https://docs.docker.com/install/linux/docker-ce/centos/">https://docs.docker.com/install/linux/docker-ce/centos/</a></p>
+</li>
+<li><p>确定你是CentOS7及以上版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@192 Desktop]<span class="comment"># cat /etc/redhat-release</span></span><br><span class="line">CentOS Linux release 7.2.1511 (Core)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>yum安装gcc相关（需要确保 虚拟机可以上外网 ）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc</span><br><span class="line">yum -y install gcc-c++</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>卸载旧版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">yum -y remove docker docker-common docker-selinux docker-engine</span><br><span class="line"><span class="comment"># 官网版本</span></span><br><span class="line">yum remove docker \</span><br><span class="line">          docker-client \</span><br><span class="line">          docker-client-latest \</span><br><span class="line">          docker-common \</span><br><span class="line">          docker-latest \</span><br><span class="line">          docker-latest-logrotate \</span><br><span class="line">          docker-logrotate \</span><br><span class="line">          docker-engine</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装需要的软件包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils device-mapper-persistent-data lvm2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置stable镜像仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 错误</span></span><br><span class="line">yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line"><span class="comment">## 报错</span></span><br><span class="line">[Errno 14] curl<span class="comment">#35 - TCP connection reset by peer</span></span><br><span class="line">[Errno 12] curl<span class="comment">#35 - Timeout</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 正确推荐使用国内的</span></span><br><span class="line">yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新yum软件包索引</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum makecache fast</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装Docker CE</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动docker</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker version</span><br><span class="line"></span><br><span class="line">docker run hello-world</span><br><span class="line"></span><br><span class="line">docker images</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/14/Linux%E5%AD%A6%E4%B9%A0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-MySQL-高级部分-01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>title: MySQL-高级部分-01<br>date: 2020-11-14 21:47:35</p>
+</blockquote>
+<h1 id="MySQL-高级部分"><a href="#MySQL-高级部分" class="headerlink" title="MySQL-高级部分"></a>MySQL-高级部分</h1><p>MySQL的强大之处：MySQL的不同点在于，它的架构可以在多种不同场景中应用并发挥良好作用，主要体现在存储引擎的架构上，<strong>插件式的存储引擎架构将查询处理和其他的任务系统以及数据的存储提取相分离</strong>，这种架构可以根据业务需求和实际需要选择合适的存储引擎</p>
+<h2 id="1、数据库的四层架构"><a href="#1、数据库的四层架构" class="headerlink" title="1、数据库的四层架构"></a>1、数据库的四层架构</h2><h3 id="1-连接层："><a href="#1-连接层：" class="headerlink" title="1.连接层："></a>1.连接层：</h3><p>最上层是一些客户端和连接服务，主要完成一些类似于连接处理，授权认证，以及相关的安全方案，在该层上引入了线程池的概念，为通过认证安全接入的客户端提供线程</p>
+<h3 id="2-服务层："><a href="#2-服务层：" class="headerlink" title="2.服务层："></a>2.服务层：</h3><p>第二层架构主要完成核心服务，如SQL接口，并完成缓存的查询，SQL分析和优化及部分内置函数的执行，还有所有跨存储引擎的功能。在该层，服务器会解析查询并创建相应的内部解析树，并对其完成相应的优化如确定查询表的顺序，是否利用索引等，最后生成相应的执行操作</p>
+<h3 id="3-引擎层"><a href="#3-引擎层" class="headerlink" title="3.引擎层"></a>3.引擎层</h3><p>存储引擎层，存储真正的负责了Mysql中数据的存储和提取，服务器通过API与存储引擎进行通信，不同的存储引擎具有不同的功能，这样我们可以根据自己的实际需要进行选取，后面介绍MyISAM和InnoDB</p>
+<h3 id="4-存储层："><a href="#4-存储层：" class="headerlink" title="4.存储层："></a>4.存储层：</h3><p>数据存储层，主要是间数据存储在运行于裸设备的文件系统之上，并完成与存储引擎的交互</p>
+<h2 id="2、索引"><a href="#2、索引" class="headerlink" title="2、索引"></a>2、索引</h2><h3 id="2-1、索引概述"><a href="#2-1、索引概述" class="headerlink" title="2.1、索引概述"></a>2.1、索引概述</h3><p>索引是一种数据结构，作用是高效的查找数据</p>
+<h3 id="2-2、索引的优势和劣势"><a href="#2-2、索引的优势和劣势" class="headerlink" title="2.2、索引的优势和劣势"></a>2.2、索引的优势和劣势</h3><p>优势：</p>
+<ul>
+<li>类似于书籍的目录索引，提高数据的检索效率，降低数据库的io成本</li>
+<li>通过索引对数据进行排序，降低数据排序的成本，降低cpu的功耗</li>
+</ul>
+<p>劣势：</p>
+<ul>
+<li>索引也是一张表，也需要占用空间</li>
+<li>虽然索引大大提高效率，但是降低了表的更新的速度，因为更新表后，不止要更新数据，还要保存索引文件每次新添加索引列的字段，调整因为值的改变而带来的键值变化的索引信息</li>
+</ul>
+<h3 id="2-3、索引结构"><a href="#2-3、索引结构" class="headerlink" title="2.3、索引结构"></a>2.3、索引结构</h3><p>Mysql提供的主流的四种索引类型：</p>
+<p><strong>BTREE索引</strong>：最常见的索引类型，大部分索引都支持B数索引</p>
+<p><strong>HASH索引</strong>：只有Memory引擎支持，使用场景简单</p>
+<p><strong>R-tree索引</strong>：空间索引是MuISAM引擎的一个特殊索引类型，主要用于地理空间数据类型，通常使用较少</p>
+<p><strong>Full-text（全文索引）</strong>：也是MuISAM引擎的一个特殊索引类型，主要用于全文索引，InnoDB从mysql5.6开始支持全文索引</p>
+<p>MyISAM，InnoDB,Memory三种存储引擎对各种索引类型的支持：</p>
+<table>
+<thead>
+<tr>
+<th>索引</th>
+<th>InnoDB引擎</th>
+<th>MyISAM引擎</th>
+<th>Memory引擎</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>BTREE索引</strong></td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td><strong>HASH索引</strong></td>
+<td>不支持</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td><strong>R-tree索引</strong></td>
+<td>不支持</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td><strong>Full-text（全文索引）</strong></td>
+<td>5.6版本后支持</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+</tbody></table>
+<h3 id="2-4、B-tree结构"><a href="#2-4、B-tree结构" class="headerlink" title="2.4、B-tree结构"></a>2.4、B-tree结构</h3><p>多路平衡搜索树，一颗m叉的Btree特性如下  [ceil（m/2）] : m/2向上取整</p>
+<ul>
+<li>树中每个节点最多包含m个孩子</li>
+<li>除了根节点和叶子节点外，每个节点最少有[ceil（m/2）]个孩子</li>
+<li>若根节点不是叶子节点，则至少有两个孩子</li>
+<li>所有的叶子节点都在同一层</li>
+<li>每个非叶子节点由n个key和n+1个指针组成，其中[ceil（m/2）-1] &lt; =n &lt;= m-1</li>
+</ul>
+<p>Btree和二叉树相比，层次结构更小，查询效率更快</p>
+<h3 id="2-5、B-tree结构"><a href="#2-5、B-tree结构" class="headerlink" title="2.5、B+tree结构"></a>2.5、B+tree结构</h3><p>B+树是B树的变种，区别为：</p>
+<ul>
+<li>n叉B+Tree最多含有n个key</li>
+<li>B+Tree的叶子结点保存所有key的信息，依key大小顺序排序</li>
+<li>所有的非叶子结点都可以看做是key的索引部分</li>
+</ul>
+<p><strong>优势：由于B+tree只有叶子结点保存key的信息，查询任何key都要从根节点到叶子节点，所以b+树查询效率更加稳定</strong></p>
+<h3 id="2-6、MySQL中的B-Tree"><a href="#2-6、MySQL中的B-Tree" class="headerlink" title="2.6、MySQL中的B+Tree"></a>2.6、MySQL中的B+Tree</h3><p>对B+Tree进行了优化，在原有的树的基础上，增加了一个指向相邻叶子结点的指针，这样可以形成带有顺序指针的B+Tree，提高区间访问能力。</p>
+<h3 id="2-7、索引分类"><a href="#2-7、索引分类" class="headerlink" title="2.7、索引分类"></a>2.7、索引分类</h3><ul>
+<li>单值索引：即一个索引只包含单个列</li>
+<li>唯一索引：索引列的值必须唯一，但允许有空值</li>
+<li>复合索引：即一个索引包含多个列</li>
+</ul>
+<h3 id="2-8、索引语法"><a href="#2-8、索引语法" class="headerlink" title="2.8、索引语法"></a>2.8、索引语法</h3><h4 id="2-8-1、创建索引"><a href="#2-8-1、创建索引" class="headerlink" title="2.8.1、创建索引"></a>2.8.1、创建索引</h4><p>语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">CREATE [UNIQUE|FULLTEXT|SPATIAL] INDEX index_name</span><br><span class="line">[USING index_type]</span><br><span class="line">ON tb_name(index_col_name,...)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">index_col_name : column_name[(length)][ASC|DESC]</span><br><span class="line"></span><br><span class="line"># 给t_book表的name列创建索引</span><br><span class="line">CREATE INDEX idx_t_book_name on t_book(name);</span><br><span class="line"># Query OK, 0 rows affected (0.05 sec)</span><br><span class="line"># Records: 0  Duplicates: 0  Warnings: 0</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-8-2、查看索引"><a href="#2-8-2、查看索引" class="headerlink" title="2.8.2、查看索引"></a>2.8.2、查看索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show index form tablename</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-8-3、删除索引"><a href="#2-8-3、删除索引" class="headerlink" title="2.8.3、删除索引"></a>2.8.3、删除索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop index index_name on tablename</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-8-4、ALTER指令"><a href="#2-8-4、ALTER指令" class="headerlink" title="2.8.4、ALTER指令"></a>2.8.4、ALTER指令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">alter table table_name add primary key(column_list);</span><br><span class="line"># 该语句添加一个主键，这意味着索引值必须唯一</span><br><span class="line"></span><br><span class="line">alter table table_name add unique index_name(column_list);</span><br><span class="line"># 这条语句创建索引的值必须是唯一的（除了null外，null可能会出现多次）</span><br><span class="line"></span><br><span class="line">alter table table_name add index index_name(column_list);</span><br><span class="line"># 添加普通索引，索引值可以出现多次</span><br><span class="line"></span><br><span class="line">alter table table_name add index fulltext index_name(column_list);</span><br><span class="line"># 添加全局索引，用于全文索引</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-9、索引的设计原则"><a href="#2-9、索引的设计原则" class="headerlink" title="2.9、索引的设计原则"></a>2.9、索引的设计原则</h3><p>索引的设计可以遵循一些已有的原则，创建索引的时候请尽量考虑符合这些原则，便于提升索引的使用效率</p>
+<ul>
+<li>对查询频次高，且数据量比较大的表建立索引</li>
+<li>索引字段的选择，最佳候选列应当从where字句的条件中提取，如果where字句中的组合比较多，那么应当挑选最常用，过滤效果最好的列的组合</li>
+<li>使用唯一索引，区分度越高，使用索引的效率也就越高</li>
+<li>索引并不是越多越好</li>
+<li>使用短字段的索引</li>
+<li>利用最左索引，N个列组合而成的组合索引，那么相当于是创建了N个索引，如果查询时的where字句中使用了组成该索引的前几个字段，那么这条查询SQL可以利用组合索引来提升查询效率</li>
+</ul>
+<h2 id="3、视图"><a href="#3、视图" class="headerlink" title="3、视图"></a>3、视图</h2><h3 id="3-1、创建视图和修改视图"><a href="#3-1、创建视图和修改视图" class="headerlink" title="3.1、创建视图和修改视图"></a>3.1、创建视图和修改视图</h3><p>创建视图：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE [OR REPLACE] [ALGORITHM &#x3D; &#123;UNDEFINED|MERGE|TEMPTABLE&#125;]</span><br><span class="line">VIEW view_name[(colunmn_list)]</span><br><span class="line">AS select_statement</span><br><span class="line"></span><br><span class="line">[WITH [CASCADED | LOCAL] CHECK OPTION]</span><br></pre></td></tr></table></figure>
+
+<p>修改视图：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ALTER [ALGORITHM &#x3D; &#123;UNDEFINED|MERGE|TEMPTABLE&#125;]</span><br><span class="line">VIEW view_name[(colunmn_list)]</span><br><span class="line">AS select_statement</span><br><span class="line"></span><br><span class="line">[WITH [CASCADED | LOCAL] CHECK OPTION]</span><br></pre></td></tr></table></figure>
+
+<p><strong>视图不建议去更新</strong></p>
+<h3 id="3-2、查看视图和删除视图"><a href="#3-2、查看视图和删除视图" class="headerlink" title="3.2、查看视图和删除视图"></a>3.2、查看视图和删除视图</h3><p>查看视图用show tables就可以了</p>
+<p>删除视图：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DROP VIEW view_name;</span><br><span class="line"># 删除视图</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-存储过程和函数"><a href="#4-存储过程和函数" class="headerlink" title="4.存储过程和函数"></a>4.存储过程和函数</h2><h3 id="4-1什么是存储过程和存储函数"><a href="#4-1什么是存储过程和存储函数" class="headerlink" title="4.1什么是存储过程和存储函数"></a>4.1什么是存储过程和存储函数</h3><p>存储过程和函数是： 事先经过编译并存储在数据库中的一段sql语句的集合，调用存储过程和函数可以简化应用开发人员的很多工作，减少数据在数据库和应用服务器之间的传输，对于提高数据处理的效率是有好处的。</p>
+<p>二者区别：函数必须有返回值，存储过程可以没有</p>
+<p>函数：是一个有返回值的过程；</p>
+<p>存储过程：是一个没有返回值的函数；</p>
+<h3 id="4-2、创建存储过程"><a href="#4-2、创建存储过程" class="headerlink" title="4.2、创建存储过程"></a>4.2、创建存储过程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE procedure procedure_name(参数)</span><br><span class="line">begin </span><br><span class="line">	sql语句</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line">delimiter $  :这个语句的意思是将原本用;提交的改为用$提交</span><br></pre></td></tr></table></figure>
+
+<p>实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create procedure proc_test()</span><br><span class="line">begin</span><br><span class="line">select &quot;我爱你&quot;;</span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3、调用，查看和删除存储过程"><a href="#4-3、调用，查看和删除存储过程" class="headerlink" title="4.3、调用，查看和删除存储过程"></a>4.3、调用，查看和删除存储过程</h3><p>调用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">call procedure_name</span><br></pre></td></tr></table></figure>
+
+<p>查看：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 查询db_name数据库中的所有的存储信息</span><br><span class="line">select name from mysql.proc where db &#x3D; &quot;db_name&quot;;</span><br><span class="line"></span><br><span class="line"># 查询存储过程的状态信息</span><br><span class="line">show procedure status;</span><br><span class="line"></span><br><span class="line"># 查询某个存储过程的定义</span><br><span class="line">show create procedure test.proc_name;</span><br></pre></td></tr></table></figure>
+
+<p>删除：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop procedure if exists sp_name;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-4、存储过程的语法结构"><a href="#4-4、存储过程的语法结构" class="headerlink" title="4.4、存储过程的语法结构"></a>4.4、存储过程的语法结构</h3><p>存储过程是可以编程的，意味着可以使用变量，表达式，控制结构，来完成比较复杂的功能</p>
+<h4 id="1-、变量"><a href="#1-、变量" class="headerlink" title="(1)、变量"></a>(1)、变量</h4><p><strong>DECLARE</strong></p>
+<p>通过declare可定义一个局部变量 作用域在begin和end之间</p>
+<p>语法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">declare var_name type [deafault value]</span><br><span class="line"># 创建一个局部变量 先名字，后类型，可以赋初值</span><br></pre></td></tr></table></figure>
+
+<p><strong>SET</strong></p>
+<p>直接赋值用set，可以赋值常量或者赋值表达式语法如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set var_name &#x3D; expr,[var_name &#x3D; expr]...</span><br></pre></td></tr></table></figure>
+
+<p><strong>SELECT …INTO</strong></p>
+<p>也可以赋值</p>
+<p>实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">create procedure proc_test()</span><br><span class="line">begin</span><br><span class="line">	declare num int default 5;</span><br><span class="line">	select num + 5;</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line">call proc_test();</span><br><span class="line">+---------+</span><br><span class="line">| num + 5 |</span><br><span class="line">+---------+</span><br><span class="line">|      10 |</span><br><span class="line">+---------+</span><br><span class="line">1 row in set (0.02 sec)</span><br><span class="line"></span><br><span class="line"># 使用 select ...into 来进行赋值</span><br><span class="line">mysql&gt; create procedure proc_test()</span><br><span class="line">begin</span><br><span class="line">	declare num int default 5;</span><br><span class="line">	select count(*) into num from t_book;</span><br><span class="line">	select num;</span><br><span class="line">end;</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; call proc_test;</span><br><span class="line">+-----+</span><br><span class="line">| num |</span><br><span class="line">+-----+</span><br><span class="line">|  19 |</span><br><span class="line">+-----+</span><br><span class="line">1 row in set (0.03 sec)</span><br><span class="line"></span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-、if条件判断"><a href="#2-、if条件判断" class="headerlink" title="(2)、if条件判断"></a>(2)、if条件判断</h4><p>语法结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if search_conditiion then statement_list</span><br><span class="line">	[elseif search_condition then statement_list]</span><br><span class="line">	[else statement_list]</span><br><span class="line">end if;</span><br></pre></td></tr></table></figure>
+
+<p>需求：<br>根据定义的身高变量，判定身高的所属身体类型；</p>
+<p>实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">create procedure proc_test()</span><br><span class="line">begin</span><br><span class="line">	declare height int default 185;</span><br><span class="line">	declare type varchar(5);		</span><br><span class="line">if height &gt;&#x3D; 180 then</span><br><span class="line">	set type &#x3D; &#39;身材高挑&#39;;</span><br><span class="line">	elseif height &gt;&#x3D; 170 then # 注意点： elseif要合起来写！！！</span><br><span class="line">	set type &#x3D; &#39;身材标准&#39;;</span><br><span class="line">	else</span><br><span class="line">	set type &#x3D; &#39;身材一般&#39;;</span><br><span class="line">end if; # 注意点： 一定要写end if 要分开写！！！</span><br><span class="line">	select type;</span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-、传递参数"><a href="#3-、传递参数" class="headerlink" title="(3)、传递参数"></a>(3)、传递参数</h4><p>语法格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create procedure procedure_name([in|out|inout] 参数名  参数类型）</span><br><span class="line">...</span><br><span class="line">                                </span><br><span class="line">In: 该参数可以作为输入，也就是需要调用方传入值，默认</span><br><span class="line">OUT:该参数作为输出，也就是该参数可以作为返回值</span><br><span class="line">INOUT：即可以作为输入参数，也可以作为输出参数</span><br></pre></td></tr></table></figure>
+
+<p>实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"># 输入参数测试</span><br><span class="line">create procedure proc_test(in height int) # 放一个输入参数（形参）</span><br><span class="line">begin</span><br><span class="line">	declare type varchar(5);		</span><br><span class="line">if height &gt;&#x3D; 180 then</span><br><span class="line">	set type &#x3D; &#39;身材高挑&#39;;</span><br><span class="line">	elseif height &gt;&#x3D; 170 then </span><br><span class="line">	set type &#x3D; &#39;身材标准&#39;;</span><br><span class="line">	else</span><br><span class="line">	set type &#x3D; &#39;身材一般&#39;;</span><br><span class="line">end if;</span><br><span class="line">	select type;</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line"># 输出参数测试</span><br><span class="line">create procedure proc_test(in height int,out type varchar)</span><br><span class="line">begin	</span><br><span class="line">if height &gt;&#x3D; 180 then</span><br><span class="line">	set type &#x3D; &#39;身材高挑&#39;;</span><br><span class="line">	elseif height &gt;&#x3D; 170 then </span><br><span class="line">	set type &#x3D; &#39;身材标准&#39;;</span><br><span class="line">	else</span><br><span class="line">	set type &#x3D; &#39;身材一般&#39;;</span><br><span class="line">end if;</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line">call proc_test(188,@descripion);# 参数接收用用户变量</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select @descripion</span><br><span class="line">    -&gt; ;</span><br><span class="line">+-------------+</span><br><span class="line">| @descripion |</span><br><span class="line">+-------------+</span><br><span class="line">| 身材高挑    |</span><br><span class="line">+-------------+</span><br><span class="line">1 row in set (0.02 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; call proc_test(158,@descripion);</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select @descripion;</span><br><span class="line">+-------------+</span><br><span class="line">| @descripion |</span><br><span class="line">+-------------+</span><br><span class="line">| 身材一般    |</span><br><span class="line">+-------------+</span><br><span class="line">1 row in set (0.02 sec)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>知识：</p>
+<p>@descripion：这种变量要在变量名称前加@符号，叫做用户会话变量，代表整个会话过程都是有作用的，当会话关闭就释放</p>
+<p>@@global.sort.buffer.size：这种@@两个的，叫做系统变量</p>
+<h4 id="4-、case结构"><a href="#4-、case结构" class="headerlink" title="(4)、case结构"></a>(4)、case结构</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 方式一</span><br><span class="line">CASE case_value</span><br><span class="line">	when when_value then statement_list</span><br><span class="line">	when when_value then statement_list...</span><br><span class="line">	else statement_list</span><br><span class="line">end CASE;</span><br><span class="line"></span><br><span class="line"># 方式二</span><br><span class="line">CASE </span><br><span class="line">	when search_condition then statement_list</span><br><span class="line">	when search_condition then statement_list...</span><br><span class="line">	else statement_list</span><br><span class="line">end CASE;</span><br></pre></td></tr></table></figure>
+
+<p>实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">create procedure proc_test(in height int)</span><br><span class="line">begin	</span><br><span class="line">	declare type varchar(50);</span><br><span class="line">case</span><br><span class="line">	when height &gt;&#x3D; 180 then</span><br><span class="line">	set type &#x3D; &#39;身材高挑 &#39;;</span><br><span class="line">	when height &gt;&#x3D; 170 then </span><br><span class="line">	set type &#x3D; &#39;身材一般 &#39;;</span><br><span class="line">	else </span><br><span class="line">	set type &#x3D; &#39;身材还行&#39;;</span><br><span class="line">end case;</span><br><span class="line">	select type;</span><br><span class="line">end;</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-、while结构"><a href="#5-、while结构" class="headerlink" title="(5)、while结构"></a>(5)、while结构</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">while search_condition do</span><br><span class="line">	statement_list</span><br><span class="line">end while;</span><br></pre></td></tr></table></figure>
+
+<p>联系：计算从1加到100；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">create procedure proc_test()</span><br><span class="line">begin	</span><br><span class="line">	declare num int default 1;</span><br><span class="line">	declare count int default 0;</span><br><span class="line">while num &lt;&#x3D; 100 do</span><br><span class="line">     set num &#x3D; num + 1;</span><br><span class="line">     set count &#x3D; count + num;</span><br><span class="line">end while;</span><br><span class="line">	select count;</span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-、repeat结构"><a href="#6-、repeat结构" class="headerlink" title="(6)、repeat结构"></a>(6)、repeat结构</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">repeat</span><br><span class="line">	statement_list</span><br><span class="line">	until search_condition # 注意 这里面的语句不能加分号，否则会报错</span><br><span class="line">end repeat;</span><br></pre></td></tr></table></figure>
+
+<p>实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">create procedure proc_test(num int)</span><br><span class="line">begin	</span><br><span class="line">	declare count int default 0;</span><br><span class="line">repeat</span><br><span class="line">	set count &#x3D; num + count;</span><br><span class="line">	set num &#x3D; num - 1;</span><br><span class="line">	until num &#x3D; 0 # 注意没有分号</span><br><span class="line">end repeat;</span><br><span class="line">	select count;</span><br><span class="line">end;</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; call proc_test(100);</span><br><span class="line">+-------+</span><br><span class="line">| count |</span><br><span class="line">+-------+</span><br><span class="line">|  5050 |</span><br><span class="line">+-------+</span><br><span class="line">1 row in set (0.03 sec)</span><br><span class="line"></span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="7-、loop语句"><a href="#7-、loop语句" class="headerlink" title="(7)、loop语句"></a>(7)、loop语句</h4><p>loop实现简单的循环，退出循环的条件需要使用其他的语句定义，通常可使用leave语句实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[begin_lable] LOOP</span><br><span class="line">	statement_list</span><br><span class="line">end loop[end_lable]</span><br></pre></td></tr></table></figure>
+
+<h4 id="8-、leave语句"><a href="#8-、leave语句" class="headerlink" title="(8)、leave语句"></a>(8)、leave语句</h4><p>用来从标注的流程构造中退出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">create procedure proc_test(num int)</span><br><span class="line">begin	</span><br><span class="line">	declare count int default 0;</span><br><span class="line">c:loop # loop循环 </span><br><span class="line">	set count &#x3D; num + count;</span><br><span class="line">	set num &#x3D; num - 1;</span><br><span class="line"></span><br><span class="line">	if num &#x3D; 0 then # 进入if循环 </span><br><span class="line">	leave c;# 使用leave 退出循环c</span><br><span class="line">	end if;</span><br><span class="line"></span><br><span class="line">end loop c;</span><br><span class="line">	select count;</span><br><span class="line">end;</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; call proc_test(100);</span><br><span class="line">+-------+</span><br><span class="line">| count |</span><br><span class="line">+-------+</span><br><span class="line">|  5050 |</span><br><span class="line">+-------+</span><br><span class="line">1 row in set (0.03 sec)</span><br><span class="line"></span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="9-、游标-光标"><a href="#9-、游标-光标" class="headerlink" title="(9)、游标/光标"></a>(9)、游标/光标</h4><p>游标是用来存储查询结果集的数据类型，在存储过程和函数中可以使用光标对结果集进行循环的处理</p>
+<p><strong>光标（cursor）声明</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DECLARE cursor_name Cursor for select_statement</span><br></pre></td></tr></table></figure>
+
+<p><strong>OPEN光标：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OPEN cursor_name</span><br></pre></td></tr></table></figure>
+
+<p><strong>FETCH光标</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FETCH cursor_name INTO var_name[,var_name]</span><br></pre></td></tr></table></figure>
+
+<p><strong>CLOSE光标：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CLOSE cursor_name</span><br></pre></td></tr></table></figure>
+
+<p>实例：将数据库中表进行逐行输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">create procedure proc_test()</span><br><span class="line">begin	</span><br><span class="line">	declare bookid int;</span><br><span class="line">	declare bookname varchar(50);</span><br><span class="line">	declare num int default 0;</span><br><span class="line">declare cursor_book cursor for </span><br><span class="line">	select * from t_test;</span><br><span class="line">open cursor_book;</span><br><span class="line">	select count(a.id) into num from t_test a;</span><br><span class="line">	repeat	</span><br><span class="line">	fetch cursor_book into bookid,bookname;</span><br><span class="line">	select concat(&#39;序号为：&#39;,bookid,&#39;书名为：&#39;,bookname);</span><br><span class="line">	set num &#x3D; num - 1;</span><br><span class="line">	until num &#x3D; 0</span><br><span class="line">	end repeat;</span><br><span class="line">close cursor_book;</span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-5、存储函数"><a href="#4-5、存储函数" class="headerlink" title="4.5、存储函数"></a>4.5、存储函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create function function_name([param type...])</span><br><span class="line">returns type</span><br><span class="line"></span><br><span class="line">begin</span><br><span class="line">	...</span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5、触发器"><a href="#5、触发器" class="headerlink" title="5、触发器"></a>5、触发器</h2><h3 id="5-1、介绍"><a href="#5-1、介绍" class="headerlink" title="5.1、介绍"></a>5.1、介绍</h3><p>触发器是与表有关的数据库对象，指在insert/update/delete之前或之后，触发并执行触发器中定义的sql语句集合，触发器这种特性可以协助应用在数据库确保数据的完整性，日志记录，数据校验等操作</p>
+<table>
+<thead>
+<tr>
+<th>触发器类型</th>
+<th>NEW 和 OLD 的使用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>INSERT型触发器</td>
+<td>NEW表示将要或者已经新增的数据</td>
+</tr>
+<tr>
+<td>UPDATE型触发器</td>
+<td>OLD表示修改之前的数据，NEW表示将要或者已经修改过的数据</td>
+</tr>
+<tr>
+<td>DELETE型触发器</td>
+<td>OLD表示将要或者已经删除的数据</td>
+</tr>
+</tbody></table>
+<h3 id="5-2、创建触发器"><a href="#5-2、创建触发器" class="headerlink" title="5.2、创建触发器"></a>5.2、创建触发器</h3><p>语法结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">create trigger trigger_name</span><br><span class="line">before|after insert|update|delete</span><br><span class="line">on tb_name</span><br><span class="line">[for each row] # 行集触发器</span><br><span class="line">begin </span><br><span class="line">	trgger_statement;</span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-3、删除触发器"><a href="#5-3、删除触发器" class="headerlink" title="5.3、删除触发器"></a>5.3、删除触发器</h3><p>语法结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop trigger trigger_name;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-4、查看触发器"><a href="#5-4、查看触发器" class="headerlink" title="5.4、查看触发器"></a>5.4、查看触发器</h3><p>语法结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show triggers;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/14/MySQL-%E9%AB%98%E7%BA%A7%E9%83%A8%E5%88%86-01/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-MySQL回顾-基础部分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1650,7 +2941,7 @@
 <h1 id="Java基础回顾-初级部分"><a href="#Java基础回顾-初级部分" class="headerlink" title="Java基础回顾-初级部分"></a>Java基础回顾-初级部分</h1><h2 id="1-常用的命令行DOS命令："><a href="#1-常用的命令行DOS命令：" class="headerlink" title="1.常用的命令行DOS命令："></a>1.常用的命令行DOS命令：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">dir: 列出当前目录下的文件及文件夹</span><br><span class="line">md：创建目录</span><br><span class="line">rd：删除目录</span><br><span class="line">cd：进入指定目录</span><br><span class="line">cd..：返回到上一层目录</span><br><span class="line">cd\：返回到根目录</span><br><span class="line">del：删除文件</span><br><span class="line">exit：退出DOS命令行</span><br></pre></td></tr></table></figure>
 
 <h2 id="2-核心机制-垃圾回收机制"><a href="#2-核心机制-垃圾回收机制" class="headerlink" title="2.核心机制-垃圾回收机制"></a>2.核心机制-垃圾回收机制</h2><p>1.不再使用的内存空间应被回收-垃圾回收</p>
-<p>2.垃圾回收在java程序运行中自动进行，程序员无法精确控制和干预（GV垃圾回收线程）</p>
+<p>2.垃圾回收在java程序运行中自动进行，程序员无法精确控制和干预（GC垃圾回收线程）</p>
 <h2 id="3-Java中-——JDK-JRE-JVM的关系"><a href="#3-Java中-——JDK-JRE-JVM的关系" class="headerlink" title="3.Java中 ——JDK,JRE,JVM的关系"></a>3.Java中 ——JDK,JRE,JVM的关系</h2><p>1.JDK:：java开发工具包，其中也包含了JRE；</p>
 <p>2.JRE：java运行环境：包含JVM和java程序所需要的核心类库等等，如果想要运行一个开发好的java程序，</p>
 <p>计算机中只需安装JRE即可。</p>
@@ -1675,9 +2966,9 @@
 <p>(2).结束当前循环，进行下一次的循环判断。</p>
 <p>(3).终止当前的循环过程，但他并不跳出循环,而是继续往下判断循环条件执行语句.他只能结束循环中的一次过程,但不能终止循环继续进行。</p>
 <h2 id="8-内存的简化结构"><a href="#8-内存的简化结构" class="headerlink" title="8.内存的简化结构"></a>8.内存的简化结构</h2><p>jvm中将内存分为三块</p>
-<p>​    1.栈（stack）：存放局部变量</p>
-<p>​    2.堆（heap）：存放new出来的结构：对象，数组（对象实例）</p>
-<p>​    3.方法区：常量池，静态域</p>
+<p>​    1.栈（stack）：栈帧 -&gt; 局部变量表，操作数栈，动态链接，方法返回地址，一些附加信息 </p>
+<p>​    2.堆（heap）：新生区（伊甸园：幸存者0区：幸存者1区  8:1:1 实际6:1:1）：老年区  1:2  字符串常量池，静态域，new的对象</p>
+<p>​    3.方法区：元空间 常量池，类的类型信息 —&gt; 运行时常量池 属性信息，方法信息 </p>
 <h2 id="9-算法的五大特征"><a href="#9-算法的五大特征" class="headerlink" title="9.算法的五大特征"></a>9.算法的五大特征</h2><table>
 <thead>
 <tr>
@@ -2064,464 +3355,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/10/15/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%AE%AD/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Thread-Concurrecy" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>title: Thread Concurrecy<br>date: 2020-10-15 10:44:28<br>tags:</p>
-<h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><pre><code>1.线程就是独立的执行路径
-
-2.垃圾回收线程GC线程 GVM给的 守护线程
-
-3.启动多线程方法
-
-    1.继承Thread类
-
-        子类继承Thread类具备多线程的能力
-
-        启动线程：子类对象.start()
-
-        不建议使用：避免oop单继承局限性
-
-    2.实现Runable接口
-
-        实现接口具有多线程能力
-
-        启动线程：传入目标对象+Thread对象.start()
-
-        推荐使用：避免单继承局限性，灵活方便，方便同一个对象被多个线程使用
-
-    3.实现Callable接口
-
-        1.实现Callable接口，需要返回值类型
-
-        2.重写call方法，需要抛出异常
-
-        3.创建目标对象
-
-        4.创建执行服务 ExecutorService ser = Executors.new FixedThreadPool(1)
-
-        5.提交执行 ser.submit(目标对象)
-
-        6.获取结果 ser.submit().get()
-
-        7.关闭服务 ser.shutdownNow()
-
-4.静态代理模式：
-
-    真实对象和代理对象都要实现同一个接口
-    代理对象要代理真实角色
-
-    好处：代理对象可以做很多真实对象做不了的事情
-          真实对象可以专注做自己的事
-
-5.Lamda表达式
-
-    1.函数式接口：任何接口，如果只包含唯一一个抽象方法，那么他就是一个函数式接口
-
-    2.对于函数式接口，我们可以通过lambda表达式来创建该接口的对象
-        class Like3 implements Ilike&#123;
-
-            @Override
-            public void lambda() &#123;
-                System.out.println(&quot;i like lambda3&quot;);
-            &#125;
-        &#125;
-
-        like = new Like3();
-
-        like.lambda();
-
-        like = new Ilike() &#123;
-            @Override
-            public void lambda() &#123;
-                System.out.println(&quot;i like lambda4&quot;);
-            &#125;
-        &#125;;
-
-        like.lambda();
-
-        like = () -&gt; System.out.println(&quot;i like lambda5&quot;);
-
-        like.lambda();
-
-      3.简化：lambda表达式只能有一行代码的情况下才能简化成一行，如果有多行，那么就用代码块包裹；
-                  前提必须接口必须为函数式接口
-
-6.停止线程：
-
-    1.不推荐JDK提供的stop(),destroy()方法
-
-    2.推荐线程自己停止下来
-
-    3.建议使用一个标志位进行终止变量，当flag = false，则线程停止运行。
-
-7.线程休眠：
-
-    1.sleep指定当前线程阻塞的毫秒数
-
-    2.sleep存在异常InterruptdeException异常
-
-    3.sleep时间到达后线程就进入就绪状态
-
-    4.可以模拟网络延时，倒计时等
-
-    5.每个对象都有一个锁，sleep不会释放锁
-
-8.线程礼让：yield()方法
-
-    1.礼让线程，让当前正在执行的线程暂停，但不阻塞
-
-    2.将线程从运行状态转为就绪状态
-
-    3.让cpu重新调度，礼让不一定成功，看cpu心情
-
-9.线程强制执行：join()方法
-
-    1.join合并线程，待此线程执行完成后，再执行其他线程，其他线程阻塞
-
-    2.可以想象成插队
-
-10.线程状态：（新生状态，就绪状态，启动状态，阻塞状态，死亡状态）
-
-    1.线程对象一旦创建就进入到新生状态
-
-    2.当调用start()方法时，该线程就进入就绪状态
-
-    3.经过cpu的调度，线程进入运行状态，开始执行线程体中的代码块
-
-    4.当调用sleep，wait，或者同步锁定时，线程进入阻塞状态，不会继续进行，待阻塞状态结束后，重新进入就绪状态，等待cpu调度
-
-    5.线程中断或者结束，一段进入死亡状态，就不能再次启动线程了
-
-11.线程优先级：(priority)：默认是5
-
-    1.java提供一个线程调度器来监控程序中启动后进入就绪状态的所有线程，线程调度器按照优先级决定应该调度哪个线程来执行
-
-    2.优先级用数字表示，范围1~10；
-
-    3.使用getPriority(),setPriority(int xxx)可以改变线程优先级
-
-    注意：线程优先级低只是意味着获得调度的概率低，并不是优先级低就不会被调用，这都是看CPU的调度
-
-12.守护线程：daemon
-
-    1.线程分为用户线程和守护线程
-
-    2.虚拟机必须确保用户线程执行完毕
-
-    3.虚拟机不用等待守护线程执行完毕
-
-    4.比如：后台记录操作日志，监控内存，垃圾回收等待
-
-13.线程同步
-
-    并发：同一对象被多个线程同时操作
-
-    同步方法：synchronized () 同步块：synchronized
-
-    同步块：synchronized(Obj)&#123;&#125;
-
-        Obj对象是要锁住的对象，也就是需要增删改查的对象
-
-        同步锁的执行过程为：
-            1.第一个线程访问，锁定同步监视器，执行其中的代码
-
-            2.第二个线程访问，发现同步监视器被锁定，无法访问
-
-            3.第一个线程访问完毕，解锁同步监视器
-
-            4.第二个线程访问，发现同步监视器没有锁，然后锁定在访问
-
-14.死锁问题
-
-    产生死锁的四个必要条件：
-        1.互斥条件：一个资源每次只能被一个进程使用
-
-        2.请求与保持条件：一个进程因请求资源而阻塞时，对已获得的资源保持不放
-
-        3.不剥夺条件：进程已获得的资源，在未使用完之前，不能强行剥夺
-
-        4.循环等待条件：若干进程之间形成一种头尾相接的循环等待资源关系
-
-15.线程通讯方法：
-
-    1.wait() 表示线程会一直等待，知道其他线程通知，与sleep不同，wait会释放锁
-
-    2.wait(long timeout) 线程等待的毫秒数
-
-    3.notify() 唤醒一个处于等待状态的线程
-
-    4.notifyAll() 唤醒同一个对象上的所有处于等待状态的线程
-
-16.线程池：
-
-    ExecutorService 和 Executors 
-
-    前者为真正的线程池接口，常见子类 ThreadPoolExecutor
-
-    void execute(Runable command) 执行Runable
-
-    submit(Callable&lt;&gt;) 提交任务，执行Callable
-
-    shutdown() 关闭线程池
-
-    后者是工具类，用于创建并返回不同类型的线程池 </code></pre>
-<h1 id="JUC-Java-Util-Concurrent"><a href="#JUC-Java-Util-Concurrent" class="headerlink" title="JUC(Java.Util.Concurrent )"></a>JUC(Java.Util.Concurrent )</h1><pre><code>1.什么是Juc：
-
-    Java.Util工具包 Java.util.concurrent
-
-2.线程和进程的区别
-
-    进程是一个程序的集合
-
-    一个进程往往可以包含多个线程，最少一个
-
-    java不能开启线程
-
-    底层是调用c++,调用本地方法
-
-3.并发和并行
-
-    并发(多线程操作同一资源)
-    CPU一核，模拟出来多条线程
-
-    并行(多个人一起行走)</code></pre>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/15/Thread-Concurrecy/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java-Web-中遇到的问题解决方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/14/Java-Web-%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">Java Web 中遇到的问题解决方法</a>
-    </h1>
-  
-
-        
-        <a href="/2020/10/14/Java-Web-%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-10-14T15:46:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>###SpringBoot中遇到的困难和解决办法</p>
-<pre><code>1.当8080端口被占用：
-    window下关闭8080端口
-
-    win+R：输入cmd，回车
-
-    在黑窗口中输入指令：netstat -ano | findstr 8080       指令的意思是找出占用8080端口的进程pid
-
-    再次输入指令：taskkill -pid (被占用的端口号) -f
-
-
-2.当在Controller中在return语句后出现Cannot resolve MVC View &#39;index&#39;
-
-    @Controller
-    @RequestMapping(&quot;/admin&quot;)
-    public class AdminController &#123;
-
-        @RequestMapping(&quot;/&quot;)
-
-        public String admin(Model model)&#123;
-
-            model.addAttribute(&quot;a&quot;,&quot;1&quot;);
-
-            Object a = model.getAttribute(&quot;a&quot;);
-
-            System.out.println(a);
-
-            return &quot;index&quot;;  // 此时运行程序会无法显示页面，显示404
-
-        &#125;
-
-    &#125;
-
-
-    解决办法：
-        导入themeleaf的jar包后即可解决；
-            &lt;dependency&gt;
-                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-                &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;
-            &lt;/dependency&gt;
-
-3.themeleaf约束 ：xmlns:th=&quot;http://www.thymeleaf.org&quot;
-
-    Simple expressions简单表达式:
-        Variable Expressions: $&#123;...&#125;
-        Selection Variable Expressions: *&#123;...&#125;
-        Message Expressions: #&#123;...&#125;
-        Link URL Expressions: @&#123;...&#125;
-        Fragment Expressions: ~&#123;...&#125;
-    Literals文字：
-        Text literals: &#39;one text&#39;, &#39;Another one!&#39;,…
-        Number literals: 0, 34, 3.0, 12.3,…
-        Boolean literals: true, false
-        Null literal: null
-        Literal tokens: one, sometext, main,…
-    Text operations文字操作:
-        String concatenation: +
-        Literal substitutions: |The name is $&#123;name&#125;|
-    Arithmetic operations算术运算:
-        Binary operators: +, -, *, /, %
-        Minus sign (unary operator): -
-    Boolean operations布尔运算:
-        Binary operators: and, or
-        Boolean negation (unary operator): !, not
-    Comparisons and equality比较和相等:
-        Comparators: &gt;, &lt;, &gt;=, &lt;= (gt, lt, ge, le)
-        Equality operators: ==, != (eq, ne)
-    Conditional operators条件运算符:
-        If-then: (if) ? (then)
-        If-then-else: (if) ? (then) : (else)
-        Default: (value) ?: (defaultvalue)
-    Special tokens特殊令牌:
-        No-Operation: _
-
-4.Springboot测试类无法进行autowire自动装配
-
-    解决方法
-        在测试类上加注解：@Runtime(springrunnner.class)
-
-        看是否在方法中使用的autowire
-        autowire注解不能应用于局部变量，只能在类变量上使用
-
-5.Springboot项目中Session数据取不出来
-
-    解决办法：存入httpservletrequest.getsession中
-
-    然后在前端用thymeleaf模板的$&#123;session.user&#125;就可以取出
-
-6.SpringBoot项目中错误页面处理
-
-    1.首先先写好几个错误页面
-
-    2.在config配置类中配置
-
-        /**
-         * 配置错误页面
-         */
-        @Component
-        public class ErrorConfig implements ErrorPageRegistrar &#123;
-
-            @Override
-            public void registerErrorPages(ErrorPageRegistry registry) &#123;
-
-                ErrorPage error404 = new ErrorPage(HttpStatus.NOT_FOUND,&quot;/error/404&quot;);
-
-                ErrorPage error500 = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR,&quot;/error/500&quot;);
-
-
-                registry.addErrorPages(error404,error500);
-            &#125;
-        &#125;
-
-    3.编写错误页面的Controller
-
-        @Controller
-        public class ErrorController &#123;
-
-            @RequestMapping(&quot;/error/404&quot;)
-            public String error404()&#123;
-
-                return &quot;error/error404&quot;;
-            &#125;
-
-            @RequestMapping(&quot;/error/500&quot;)
-            public String error500()&#123;
-
-                return &quot;error/error500&quot;;
-            &#125;
-
-        &#125;</code></pre>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/14/Java-Web-%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">展开全文 >></a>
         </p>
       
 

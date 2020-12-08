@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="title: MySQL-高级部分date: 2020-11-14 21:47:35  MySQL-高级部分MySQL的强大之处：MySQL的不同点在于，它的架构可以在多种不同场景中应用并发挥良好作用，主要体现在存储引擎的架构上，插件式的存储引擎架构将查询处理和其他的任务系统以及数据的存储提取相分离，这种架构可以根据业务需求和实际需要选择合适的存储引擎 1、数据库的四层架构1.连接层：最上层是一">
+  <meta name="description" content="title: Java虚拟机基础(二)date: 2020-12-08 10:22:04  Java虚拟机基础(二)1、垃圾回收1、什么是垃圾？ 垃圾是指在运行程序中没有任何指针指向的对象，这个对象就是需要被回收的垃圾。  2、垃圾回收相关算法1、标记阶段：引用计数算法：  对每个对象保存一个整形的引用计数器属性，用于记录被引用的情况 对于一个对象A，如果有任意一个对象引用了A，则A的计数器就加">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/2020/11/14/MySQL-%E9%AB%98%E7%BA%A7%E9%83%A8%E5%88%86/index.html">
+<meta property="og:url" content="http://example.com/2020/12/08/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80(%E4%BA%8C)/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="title: MySQL-高级部分date: 2020-11-14 21:47:35  MySQL-高级部分MySQL的强大之处：MySQL的不同点在于，它的架构可以在多种不同场景中应用并发挥良好作用，主要体现在存储引擎的架构上，插件式的存储引擎架构将查询处理和其他的任务系统以及数据的存储提取相分离，这种架构可以根据业务需求和实际需要选择合适的存储引擎 1、数据库的四层架构1.连接层：最上层是一">
+<meta property="og:description" content="title: Java虚拟机基础(二)date: 2020-12-08 10:22:04  Java虚拟机基础(二)1、垃圾回收1、什么是垃圾？ 垃圾是指在运行程序中没有任何指针指向的对象，这个对象就是需要被回收的垃圾。  2、垃圾回收相关算法1、标记阶段：引用计数算法：  对每个对象保存一个整形的引用计数器属性，用于记录被引用的情况 对于一个对象A，如果有任意一个对象引用了A，则A的计数器就加">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-11-14T13:47:35.068Z">
-<meta property="article:modified_time" content="2020-11-20T03:32:37.298Z">
+<meta property="article:published_time" content="2020-12-08T02:22:04.641Z">
+<meta property="article:modified_time" content="2020-12-08T08:04:59.275Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -154,243 +154,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-MySQL-高级部分" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Java虚拟机基础(二)" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>title: MySQL-高级部分<br>date: 2020-11-14 21:47:35</p>
+<p>title: Java虚拟机基础(二)<br>date: 2020-12-08 10:22:04</p>
 </blockquote>
-<h1 id="MySQL-高级部分"><a href="#MySQL-高级部分" class="headerlink" title="MySQL-高级部分"></a>MySQL-高级部分</h1><p>MySQL的强大之处：MySQL的不同点在于，它的架构可以在多种不同场景中应用并发挥良好作用，主要体现在存储引擎的架构上，<strong>插件式的存储引擎架构将查询处理和其他的任务系统以及数据的存储提取相分离</strong>，这种架构可以根据业务需求和实际需要选择合适的存储引擎</p>
-<h2 id="1、数据库的四层架构"><a href="#1、数据库的四层架构" class="headerlink" title="1、数据库的四层架构"></a>1、数据库的四层架构</h2><h3 id="1-连接层："><a href="#1-连接层：" class="headerlink" title="1.连接层："></a>1.连接层：</h3><p>最上层是一些客户端和连接服务，主要完成一些类似于连接处理，授权认证，以及相关的安全方案，在该层上引入了线程池的概念，为通过认证安全接入的客户端提供线程</p>
-<h3 id="2-服务层："><a href="#2-服务层：" class="headerlink" title="2.服务层："></a>2.服务层：</h3><p>第二层架构主要完成核心服务，如SQL接口，并完成缓存的查询，SQL分析和优化及部分内置函数的执行，还有所有跨存储引擎的功能。在该层，服务器会解析查询并创建相应的内部解析树，并对其完成相应的优化如确定查询表的顺序，是否利用索引等，最后生成相应的执行操作</p>
-<h3 id="3-引擎层"><a href="#3-引擎层" class="headerlink" title="3.引擎层"></a>3.引擎层</h3><p>存储引擎层，存储真正的负责了Mysql中数据的存储和提取，服务器通过API与存储引擎进行通信，不同的存储引擎具有不同的功能，这样我们可以根据自己的实际需要进行选取，后面介绍MyISAM和InnoDB</p>
-<h3 id="4-存储层："><a href="#4-存储层：" class="headerlink" title="4.存储层："></a>4.存储层：</h3><p>数据存储层，主要是间数据存储在运行于裸设备的文件系统之上，并完成与存储引擎的交互</p>
-<h2 id="2、索引"><a href="#2、索引" class="headerlink" title="2、索引"></a>2、索引</h2><h3 id="2-1、索引概述"><a href="#2-1、索引概述" class="headerlink" title="2.1、索引概述"></a>2.1、索引概述</h3><p>索引是一种数据结构，作用是高效的查找数据</p>
-<h3 id="2-2、索引的优势和劣势"><a href="#2-2、索引的优势和劣势" class="headerlink" title="2.2、索引的优势和劣势"></a>2.2、索引的优势和劣势</h3><p>优势：</p>
+<h1 id="Java虚拟机基础-二"><a href="#Java虚拟机基础-二" class="headerlink" title="Java虚拟机基础(二)"></a>Java虚拟机基础(二)</h1><h2 id="1、垃圾回收"><a href="#1、垃圾回收" class="headerlink" title="1、垃圾回收"></a>1、垃圾回收</h2><h3 id="1、什么是垃圾？"><a href="#1、什么是垃圾？" class="headerlink" title="1、什么是垃圾？"></a>1、什么是垃圾？</h3><ul>
+<li>垃圾是指在运行程序中没有任何指针指向的对象，这个对象就是需要被回收的垃圾。</li>
+</ul>
+<h3 id="2、垃圾回收相关算法"><a href="#2、垃圾回收相关算法" class="headerlink" title="2、垃圾回收相关算法"></a>2、垃圾回收相关算法</h3><h4 id="1、标记阶段："><a href="#1、标记阶段：" class="headerlink" title="1、标记阶段："></a>1、标记阶段：</h4><p><strong>引用计数算法</strong>：</p>
 <ul>
-<li>类似于书籍的目录索引，提高数据的检索效率，降低数据库的io成本</li>
-<li>通过索引对数据进行排序，降低数据排序的成本，降低cpu的功耗</li>
+<li>对每个对象保存一个整形的引用计数器属性，用于记录被引用的情况</li>
+<li>对于一个对象A，如果有任意一个对象引用了A，则A的计数器就加1，但引用失效时，就减1,。只要对象的计数器的值为0，就表示对象A不可能再被使用，可进行回收。</li>
+<li>优点：<code>实现简单</code>，<code>垃圾对象便于识别</code>；<code>判定效率高</code>，<code>回收没有延迟性</code></li>
+<li>缺点：<ul>
+<li>他需要单独的字段</li>
 </ul>
-<p>劣势：</p>
-<ul>
-<li>索引也是一张表，也需要占用空间</li>
-<li>虽然索引大大提高效率，但是降低了表的更新的速度，因为更新表后，不止要更新数据，还要保存索引文件每次新添加索引列的字段，调整因为值的改变而带来的键值变化的索引信息</li>
+</li>
 </ul>
-<h3 id="2-3、索引结构"><a href="#2-3、索引结构" class="headerlink" title="2.3、索引结构"></a>2.3、索引结构</h3><p>Mysql提供的主流的四种索引类型：</p>
-<p><strong>BTREE索引</strong>：最常见的索引类型，大部分索引都支持B数索引</p>
-<p><strong>HASH索引</strong>：只有Memory引擎支持，使用场景简单</p>
-<p><strong>R-tree索引</strong>：空间索引是MuISAM引擎的一个特殊索引类型，主要用于地理空间数据类型，通常使用较少</p>
-<p><strong>Full-text（全文索引）</strong>：也是MuISAM引擎的一个特殊索引类型，主要用于全文索引，InnoDB从mysql5.6开始支持全文索引</p>
-<p>MyISAM，InnoDB,Memory三种存储引擎对各种索引类型的支持：</p>
-<table>
-<thead>
-<tr>
-<th>索引</th>
-<th>InnoDB引擎</th>
-<th>MyISAM引擎</th>
-<th>Memory引擎</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>BTREE索引</strong></td>
-<td>支持</td>
-<td>支持</td>
-<td>支持</td>
-</tr>
-<tr>
-<td><strong>HASH索引</strong></td>
-<td>不支持</td>
-<td>不支持</td>
-<td>支持</td>
-</tr>
-<tr>
-<td><strong>R-tree索引</strong></td>
-<td>不支持</td>
-<td>支持</td>
-<td>不支持</td>
-</tr>
-<tr>
-<td><strong>Full-text（全文索引）</strong></td>
-<td>5.6版本后支持</td>
-<td>支持</td>
-<td>不支持</td>
-</tr>
-</tbody></table>
-<h3 id="2-4、B-tree结构"><a href="#2-4、B-tree结构" class="headerlink" title="2.4、B-tree结构"></a>2.4、B-tree结构</h3><p>多路平衡搜索树，一颗m叉的Btree特性如下  [ceil（m/2）] : m/2向上取整</p>
-<ul>
-<li>树中每个节点最多包含m个孩子</li>
-<li>除了根节点和叶子节点外，每个节点最少有[ceil（m/2）]个孩子</li>
-<li>若根节点不是叶子节点，则至少有两个孩子</li>
-<li>所有的叶子节点都在同一层</li>
-<li>每个非叶子节点由n个key和n+1个指针组成，其中[ceil（m/2）-1] &lt; =n &lt;= m-1</li>
-</ul>
-<p>Btree和二叉树相比，层次结构更小，查询效率更快</p>
-<h3 id="2-5、B-tree结构"><a href="#2-5、B-tree结构" class="headerlink" title="2.5、B+tree结构"></a>2.5、B+tree结构</h3><p>B+树是B树的变种，区别为：</p>
-<ul>
-<li>n叉B+Tree最多含有n个key</li>
-<li>B+Tree的叶子结点保存所有key的信息，依key大小顺序排序</li>
-<li>所有的非叶子结点都可以看做是key的索引部分</li>
-</ul>
-<p><strong>优势：由于B+tree只有叶子结点保存key的信息，查询任何key都要从根节点到叶子节点，所以b+树查询效率更加稳定</strong></p>
-<h3 id="2-6、MySQL中的B-Tree"><a href="#2-6、MySQL中的B-Tree" class="headerlink" title="2.6、MySQL中的B+Tree"></a>2.6、MySQL中的B+Tree</h3><p>对B+Tree进行了优化，在原有的树的基础上，增加了一个指向相邻叶子结点的指针，这样可以形成带有顺序指针的B+Tree，提高区间访问能力。</p>
-<h3 id="2-7、索引分类"><a href="#2-7、索引分类" class="headerlink" title="2.7、索引分类"></a>2.7、索引分类</h3><ul>
-<li>单值索引：即一个索引只包含单个列</li>
-<li>唯一索引：索引列的值必须唯一，但允许有空值</li>
-<li>复合索引：即一个索引包含多个列</li>
-</ul>
-<h3 id="2-8、索引语法"><a href="#2-8、索引语法" class="headerlink" title="2.8、索引语法"></a>2.8、索引语法</h3><h4 id="2-8-1、创建索引"><a href="#2-8-1、创建索引" class="headerlink" title="2.8.1、创建索引"></a>2.8.1、创建索引</h4><p>语法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">CREATE [UNIQUE|FULLTEXT|SPATIAL] INDEX index_name</span><br><span class="line">[USING index_type]</span><br><span class="line">ON tb_name(index_col_name,...)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">index_col_name : column_name[(length)][ASC|DESC]</span><br><span class="line"></span><br><span class="line"># 给t_book表的name列创建索引</span><br><span class="line">CREATE INDEX idx_t_book_name on t_book(name);</span><br><span class="line"># Query OK, 0 rows affected (0.05 sec)</span><br><span class="line"># Records: 0  Duplicates: 0  Warnings: 0</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-8-2、查看索引"><a href="#2-8-2、查看索引" class="headerlink" title="2.8.2、查看索引"></a>2.8.2、查看索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show index form tablename</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-8-3、删除索引"><a href="#2-8-3、删除索引" class="headerlink" title="2.8.3、删除索引"></a>2.8.3、删除索引</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop index index_name on tablename</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-8-4、ALTER指令"><a href="#2-8-4、ALTER指令" class="headerlink" title="2.8.4、ALTER指令"></a>2.8.4、ALTER指令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">alter table table_name add primary key(column_list);</span><br><span class="line"># 该语句添加一个主键，这意味着索引值必须唯一</span><br><span class="line"></span><br><span class="line">alter table table_name add unique index_name(column_list);</span><br><span class="line"># 这条语句创建索引的值必须是唯一的（除了null外，null可能会出现多次）</span><br><span class="line"></span><br><span class="line">alter table table_name add index index_name(column_list);</span><br><span class="line"># 添加普通索引，索引值可以出现多次</span><br><span class="line"></span><br><span class="line">alter table table_name add index fulltext index_name(column_list);</span><br><span class="line"># 添加全局索引，用于全文索引</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-9、索引的设计原则"><a href="#2-9、索引的设计原则" class="headerlink" title="2.9、索引的设计原则"></a>2.9、索引的设计原则</h3><p>索引的设计可以遵循一些已有的原则，创建索引的时候请尽量考虑符合这些原则，便于提升索引的使用效率</p>
-<ul>
-<li>对查询频次高，且数据量比较大的表建立索引</li>
-<li>索引字段的选择，最佳候选列应当从where字句的条件中提取，如果where字句中的组合比较多，那么应当挑选最常用，过滤效果最好的列的组合</li>
-<li>使用唯一索引，区分度越高，使用索引的效率也就越高</li>
-<li>索引并不是越多越好</li>
-<li>使用短字段的索引</li>
-<li>利用最左索引，N个列组合而成的组合索引，那么相当于是创建了N个索引，如果查询时的where字句中使用了组成该索引的前几个字段，那么这条查询SQL可以利用组合索引来提升查询效率</li>
-</ul>
-<h2 id="3、视图"><a href="#3、视图" class="headerlink" title="3、视图"></a>3、视图</h2><h3 id="3-1、创建视图和修改视图"><a href="#3-1、创建视图和修改视图" class="headerlink" title="3.1、创建视图和修改视图"></a>3.1、创建视图和修改视图</h3><p>创建视图：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE [OR REPLACE] [ALGORITHM &#x3D; &#123;UNDEFINED|MERGE|TEMPTABLE&#125;]</span><br><span class="line">VIEW view_name[(colunmn_list)]</span><br><span class="line">AS select_statement</span><br><span class="line"></span><br><span class="line">[WITH [CASCADED | LOCAL] CHECK OPTION]</span><br></pre></td></tr></table></figure>
-
-<p>修改视图：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ALTER [ALGORITHM &#x3D; &#123;UNDEFINED|MERGE|TEMPTABLE&#125;]</span><br><span class="line">VIEW view_name[(colunmn_list)]</span><br><span class="line">AS select_statement</span><br><span class="line"></span><br><span class="line">[WITH [CASCADED | LOCAL] CHECK OPTION]</span><br></pre></td></tr></table></figure>
-
-<p><strong>视图不建议去更新</strong></p>
-<h3 id="3-2、查看视图和删除视图"><a href="#3-2、查看视图和删除视图" class="headerlink" title="3.2、查看视图和删除视图"></a>3.2、查看视图和删除视图</h3><p>查看视图用show tables就可以了</p>
-<p>删除视图：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DROP VIEW view_name;</span><br><span class="line"># 删除视图</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-存储过程和函数"><a href="#4-存储过程和函数" class="headerlink" title="4.存储过程和函数"></a>4.存储过程和函数</h2><h3 id="4-1什么是存储过程和存储函数"><a href="#4-1什么是存储过程和存储函数" class="headerlink" title="4.1什么是存储过程和存储函数"></a>4.1什么是存储过程和存储函数</h3><p>存储过程和函数是： 事先经过编译并存储在数据库中的一段sql语句的集合，调用存储过程和函数可以简化应用开发人员的很多工作，减少数据在数据库和应用服务器之间的传输，对于提高数据处理的效率是有好处的。</p>
-<p>二者区别：函数必须有返回值，存储过程可以没有</p>
-<p>函数：是一个有返回值的过程；</p>
-<p>存储过程：是一个没有返回值的函数；</p>
-<h3 id="4-2、创建存储过程"><a href="#4-2、创建存储过程" class="headerlink" title="4.2、创建存储过程"></a>4.2、创建存储过程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE procedure procedure_name(参数)</span><br><span class="line">begin </span><br><span class="line">	sql语句</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line">delimiter $  :这个语句的意思是将原本用;提交的改为用$提交</span><br></pre></td></tr></table></figure>
-
-<p>实例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create procedure proc_test()</span><br><span class="line">begin</span><br><span class="line">select &quot;我爱你&quot;;</span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-3、调用，查看和删除存储过程"><a href="#4-3、调用，查看和删除存储过程" class="headerlink" title="4.3、调用，查看和删除存储过程"></a>4.3、调用，查看和删除存储过程</h3><p>调用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">call procedure_name</span><br></pre></td></tr></table></figure>
-
-<p>查看：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 查询db_name数据库中的所有的存储信息</span><br><span class="line">select name from mysql.proc where db &#x3D; &quot;db_name&quot;;</span><br><span class="line"></span><br><span class="line"># 查询存储过程的状态信息</span><br><span class="line">show procedure status;</span><br><span class="line"></span><br><span class="line"># 查询某个存储过程的定义</span><br><span class="line">show create procedure test.proc_name;</span><br></pre></td></tr></table></figure>
-
-<p>删除：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop procedure if exists sp_name;</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-4、存储过程的语法结构"><a href="#4-4、存储过程的语法结构" class="headerlink" title="4.4、存储过程的语法结构"></a>4.4、存储过程的语法结构</h3><p>存储过程是可以编程的，意味着可以使用变量，表达式，控制结构，来完成比较复杂的功能</p>
-<h4 id="1-、变量"><a href="#1-、变量" class="headerlink" title="(1)、变量"></a>(1)、变量</h4><p><strong>DECLARE</strong></p>
-<p>通过declare可定义一个局部变量 作用域在begin和end之间</p>
-<p>语法如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">declare var_name type [deafault value]</span><br><span class="line"># 创建一个局部变量 先名字，后类型，可以赋初值</span><br></pre></td></tr></table></figure>
-
-<p><strong>SET</strong></p>
-<p>直接赋值用set，可以赋值常量或者赋值表达式语法如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set var_name &#x3D; expr,[var_name &#x3D; expr]...</span><br></pre></td></tr></table></figure>
-
-<p><strong>SELECT …INTO</strong></p>
-<p>也可以赋值</p>
-<p>实例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">create procedure proc_test()</span><br><span class="line">begin</span><br><span class="line">	declare num int default 5;</span><br><span class="line">	select num + 5;</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line">call proc_test();</span><br><span class="line">+---------+</span><br><span class="line">| num + 5 |</span><br><span class="line">+---------+</span><br><span class="line">|      10 |</span><br><span class="line">+---------+</span><br><span class="line">1 row in set (0.02 sec)</span><br><span class="line"></span><br><span class="line"># 使用 select ...into 来进行赋值</span><br><span class="line">mysql&gt; create procedure proc_test()</span><br><span class="line">begin</span><br><span class="line">	declare num int default 5;</span><br><span class="line">	select count(*) into num from t_book;</span><br><span class="line">	select num;</span><br><span class="line">end;</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; call proc_test;</span><br><span class="line">+-----+</span><br><span class="line">| num |</span><br><span class="line">+-----+</span><br><span class="line">|  19 |</span><br><span class="line">+-----+</span><br><span class="line">1 row in set (0.03 sec)</span><br><span class="line"></span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-、if条件判断"><a href="#2-、if条件判断" class="headerlink" title="(2)、if条件判断"></a>(2)、if条件判断</h4><p>语法结构：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if search_conditiion then statement_list</span><br><span class="line">	[elseif search_condition then statement_list]</span><br><span class="line">	[else statement_list]</span><br><span class="line">end if;</span><br></pre></td></tr></table></figure>
-
-<p>需求：<br>根据定义的身高变量，判定身高的所属身体类型；</p>
-<p>实现：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">create procedure proc_test()</span><br><span class="line">begin</span><br><span class="line">	declare height int default 185;</span><br><span class="line">	declare type varchar(5);		</span><br><span class="line">if height &gt;&#x3D; 180 then</span><br><span class="line">	set type &#x3D; &#39;身材高挑&#39;;</span><br><span class="line">	elseif height &gt;&#x3D; 170 then # 注意点： elseif要合起来写！！！</span><br><span class="line">	set type &#x3D; &#39;身材标准&#39;;</span><br><span class="line">	else</span><br><span class="line">	set type &#x3D; &#39;身材一般&#39;;</span><br><span class="line">end if; # 注意点： 一定要写end if 要分开写！！！</span><br><span class="line">	select type;</span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-、传递参数"><a href="#3-、传递参数" class="headerlink" title="(3)、传递参数"></a>(3)、传递参数</h4><p>语法格式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create procedure procedure_name([in|out|inout] 参数名  参数类型）</span><br><span class="line">...</span><br><span class="line">                                </span><br><span class="line">In: 该参数可以作为输入，也就是需要调用方传入值，默认</span><br><span class="line">OUT:该参数作为输出，也就是该参数可以作为返回值</span><br><span class="line">INOUT：即可以作为输入参数，也可以作为输出参数</span><br></pre></td></tr></table></figure>
-
-<p>实例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"># 输入参数测试</span><br><span class="line">create procedure proc_test(in height int) # 放一个输入参数（形参）</span><br><span class="line">begin</span><br><span class="line">	declare type varchar(5);		</span><br><span class="line">if height &gt;&#x3D; 180 then</span><br><span class="line">	set type &#x3D; &#39;身材高挑&#39;;</span><br><span class="line">	elseif height &gt;&#x3D; 170 then </span><br><span class="line">	set type &#x3D; &#39;身材标准&#39;;</span><br><span class="line">	else</span><br><span class="line">	set type &#x3D; &#39;身材一般&#39;;</span><br><span class="line">end if;</span><br><span class="line">	select type;</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line"># 输出参数测试</span><br><span class="line">create procedure proc_test(in height int,out type varchar)</span><br><span class="line">begin	</span><br><span class="line">if height &gt;&#x3D; 180 then</span><br><span class="line">	set type &#x3D; &#39;身材高挑&#39;;</span><br><span class="line">	elseif height &gt;&#x3D; 170 then </span><br><span class="line">	set type &#x3D; &#39;身材标准&#39;;</span><br><span class="line">	else</span><br><span class="line">	set type &#x3D; &#39;身材一般&#39;;</span><br><span class="line">end if;</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line">call proc_test(188,@descripion);# 参数接收用用户变量</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select @descripion</span><br><span class="line">    -&gt; ;</span><br><span class="line">+-------------+</span><br><span class="line">| @descripion |</span><br><span class="line">+-------------+</span><br><span class="line">| 身材高挑    |</span><br><span class="line">+-------------+</span><br><span class="line">1 row in set (0.02 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; call proc_test(158,@descripion);</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select @descripion;</span><br><span class="line">+-------------+</span><br><span class="line">| @descripion |</span><br><span class="line">+-------------+</span><br><span class="line">| 身材一般    |</span><br><span class="line">+-------------+</span><br><span class="line">1 row in set (0.02 sec)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>知识：</p>
-<p>@descripion：这种变量要在变量名称前加@符号，叫做用户会话变量，代表整个会话过程都是有作用的，当会话关闭就释放</p>
-<p>@@global.sort.buffer.size：这种@@两个的，叫做系统变量</p>
-<h4 id="4-、case结构"><a href="#4-、case结构" class="headerlink" title="(4)、case结构"></a>(4)、case结构</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 方式一</span><br><span class="line">CASE case_value</span><br><span class="line">	when when_value then statement_list</span><br><span class="line">	when when_value then statement_list...</span><br><span class="line">	else statement_list</span><br><span class="line">end CASE;</span><br><span class="line"></span><br><span class="line"># 方式二</span><br><span class="line">CASE </span><br><span class="line">	when search_condition then statement_list</span><br><span class="line">	when search_condition then statement_list...</span><br><span class="line">	else statement_list</span><br><span class="line">end CASE;</span><br></pre></td></tr></table></figure>
-
-<p>实例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">create procedure proc_test(in height int)</span><br><span class="line">begin	</span><br><span class="line">	declare type varchar(50);</span><br><span class="line">case</span><br><span class="line">	when height &gt;&#x3D; 180 then</span><br><span class="line">	set type &#x3D; &#39;身材高挑 &#39;;</span><br><span class="line">	when height &gt;&#x3D; 170 then </span><br><span class="line">	set type &#x3D; &#39;身材一般 &#39;;</span><br><span class="line">	else </span><br><span class="line">	set type &#x3D; &#39;身材还行&#39;;</span><br><span class="line">end case;</span><br><span class="line">	select type;</span><br><span class="line">end;</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-、while结构"><a href="#5-、while结构" class="headerlink" title="(5)、while结构"></a>(5)、while结构</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">while search_condition do</span><br><span class="line">	statement_list</span><br><span class="line">end while;</span><br></pre></td></tr></table></figure>
-
-<p>联系：计算从1加到100；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">create procedure proc_test()</span><br><span class="line">begin	</span><br><span class="line">	declare num int default 1;</span><br><span class="line">	declare count int default 0;</span><br><span class="line">while num &lt;&#x3D; 100 do</span><br><span class="line">     set num &#x3D; num + 1;</span><br><span class="line">     set count &#x3D; count + num;</span><br><span class="line">end while;</span><br><span class="line">	select count;</span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
-
-<h4 id="6-、repeat结构"><a href="#6-、repeat结构" class="headerlink" title="(6)、repeat结构"></a>(6)、repeat结构</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">repeat</span><br><span class="line">	statement_list</span><br><span class="line">	until search_condition # 注意 这里面的语句不能加分号，否则会报错</span><br><span class="line">end repeat;</span><br></pre></td></tr></table></figure>
-
-<p>实例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">create procedure proc_test(num int)</span><br><span class="line">begin	</span><br><span class="line">	declare count int default 0;</span><br><span class="line">repeat</span><br><span class="line">	set count &#x3D; num + count;</span><br><span class="line">	set num &#x3D; num - 1;</span><br><span class="line">	until num &#x3D; 0 # 注意没有分号</span><br><span class="line">end repeat;</span><br><span class="line">	select count;</span><br><span class="line">end;</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; call proc_test(100);</span><br><span class="line">+-------+</span><br><span class="line">| count |</span><br><span class="line">+-------+</span><br><span class="line">|  5050 |</span><br><span class="line">+-------+</span><br><span class="line">1 row in set (0.03 sec)</span><br><span class="line"></span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="7-、loop语句"><a href="#7-、loop语句" class="headerlink" title="(7)、loop语句"></a>(7)、loop语句</h4><p>loop实现简单的循环，退出循环的条件需要使用其他的语句定义，通常可使用leave语句实现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[begin_lable] LOOP</span><br><span class="line">	statement_list</span><br><span class="line">end loop[end_lable]</span><br></pre></td></tr></table></figure>
-
-<h4 id="8-、leave语句"><a href="#8-、leave语句" class="headerlink" title="(8)、leave语句"></a>(8)、leave语句</h4><p>用来从标注的流程构造中退出</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">create procedure proc_test(num int)</span><br><span class="line">begin	</span><br><span class="line">	declare count int default 0;</span><br><span class="line">c:loop # loop循环 </span><br><span class="line">	set count &#x3D; num + count;</span><br><span class="line">	set num &#x3D; num - 1;</span><br><span class="line"></span><br><span class="line">	if num &#x3D; 0 then # 进入if循环 </span><br><span class="line">	leave c;# 使用leave 退出循环c</span><br><span class="line">	end if;</span><br><span class="line"></span><br><span class="line">end loop c;</span><br><span class="line">	select count;</span><br><span class="line">end;</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; call proc_test(100);</span><br><span class="line">+-------+</span><br><span class="line">| count |</span><br><span class="line">+-------+</span><br><span class="line">|  5050 |</span><br><span class="line">+-------+</span><br><span class="line">1 row in set (0.03 sec)</span><br><span class="line"></span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="9-、游标-光标"><a href="#9-、游标-光标" class="headerlink" title="(9)、游标/光标"></a>(9)、游标/光标</h4><p>游标是用来存储查询结果集的数据类型，在存储过程和函数中可以使用光标对结果集进行循环的处理</p>
-<p><strong>光标（cursor）声明</strong>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DECLARE cursor_name Cursor for select_statement</span><br></pre></td></tr></table></figure>
-
-<p><strong>OPEN光标：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OPEN cursor_name</span><br></pre></td></tr></table></figure>
-
-<p><strong>FETCH光标</strong>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FETCH cursor_name INTO var_name[,var_name]</span><br></pre></td></tr></table></figure>
-
-<p><strong>CLOSE光标：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CLOSE cursor_name</span><br></pre></td></tr></table></figure>
-
-<p>实例：将数据库中表进行逐行输出：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">create procedure proc_test()</span><br><span class="line">begin	</span><br><span class="line">	declare bookid int;</span><br><span class="line">	declare bookname varchar(50);</span><br><span class="line">	declare num int default 0;</span><br><span class="line">declare cursor_book cursor for </span><br><span class="line">	select * from t_test;</span><br><span class="line">open cursor_book;</span><br><span class="line">	select count(a.id) into num from t_test a;</span><br><span class="line">	repeat	</span><br><span class="line">	fetch cursor_book into bookid,bookname;</span><br><span class="line">	select concat(&#39;序号为：&#39;,bookid,&#39;书名为：&#39;,bookname);</span><br><span class="line">	set num &#x3D; num - 1;</span><br><span class="line">	until num &#x3D; 0</span><br><span class="line">	end repeat;</span><br><span class="line">close cursor_book;</span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-5、存储函数"><a href="#4-5、存储函数" class="headerlink" title="4.5、存储函数"></a>4.5、存储函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create function function_name([param type...])</span><br><span class="line">returns type</span><br><span class="line"></span><br><span class="line">begin</span><br><span class="line">	...</span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
-
-<h2 id="5、触发器"><a href="#5、触发器" class="headerlink" title="5、触发器"></a>5、触发器</h2><h3 id="5-1、介绍"><a href="#5-1、介绍" class="headerlink" title="5.1、介绍"></a>5.1、介绍</h3><p>触发器是与表有关的数据库对象，指在insert/update/delete之前或之后，触发并执行触发器中定义的sql语句集合，触发器这种特性可以协助应用在数据库确保数据的完整性，日志记录，数据校验等操作</p>
-<table>
-<thead>
-<tr>
-<th>触发器类型</th>
-<th>NEW 和 OLD 的使用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>INSERT型触发器</td>
-<td>NEW表示将要或者已经新增的数据</td>
-</tr>
-<tr>
-<td>UPDATE型触发器</td>
-<td>OLD表示修改之前的数据，NEW表示将要或者已经修改过的数据</td>
-</tr>
-<tr>
-<td>DELETE型触发器</td>
-<td>OLD表示将要或者已经删除的数据</td>
-</tr>
-</tbody></table>
-<h3 id="5-2、创建触发器"><a href="#5-2、创建触发器" class="headerlink" title="5.2、创建触发器"></a>5.2、创建触发器</h3><p>语法结构：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">create trigger trigger_name</span><br><span class="line">before|after insert|update|delete</span><br><span class="line">on tb_name</span><br><span class="line">[for each row] # 行集触发器</span><br><span class="line">begin </span><br><span class="line">	trgger_statement;</span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="5-3、删除触发器"><a href="#5-3、删除触发器" class="headerlink" title="5.3、删除触发器"></a>5.3、删除触发器</h3><p>语法结构：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop trigger trigger_name;</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-4、查看触发器"><a href="#5-4、查看触发器" class="headerlink" title="5.4、查看触发器"></a>5.4、查看触发器</h3><p>语法结构：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show triggers;</span><br></pre></td></tr></table></figure>
-
+<p><strong>可达性分析算法</strong>：</p>
 
       
 
@@ -470,7 +255,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/14/MySQL-%E9%AB%98%E7%BA%A7%E9%83%A8%E5%88%86/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/12/08/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80(%E4%BA%8C)/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -484,17 +269,8 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/11/14/Linux%E5%AD%A6%E4%B9%A0/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/11/14/MySQL%E5%9B%9E%E9%A1%BE-%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/11/25/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80(%E4%B8%80)/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title"></div>
       <i class="icon-circle-right"></i>
     </a>

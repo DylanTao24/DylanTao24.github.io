@@ -6,15 +6,35 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2020/11 | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="title: Java虚拟机（一）date: 2020-11-25 18:47:08  ​         Java虚拟机（一）1、JVM的位置 JVM在操作系统之上，是虚拟机的一种，用来运行java的程序。 2、沙箱安全机制Java安全模式的核心就是沙箱机制，沙箱是一个限制程序运行的环境，沙箱机制就是将java代码限定在虚拟机特定的运行环境中，并且严格限制代码对本地系统资源的访问，通过这样的措">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2020/11/page/2/index.html">
+<meta property="og:url" content="http://example.com/2020/11/25/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80(%E4%B8%80)/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="title: Java虚拟机（一）date: 2020-11-25 18:47:08  ​         Java虚拟机（一）1、JVM的位置 JVM在操作系统之上，是虚拟机的一种，用来运行java的程序。 2、沙箱安全机制Java安全模式的核心就是沙箱机制，沙箱是一个限制程序运行的环境，沙箱机制就是将java代码限定在虚拟机特定的运行环境中，并且严格限制代码对本地系统资源的访问，通过这样的措">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2020/11/25/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80(%E4%B8%80)/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/image-20201125191719816.png">
+<meta property="og:image" content="http://example.com/2020/11/25/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80(%E4%B8%80)/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/858186-20190711154743556-950500902.png">
+<meta property="og:image" content="http://example.com/2020/11/25/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80(%E4%B8%80)/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/image-20201130102145470.png">
+<meta property="og:image" content="http://example.com/2020/11/25/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80(%E4%B8%80)/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/%E6%96%B9%E6%B3%95%E5%8C%BA%E5%92%8C%E6%A0%88%E7%9A%84%E5%85%B3%E8%81%94%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://example.com/2020/11/25/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80(%E4%B8%80)/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/%E5%A0%86%E7%A9%BA%E9%97%B4.png">
+<meta property="og:image" content="http://example.com/2020/11/25/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80(%E4%B8%80)/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/image-20201201172247896.png">
+<meta property="og:image" content="http://example.com/2020/11/25/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80(%E4%B8%80)/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/image-20201202102340842.png">
+<meta property="og:image" content="http://example.com/2020/11/25/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80(%E4%B8%80)/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/image-20201202113347483.png">
+<meta property="og:image" content="http://example.com/2020/11/25/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80(%E4%B8%80)/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96.jpg">
+<meta property="og:image" content="http://example.com/2020/11/25/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80(%E4%B8%80)/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80.jpg">
+<meta property="og:image" content="http://example.com/2020/11/25/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80(%E4%B8%80)/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/image-20201204162013820.png">
+<meta property="og:image" content="http://example.com/2020/11/25/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80(%E4%B8%80)/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/image-20201204163129630.png">
+<meta property="og:image" content="http://example.com/2020/11/25/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80(%E4%B8%80)/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/image-20201204163200284.png">
+<meta property="og:image" content="http://example.com/2020/11/25/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80(%E4%B8%80)/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/image-20201204211336284.png">
+<meta property="og:image" content="http://example.com/2020/11/25/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80(%E4%B8%80)/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/image-20201207161825790.png">
+<meta property="article:published_time" content="2020-11-25T10:47:08.327Z">
+<meta property="article:modified_time" content="2020-12-07T10:12:37.848Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/11/25/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80(%E4%B8%80)/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/image-20201125191719816.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,193 +170,692 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Java虚拟机基础(一)" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>title: Java虚拟机（一）<br>date: 2020-11-25 18:47:08</p>
+</blockquote>
+<p>​        </p>
+<h1 id="Java虚拟机（一）"><a href="#Java虚拟机（一）" class="headerlink" title="Java虚拟机（一）"></a>Java虚拟机（一）</h1><h2 id="1、JVM的位置"><a href="#1、JVM的位置" class="headerlink" title="1、JVM的位置"></a>1、JVM的位置</h2><p><img src="Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/image-20201125191719816.png" alt="image-20201125191719816"></p>
+<p>JVM在操作系统之上，是虚拟机的一种，用来运行java的程序。</p>
+<h2 id="2、沙箱安全机制"><a href="#2、沙箱安全机制" class="headerlink" title="2、沙箱安全机制"></a>2、沙箱安全机制</h2><p>Java安全模式的核心就是沙箱机制，沙箱是一个限制程序运行的环境，沙箱机制就是将java代码限定在虚拟机特定的运行环境中，并且严格限制代码对本地系统资源的访问，通过这样的措施来保证对代码的有效隔离，防止对本地系统进行破坏。沙箱主要<strong>限制系统资源访问</strong>，包括CPU,内存，文件系统，网络。不同级别的沙箱对这些资源的限制也不同</p>
+<p>所有的Java程序运行都可以指定沙箱，可以定制安全策略。</p>
+<h3 id="2-1、组成沙箱的基本组件："><a href="#2-1、组成沙箱的基本组件：" class="headerlink" title="2.1、组成沙箱的基本组件："></a>2.1、组成沙箱的基本组件：</h3><ul>
+<li><p><code>字节码校验器</code>（bytecode verifier）：确保Java类文件遵循Java语言规范。这样可以帮助Java程序实现内存保护。但并不是所有的类文件都会经过字节码校验，比如核心类。</p>
+</li>
+<li><p>类装载器（class loader）：其中类装载器在3个方面对Java沙箱起作用</p>
+<ul>
+<li>它防止恶意代码去干涉善意的代码；</li>
+<li>它守护了被信任的类库边界；</li>
+</ul>
+</li>
+<li><p>它将代码归入保护域，确定了代码可以进行哪些操作。</p>
+</li>
+</ul>
+<p>  虚拟机为不同的类加载器载入的类提供不同的命名空间，命名空间由一系列唯一的名称组成，每一个被装载的类将有一个名字，这个命名空间是由Java虚拟机为每一个类装载器维护的，它们互相之间甚至不可见。</p>
+<p>  类装载器采用的机制是双亲委派模式。</p>
+<ol>
+<li>从最内层JVM自带类加载器开始加载，外层恶意同名类得不到加载从而无法使用；</li>
+<li>由于严格通过包来区分了访问域，外层恶意的类通过内置代码也无法获得权限访问到内层类，破坏代码就自然无法生效。</li>
+</ol>
+<ul>
+<li><code>存取控制器</code>（access controller）：存取控制器可以控制核心API对操作系统的存取权限，而这个控制的策略设定，可以由用户指定。</li>
+<li><code>安全管理器</code>（security manager）：是核心API和操作系统之间的主要接口。实现权限控制，比存取控制器优先级高。</li>
+<li><code>安全软件包</code>（security package）：java.security下的类和扩展包下的类，允许用户为自己的应用增加新的安全特性，包括：<ul>
+<li>安全提供者</li>
+<li>消息摘要</li>
+<li>数字签名</li>
+<li>加密</li>
+<li>鉴别</li>
+</ul>
+</li>
+</ul>
+<h2 id="3、Native本地方法栈"><a href="#3、Native本地方法栈" class="headerlink" title="3、Native本地方法栈"></a>3、Native本地方法栈</h2><ul>
+<li>nitive方法就是Java调用非Java代码的接口</li>
+<li>具体调用本地方法的做法为：在本地方法栈中登记native方法，在执行引擎执行时加载本地方法库</li>
+<li>带有native的方法，会进入本地方法栈，调用本地方法接口JNI</li>
+<li>JNI的作用为：扩展Java的使用，融合不同的编程语言为Java所用！</li>
+<li>并不是所有的JVM都支持本地方法，Java虚拟机规范并没有明确要求本地方法栈的使用语言，具体实现方式，数据结构等。如果JVM产品不打算支持native方法，也可以无需实现本地方法栈</li>
+<li>Hotspot JVM中，本地方法栈和虚拟机栈合二为一</li>
+</ul>
+<h2 id="4、方法区"><a href="#4、方法区" class="headerlink" title="4、方法区"></a>4、方法区</h2><ul>
+<li><strong>Class对象是存放在堆区的，不是方法区！</strong></li>
+<li>在一个jvm实例的内部，<strong>类型信息被存储在一个称为方法区的内存逻辑区</strong>中。类型信息是由类加载器在类加载时从类文件中提取出来的。<strong>类(静态)变量也存储在方法区中</strong>。</li>
+<li>因为方法区是被所有线程共享的，所以<strong>必须考虑数据的线程安全</strong>。假如两个线程都在试图找Java的类，在Java类还没有被加载的情况下，只应该有一个线程去加载，而另一个线程等待。</li>
+<li>方法区的大小不必是固定的，jvm可以根据应用的需要动态调整。同样方法区也不必是连续的。方法区可以在堆(甚至是虚拟机自己的堆)中分配。jvm可以允许用户和程序指定方法区的初始大小，最小和最大尺寸。</li>
+<li>方法区的大小决定了系统可以保存多少个类，如果定义太多的类，就会导致方法区溢出，报错 OutOfMemoryError：Metaspace</li>
+<li>关闭JVM就会释放区域的内存</li>
+</ul>
+<h3 id="方法区的内存大小："><a href="#方法区的内存大小：" class="headerlink" title="方法区的内存大小："></a>方法区的内存大小：</h3><ul>
+<li><p>jdk7以前，初始空间默认是20.75M，最大可分配的空间：32位默认64M，64位默认82M，当JVM加载的类信息容量超过了这个值，就会报OutOfMemoryError：PerGenspace</p>
+</li>
+<li><p>jdk8以后，默认值依赖于平台，windows下初始值是21M，最大值为-1即没有限制，与永久代不同，元空间要是不指定大小，默认情况下，虚拟机会耗尽所有的可用系统内存</p>
+</li>
+</ul>
+<p><strong>对每个加载的类型，jvm必须在方法区中存储以下类型信息：</strong> </p>
+<ul>
+<li>这个类型的完整有效名 </li>
+<li>这个类型直接父类的完整有效名(除非这个类型是interface或是 java.lang.Object，两种情况下都没有父类) </li>
+<li>这个类型的修饰符(public,abstract, final的某个子集) </li>
+<li>这个类型直接接口的一个有序列表</li>
+<li>类型的常量池( constant pool) </li>
+<li>域(Field)信息 （属性）</li>
+<li>方法(Method)信息 </li>
+<li>除了常量外的所有静态(static)变量</li>
+<li>即时编译器编译后的代码缓存</li>
+</ul>
+<h3 id="方法区的内部结构："><a href="#方法区的内部结构：" class="headerlink" title="方法区的内部结构："></a>方法区的内部结构：</h3><h4 id="4-1、运行时常量池"><a href="#4-1、运行时常量池" class="headerlink" title="4.1、运行时常量池"></a>4.1、运行时常量池</h4><p>jvm为每个已加载的类型都维护一个<strong>常量池</strong>。常量池就是这个类型用到的常量的一个有序集合，包括实际的常量(string,<br>integer, 和floating point常量)和对类型，域和方法的符号引用。池中的数据项，数组项一样，是通过索引访问的。<br>因为常量池存储了一个类型所使用到的所有类型，域和方法的符号引用，所以它在java程序的动态链接中起了核心的作用。</p>
+<p>为什么需要常量池？3</p>
+<p>java类，接口编译后产生字节码文件，而字节码文件需要数据支持，通常这些数据很大以至于不能直接存在字节码里，换一种方法，可以存到常量池，这个字节码包含了指向常量池的引用</p>
+<h4 id="4-2、域信息（属性）"><a href="#4-2、域信息（属性）" class="headerlink" title="4.2、域信息（属性）"></a>4.2、域信息（属性）</h4><p>jvm必须在方法区中保存类型的所有域的相关信息以及域的声明顺序，<br>域的相关信息包括： eg：public static String add；</p>
+<ul>
+<li>域名 ：    add</li>
+<li>域类型 ： String</li>
+<li>域修饰符(public, private, protected,static,final volatile, transient的某个子集) ：  public static</li>
+</ul>
+<h4 id="4-3、方法信息"><a href="#4-3、方法信息" class="headerlink" title="4.3、方法信息"></a>4.3、方法信息</h4><p>jvm必须保存所有方法的以下信息，同样域信息一样包括声明顺序 </p>
+<ul>
+<li>方法名 </li>
+<li>方法的返回类型(或 void) </li>
+<li>方法参数的数量和类型(有序的) </li>
+<li>方法的修饰符(public, private, protected, static, final, synchronized, native, abstract的一个子集)</li>
+<li>除了abstract和native方法外，其他方法还有保存方法的字节码(bytecodes)，操作数栈和方法栈帧的局部变量表的大小</li>
+<li>除了abstract和native方法外，异常表：每个异常处理的开始位置，结束位置，代码处理在程序计数器中的偏移地址，被捕获到的异常类常量池索引</li>
+</ul>
+<h4 id="4-4、类的静态变量"><a href="#4-4、类的静态变量" class="headerlink" title="4.4、类的静态变量"></a>4.4、类的静态变量</h4><p>类变量被类的所有实例共享，即使没有类实例时你也可以访问它。这些变量只与类相关，所以在方法区中，它们成为类数据在逻辑上的一部分。在jvm使用一个类之前，它必须在方法区中为每个non-final类变量分配空间。</p>
+<h3 id="方法区演进细节："><a href="#方法区演进细节：" class="headerlink" title="方法区演进细节："></a>方法区演进细节：</h3><table>
+<thead>
+<tr>
+<th>jdk1.6及以前</th>
+<th>有永久代，静态变量存放在永久代上</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>jdk1.7</td>
+<td>有永久代，但已经逐步去永久代，字符串常量池和静态变量放在堆中</td>
+</tr>
+<tr>
+<td>jdb1.8及以后</td>
+<td>没有永久代，改为元空间，字符串常量池和静态变量还是放在堆中</td>
+</tr>
+</tbody></table>
+<p>为什么永久代要被元空间替代：原因如下</p>
+<ul>
+<li>为永久代设置空间大小是很难确定的</li>
+<li>对永久代进行调优是很困难的</li>
+</ul>
+<p>对类的成员变量，类变量，局部变量做分析</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> Test2 test = <span class="keyword">new</span> Test2();<span class="comment">//test在永久代1.7后放到堆里面 ，new Test2()堆空间</span></span><br><span class="line"></span><br><span class="line">Test2 test1 = <span class="keyword">new</span> Test2();<span class="comment">//test1随着Test加载在堆里面 ，new Test2()堆空间</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line"></span><br><span class="line">    Test2 test2 = <span class="keyword">new</span> Test2();<span class="comment">//test2放在局部变量表中 ，new Test2()堆空间（没有逃逸，但是还在堆空间）</span></span><br><span class="line"></span><br><span class="line">    System.out.println(test2);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法区的垃圾收集："><a href="#方法区的垃圾收集：" class="headerlink" title="方法区的垃圾收集："></a>方法区的垃圾收集：</h3><p>一般来说<strong>这个区域的回收效果比较难令人满意，尤其是类型的卸载，条件相当苛刻。</strong>但是这部分区域的回收<strong>有时又确实是有必要的</strong>。以前sun公司的bug列表中，曾出现过若干个严重的Bug，就是由于低版本的Hotspot虚拟机对此区域未完全回收而导致内存泄露。</p>
+<p><strong>方法区的垃圾回收主要回收两部分的内容：<code>常量池中废弃的常量</code>和<code>不再使用的类型</code></strong></p>
+<ul>
+<li><p>Hotspot虚拟机对常量池的回收策略很确定，就是只要没有被任何地方引用，就可以被回收。</p>
+</li>
+<li><p>对于不再使用的类型回收条件很苛刻，费力不讨好。</p>
+</li>
+</ul>
+<h2 id="5、虚拟机栈"><a href="#5、虚拟机栈" class="headerlink" title="5、虚拟机栈"></a>5、虚拟机栈</h2><ul>
+<li>栈内存：主管程序的运行生命周期和线程同步。</li>
+<li>线程结束，栈内存也就释放了，对于栈来说不存在垃圾回收问题</li>
+<li>一旦线程结束，栈就结束了</li>
+<li>栈里面放的东西：八大基本数据类型+对象引用+实例的方法</li>
+<li>虚拟机栈也是线程私有的，它的生命周期与线程相同（随线程而生，随线程而灭）</li>
+<li>如果线程请求的栈深度大于虚拟机所允许的深度，将抛出StackOverflowError异常；</li>
+<li>如果虚拟机栈可以动态扩展，如果扩展时无法申请到足够的内存，就会抛出OutOfMemoryError异常；</li>
+</ul>
+<p>==<strong>栈的运行原理</strong>==</p>
+<p>​    <code>栈帧</code> ：</p>
+<p>​       栈帧（Stack Frame）是用于支持虚拟机进行方法调用和方法执行的数据结构。它是虚拟机运行时数据区中的java虚拟机栈的栈元素。</p>
+<p>　　栈帧存储了方法的局部变量表、操作数栈、动态连接和方法返回地址等信息。</p>
+<p>　　每一个方法从调用开始至执行完成的过程，都对应着一个栈帧在虚拟机里面从入栈到出栈的过程。</p>
+<p><strong>注意：</strong></p>
+<blockquote>
+<p>在编译程序代码的时候，栈帧中需要多大的局部变量表内存，多深的操作数栈都已经完全确定了。</p>
+<p>因此一个栈帧需要分配多少内存，不会受到程序运行期变量数据的影响，而仅仅取决于具体的虚拟机实现。</p>
+</blockquote>
+<p><img src="Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/858186-20190711154743556-950500902.png" alt="img"></p>
+<h3 id="设置栈的内存大小"><a href="#设置栈的内存大小" class="headerlink" title="设置栈的内存大小"></a>设置栈的内存大小</h3><p><img src="Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/image-20201130102145470.png" alt="image-20201130102145470"></p>
+<p>可以设置运行时的虚拟机栈大小</p>
+<h3 id="栈帧"><a href="#栈帧" class="headerlink" title="栈帧"></a>栈帧</h3><p>每个栈帧中都存储着：</p>
+<ul>
+<li>局部变量表</li>
+<li>操作数栈</li>
+<li>动态链接</li>
+<li>方法返回地址</li>
+<li>一些附加信息</li>
+</ul>
+<h4 id="局部变量表："><a href="#局部变量表：" class="headerlink" title="局部变量表："></a>局部变量表：</h4><ul>
+<li>定义为一个数字数组，主要用于存储<strong>方法参数</strong>和<strong>定义在方法体内的局部变量</strong>，这些数据类型包含基本数据类型，对象引用，以及returnAddress类型</li>
+<li>是线程的私有数据，<strong>不存在数据安全问题</strong></li>
+<li><strong>局部变量表所需要的容量大小是在编译期就确定下来的</strong>，并保存在方法的Code属性的maximum local variables数据项中，方法运行期间不会改变局部变量表的大小的</li>
+<li><strong>方法嵌套的次数由栈的大小决定</strong></li>
+<li><strong>局部变量表的变量只在当前方法调用中有效</strong></li>
+</ul>
+<p>局部变量表<strong>最基本存储单元Slot</strong>（变量槽）：</p>
+<p>在表中，32位以内的类型只占用一个slot，64位的类型（long和double）占用两个slot</p>
+<ul>
+<li>在栈帧中，与性能调优关系最为密切的部分就是前面提到的局部变量表，在方法执行时，虚拟机使用局部变量表完成方法的传递</li>
+<li>局部变量表的变量也是<strong>重要的垃圾回收根节点</strong>，只要被局部变量表中直接或间接引用的对象都不会被回收</li>
+</ul>
+<h4 id="操作数栈："><a href="#操作数栈：" class="headerlink" title="操作数栈："></a>操作数栈：</h4><ul>
+<li><p>在方法执行过程中，根据字节码指令，往栈中写入或者提取数据</p>
+</li>
+<li><p><strong>主要用于保存计算过程的中间结果，同时作为计算过程中变量临时的存储空间</strong></p>
+</li>
+<li><p>如果被调用的方法有返回值，其返回值会压入当前栈帧的操作数栈中，并更新PC寄存器中下一条需要执行的字节码指令</p>
+</li>
+</ul>
+<h4 id="栈顶缓存技术"><a href="#栈顶缓存技术" class="headerlink" title="栈顶缓存技术"></a>栈顶缓存技术</h4><p>将栈顶元素全部缓存在物理CPU的寄存器中，以此降低对内存的读/写次数，提升执行引擎的执行效率</p>
+<h4 id="动态链接："><a href="#动态链接：" class="headerlink" title="动态链接："></a>动态链接：</h4><p>每一个栈帧内部都包含一个<strong>指向运行时常量池中该栈帧所属方法的引用</strong>，为了支持当前方法的代码能够实现动态链接</p>
+<p>当Java源文件被编译到字节码文件时，所有的变量和方法引用都作为符号引用保存在class文件的常量池中，动态链接作用就是为了将这些符号引用转换为调用方法的直接引用</p>
+<p><img src="Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/%E6%96%B9%E6%B3%95%E5%8C%BA%E5%92%8C%E6%A0%88%E7%9A%84%E5%85%B3%E8%81%94%E7%BB%93%E6%9E%84.png" alt="方法区和栈的关联结构"></p>
+<h4 id="方法的调用："><a href="#方法的调用：" class="headerlink" title="方法的调用："></a>方法的调用：</h4><p>JVM中将符号引用转化为调用方法的直接引用与方法的绑定机制相关</p>
+<ul>
+<li><p><strong>静态链接</strong>：<br>当字节码文件装载进JVM内部时，如果被调用的目标方法在编译期可知，且运行期保持不变，这种情况下将调用方法的符号引用转换为直接引用的过程称之为静态链接</p>
+</li>
+<li><p><strong>动态链接</strong>：</p>
+<p>被调用的目标方法在编译期不可知，只能在程序运行将符号引用转化为调用方法的直接引用，叫做动态链接</p>
+</li>
+</ul>
+<p>方法的调用：虚方法和非虚方法</p>
+<p>非虚方法：</p>
+<ul>
+<li>如果方法在编译期就确定了具体的调用版本，这个版本在运行时是不可变的，这种方法称为非虚方法</li>
+<li>例如：静态方法，私有方法，final方法，实例构造器，父类方法</li>
+<li>其他方法称为虚方法</li>
+</ul>
+<p>虚拟机中提供了以下几条方法的调用：<br>普通的：</p>
+<p>1、<strong>invokestatic</strong>：调用静态方法，解析阶段确定唯一方法版本</p>
+<p>2、<strong>invokespecial</strong>：调用<init>方法，私有以及父类方法，解析阶段确定唯一方法版本</p>
+<p>3、<strong>invokevirtual</strong>：调用所有虚方法</p>
+<p>4、<strong>invokeinterface</strong>：调用所有接口方法</p>
+<p>动态调用指令：</p>
+<p>5、invokedynamic：动态解析出需要调用的方法，然后执行</p>
+<p>直至Java8的Lambda表达式的出现，invokedynamic指令的生成，在Java中才有了直接的生成方式</p>
+<h5 id="虚方法表："><a href="#虚方法表：" class="headerlink" title="虚方法表："></a>虚方法表：</h5><p>每个类中都有一个虚方法表，表中存放着各个方法的实际入口</p>
+<p>创建时间：在类被加载的链接阶段被创建并开始初始化，类的变量初始值准备完毕后,JVM会把该类的虚方法表也创建完毕</p>
+<h4 id="方法返回地址："><a href="#方法返回地址：" class="headerlink" title="方法返回地址："></a>方法返回地址：</h4><ul>
+<li><p>存储该方法的PC寄存器的值</p>
+</li>
+<li><p>一个方法的结束，有两种方式：</p>
+<ul>
+<li>正常执行完成</li>
+<li>出现未处理异常，非正常退出</li>
+</ul>
+</li>
+<li><p>无论通过哪种方法退出程序，在方法退出的时候都<strong>返回到该方法被调用的位置</strong>，方法<strong>正常退出</strong>时，调用者的程序计数器的值作为<strong>返回地址</strong>，即调用该方法的指令的下一条指令的地址，<strong>异常退出</strong>的要到异常表中找，<strong>栈帧中不会保存</strong>。</p>
+</li>
+</ul>
+<h4 id="一些附加信息："><a href="#一些附加信息：" class="headerlink" title="一些附加信息："></a>一些附加信息：</h4><p>栈帧中还允许携带与Java虚拟机实现相关的一些附加信息，例如对程序调试提供支持的信息</p>
+<h2 id="6、堆"><a href="#6、堆" class="headerlink" title="6、堆"></a>6、堆</h2><h3 id="1、堆的核心概述"><a href="#1、堆的核心概述" class="headerlink" title="1、堆的核心概述"></a>1、堆的核心概述</h3><ul>
+<li><p>一个JVM实例只存在<strong>一个堆空间</strong>，堆空间的大小在<strong>JVM启动时就已经确定了</strong>，是JVM管理的<strong>最大一块内存空间</strong></p>
+</li>
+<li><p><strong>所有线程共享Java堆，但是堆里面有线程私有的缓冲区（TLAB），这个不是共享的</strong> </p>
+</li>
+<li><p>堆空间在物理上不一定连续，但是在逻辑上应该被视为连续的</p>
+</li>
+<li><p>几乎所有的对象实例和数组都在堆中分配内存空间</p>
+</li>
+</ul>
+<p>堆空间细分为：</p>
+<p>Java7之前堆内存逻辑上分为三部分：新生区+养老区+永久区 </p>
+<p>Java8之后堆内存逻辑上分为三部分：新生区+养老区+元空间</p>
+<h3 id="2、堆空间大小与OOM"><a href="#2、堆空间大小与OOM" class="headerlink" title="2、堆空间大小与OOM"></a>2、堆空间大小与OOM</h3><ul>
+<li><p>“-Xms”用于表示堆区的起始内存，等价于-XX：InitialHeapSize</p>
+</li>
+<li><p>“-Xmx”用于表示堆区的最大内存，等价于-XX：MaxHeapSize</p>
+</li>
+<li><p>一旦堆中的内存大小超过-Xmx所指定的最大内存时，就会抛出OutofMemoryError的异常OOM</p>
+</li>
+<li><p>通常会把起始内存和最大内存配置相同，<strong>目的是为了能在Java垃圾回收机制清理完堆区后不需要重新分隔计算堆区的大小，从而提高性能</strong></p>
+</li>
+<li><p>默认情况下，初始内存大小：电脑物理内存/64</p>
+<p>​                     最大内存大小：电脑物理内存/4</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span>  <span class="title">test</span> <span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">long</span> l = Runtime.getRuntime().totalMemory()/<span class="number">1024</span>/<span class="number">1024</span>; <span class="comment">// 256m</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">long</span> l1 = Runtime.getRuntime().maxMemory()/<span class="number">1024</span>/<span class="number">1024</span>; <span class="comment">// 3 * 1024 m</span></span><br><span class="line"></span><br><span class="line">    System.out.println(l * <span class="number">64</span> / <span class="number">1024</span> + <span class="string">&quot;G&quot;</span>); <span class="comment">// 16g</span></span><br><span class="line"></span><br><span class="line">    System.out.println(l1 * <span class="number">4</span> / <span class="number">1024</span> + <span class="string">&quot;G&quot;</span>); <span class="comment">// 15g</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、年轻代和老年代"><a href="#3、年轻代和老年代" class="headerlink" title="3、年轻代和老年代"></a>3、年轻代和老年代</h3><p>JVM中的Java对象划分为两类：</p>
+<ul>
+<li>一类是生命周期较短的瞬时对象，这类对象的创建和消亡都非常迅速</li>
+<li>另外一类对象的声明周期非常长，在某些极端的情况下能够和JVM的声明周期保持一致</li>
+</ul>
+<p><img src="Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/%E5%A0%86%E7%A9%BA%E9%97%B4.png" alt="堆空间结构"></p>
+<p><code>-NewRatio</code> 设置新生代与老年代的比例 默认值是1:2；</p>
+<ol>
+<li>可以修改<code>-XX:NewRatio = 4</code>,表示新生代和老年代的比例为1:4</li>
+</ol>
+<p><code>-SurvivorRatio</code> 设置Eden空间和幸存者区的比例 默认值是8:1:1；</p>
+<p>可以修改<code>-XX:SurvivorRatio=8</code>；,表示新生代和老年代的比例为8:1:1</p>
+<p><code>-XX：UseAdaptiveSizePolicy</code> ：关闭自适应的内存分配策略</p>
+<p><strong>注意：</strong>官方文档说伊甸园区和两个幸存者区的比例为8:1:1,但实际上是6:1:1,如果想变成8:1:1,则需要在虚拟机参数上加</p>
+<p><code>-XX:SurvivorRatio=8</code>；</p>
+<ul>
+<li><code>几乎所有</code>的Java对象都是在Eden区被new出来的。</li>
+<li>绝大部分的Java对象的销毁都在新生代进行了</li>
+<li>可以使用选项“-Xmn“设置新生代最大内存大小（但是一般使用默认值就可以了）</li>
+</ul>
+<h3 id="4、对象分配过程"><a href="#4、对象分配过程" class="headerlink" title="4、对象分配过程"></a>4、对象分配过程</h3><ol>
+<li>new对象先放在伊甸园区，此区有大小的限制</li>
+<li>当伊甸园区空间填满时，会进行垃圾回收YGC(Minor GC),将伊甸园区中不再被其他对象所引用的对象回收，剩下的还有用的对象放入幸存者区，并将放入幸存者区的对象加上age属性，并加一</li>
+<li>此时伊甸园区为空，此时新的对象放入伊甸园区，当伊甸园区又满了的时候，重复第二步放入另一个幸存者区，同时将幸存者0区的对象也进行垃圾回收，有用的对象也放入另一个幸存者区，并将age+1</li>
+<li>如此循环下去，当幸存者区中有对象的age属性大于15，就将该对象进行晋升，进入老年代</li>
+<li>进入老年代的次数可以设置 <code>-XX:MaxTenuringThreshold=&lt;N&gt;</code><strong>这个值的范围为0-15</strong> </li>
+</ol>
+<p><strong>注意：伊甸园区满了会进行垃圾回收（YGC）但是幸存者区满了不会进行垃圾回收</strong></p>
+<p>特殊情况：有些对象直接new在老年代了，不经过伊甸园区和幸存者区，如下图：</p>
+<p><img src="Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/image-20201201172247896.png" alt="image-20201201172247896"></p>
+<h3 id="5、Minor-GC-和Major-GC-和-Full-GC"><a href="#5、Minor-GC-和Major-GC-和-Full-GC" class="headerlink" title="5、Minor GC 和Major GC 和 Full GC"></a>5、Minor GC 和Major GC 和 Full GC</h3><p>JVM进行GC时，并非每次都对上面三个内存（新生代，老年代，方法区）区域一起回收的，大部分时候回收的都是指新生代。</p>
+<p>Hotspot VM的实现，GC分为两大类：</p>
+<ul>
+<li>部分收集：不是完整收集整个Java堆的垃圾收集。其中又分为：<ul>
+<li>新生代收集（Minor GC / Young GC）：只是新生代的垃圾收集</li>
+<li>老年代收集（Major GC / Old GC）：只是老年代的垃圾收集</li>
+<li>混合收集（Mixed GC）：收集整个新生代以及部分老年代的垃圾收集</li>
+</ul>
+</li>
+<li>整堆收集（Full GC）：收集整个java堆和方法区的垃圾收集</li>
+</ul>
+<h4 id="年轻代GC触发机制："><a href="#年轻代GC触发机制：" class="headerlink" title="年轻代GC触发机制："></a>年轻代GC触发机制：</h4><ul>
+<li>当年轻代空间不足时，就会触发Minor GC，这里的年轻代满指的是Eden区满，Survivor满不会引发GC（每次Minor GC会清理年轻代的内存）</li>
+<li>Minor GC会引发STW，暂停其他用户的线程，等垃圾回收结束，用户线程才恢复运行</li>
+</ul>
+<h4 id="老年代GC触发机制："><a href="#老年代GC触发机制：" class="headerlink" title="老年代GC触发机制："></a>老年代GC触发机制：</h4><ul>
+<li>指发生在老年代的GC，对象从老年代消失时，我们说“Major GC” 或“Full GC”发生了</li>
+<li>出现了Major GC ，经常会伴随至少一次的Minor GC （但非绝对的，在Parallel Scavenge收集器的收集策略里就有直接进行Major GC的策略选择过程）<ul>
+<li>在老年代空间不足时，会先尝试触发Minor GC，如果之后空间还不足，则触发Major GC</li>
+</ul>
+</li>
+<li>Major GC的速度一般会比Minor GC慢十倍以上，STW的时间更长</li>
+<li>Major GC后如果还内存不足，就报OOM了</li>
+</ul>
+<h3 id="6、内存分配策略（对象提升规则）"><a href="#6、内存分配策略（对象提升规则）" class="headerlink" title="6、内存分配策略（对象提升规则）"></a>6、内存分配策略（对象提升规则）</h3><p>针对不同年龄段的对象分配原则如下所示：</p>
+<ul>
+<li>优先分配到Eden</li>
+<li>大对象直接分配给老年代<ul>
+<li>尽量避免程序中出现过多的大对象</li>
+</ul>
+</li>
+<li>长期存活的对象分配到老年代</li>
+<li>动态对象年龄判断<ul>
+<li>如果Survivor区中相同年龄的所有对象大小的总和大于Survivor空间的一半，年龄大于或等于该年龄的对象可以直接进入老年代，无须等到MaxTenuringThreshold（最大持续时间）中要求的年龄。</li>
+</ul>
+</li>
+<li>空间分配担保<ul>
+<li>-XX：HandlePromotionFailure</li>
+</ul>
+</li>
+</ul>
+<h3 id="7、为对象分配内存：TLAB"><a href="#7、为对象分配内存：TLAB" class="headerlink" title="7、为对象分配内存：TLAB"></a>7、为对象分配内存：TLAB</h3><p>TLAB（Thread Local Allocation Buffer）:</p>
+<ul>
+<li><p>从内存模型而不是垃圾收集的角度，对Eden区域继续进行划分，JVM为<strong>每个线程分配了一个私有缓存区域</strong>，它包含在Eden空间内</p>
+</li>
+<li><p>多线程下TLAB可以避免安全问题，同时提升内存分配的吞吐量，因此我们可以将这种内存分配方式称之为<strong>快速分配策略</strong></p>
+</li>
+<li><p>JVM将TLAB作为给对象分配内存空间的首选</p>
+</li>
+<li><p>可以通过<code>-XX：UseTLAB</code>来设置是否开启TLAB空间</p>
+</li>
+<li><p>默认情况下TLAB非常小，只占Eden区百分之一，可以通过<code>-XX：TLABWasteTargetPercent</code>来设置所占的百分比大小</p>
+</li>
+</ul>
+<p><img src="Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/image-20201202102340842.png" alt="image-20201202102340842"></p>
+<p><strong>Minor GC发生前的判断</strong>：</p>
+<p><img src="Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/image-20201202113347483.png" alt="image-20201202113347483"></p>
+<h3 id="8、问题：堆是分配对象存储的唯一选择吗？"><a href="#8、问题：堆是分配对象存储的唯一选择吗？" class="headerlink" title="8、问题：堆是分配对象存储的唯一选择吗？"></a>8、问题：堆是分配对象存储的唯一选择吗？</h3><ul>
+<li>如果经过<strong>逃逸分析</strong>后发现，<strong>一个对象并没有逃逸出方法的话</strong>，那么就<strong>可能被优化为栈上分配</strong>，这样无需在堆上分配内存，也无需进行垃圾回收了，这就是最常见的<strong>堆外存储技术</strong></li>
+</ul>
+<h4 id="逃逸分析算法"><a href="#逃逸分析算法" class="headerlink" title="逃逸分析算法"></a>逃逸分析算法</h4><ul>
+<li>这是一种可以有减少Java程序中同步负载和内存堆分配压力的跨函数全局数据流分析算法</li>
+<li>通过该算法，jvm能够分析出一个新的对象的引用的作用范围来确定这个对象应不应该创建在堆中</li>
+<li>逃逸分析基本行为就是分析对象的动态作用域：<ul>
+<li>当一个对象在方法中被定义后，对象只在方法内部使用，则认为没有发生逃逸</li>
+<li>当一个对象在方法中被定义后，他被外部方法所引用，则认为发生逃逸，例如作为调用参数传递到其他地方中</li>
+</ul>
+</li>
+</ul>
+<p>参数设置：</p>
+<ul>
+<li>在JDK 6u23版本之后，Hotspot默认开启逃逸分析</li>
+<li>如果使用较早版本，那么可以通过：<ul>
+<li>“-XX：DoEscapeAnalysis”显示开启逃逸分析</li>
+<li>“-XX：+PrintEscapeAnalysis”查看逃逸分析的筛选结果</li>
+</ul>
+</li>
+</ul>
+<h3 id="9、代码优化"><a href="#9、代码优化" class="headerlink" title="9、代码优化"></a>9、代码优化</h3><p>1、栈上分配：</p>
+<p>如果局部变量没有逃逸，就可以在栈上创建该局部变量的实例对象</p>
+<p>2、同步省略：</p>
+<p>如果一个局部变量的声明周期只在该局部变量所在的方法中，那么如果该对象作为同步监视器的话，java在编译的时候不会取消该锁，但是在JIT编译阶段就会被优化掉，去掉没有用的同步锁</p>
+<p>3、标量替换</p>
+<p>标量：是指一个无法在分解成更小的数据的数据。Java中原始数据类型就是标量，相对的，能分解的叫聚合量（Aggregate），Java中的对象就是聚合量</p>
+<p>在JIT阶段，如果该对象不会逃逸，那么就会被优化，将这个对象拆解成若干个成员变量来代替，这就是标量替换</p>
+<h3 id="10、堆空间分代思想："><a href="#10、堆空间分代思想：" class="headerlink" title="10、堆空间分代思想："></a>10、堆空间分代思想：</h3><p>为什么要把Java堆分代？不分代就不能正常工作吗？</p>
+<ul>
+<li>经研究，不同对象的生命周期不同，绝大多数对象（70%-99%）都是临时对象</li>
+<li>不分代完全是可以的，分代的唯一理由就是<strong>优化GC性能</strong>，如果没有分代，那所有的对象都在一块，就如同把一个学校的人都关在一个教师，GC的时候要找那些对象没用，就会对堆的区域进行扫描，而很多对象都是朝生夕死的，如果分代，把新创建的对象统一放到某个地方，当GC的时候先把这块区域进行回收，这样就会腾出很大的空间来，不用频繁的对所有的堆空间进行GC，提高GC效率</li>
+</ul>
+<h4 id="为什么要设置survivor区？"><a href="#为什么要设置survivor区？" class="headerlink" title="为什么要设置survivor区？"></a>为什么要设置survivor区？</h4><p>Survivor的存在意义，就是减少被送到老年代的对象，进而减少Full GC的发生，Survivor的预筛选保证，只有经历16次Minor GC还能在新生代中存活的对象，才会被送到老年代。</p>
+<h4 id="为什么要设置两个survivor区，一个不行吗？"><a href="#为什么要设置两个survivor区，一个不行吗？" class="headerlink" title="为什么要设置两个survivor区，一个不行吗？"></a>为什么要设置两个survivor区，一个不行吗？</h4><ul>
+<li><p>导致内存碎片化，严重影响<a target="_blank" rel="noopener" href="http://lib.csdn.net/base/java">Java</a>程序的性能。堆空间被散布的对象占据不连续的内存，最直接的结果就是，堆中没有足够大的连续内存空间，接下去如果程序需要给一个内存需求很大的对象分配内存的话，就会没有地方放，导致oom。</p>
+</li>
+<li><p>设置两个survivor最大的好处就是，整个过程中，永远有一个survivor space是空的，另一个非空的survivor space无碎片。</p>
+</li>
+</ul>
+<h2 id="7、JVM的架构模型"><a href="#7、JVM的架构模型" class="headerlink" title="7、JVM的架构模型"></a>7、JVM的架构模型</h2><p>Java编译器输入的指令流基本上是一种基于栈的指令集架构，另外一种指令集架构则是基于寄存器的指令集架构</p>
+<p>这两种之间的区别：</p>
+<p><strong>基于栈的指令集架构</strong>：</p>
+<ul>
+<li>设计和实现更简单，适用于资源受限的系统</li>
+<li>避开了寄存器的分配难题，使用零地址指令方式分配</li>
+<li>不需要硬件支持，可移植性更好，更好实现跨平台</li>
+</ul>
+<p><strong>基于寄存器的指令集架构</strong></p>
+<ul>
+<li>完全依赖硬件，可移植性差</li>
+<li>性能优秀，执行更高效</li>
+<li>花费更少的指令去完成一项操作</li>
+</ul>
+<p>由于跨平台的设计，Java的指令都是根据栈来设计的</p>
+<h2 id="8、JVM的生命周期"><a href="#8、JVM的生命周期" class="headerlink" title="8、JVM的生命周期"></a>8、JVM的生命周期</h2><p>1、虚拟机的启动</p>
+<ul>
+<li>虚拟机的启动是通过引导类加载器创建一个初始类来完成的，这个类是由虚拟机的具体实现指定的</li>
+</ul>
+<p>2、虚拟机的执行</p>
+<ul>
+<li>虚拟机的任务：执行Java程序</li>
+<li>程序开始执行时才运行，程序结束时他就停止</li>
+<li>执行一个所谓的Java程序时，真真正正在执行的是一个叫做Java虚拟机的进程</li>
+</ul>
+<p>3、虚拟机的退出</p>
+<ul>
+<li>当程序正常执行结束</li>
+<li>程序在运行过程中遇到了异常或者错误而异常终止</li>
+<li>操作系统出现错误</li>
+<li>调用Runtime和System类的exit方法主动停止，或者runtime类的halt方法，并且安全管理器也允许此次操作</li>
+</ul>
+<h2 id="9、类加载器子系统"><a href="#9、类加载器子系统" class="headerlink" title="9、类加载器子系统"></a>9、类加载器子系统</h2><h3 id="1、作用："><a href="#1、作用：" class="headerlink" title="1、作用："></a>1、作用：</h3><ul>
+<li>负责从文件系统或者网络中加载Class文件，class文件在文件开头有特定的文件标识</li>
+<li>ClassLoader只负责class文件的加载，至于是否可以运行，则由Execution Engine（执行引擎）决定</li>
+<li>加载的类信息存放在方法区</li>
+</ul>
+<h3 id="2、类的加载过程："><a href="#2、类的加载过程：" class="headerlink" title="2、类的加载过程："></a>2、类的加载过程：</h3><p><strong>class文件</strong> ——&gt; <strong>类的加载器</strong> ——&gt; <strong>链接（link）：分为三步  验证，准备，解析</strong> ——&gt; <strong>初始化</strong></p>
+<h3 id="3、类的加载器"><a href="#3、类的加载器" class="headerlink" title="3、类的加载器"></a>3、类的加载器</h3><p>启动类加载器（BootStarp ClassLoad） —— &gt; 拓展类加载器（Ext ClassLoader）——&gt; 应用程序加载器（系统加载器）Application ClassLoader（System ClassLoader） ——&gt;用户自定义类加载器（User ClassLoader）</p>
+<h4 id="1、启动类加载器（BootStarp-ClassLoad）"><a href="#1、启动类加载器（BootStarp-ClassLoad）" class="headerlink" title="1、启动类加载器（BootStarp ClassLoad）"></a>1、启动类加载器（BootStarp ClassLoad）</h4><ul>
+<li>使用c/c++语言实现，嵌套在JVM内部</li>
+<li>用来加载核心类库</li>
+<li>不继承于ClassLoader</li>
+<li>加载appclassloader和extclassloader，并作为他们的父加载器</li>
+<li>出于安全，启动类加载器只加载java，javax，sun等包的类</li>
+</ul>
+<h4 id="2、-拓展类加载器（Ext-ClassLoader）"><a href="#2、-拓展类加载器（Ext-ClassLoader）" class="headerlink" title="2、 拓展类加载器（Ext ClassLoader）"></a>2、 拓展类加载器（Ext ClassLoader）</h4><ul>
+<li>Java语言编写，派生于ClassLoader类，由ExtClassLoader类实现</li>
+</ul>
+<h4 id="3、应用程序加载器（Application-ClassLoader）"><a href="#3、应用程序加载器（Application-ClassLoader）" class="headerlink" title="3、应用程序加载器（Application ClassLoader）"></a>3、应用程序加载器（Application ClassLoader）</h4><ul>
+<li>该类是程序默认的类加载器，绝大多数类加载器都是使用这个加载器加载</li>
+</ul>
+<h4 id="4、用户自定义类加载器（User-ClassLoader）"><a href="#4、用户自定义类加载器（User-ClassLoader）" class="headerlink" title="4、用户自定义类加载器（User ClassLoader）"></a>4、用户自定义类加载器（User ClassLoader）</h4><p>用处：<strong>隔离加载类</strong>，<strong>修改类加载的方式</strong>，<strong>扩展加载源</strong>，<strong>防止源码泄露</strong></p>
+<p>自定义继承ClassLoader类，在jdk1.2以前重写loadclass方法，1.2之后建议重写findclass方法</p>
+<p>如果没有太过复杂的要求，可以直接继承URLClassloader类，更加简洁</p>
+<h3 id="4、类的加载-——链接"><a href="#4、类的加载-——链接" class="headerlink" title="4、类的加载 ——链接"></a>4、类的加载 ——链接</h3><ul>
+<li><p>验证：目的在于确保class文件的字节流中包含信息符合当前虚拟机要求（文件格式验证，元数据验证，字节码验证，符号引用验证）</p>
+</li>
+<li><p>准备：为类变量分配内存并且设置该类的变量为默认初始值</p>
+</li>
+<li><p>解析：将常量池内的符号引用转换为直接引用的过程</p>
+</li>
+</ul>
+<h3 id="5、类的加载——初始化"><a href="#5、类的加载——初始化" class="headerlink" title="5、类的加载——初始化"></a>5、类的加载——初始化</h3><ul>
+<li><p>初始化就是执行类构造器方法<clinit>()过程，此方法不需要定义，<strong>如果有类变量的赋值动作或静态代码块就有此过程，否则没有</strong></p>
+</li>
+<li><p>若该类有父类，JVM会保证子类的<clinit>()执行前，父类的已经执行过了</p>
+</li>
+<li><p>JVM必须保证一个类的<clinit>()方法在多线程下被同步加锁</p>
+</li>
+</ul>
+<h2 id="10、双亲委派机制"><a href="#10、双亲委派机制" class="headerlink" title="10、双亲委派机制"></a>10、双亲委派机制</h2><p>优点：</p>
+<p>1、避免类的重复加载</p>
+<p>2、保证程序安全，防止程序被恶意篡改</p>
+<h2 id="11、程序计数器"><a href="#11、程序计数器" class="headerlink" title="11、程序计数器"></a>11、程序计数器</h2><p>作用：用来存储指向下一条指令的地址，也即将要执行的指令代码，由存储引擎读取下一条指令</p>
+<p>问题：使用PC寄存器存储字节码指令地址有什么用？为什么使用PC寄存器记录当前线程的执行地址呢？</p>
+<p>回答：因为CPU会不停的切换线程，这时候切换回来以后，需要知道程序接着从哪开始开始继续执行</p>
+<h2 id="12、对象的一些问题"><a href="#12、对象的一些问题" class="headerlink" title="12、对象的一些问题"></a>12、对象的一些问题</h2><h3 id="1、对象的实例化"><a href="#1、对象的实例化" class="headerlink" title="1、对象的实例化"></a>1、对象的实例化</h3><p><img src="Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96.jpg" alt="对象的实例化"></p>
+<h4 id="1、判断对象对应的类是否加载，链接，初始化"><a href="#1、判断对象对应的类是否加载，链接，初始化" class="headerlink" title="1、判断对象对应的类是否加载，链接，初始化"></a>1、判断对象对应的类是否加载，链接，初始化</h4><ul>
+<li>虚拟机遇到一条new指令，首先会去检查元空间的常量池有没有该类的符号引用，并且检查这个符号引用代表的类有没有被加载，链接，初始化到内存中，如果没有，则去找类的加载器，利用双亲委派机制，在当前类的加载器下，用classloader加类的全类名作为key去查找，如果没有找到，那就会报ClassNotFoundException，如果有，则将生成该类的Class对象</li>
+</ul>
+<h4 id="2、为对象分配内存"><a href="#2、为对象分配内存" class="headerlink" title="2、为对象分配内存"></a>2、为对象分配内存</h4><ul>
+<li>如果内存规整<ul>
+<li>如果内存空间是规整的，那么虚拟机会使用指针碰撞法给对象分配内存空间<br>指针碰撞：用一个指针指向当前堆中的空余部分的起始位置，然后给对象分配内存后，将该指针后移对象大小的位置</li>
+</ul>
+</li>
+<li>不规整<ul>
+<li>如果内存不规整，已使用和未使用内存相互交错，那么虚拟机会使用空闲列表法来为对象分配内存。<br>意思是虚拟机维护了一个列表,记录上那些内存块可用，在分配的时候从列表中找到一块足够大的空间划分给对象实例，并更新列表上的内容，这种分配方式叫做空闲列表</li>
+</ul>
+</li>
+</ul>
+<h4 id="3、处理并发安全问题"><a href="#3、处理并发安全问题" class="headerlink" title="3、处理并发安全问题"></a>3、处理并发安全问题</h4><ul>
+<li>采用CAS配上失败重试保证更新的原子性</li>
+<li>每个线程预先分配一块TLAB</li>
+</ul>
+<h4 id="4、初始化分配到的空间"><a href="#4、初始化分配到的空间" class="headerlink" title="4、初始化分配到的空间"></a>4、初始化分配到的空间</h4><ul>
+<li>所有属性设置默认值，保证对象实例字段在不赋值时可以直接使用</li>
+</ul>
+<h4 id="5、设置对象的对象头"><a href="#5、设置对象的对象头" class="headerlink" title="5、设置对象的对象头"></a>5、设置对象的对象头</h4><ul>
+<li>将对象的所属类（即类的元数据信息），对象的HashCode，和对象的GC信息，锁信息等数据存储在对象头中，这个过程具体的实现方式由JVM实现</li>
+</ul>
+<h4 id="6、执行init方法进行初始化"><a href="#6、执行init方法进行初始化" class="headerlink" title="6、执行init方法进行初始化"></a>6、执行init方法进行初始化</h4><ul>
+<li>初始化成员变量，调用实例化代码块，执行类的构造器，并把堆内对象的首地址赋值给引用变量</li>
+<li>因此一般来说（由字节码是否跟随有invokespecial指令所决定），new指令之后接着就是执行方法，把对象按照意愿进行初始化，这样一个真正可用的对象才算创建出来</li>
+</ul>
+<h3 id="2、对象的内存布局"><a href="#2、对象的内存布局" class="headerlink" title="2、对象的内存布局"></a>2、对象的内存布局</h3><p><img src="Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80.jpg" alt="对象的内存布局"></p>
+<p><img src="Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/image-20201204162013820.png" alt="image-20201204162013820"></p>
+<h3 id="3、对象的访问定位"><a href="#3、对象的访问定位" class="headerlink" title="3、对象的访问定位"></a>3、对象的访问定位</h3><p>定位是通过虚拟机栈上的reference访问的</p>
+<p>对象访问方式主要有两种：</p>
+<ul>
+<li>句柄访问：优点：栈空间的对象引用地址稳定，堆中的对象位置发生改变无需更改占空间的引用地址</li>
+</ul>
+<p><img src="Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/image-20201204163129630.png" alt="image-20201204163129630"></p>
+<ul>
+<li>直接指针（Hotspot采用）：虚拟机栈的栈帧上的局部变量表存在类型引用reference，这个引用指向了堆空间的实例对象的首地址，然后堆空间的对象内存布局中有一个类型指针，指向元空间的Class类型元信息</li>
+</ul>
+<p><img src="Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/image-20201204163200284.png" alt="image-20201204163200284"></p>
+<h2 id="13、执行引擎"><a href="#13、执行引擎" class="headerlink" title="13、执行引擎"></a>13、执行引擎</h2><p>执行引擎概述：</p>
+<ul>
+<li><p>执行引擎是Java虚拟机核心的组成部分之一</p>
+</li>
+<li><p><strong>虚拟机的执行引擎是由软件自行实现的</strong>，因此可以不受物理条件制约地定制指令集与执行引擎的结构体系，<strong>能够执行那些不被硬件直接支持的指令集格式</strong></p>
+</li>
+<li><p>执行引擎的任务就是将<strong>字节码指令解释/编译为对应平台上的本地机器指令</strong>，简单来说，执行引擎充当了将高级语言翻译为机器语言的译者</p>
+</li>
+<li><p>从外观来看，所有的Java虚拟机的执行引擎输入，输出都是一致的：输入的是字节码二进制流，处理过程是字节码解析的等效过程，输出的是执行结果</p>
+</li>
+</ul>
+<h3 id="Java代码编译和执行的过程"><a href="#Java代码编译和执行的过程" class="headerlink" title="Java代码编译和执行的过程"></a>Java代码编译和执行的过程</h3><p>解释器：当Java虚拟机启动的时候会根据预定义的规范对<strong>字节码采取逐行解释的方法</strong>执行，将每条字节码文件中的内容“翻译”为对应平台的本地机器指令执行。</p>
+<p>JIT编译器：就是虚拟机将源代码直接编译成和本地机器语言相关的机器语言</p>
+<p>为什么说java语言是半编译半解释型语言？</p>
+<p>因为JVM在执行Java代码的时候，通常会将<strong>解释执行</strong>和<strong>编译执行</strong>二者结合起来进行，<strong>尽力去选择最合适的方式来权衡本地代码的时间和直接解释执行代码的时间</strong></p>
+<p><img src="Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/image-20201204211336284.png" alt="image-20201204211336284"></p>
+<h3 id="解释器"><a href="#解释器" class="headerlink" title="解释器"></a>解释器</h3><ul>
+<li><p>解释器真正意义上所承担的角色就是一个翻译者，将字节码文件中的内容<code>翻译</code>为对应平台的本地机器指令执行</p>
+</li>
+<li><p>当一条字节码指令被解释执行完成后，接着再根据PC寄存器中记录的下一条需要被执行的字节码指令执行解释操作</p>
+</li>
+<li><p>在HotspotVM中，解释器主要由两种模块构成：Interpreter模块和code模块构成</p>
+<ul>
+<li>Interpreter模块：实现了解释器的核心功能</li>
+<li>code模块：用于管理Hotspot VM在运行时生成的本地机器指令</li>
+</ul>
+</li>
+</ul>
+<h3 id="JIT编译器"><a href="#JIT编译器" class="headerlink" title="JIT编译器"></a>JIT编译器</h3><ul>
+<li>Java语言的<code>编译期</code>其实是一段<code>不确定</code>的操作过程，因为他可能是一个<strong>前端编译器</strong>把.java文件转变为.class文件的过程</li>
+<li>也可能是指虚拟机的<strong>后端运行期编译器</strong>（JIT编译器）把字节码转变为机器码的过程</li>
+<li>也可能是指使用<strong>静态提前编译器</strong>（AOT编译器）直接把.java文件编译成本地机器代码的过程</li>
+</ul>
+<p><strong>启动JIT编译器的条件</strong>：</p>
+<p>根据代码被调用执行的频率来决定，关于那些需要被编译为本地代码的字节码，也被称为<code>热点代码</code>，JIT编译器在编译的时候会针对这些热点代码进行深度优化，将其直接编译为对应平台的本地机器指令，以此提升java的性能</p>
+<p><strong>那么热点代码是如何进行判定的呢？</strong><br>主要依靠热点探测功能，目前Hotspot VM使用的是基于计数器的热点探测功能，这个计数器在于统计方法被调用的次数，默认阈值在client模式为1500，server模式为10000，超过这个阈值，就会触发JIT编译。</p>
+<p><strong>热度衰减</strong>：<br>如果不做任何设置，方法调用计数器统计的并不是方法的调用的绝对次数，而是一个相对的执行频率，即<code>一段时间内方法被调用的次数</code>，当<code>超过一定的时间限制</code>，如果调用次数仍然不足让它交给即时编译器编译，那么调用计数器就会被减少一半，这个过程被叫做<code>衰减</code>，这段时间就叫做此方法统计的<code>半衰周期</code></p>
+<p><strong>与解释器二者的差别：</strong><br>当程序启动后，解释器可以立马工作，省去编译的时间，编译器要想发挥作用需要一定的执行时间，但编译为本地代码后，执行效率高。</p>
+<p>==所以，当启动时间不重要时，就可以使用JIT编译器，而不使用解释器，但是对于那些看中启动时间的应用场景来说，就需要将解释器和JIT及时编译器进行一个权衡，来换取一个平衡点，在这个模式下，当JVM启动时，解释器可以首先发挥作用，不用等待JIT编译完成再执行，省去时间，后面编译器发挥作用，获得更高的执行效益==</p>
+<p><strong>C1和C2编译器不同的优化策略</strong>：</p>
+<p>client 编译器上主要有方法内联，去虚拟化，冗余消除</p>
+<ul>
+<li><p>方法内联：将引用的函数代码编译到引用点处，这样可以减少栈帧的生成，减少参数传递以及跳转的过程</p>
+</li>
+<li><p>去虚拟化：对唯一的实现类进行内联</p>
+</li>
+<li><p>冗余消除：在运行期间把一些不会执行的代码折叠掉</p>
+</li>
+</ul>
+<p>server编译器主要在全局方面，逃逸分析是优化的基础</p>
+<ul>
+<li>标量替换：用标量值代替聚合对象的属性值</li>
+<li>栈上分配：对于未逃逸的对象分配对象在栈而不是在堆</li>
+<li>同步消除：清楚同步操作，通常指synchronized</li>
+</ul>
+<h3 id="Java方法执行过程"><a href="#Java方法执行过程" class="headerlink" title="Java方法执行过程"></a>Java方法执行过程</h3><p><img src="Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80.assets/image-20201207161825790.png" alt="image-20201207161825790"></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/14/MySQL-%E9%AB%98%E7%BA%A7%E9%83%A8%E5%88%86-01/" class="archive-article-date">
-  	<time datetime="2020-11-14T13:47:35.068Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-14</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/25/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80(%E4%B8%80)/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/14/MySQL%E5%9B%9E%E9%A1%BE-%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-11-14T11:16:15.376Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-14</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/14/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%8823%E7%A7%8D%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-11-14T08:19:56.517Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-14</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2020/12/08/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9F%BA%E7%A1%80(%E4%BA%8C)/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/11/24/MySQL-%E9%AB%98%E7%BA%A7%E9%83%A8%E5%88%86-04/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/14/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%EF%BC%88%E7%AE%97%E6%B3%95%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-11-14T08:14:58.456Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-14</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/11/Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE-%E9%AB%98%E7%BA%A7%E9%83%A8%E5%88%86(%E4%B8%89)/" class="archive-article-date">
-  	<time datetime="2020-11-11T11:56:20.254Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-11</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/10/Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE-%E9%AB%98%E7%BA%A7%E9%83%A8%E5%88%86(%E4%BA%8C)/" class="archive-article-date">
-  	<time datetime="2020-11-10T02:54:15.268Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-10</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/04/Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE-%E9%AB%98%E7%BA%A7%E9%83%A8%E5%88%86(%E4%B8%80)/" class="archive-article-date">
-  	<time datetime="2020-11-04T12:52:55.339Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-04</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/01/Java%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE-%E5%88%9D%E7%BA%A7%E9%83%A8%E5%88%86/" class="archive-article-date">
-  	<time datetime="2020-11-01T12:01:37.955Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-01</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2020/11/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2020/11/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+
+  
+
   
 
 
@@ -360,8 +879,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
